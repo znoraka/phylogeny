@@ -20,7 +20,38 @@ void applyTransform(Image& image);
 void exportPhylogeny(std::ostream& stream, Node *root);
 
 void applyTransform(Image& image) {
-  // image.addNoise(GaussianNoise); 
+  std::vector<std::function<void(Image &image)> > functions;
+
+  //resize
+  functions.push_back([&](Image &image) {
+      int cols = image.columns() * (0.9 + (std::rand() % 100) * 0.002);
+      int rows = image.rows() * (0.9 + (std::rand() % 100) * 0.002);
+      std::string s = std::to_string(cols) + "x" + std::to_string(rows) + "!";      
+      image.resize(s);
+    });
+
+  //recompress
+  functions.push_back([&](Image &image) {
+      image.quality(25 + std::rand() % 75);
+    });
+
+  //gamma adjustment
+  functions.push_back([&](Image &image) {
+      image.gamma(0.3 + (std::rand() % 200) * 0.01);
+    });
+
+  //brightness adjustment
+  functions.push_back([&](Image &image) {
+      image.modulate((std::rand() % 100) * 0.4 + 80, 100, 100);
+    });
+
+  //contrast adjustment
+  // functions.push_back([&](Image &image) {
+  //     image.contrast(100);
+  //   });
+
+
+  functions[std::rand() % functions.size()](image);
 }
 
 Node *createPhylogeny(std::string path, std::string rootImage, int imageCount) {
@@ -91,7 +122,7 @@ void exportPhylogeny(std::ostream& stream, Node *root) {
 }
 
 int main(int argc, char **argv){
-  std::srand(std::time(0));
+  std::srand(std::time(NULL));
   InitializeMagick(*argv);
 
   Node *root = createPhylogeny(argv[1], argv[2], atoi(argv[3]));
