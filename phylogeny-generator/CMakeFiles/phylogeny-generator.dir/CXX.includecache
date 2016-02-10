@@ -6,6 +6,30 @@
 
 #IncludeRegexTransform: 
 
+/home/noe/Documents/dev/phylogeny/phylogeny-generator/src/gnuplot_i.hpp
+iostream
+-
+string
+-
+vector
+-
+fstream
+-
+sstream
+-
+stdexcept
+-
+cstdio
+-
+cstdlib
+-
+list
+-
+io.h
+-
+unistd.h
+-
+
 /home/noe/Documents/dev/phylogeny/phylogeny-generator/src/main.cpp
 iostream
 -
@@ -23,8 +47,12 @@ ctime
 -
 Magick++.h
 -
+map
+-
 jpeglib.h
 -
+gnuplot_i.hpp
+/home/noe/Documents/dev/phylogeny/phylogeny-generator/src/gnuplot_i.hpp
 
 /usr/include/ImageMagick-6/Magick++.h
 Magick++/Include.h
