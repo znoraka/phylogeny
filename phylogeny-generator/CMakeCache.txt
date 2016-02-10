@@ -198,8 +198,26 @@ ImageMagick_Magick++_INCLUDE_DIR:PATH=/usr/include/ImageMagick-6
 //Path to the ImageMagick Magick++ library.
 ImageMagick_Magick++_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libMagick++-6.Q16.so
 
+//Path to a file.
+JPEG_INCLUDE_DIR:PATH=/usr/include
+
+//Path to a library.
+JPEG_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libjpeg.so
+
+//The directory containing a CMake configuration file for Jpeg.
+Jpeg_DIR:PATH=Jpeg_DIR-NOTFOUND
+
+//Path to a library.
+LIBJPEG_LIBRARY:FILEPATH=LIBJPEG_LIBRARY-NOTFOUND
+
+//The directory containing a CMake configuration file for LibJpeg.
+LibJpeg_DIR:PATH=LibJpeg_DIR-NOTFOUND
+
 //pkg-config executable
 PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
+
+//The directory containing a CMake configuration file for libjpeg.
+libjpeg_DIR:PATH=libjpeg_DIR-NOTFOUND
 
 //Value Computed by CMake
 phylogeny-generator_BINARY_DIR:STATIC=/home/noe/Documents/dev/phylogeny/phylogeny-generator
@@ -341,6 +359,8 @@ CMAKE_USE_RELATIVE_PATHS-ADVANCED:INTERNAL=1
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding ImageMagick
 FIND_PACKAGE_MESSAGE_DETAILS_ImageMagick:INTERNAL=[/usr/lib/x86_64-linux-gnu/libMagick++-6.Q16.so][v6.8.9-9()]
+//Details about finding JPEG
+FIND_PACKAGE_MESSAGE_DETAILS_JPEG:INTERNAL=[/usr/lib/x86_64-linux-gnu/libjpeg.so][/usr/include][v()]
 //ADVANCED property for variable: IMAGEMAGICK_BINARY_PATH
 IMAGEMAGICK_BINARY_PATH-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: IMAGEMAGICK_COMPOSITE_EXECUTABLE
@@ -353,6 +373,10 @@ IMAGEMAGICK_IMPORT_EXECUTABLE-ADVANCED:INTERNAL=1
 IMAGEMAGICK_MOGRIFY_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: IMAGEMAGICK_MONTAGE_EXECUTABLE
 IMAGEMAGICK_MONTAGE_EXECUTABLE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: JPEG_INCLUDE_DIR
+JPEG_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: JPEG_LIBRARY
+JPEG_LIBRARY-ADVANCED:INTERNAL=1
 PC_Magick++_CFLAGS:INTERNAL=-fopenmp;-DMAGICKCORE_HDRI_ENABLE=0;-DMAGICKCORE_QUANTUM_DEPTH=16;-fopenmp;-DMAGICKCORE_HDRI_ENABLE=0;-DMAGICKCORE_QUANTUM_DEPTH=16;-fopenmp;-DMAGICKCORE_HDRI_ENABLE=0;-DMAGICKCORE_QUANTUM_DEPTH=16;-I/usr/include/x86_64-linux-gnu//ImageMagick-6;-I/usr/include/ImageMagick-6;-I/usr/include/x86_64-linux-gnu//ImageMagick-6;-I/usr/include/ImageMagick-6;-I/usr/include/x86_64-linux-gnu//ImageMagick-6;-I/usr/include/ImageMagick-6
 PC_Magick++_CFLAGS_I:INTERNAL=
 PC_Magick++_CFLAGS_OTHER:INTERNAL=-fopenmp;-DMAGICKCORE_HDRI_ENABLE=0;-DMAGICKCORE_QUANTUM_DEPTH=16;-fopenmp;-DMAGICKCORE_HDRI_ENABLE=0;-DMAGICKCORE_QUANTUM_DEPTH=16;-fopenmp;-DMAGICKCORE_HDRI_ENABLE=0;-DMAGICKCORE_QUANTUM_DEPTH=16

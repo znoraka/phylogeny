@@ -1,0 +1,68 @@
+# -*- mode: org -*-
+
+J'ai consacré cette première semaine à me renseigner sur l'état de l'art de la phylogenie des images.
+
+#+BEGIN_QUOTE
+/First steps toward image phylogeny/
+/Dias, Z.; Rocha, A.; Goldenstein, S./
+/Information Forensics and Security (WIFS), 2010 IEEE International Workshop on/
+#+END_QUOTE
+
+Article le plus ancien que j'ai trouvé s'intéressant à la phylogenie des images, il pose les bases, détaille les enjeux, décrit quelques metriques permettant d'évaluer un Image Phylogeny Tree et propose une manière de le calculer à partir d'une dissimilarity matrix. Il ne détaille cependant pas comment calculer cette dissimilarity matrix.
+
+Les articles suivants sont de la même équipe et décrivent des améliorations et optimisations de leurs différents algorithmes pour extraire un IPT d'un ensemble d'images
+
+#+BEGIN_QUOTE
+/Image phylogeny by minimal spanning trees/
+/Z Dias, A Rocha, S Goldenstein/
+/Information Forensics and Security, IEEE Transactions on 7 (2), 774-788/
+#+END_QUOTE
+Cet article détaille surtout le calcul de l'IPT sans vraiment se pencher sur le calcul de la dissimilarity matrix
+ 
+#+BEGIN_QUOTE
+/Large-scale image phylogeny: Tracing image ancestral relationships/
+/Z Dias, S Goldenstein, A Rocha/
+/MultiMedia, IEEE 20 (3), 58-70/
+#+END_QUOTE
+Une collection d'heuristiques pour reconstituer l'IPT est proposée, ces algorithmes se contentent d'une sparse dissimilarity matrix et accélère le temps de calcul de l'arbre. C'est surtout le calcul de la dissimilarity matrix qui prend du temps.
+
+#+BEGIN_QUOTE
+/Toward image phylogeny forests: Automatically recovering semantically similar image relationships/
+/Z Dias, S Goldenstein, A Rocha/
+/Forensic science international 231 (1), 178-189/
+#+END_QUOTE
+Les auteurs s'attaquent au problème de la forêt et non plus de l'arbre, plusieurs arbres peuvent être présents dans l'ensemble d'images. Il choisissent de n'utiliser que la dissimilarity matrix et ne font pas de traitement préalable sur les images.
+
+#+BEGIN_QUOTE
+/Exploring heuristic and optimum branching algorithms for image phylogeny/
+/Z Dias, S Goldenstein, A Rocha/
+/Journal of Visual Communication and Image Representation 24 (7), 1124-1134/
+#+END_QUOTE
+Tentatives d'optimisations de leurs algorithmes
+ 
+
+J'ai également lu quelques autres articles, certains portant sur la phylogenie, pas forcément des images, d'autres sur les techniques d'images forgery, ainsi que les articles qui m'ont été conseillés
+
+#+BEGIN_QUOTE
+/A phylogenetic analysis of near-duplicate audio tracks./
+/Matteo Nucci, Marco Tagliasacchi, and Stefano Tubaro. MMSP, page 99-104. IEEE, (2013)/
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+/Muhammad Ali Qureshi, Mohamed Deriche, A bibliography of pixel-based blind image forgery detection techniques, Signal Processing: Image Communication, Volume 39, Part A, November 2015, Pages 46-74/
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+/Lam, E.Y.; Goodman, J.W., "A mathematical analysis of the DCT coefficient distributions for images," in Image Processing, IEEE Transactions on , vol.9, no.10, pp.1661-1666, Oct 2000/
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+/Yi-Lei Chen; Chiou-Ting Hsu, "Detecting Recompression of JPEG Images via Periodicity Analysis of Compression Artifacts for Tampering Detection," in Information Forensics and Security, IEEE Transactions on , vol.6, no.2, pp.396-406, June 2011/
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+/Farid, H., "Exposing Digital Forgeries From JPEG Ghosts," in Information Forensics and Security, IEEE Transactions on , vol.4, no.1, pp.154-160, March 2009/
+#+END_QUOTE
+
+
+J'ai codé un petit programme qui permet à partir d'une image source de générer un IPT en modifiant l'image et les filles de cette image, le programme génère l'arbre au format pdf et les images. Cela risque d'être utile pour les différents tests.

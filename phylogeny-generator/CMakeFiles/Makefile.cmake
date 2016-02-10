@@ -22,6 +22,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.2/Modules/Compiler/GNU-CXX.cmake"
   "/usr/share/cmake-3.2/Modules/Compiler/GNU.cmake"
   "/usr/share/cmake-3.2/Modules/FindImageMagick.cmake"
+  "/usr/share/cmake-3.2/Modules/FindJPEG.cmake"
   "/usr/share/cmake-3.2/Modules/FindPackageHandleStandardArgs.cmake"
   "/usr/share/cmake-3.2/Modules/FindPackageMessage.cmake"
   "/usr/share/cmake-3.2/Modules/FindPkgConfig.cmake"

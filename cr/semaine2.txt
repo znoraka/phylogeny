@@ -1,0 +1,9 @@
+# -*- mode: org -*-
+
+Je pense répartir le travail en deux étapes.
+Premièrement calculer l'arbre à partir d'une dissimilarity matrix, et ensuite calculer la dissimilarity matrix.
+Cela permet de travailler de manière itérative. Je pense en plus que le calcul de l'IPT est plus simple que le calcul de la matrice.
+Le calcul de l'IPT sera probablement assez fixe et risque de ne pas beaucoup être modifié, peut être un peu adapté aux différentes valeurs de la matrice, mais sans plus, le calcul de la matrice en revanche est là où se concentrera le gros du travail, au fur et à mesure de mes lectures et de mes idées, de nouvelles metriques et méthodes seront ajoutés au calcul de la dissimilarity martrix pour avoir une distance entre les images de plus en plus précise.
+
+Pour identifier qu'une image a été cropée à partir d'une autre, utiliser les valeurs nulles (et non nulles) de l'histogramme des coefficients DCT sous forme de chaine binaire, voir FIRST JPEG QUANTIZATION MATRIX ESTIMATION BASED ON HISTOGRAM ANALYSIS
+

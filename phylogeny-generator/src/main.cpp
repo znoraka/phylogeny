@@ -6,6 +6,9 @@
 #include <fstream>
 #include <ctime>
 #include <Magick++.h>
+extern "C" {
+#include <jpeglib.h>
+}
 
 using namespace Magick;
 
@@ -18,6 +21,15 @@ void createChild(std::string path, int imageCount, std::vector<Node*> &nodes);
 Node *createPhylogeny(std::string path, std::string rootImage, int imageCount);
 void applyTransform(Image& image);
 void exportPhylogeny(std::ostream& stream, Node *root);
+void plotDctCoefficients(std::ostream &stream, std::string path);
+
+void plotDctCoefficients(std::ostream &stream, std::string path) {
+  struct jpeg_decompress_struct info;
+  struct jpeg_error_mgr err;
+  info.err = jpeg_std_error(&err);     
+  // jpeg_create_decompress(&info);
+  // jpeg_read_coefficients(NULL);
+}
 
 void applyTransform(Image& image) {
   std::vector<std::function<void(Image &image)> > functions;
@@ -44,6 +56,12 @@ void applyTransform(Image& image) {
   functions.push_back([&](Image &image) {
       image.modulate((std::rand() % 100) * 0.4 + 80, 100, 100);
     });
+
+  //rotation
+  functions.push_back([&](Image &image) {
+      image.rotate((std::rand() % 10) - 5);
+    });
+
 
   //contrast adjustment
   // functions.push_back([&](Image &image) {

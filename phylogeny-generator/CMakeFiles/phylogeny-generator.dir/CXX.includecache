@@ -23,6 +23,8 @@ ctime
 -
 Magick++.h
 -
+jpeglib.h
+-
 
 /usr/include/ImageMagick-6/Magick++.h
 Magick++/Include.h

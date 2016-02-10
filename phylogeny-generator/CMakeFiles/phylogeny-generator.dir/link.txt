@@ -1,1 +1,1 @@
-/usr/bin/c++      CMakeFiles/phylogeny-generator.dir/src/main.cpp.o  -o bin/phylogeny-generator -rdynamic -lMagick++-6.Q16 
+/usr/bin/c++      CMakeFiles/phylogeny-generator.dir/src/main.cpp.o  -o bin/phylogeny-generator -rdynamic -lMagick++-6.Q16 -ljpeg 

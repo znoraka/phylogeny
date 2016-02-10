@@ -1,0 +1,99 @@
+% Created 2016-02-05 ven. 12:29
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\author{noe}
+\date{\today}
+\title{cr1}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs 24.5.1 (Org mode 8.2.10)}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+J'ai consacré cette première semaine à me renseigner sur l'état de l'art de la phylogenie des images.
+
+\begin{quote}
+\emph{First steps toward image phylogeny}
+\emph{Dias, Z.; Rocha, A.; Goldenstein, S.}
+\emph{Information Forensics and Security (WIFS), 2010 IEEE International Workshop on}
+\end{quote}
+
+Article le plus ancien que j'ai trouvé s'intéressant à la phylogenie des images, il pose les bases, détaille les enjeux, décrit quelques metriques permettant d'évaluer un Image Phylogeny Tree et propose une manière de le calculer à partir d'une dissimilarity matrix. Il ne détaille cependant pas comment calculer cette dissimilarity matrix.
+\\ \\
+Les articles suivants sont de la même équipe et décrivent des améliorations et optimisations de leurs différents algorithmes pour extraire un IPT d'un ensemble d'images
+
+\begin{quote}
+\emph{Image phylogeny by minimal spanning trees}
+\emph{Z Dias, A Rocha, S Goldenstein}
+\emph{Information Forensics and Security, IEEE Transactions on 7 (2), 774-788}
+\end{quote}
+Cet article détaille surtout le calcul de l'IPT sans vraiment se pencher sur le calcul de la dissimilarity matrix
+
+\begin{quote}
+\emph{Large-scale image phylogeny: Tracing image ancestral relationships}
+\emph{Z Dias, S Goldenstein, A Rocha}
+\emph{MultiMedia, IEEE 20 (3), 58-70}
+\end{quote}
+Une collection d'heuristiques pour reconstituer l'IPT est proposée, ces algorithmes se contentent d'une sparse dissimilarity matrix et accélère le temps de calcul de l'arbre. C'est surtout le calcul de la dissimilarity matrix qui prend du temps.
+
+\begin{quote}
+\emph{Toward image phylogeny forests: Automatically recovering semantically similar image relationships}
+\emph{Z Dias, S Goldenstein, A Rocha}
+\emph{Forensic science international 231 (1), 178-189}
+\end{quote}
+Les auteurs s'attaquent au problème de la forêt et non plus de l'arbre, plusieurs arbres peuvent être présents dans l'ensemble d'images. Il choisissent de n'utiliser que la dissimilarity matrix et ne font pas de traitement préalable sur les images.
+
+\begin{quote}
+\emph{Exploring heuristic and optimum branching algorithms for image phylogeny}
+\emph{Z Dias, S Goldenstein, A Rocha}
+\emph{Journal of Visual Communication and Image Representation 24 (7), 1124-1134}
+\end{quote}
+Tentatives d'optimisations de leurs algorithmes
+\\ 
+
+J'ai également lu quelques autres articles, certains portant sur la phylogenie, pas forcément des images, d'autres sur les techniques d'images forgery, ainsi que les articles qui m'ont été conseillés
+
+\begin{quote}
+\emph{A phylogenetic analysis of near-duplicate audio tracks.}
+\emph{Matteo Nucci, Marco Tagliasacchi, and Stefano Tubaro. MMSP, page 99-104. IEEE, (2013)}
+\end{quote}
+
+\begin{quote}
+\emph{Muhammad Ali Qureshi, Mohamed Deriche, A bibliography of pixel-based blind image forgery detection techniques, Signal Processing: Image Communication, Volume 39, Part A, November 2015, Pages 46-74}
+\end{quote}
+
+\begin{quote}
+\emph{Lam, E.Y.; Goodman, J.W., "A mathematical analysis of the DCT coefficient distributions for images," in Image Processing, IEEE Transactions on , vol.9, no.10, pp.1661-1666, Oct 2000}
+\end{quote}
+
+\begin{quote}
+\emph{Yi-Lei Chen; Chiou-Ting Hsu, "Detecting Recompression of JPEG Images via Periodicity Analysis of Compression Artifacts for Tampering Detection," in Information Forensics and Security, IEEE Transactions on , vol.6, no.2, pp.396-406, June 2011}
+\end{quote}
+
+\begin{quote}
+\emph{Farid, H., "Exposing Digital Forgeries From JPEG Ghosts," in Information Forensics and Security, IEEE Transactions on , vol.4, no.1, pp.154-160, March 2009}
+\end{quote}
+
+\\ \\
+J'ai codé un petit programme qui permet à partir d'une image source de générer un IPT en modifiant l'image et les filles de cette image, le programme génère l'arbre au format pdf et les images. Cela risque d'être utile pour les différents tests.
+% Emacs 24.5.1 (Org mode 8.2.10)
+\end{document}

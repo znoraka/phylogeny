@@ -4,10 +4,12 @@ cmake_minimum_required(VERSION 2.6)
 
 ADD_DEFINITIONS(
   -std=c++11
-  # -Wall
+  -w
+  # -ljpeg
   )
 
 find_package(ImageMagick COMPONENTS Magick++)
+find_package(JPEG)
 
 set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
 
@@ -30,4 +32,5 @@ add_executable(
   )
 
 include_directories(${ImageMagick_INCLUDE_DIRS})
-target_link_libraries(phylogeny-generator ${ImageMagick_LIBRARIES})
+include_directories(${JPEG_INCLUDE_DIRS})
+target_link_libraries(phylogeny-generator ${ImageMagick_LIBRARIES} ${JPEG_LIBRARIES})
