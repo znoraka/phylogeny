@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>semaine2</title>
-<!-- 2016-02-08 lun. 11:07 -->
+<!-- 2016-02-12 ven. 15:51 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="noe" />
@@ -139,15 +139,61 @@ for the JavaScript code in this tag.
 <div id="content">
 <h1 class="title">semaine2</h1>
 <p>
-Je pense répartir le travail en deux étapes.
-Premièrement calculer l'arbre à partir d'une dissimilarity matrix, et ensuite calculer la dissimilarity matrix.
-Cela permet de travailler de manière itérative. Je pense en plus que le calcul de l'IPT est plus simple que le calcul de la matrice.
-Le calcul de l'IPT sera probablement assez fixe et risque de ne pas beaucoup être modifié, peut être un peu adapté aux différentes valeurs de la matrice, mais sans plus, le calcul de la matrice en revanche est là où se concentrera le gros du travail, au fur et à mesure de mes lectures et de mes idées, de nouvelles metriques et méthodes seront ajoutés au calcul de la dissimilarity martrix pour avoir une distance entre les images de plus en plus précise.
+Tous les papiers que j'ai pu lire jusqu'à maintenant se concentre sur l'identification d'une double compression sur une image, et toutes ces approches se basent sur l'image elle-même. Or, nous travaillons dans le domaine de la phylogenie, et nous disposons d'informations supplémentaire, qu'il serait dommage de laisser de coté. Il ne s'agit pas de savoir si une image a été doublement compressée, mais plutôt de savoir à partir de quelle image elle a été compressée.
+À partir d'un ensemble d'images, il s'agirait de déterminer la probabilité qu'une image soit dans la parentée d'une autre. <br  />
 </p>
+
+<p>
+Dans le meilleur des cas, la racine de l'IPT (image phylogeny tree) est l'image qui n'a aucune parentée. À partir de là, les images ayant cette image comme parent le plus probable seront ses descendantes directes, et ainsi de suite. <br  />
+</p>
+
+<p>
+JPEG étant une compression avec perte, l'information de l'image même ne peut que diminuer. L'information créée par les compressions successives pourra être utilisée pour calculer la probabilité de parentée.
+</p>
+
+<p>
+J'ai commencé utiliser libjpeg pour quelques tests, j'ai regardé l'histogramme des images en fonction de leur historique de compression, et bien qu'il semble trivial de détecter une recompression avec une qualité plus élevée qu'une des qualités de compression précédentes (Fig. <a href="#fig:easy">1</a>), il semble bien plus complexe de détecter une recompression avec une qualitée inférieure ou égale, du moins en utilisant l'histogramme. Fig. <a href="#fig:once">2</a> montre l'histogramme d'une image compressée une fois avec Q=100 et Fig. <a href="#fig:100times">3</a> montre l'histogramme de la même image recompressée 100 fois avec Q=100 à chaque fois. On voit clairement que les différences sont minimes, et qu'il semble difficile d'utiliser l'histogramme.
+</p>
+
+
+<div id="fig:easy" class="figure">
+<p><img src="./histo_50_100.png" alt="histo_50_100.png" width="800px" />
+</p>
+<p><span class="figure-number">Figure 1:</span> Histogramme du coefficient DC et des 15 premier coefficients AC d'une image compressée avec Q=50 puis Q=100</p>
+</div>
+
+
+<div id="fig:once" class="figure">
+<p><img src="./histo_orig_100.png" alt="histo_orig_100.png" width="800px" />
+</p>
+<p><span class="figure-number">Figure 2:</span> Histogramme du coefficient DC et des 15 premier coefficients AC d'une image compressée avec Q=100</p>
+</div>
+
+
+<div id="fig:100times" class="figure">
+<p><img src="./histo_100_100.png" alt="histo_100_100.png" width="800px" />
+</p>
+<p><span class="figure-number">Figure 3:</span> Histogramme du coefficient DC et des 15 premier coefficients AC d'une image compressée 100 fois avec Q=100</p>
+</div>
+
+<p>
+Je pense que je sais maintenant plus ou moins dans quelle direction partir comme expliqué au premier paragraphe et que je vais donc pouvoir plus orienter mes lectures et approfondir les articles lus. <br  />
+</p>
+
+<p>
+Concernant mes lectures de la semaine, j'ai surtout lu les articles qui m'ont été conseillés, ils traitaient en majorité de la détection d'une double compression JPEG, en n'ayant comme information disponible que l'image elle même. Ce n'est pas vraiment notre cas, nous avons en effet beaucoup plus d'information, tout un ensemble de NDI (near duplicate images), la problématique est donc un peu différente.
+</p>
+
+
+<div class="figure">
+<p><img src="./phylogeny.png" alt="phylogeny.png" width="800px" />
+</p>
+<p><span class="figure-number">Figure 4:</span> Premier jet du plan</p>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: noe</p>
-<p class="date">Created: 2016-02-08 lun. 11:07</p>
+<p class="date">Created: 2016-02-12 ven. 15:51</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

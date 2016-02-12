@@ -62,7 +62,7 @@ void plotDctCoefficients(std::ostream &stream, std::string path) {
 	for (int j = 0; j < info.comp_info->width_in_blocks; j++) {
 
 	  
-	  int n = info.mem->access_virt_barray((j_common_ptr)&info, coeffs[channel], i, 1, false)[0][j][zigzag[dctIndex]];
+	  int n = info.mem->access_virt_barray((j_common_ptr)&info, coeffs[0], i, 1, false)[0][j][zigzag[dctIndex]];
 
 	  auto s = histo.find(n);
 	  
@@ -75,15 +75,19 @@ void plotDctCoefficients(std::ostream &stream, std::string path) {
       }
 
       std::vector<int> x;
-      std::vector<int> y;
+      std::vector<float> y;
+
+      int range = 0; // to center histogram
+      
       for(auto i : histo) {
 	x.push_back(i.first);
-	y.push_back(i.second);
+	if(abs(i.first) > range) range = abs(i.first);
+	y.push_back((float)i.second / (info.comp_info->height_in_blocks * info.comp_info->width_in_blocks));
       }
 
       // montage -geometry 640x480+0+0 {0..15}.png out.png
       
-      g1.cmd("set xrange [-400:400]");
+      g1.cmd("set xrange [" + std::to_string(-range) + ":" + std::to_string(range) + "]");
       g1.cmd("set style data histogram");
       g1.cmd("set style histogram clustered");
       g1.cmd("set style fill solid border");
