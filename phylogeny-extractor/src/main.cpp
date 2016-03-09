@@ -107,14 +107,19 @@ std::vector<std::vector<bool> > matrixFromTree(Node *root) {
   f1 = [&](Node *root, std::vector<int> parents) {
     for(auto i : parents) {
       matrix[root->n][i] = true;
+
+      //random pour tester la robustesse de l'algo
+      // if(std::rand() % 100 < 20) {
+      // 	matrix[root->n][i] = !matrix[root->n][i];
+      // }
     }
     
     parents.push_back(root->n);
 
-    if(parents.size() > 3) {
-      // parents.pop_back();
-      parents = std::vector<int>(parents.begin() + 1, parents.end());
-    }
+    // if(parents.size() > 3) {
+    //   // parents.pop_back();
+    //   parents = std::vector<int>(parents.begin() + 1, parents.end());
+    // }
 
     for(auto i : root->children) {
       f1(i, parents);
@@ -130,29 +135,39 @@ std::vector<std::vector<bool> > matrixFromTree(Node *root) {
 void exportPhylogeny(std::ostream& stream, Node *root, Node *root2) {
   std::function<void(Node *n)> f;
   f = [&](Node *n) {
-    stream << "[" << std::endl;
-    // stream << "\\href{run:" << std::to_string(n->n) << "}{" << n->name << "}" << std::endl;
-    stream << n->n << std::endl;
+    // stream << "[" << std::endl;
+    // // stream << "\\href{run:" << std::to_string(n->n) << "}{" << n->name << "}" << std::endl;
+    // stream << n->n << std::endl;
     for(auto i : n->children) {
+      stream << n->n << "--" << i->n << ";";
       f(i);
     }
-    stream << "]" << std::endl;
+    // stream << "]" << std::endl;
   };
-  
-  stream << "\\documentclass[tikz,border=10pt]{standalone}" << std::endl;
-  stream << "\\usepackage{forest}" << std::endl;
-  stream << "\\usepackage{hyperref}" << std::endl;
-  stream << "\\begin{document}" << std::endl;
 
-  stream << "\\begin{forest}" << std::endl;
+  stream << "graph model {";
   f(root);
-  stream << "\\end{forest}" << std::endl;
-  
-  stream << "\\begin{forest}" << std::endl;
-  f(root2);
-  stream << "\\end{forest}" << std::endl;
+  stream << "}" << std::endl;
 
-  stream << "\\end{document}" << std::endl;
+  stream << "graph computed {";
+  f(root2);
+  stream << "}";
+
+  
+  // stream << "\\documentclass[tikz,border=10pt]{standalone}" << std::endl;
+  // stream << "\\usepackage{forest}" << std::endl;
+  // stream << "\\usepackage{hyperref}" << std::endl;
+  // stream << "\\begin{document}" << std::endl;
+
+  // stream << "\\begin{forest}" << std::endl;
+  // f(root);
+  // stream << "\\end{forest}" << std::endl;
+  
+  // stream << "\\begin{forest}" << std::endl;
+  // f(root2);
+  // stream << "\\end{forest}" << std::endl;
+
+  // stream << "\\end{document}" << std::endl;
 }
 
 bool compareTrees(Node *r1, Node *r2) {
@@ -189,16 +204,17 @@ int main(int argc, char **argv) {
   
   Node *out = buildTreeFromMatrix(matrixFromTree(root));
 
-  if(compareTrees(out, root)) {
-    std::cout << "trees are the same!" << std::endl;
-  } else {
-    std::cout << "trees are not the same" << std::endl;
-  }
+  // if(compareTrees(out, root)) {
+  //   std::cout << "trees are the same!" << std::endl;
+  // } else {
+  //   std::cout << "trees are not the same" << std::endl;
+  // }
   
   std::string treePath = "tree.tex";
   std::ofstream stream(treePath);
   std::cout << "exporting" << std::endl;
   exportPhylogeny(stream, out, root);
+  // exportPhylogeny(std::cout, out, root);
   
   std::cout << "done" << std::endl;
 

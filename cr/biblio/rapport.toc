@@ -1,0 +1,38 @@
+\select@language {french}
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {english}
+\defcounter {refsection}{0}\relax 
+\select@language {french}
+\defcounter {refsection}{0}\relax 
+\select@language {english}
+\defcounter {refsection}{0}\relax 
+\select@language {french}
+\defcounter {refsection}{0}\relax 
+\select@language {english}
+\defcounter {refsection}{0}\relax 
+\select@language {french}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Table des mati\`eres}{v}{section*.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {1}Introduction}{1}{chapter.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Near-duplicate images (NDI)}{2}{section*.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Arbre phylog\IeC {\'e}n\IeC {\'e}tique (Image Phylogeny Tree - IPT)}{2}{section*.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Pourquoi se restreindre \IeC {\`a} la compression ?}{3}{section*.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {2}\IeC {\'E}tat de l'art}{5}{chapter.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}\IeC {\'E}tat de l'art - \IeC {\'E}tude de l'arbre phylog\IeC {\'e}n\IeC {\'e}tique}{5}{section.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{La Visual Migration Map (VMM)}{5}{section*.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Image Phylogeny Tree (IPT)}{5}{section*.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}\IeC {\'E}tat de l'art - Analyse des recompression JPEG}{5}{section.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {3}Notre approche}{7}{chapter.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliographie}{11}{section*.9}

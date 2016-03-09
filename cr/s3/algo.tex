@@ -1,0 +1,56 @@
+\documentclass [a4 paper,11pt]{article}
+\usepackage [french]{babel}
+\usepackage [utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{listingsutf8}
+\usepackage{xcolor}
+\usepackage{textcomp}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{animate}
+\usepackage[]{algorithm2e}
+
+\title {Algorithme de reconstruction d'arbre}
+\author {
+\bsc{LE PHILIPPE} Noé\\
+}
+\date{\today}
+
+\begin{document}
+\begin{algorithm}[H]
+  \LinesNumbered
+ \KwData{M a n*n parentage matrix}
+ \KwResult{the root of the tree}
+ \BlankLine
+  $nextRoot \leftarrow$ row with min sum of elements\;
+  $treeRoot \leftarrow null$\;
+  \BlankLine
+
+  \ForAll{rows row of M}{
+    $root \leftarrow nextRoot$\;
+    mark $root$ as done\;
+    \BlankLine
+    \If{treeRoot == null}{
+      $treeRoot \leftarrow root$
+    }
+    \BlankLine
+    \For{$i\leftarrow 0$ \KwTo n}{
+      $row[i] \leftarrow 0$\;
+      \If{sum of elements of row == 0} {
+        add $i$ as child of $root$\;
+      }
+      \If{row has the smallest sum of elements and is not marked as done} {
+        $nextRoot \leftarrow i$\;
+      }
+    }
+ }
+ \KwRet treeRoot
+ \caption{Build tree from parentage matrix}
+\end{algorithm}
+\end{document}
+

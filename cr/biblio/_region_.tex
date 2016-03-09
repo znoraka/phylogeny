@@ -1,0 +1,61 @@
+\message{ !name(rapport.tex)}
+
+%% La classe stageM2R s'appuie sur la classe memoir, plus d'information sur le paquet: http://www.ctan.org/pkg/memoir
+%% option possible de la classe stageM2R
+% utf8  -> encodage du texte UTF8 (défaut: Latin1)
+% final -> mode rapport de stage final (défaut: mode étude bibliographique)
+% private -> indique une soutenance privée (défaut: soutenance publique)
+\documentclass[utf8]{stageM2R} %-> etude bibliographique
+%\documentclass[utf8,final]{stageM2R} %-> rapport final
+
+\usepackage[style=numeric,citestyle=numeric,backend=bibtex]{biblatex}
+
+\bibliography{../../articles/biblio.bib}
+
+\newcommand*{\addheight}[2][.5ex]{%
+  \raisebox{0pt}[\dimexpr\height+(#1)\relax]{#2}%
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Déclaration du stage %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% auteur
+\author{Noé Le Philippe}
+%% encadrants
+\supervisors{William Puech}
+%% lieu du stage (Optionnel)
+\location{Équipe ICAR - LIRMM UM5506 - CNRS, Université de Montpellier}
+%% titre du stage
+\title{La phylogénie des images dans les réseaux sociaux} 
+%% parcours du master
+\track{IMAGINA}  
+%% date de soutenance (Optionnel)
+\date{\today} 
+%% version du rapport (Optionnel)
+\version{1}
+%% Résumé en francais
+\abstractfr{
+Ce stage de master.
+}
+%% Résumé en anglais
+\abstracteng{
+  This master thesis.
+}
+
+
+
+\begin{document}   
+
+\message{ !name(rapport.tex) !offset(68) }
+\end{document}
+
+    
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End:  
+ 
+\message{ !name(rapport.tex) !offset(-61) }

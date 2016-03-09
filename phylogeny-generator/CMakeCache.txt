@@ -198,6 +198,15 @@ ImageMagick_Magick++_INCLUDE_DIR:PATH=/usr/include/ImageMagick-6
 //Path to the ImageMagick Magick++ library.
 ImageMagick_Magick++_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libMagick++-6.Q16.so
 
+//Path to the ImageMagick arch-specific include dir.
+ImageMagick_MagickCore_ARCH_INCLUDE_DIR:PATH=/usr/include/x86_64-linux-gnu/ImageMagick-6
+
+//Path to the ImageMagick arch-independent include dir.
+ImageMagick_MagickCore_INCLUDE_DIR:PATH=/usr/include/ImageMagick-6
+
+//Path to the ImageMagick Magick++ library.
+ImageMagick_MagickCore_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libMagickCore-6.Q16.so
+
 //Path to a file.
 JPEG_INCLUDE_DIR:PATH=/usr/include
 
@@ -212,6 +221,23 @@ LIBJPEG_LIBRARY:FILEPATH=LIBJPEG_LIBRARY-NOTFOUND
 
 //The directory containing a CMake configuration file for LibJpeg.
 LibJpeg_DIR:PATH=LibJpeg_DIR-NOTFOUND
+
+//Path where debug 3rdpaty OpenCV dependencies are located
+OpenCV_3RDPARTY_LIB_DIR_DBG:PATH=
+
+//Path where release 3rdpaty OpenCV dependencies are located
+OpenCV_3RDPARTY_LIB_DIR_OPT:PATH=
+
+OpenCV_CONFIG_PATH:FILEPATH=/usr/share/OpenCV
+
+//The directory containing a CMake configuration file for OpenCV.
+OpenCV_DIR:PATH=/usr/share/OpenCV
+
+//Path where debug OpenCV libraries are located
+OpenCV_LIB_DIR_DBG:PATH=
+
+//Path where release OpenCV libraries are located
+OpenCV_LIB_DIR_OPT:PATH=
 
 //pkg-config executable
 PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
@@ -358,7 +384,7 @@ CMAKE_USE_RELATIVE_PATHS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding ImageMagick
-FIND_PACKAGE_MESSAGE_DETAILS_ImageMagick:INTERNAL=[/usr/lib/x86_64-linux-gnu/libMagick++-6.Q16.so][v6.8.9-9()]
+FIND_PACKAGE_MESSAGE_DETAILS_ImageMagick:INTERNAL=[/usr/lib/x86_64-linux-gnu/libMagick++-6.Q16.so][/usr/lib/x86_64-linux-gnu/libMagickCore-6.Q16.so][v6.8.9-9()]
 //Details about finding JPEG
 FIND_PACKAGE_MESSAGE_DETAILS_JPEG:INTERNAL=[/usr/lib/x86_64-linux-gnu/libjpeg.so][/usr/include][v()]
 //ADVANCED property for variable: IMAGEMAGICK_BINARY_PATH
@@ -377,6 +403,16 @@ IMAGEMAGICK_MONTAGE_EXECUTABLE-ADVANCED:INTERNAL=1
 JPEG_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: JPEG_LIBRARY
 JPEG_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_3RDPARTY_LIB_DIR_DBG
+OpenCV_3RDPARTY_LIB_DIR_DBG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_3RDPARTY_LIB_DIR_OPT
+OpenCV_3RDPARTY_LIB_DIR_OPT-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_CONFIG_PATH
+OpenCV_CONFIG_PATH-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_LIB_DIR_DBG
+OpenCV_LIB_DIR_DBG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenCV_LIB_DIR_OPT
+OpenCV_LIB_DIR_OPT-ADVANCED:INTERNAL=1
 PC_Magick++_CFLAGS:INTERNAL=-fopenmp;-DMAGICKCORE_HDRI_ENABLE=0;-DMAGICKCORE_QUANTUM_DEPTH=16;-fopenmp;-DMAGICKCORE_HDRI_ENABLE=0;-DMAGICKCORE_QUANTUM_DEPTH=16;-fopenmp;-DMAGICKCORE_HDRI_ENABLE=0;-DMAGICKCORE_QUANTUM_DEPTH=16;-I/usr/include/x86_64-linux-gnu//ImageMagick-6;-I/usr/include/ImageMagick-6;-I/usr/include/x86_64-linux-gnu//ImageMagick-6;-I/usr/include/ImageMagick-6;-I/usr/include/x86_64-linux-gnu//ImageMagick-6;-I/usr/include/ImageMagick-6
 PC_Magick++_CFLAGS_I:INTERNAL=
 PC_Magick++_CFLAGS_OTHER:INTERNAL=-fopenmp;-DMAGICKCORE_HDRI_ENABLE=0;-DMAGICKCORE_QUANTUM_DEPTH=16;-fopenmp;-DMAGICKCORE_HDRI_ENABLE=0;-DMAGICKCORE_QUANTUM_DEPTH=16;-fopenmp;-DMAGICKCORE_HDRI_ENABLE=0;-DMAGICKCORE_QUANTUM_DEPTH=16
@@ -411,7 +447,42 @@ PC_Magick++_STATIC_LIBS_L:INTERNAL=
 PC_Magick++_STATIC_LIBS_OTHER:INTERNAL=
 PC_Magick++_STATIC_LIBS_PATHS:INTERNAL=
 PC_Magick++_VERSION:INTERNAL=6.8.9
+PC_MagickCore_CFLAGS:INTERNAL=-fopenmp;-DMAGICKCORE_HDRI_ENABLE=0;-DMAGICKCORE_QUANTUM_DEPTH=16;-I/usr/include/x86_64-linux-gnu//ImageMagick-6;-I/usr/include/ImageMagick-6
+PC_MagickCore_CFLAGS_I:INTERNAL=
+PC_MagickCore_CFLAGS_OTHER:INTERNAL=-fopenmp;-DMAGICKCORE_HDRI_ENABLE=0;-DMAGICKCORE_QUANTUM_DEPTH=16
+PC_MagickCore_FOUND:INTERNAL=1
+PC_MagickCore_INCLUDEDIR:INTERNAL=/usr/include/ImageMagick-6
+PC_MagickCore_INCLUDE_DIRS:INTERNAL=/usr/include/x86_64-linux-gnu//ImageMagick-6;/usr/include/ImageMagick-6
+PC_MagickCore_LDFLAGS:INTERNAL=-lMagickCore-6.Q16
+PC_MagickCore_LDFLAGS_OTHER:INTERNAL=
+PC_MagickCore_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
+PC_MagickCore_LIBRARIES:INTERNAL=MagickCore-6.Q16
+PC_MagickCore_LIBRARY_DIRS:INTERNAL=
+PC_MagickCore_LIBS:INTERNAL=
+PC_MagickCore_LIBS_L:INTERNAL=
+PC_MagickCore_LIBS_OTHER:INTERNAL=
+PC_MagickCore_LIBS_PATHS:INTERNAL=
+PC_MagickCore_MagickCore_INCLUDEDIR:INTERNAL=
+PC_MagickCore_MagickCore_LIBDIR:INTERNAL=
+PC_MagickCore_MagickCore_PREFIX:INTERNAL=
+PC_MagickCore_MagickCore_VERSION:INTERNAL=
+PC_MagickCore_PREFIX:INTERNAL=/usr
+PC_MagickCore_STATIC_CFLAGS:INTERNAL=-fopenmp;-DMAGICKCORE_HDRI_ENABLE=0;-DMAGICKCORE_QUANTUM_DEPTH=16;-I/usr/include/x86_64-linux-gnu//ImageMagick-6;-I/usr/include/ImageMagick-6
+PC_MagickCore_STATIC_CFLAGS_I:INTERNAL=
+PC_MagickCore_STATIC_CFLAGS_OTHER:INTERNAL=-fopenmp;-DMAGICKCORE_HDRI_ENABLE=0;-DMAGICKCORE_QUANTUM_DEPTH=16
+PC_MagickCore_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include/x86_64-linux-gnu//ImageMagick-6;/usr/include/ImageMagick-6
+PC_MagickCore_STATIC_LDFLAGS:INTERNAL=-lMagickCore-6.Q16;-llcms2;-lfreetype;-llqr-1;-lglib-2.0;-lfftw3;-lfontconfig;-lfreetype;-lXext;-lSM;-lICE;-lX11;-lXt;-llzma;-lbz2;-lz;-lltdl;-lm;-lgomp;-lm
+PC_MagickCore_STATIC_LDFLAGS_OTHER:INTERNAL=
+PC_MagickCore_STATIC_LIBDIR:INTERNAL=
+PC_MagickCore_STATIC_LIBRARIES:INTERNAL=MagickCore-6.Q16;lcms2;freetype;lqr-1;glib-2.0;fftw3;fontconfig;freetype;Xext;SM;ICE;X11;Xt;lzma;bz2;z;ltdl;m;gomp;m
+PC_MagickCore_STATIC_LIBRARY_DIRS:INTERNAL=
+PC_MagickCore_STATIC_LIBS:INTERNAL=
+PC_MagickCore_STATIC_LIBS_L:INTERNAL=
+PC_MagickCore_STATIC_LIBS_OTHER:INTERNAL=
+PC_MagickCore_STATIC_LIBS_PATHS:INTERNAL=
+PC_MagickCore_VERSION:INTERNAL=6.8.9
 //ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
 PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
 __pkg_config_checked_PC_Magick++:INTERNAL=1
+__pkg_config_checked_PC_MagickCore:INTERNAL=1
 

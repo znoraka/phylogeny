@@ -14,6 +14,7 @@ set(CMAKE_TARGET_LINKED_INFO_FILES
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
+  "/usr/include/opencv"
   "/usr/include/ImageMagick-6"
   "/usr/include/x86_64-linux-gnu/ImageMagick-6"
   )

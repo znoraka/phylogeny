@@ -1,0 +1,39 @@
+# -*- mode: org -*-
+
+Cette semaine a été consacrée à tenter de trouver une première métrique qui permettrait de dire qu'une image n'est pas le parent d'une autre. Je me suis d'abord dirigé vers l'entropie de l'image en entier, mais comme le montre Fig. [[fig:whole_entropy]] l'entropie varie extrêmement peu entre les images.
+- L'utilisation de l'entropie de l'image m'a semblé être une bonne idée, cependant, les artefacts de blocs qui permettraient de diminuer l'entropie et de détecter que l'image est recompressée n'apparaissent pas pour Q >= 50
+- L'entropie des coefficients DCT ne donne rien non plus, une entropie élevée est associée à un Q élevé, peu importe l'historique des Q.
+- L'entropie des blocs (Fig. [[fig:blocs_entropy]]) est également une fausse piste, de même que l'entropie inter-blocs.
+
+Je pense que mon erreur dans cette démarche est qu'aucune valeur n'est normalisée, et que donc elles ne sont pas comparables entre elles.
+
+# J'ai également regardé l'entropie moyenne des blocs (Fig. [[fig:blocs_entropy]]), inter-blocs, ou encore l'entropie des coefficients DCT, mais là encore, aucun résultat significatif. Je pensais que l'apparition des artefacts de blocs diminuerait suffisament l'entropie pour pouvoir l'utiliser de manière fiable. Et c'est bien le cas, mais pour des Q < 50, or, nous ne travaillons qu'avec 50 <= Q <= 100, où il n'y a pas d'artefact de bloc. 
+
+#+CAPTION: Arbre phylogenetique avec respectivement le nom de l'image / l'entropie de l'image / Q
+#+NAME:   fig:whole_entropy
+#+attr_html: :width 800px
+[[./tree_entropy.png]]
+
+#+CAPTION: Arbre phylogenetique avec respectivement le nom de l'image / l'entropie moyenne des blocs 8x8 de l'image / Q
+#+NAME:   fig:blocs_entropy
+#+attr_html: :width 800px
+[[./tree_entropy_blocs.png]]
+
+
+Il est cependant possible que l'entropie soit quand même une bonne idée, mais je vais pour l'instant la laisser de côté et plus regarder la distance entre les histogrammes. J'utilise OpenCV, où un certain nombre de distances entre histogrammes est déjà implémenté. Tout est donc mis en place, et on peut voir un exemple Fig. [[fig:bhattacharyya]]. Le problème est que je ne sais pas vraiment comment utiliser une distance entre deux histogrammes. Cela serait parfait dans le cas de la découverte de near-duplicates, mais comme nous avons une approche différente ce n'est pas aussi simple.
+
+#+CAPTION: Distance de Bhattacharyya entre un noeud et son parent.
+#+NAME:   fig:bhattacharyya
+#+attr_html: :width 800px
+[[./bhattacharyya.png]]
+
+J'ai également replot les images sur le même plot (Fig. [[fig:histo]]). On n'y apprend par grand chose de plus, les histogrammes ressemblent à ce qu'on attend d'eux, mais cela permet de bien voir qu'il manque des valeurs lorsque l'on repasse à un Q plus élevé.
+
+#+CAPTION: Histogramme du coefficient DC et des 15 premier coefficients AC avec respectivement Q=100, Q=50,100 et Q=50 en rouge, bleu et vert
+#+NAME:   fig:histo
+#+attr_html: :width 800px
+[[./out.png]]
+
+#+CAPTION: Plan
+#+attr_html: :width 800px
+[[./phylogeny.png]]

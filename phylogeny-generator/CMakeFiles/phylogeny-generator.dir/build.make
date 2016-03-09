@@ -82,7 +82,26 @@ phylogeny__generator_EXTERNAL_OBJECTS =
 bin/phylogeny-generator: CMakeFiles/phylogeny-generator.dir/src/main.cpp.o
 bin/phylogeny-generator: CMakeFiles/phylogeny-generator.dir/build.make
 bin/phylogeny-generator: /usr/lib/x86_64-linux-gnu/libMagick++-6.Q16.so
+bin/phylogeny-generator: /usr/lib/x86_64-linux-gnu/libMagickCore-6.Q16.so
 bin/phylogeny-generator: /usr/lib/x86_64-linux-gnu/libjpeg.so
+bin/phylogeny-generator: /usr/lib/x86_64-linux-gnu/libopencv_videostab.so.2.4.9
+bin/phylogeny-generator: /usr/lib/x86_64-linux-gnu/libopencv_ts.so.2.4.9
+bin/phylogeny-generator: /usr/lib/x86_64-linux-gnu/libopencv_superres.so.2.4.9
+bin/phylogeny-generator: /usr/lib/x86_64-linux-gnu/libopencv_stitching.so.2.4.9
+bin/phylogeny-generator: /usr/lib/x86_64-linux-gnu/libopencv_ocl.so.2.4.9
+bin/phylogeny-generator: /usr/lib/x86_64-linux-gnu/libopencv_gpu.so.2.4.9
+bin/phylogeny-generator: /usr/lib/x86_64-linux-gnu/libopencv_contrib.so.2.4.9
+bin/phylogeny-generator: /usr/lib/x86_64-linux-gnu/libopencv_photo.so.2.4.9
+bin/phylogeny-generator: /usr/lib/x86_64-linux-gnu/libopencv_legacy.so.2.4.9
+bin/phylogeny-generator: /usr/lib/x86_64-linux-gnu/libopencv_video.so.2.4.9
+bin/phylogeny-generator: /usr/lib/x86_64-linux-gnu/libopencv_objdetect.so.2.4.9
+bin/phylogeny-generator: /usr/lib/x86_64-linux-gnu/libopencv_ml.so.2.4.9
+bin/phylogeny-generator: /usr/lib/x86_64-linux-gnu/libopencv_calib3d.so.2.4.9
+bin/phylogeny-generator: /usr/lib/x86_64-linux-gnu/libopencv_features2d.so.2.4.9
+bin/phylogeny-generator: /usr/lib/x86_64-linux-gnu/libopencv_highgui.so.2.4.9
+bin/phylogeny-generator: /usr/lib/x86_64-linux-gnu/libopencv_imgproc.so.2.4.9
+bin/phylogeny-generator: /usr/lib/x86_64-linux-gnu/libopencv_flann.so.2.4.9
+bin/phylogeny-generator: /usr/lib/x86_64-linux-gnu/libopencv_core.so.2.4.9
 bin/phylogeny-generator: CMakeFiles/phylogeny-generator.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable bin/phylogeny-generator"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/phylogeny-generator.dir/link.txt --verbose=$(VERBOSE)
