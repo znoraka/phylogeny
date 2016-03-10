@@ -16,216 +16,6 @@
   {}
 \endgroup
 
-\entry{bianchi2011detection}{inproceedings}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Bianchi}{B.}%
-     {Tiziano}{T.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Piva}{P.}%
-     {Alessandro}{A.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{organization}{1}{%
-    {IEEE}%
-  }
-  \strng{namehash}{BTPA1}
-  \strng{fullhash}{BTPA1}
-  \field{labelalpha}{BP11}
-  \field{sortinit}{B}
-  \field{booktitle}{Image Processing (ICIP), 2011 18th IEEE International
-  Conference on}
-  \field{pages}{1929\bibrangedash 1932}
-  \field{title}{Detection of non-aligned double JPEG compression with
-  estimation of primary compression parameters}
-  \field{year}{2011}
-\endentry
-
-\entry{bianchi2012detection}{article}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Bianchi}{B.}%
-     {Tiziano}{T.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Piva}{P.}%
-     {Alessandro}{A.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {IEEE}%
-  }
-  \strng{namehash}{BTPA1}
-  \strng{fullhash}{BTPA1}
-  \field{labelalpha}{BP12}
-  \field{extraalpha}{1}
-  \field{sortinit}{B}
-  \field{number}{2}
-  \field{pages}{842\bibrangedash 848}
-  \field{title}{Detection of nonaligned double JPEG compression based on
-  integer periodicity maps}
-  \field{volume}{7}
-  \field{journaltitle}{Information Forensics and Security, IEEE Transactions
-  on}
-  \field{year}{2012}
-\endentry
-
-\entry{bianchi2012reverse}{inproceedings}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Bianchi}{B.}%
-     {Tiziano}{T.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Piva}{P.}%
-     {Alessandro}{A.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{organization}{1}{%
-    {IEEE}%
-  }
-  \strng{namehash}{BTPA1}
-  \strng{fullhash}{BTPA1}
-  \field{labelalpha}{BP12}
-  \field{extraalpha}{2}
-  \field{sortinit}{B}
-  \field{booktitle}{Information Forensics and Security (WIFS), 2012 IEEE
-  International Workshop on}
-  \field{pages}{127\bibrangedash 132}
-  \field{title}{Reverse engineering of double JPEG compression in the presence
-  of image resizing}
-  \field{year}{2012}
-\endentry
-
-\entry{chen2011detecting}{article}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Chen}{C.}%
-     {Yi-Lei}{Y.-L.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Hsu}{H.}%
-     {Chiou-Ting}{C.-T.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {IEEE}%
-  }
-  \strng{namehash}{CYLHCT1}
-  \strng{fullhash}{CYLHCT1}
-  \field{labelalpha}{CH11}
-  \field{sortinit}{C}
-  \field{number}{2}
-  \field{pages}{396\bibrangedash 406}
-  \field{title}{Detecting recompression of JPEG images via periodicity analysis
-  of compression artifacts for tampering detection}
-  \field{volume}{6}
-  \field{journaltitle}{Information Forensics and Security, IEEE Transactions
-  on}
-  \field{year}{2011}
-\endentry
-
-\entry{cha2007comprehensive}{article}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Cha}{C.}%
-     {Sung-Hyuk}{S.-H.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{CSH1}
-  \strng{fullhash}{CSH1}
-  \field{labelalpha}{Cha07}
-  \field{sortinit}{C}
-  \field{number}{2}
-  \field{pages}{1}
-  \field{title}{Comprehensive survey on distance/similarity measures between
-  probability density functions}
-  \field{volume}{1}
-  \field{journaltitle}{City}
-  \field{year}{2007}
-\endentry
-
-\entry{dias2013exploring}{article}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Dias}{D.}%
-     {Zanoni}{Z.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Goldenstein}{G.}%
-     {Siome}{S.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Rocha}{R.}%
-     {Anderson}{A.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {Elsevier}%
-  }
-  \strng{namehash}{DZGSRA1}
-  \strng{fullhash}{DZGSRA1}
-  \field{labelalpha}{DGR13}
-  \field{extraalpha}{1}
-  \field{sortinit}{D}
-  \field{number}{7}
-  \field{pages}{1124\bibrangedash 1134}
-  \field{title}{Exploring heuristic and optimum branching algorithms for image
-  phylogeny}
-  \field{volume}{24}
-  \field{journaltitle}{Journal of Visual Communication and Image
-  Representation}
-  \field{year}{2013}
-\endentry
-
-\entry{dias2013large}{article}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Dias}{D.}%
-     {Zanoni}{Z.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Goldenstein}{G.}%
-     {Siome}{S.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Rocha}{R.}%
-     {Anderson}{A.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {IEEE}%
-  }
-  \strng{namehash}{DZGSRA1}
-  \strng{fullhash}{DZGSRA1}
-  \field{labelalpha}{DGR13}
-  \field{extraalpha}{2}
-  \field{sortinit}{D}
-  \field{number}{3}
-  \field{pages}{58\bibrangedash 70}
-  \field{title}{Large-scale image phylogeny: Tracing image ancestral
-  relationships}
-  \field{volume}{20}
-  \field{journaltitle}{MultiMedia, IEEE}
-  \field{year}{2013}
-\endentry
-
 \entry{dias2010first}{inproceedings}{}
   \name{author}{3}{}{%
     {{}%
@@ -249,7 +39,6 @@
   }
   \strng{namehash}{DZRAGS1}
   \strng{fullhash}{DZRAGS1}
-  \field{labelalpha}{DRG10}
   \field{sortinit}{D}
   \field{booktitle}{Information Forensics and Security (WIFS), 2010 IEEE
   International Workshop on}
@@ -281,7 +70,6 @@
   }
   \strng{namehash}{DZRAGS1}
   \strng{fullhash}{DZRAGS1}
-  \field{labelalpha}{DRG12}
   \field{sortinit}{D}
   \field{number}{2}
   \field{pages}{774\bibrangedash 788}
@@ -292,28 +80,30 @@
   \field{year}{2012}
 \endentry
 
-\entry{farid2009exposing}{article}{}
-  \name{author}{1}{}{%
+\entry{feng2010jpeg}{inproceedings}{}
+  \name{author}{2}{}{%
     {{}%
-     {Farid}{F.}%
-     {Hany}{H.}%
+     {Feng}{F.}%
+     {Xiaoying}{X.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Do{\"e}rr}{D.}%
+     {Gwena{\"e}l}{G.}%
      {}{}%
      {}{}}%
   }
-  \list{publisher}{1}{%
-    {IEEE}%
+  \list{organization}{2}{%
+    {International Society for Optics}%
+    {Photonics}%
   }
-  \strng{namehash}{FH1}
-  \strng{fullhash}{FH1}
-  \field{labelalpha}{Far09}
+  \strng{namehash}{FXDG1}
+  \strng{fullhash}{FXDG1}
   \field{sortinit}{F}
-  \field{number}{1}
-  \field{pages}{154\bibrangedash 160}
-  \field{title}{Exposing digital forgeries from JPEG ghosts}
-  \field{volume}{4}
-  \field{journaltitle}{Information Forensics and Security, IEEE Transactions
-  on}
-  \field{year}{2009}
+  \field{booktitle}{IS\&T/SPIE Electronic Imaging}
+  \field{pages}{75410J\bibrangedash 75410J}
+  \field{title}{JPEG recompression detection}
+  \field{year}{2010}
 \endentry
 
 \entry{huang2010detecting}{article}{}
@@ -339,7 +129,6 @@
   }
   \strng{namehash}{HFHJSYQ1}
   \strng{fullhash}{HFHJSYQ1}
-  \field{labelalpha}{HHS10}
   \field{sortinit}{H}
   \field{number}{4}
   \field{pages}{848\bibrangedash 856}
@@ -374,7 +163,6 @@
   }
   \strng{namehash}{JABOFC1}
   \strng{fullhash}{JABOFC1}
-  \field{labelalpha}{JBF07}
   \field{sortinit}{J}
   \field{number}{2}
   \field{pages}{293\bibrangedash 306}
@@ -403,7 +191,6 @@
   }
   \strng{namehash}{KLCSF1}
   \strng{fullhash}{KLCSF1}
-  \field{labelalpha}{KC08}
   \field{sortinit}{K}
   \field{booktitle}{Proceedings of the 16th ACM international conference on
   Multimedia}
@@ -431,7 +218,6 @@
   }
   \strng{namehash}{LSBR1}
   \strng{fullhash}{LSBR1}
-  \field{labelalpha}{LB13}
   \field{sortinit}{L}
   \field{booktitle}{Acoustics, Speech and Signal Processing (ICASSP), 2013 IEEE
   International Conference on}
@@ -441,318 +227,12 @@
   \field{year}{2013}
 \endentry
 
-\entry{lam2000mathematical}{article}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Lam}{L.}%
-     {Edmund~Y}{E.~Y.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Goodman}{G.}%
-     {Joseph~W}{J.~W.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {IEEE}%
-  }
-  \strng{namehash}{LEYGJW1}
-  \strng{fullhash}{LEYGJW1}
-  \field{labelalpha}{LG00}
-  \field{sortinit}{L}
-  \field{number}{10}
-  \field{pages}{1661\bibrangedash 1666}
-  \field{title}{A mathematical analysis of the DCT coefficient distributions
-  for images}
-  \field{volume}{9}
-  \field{journaltitle}{Image Processing, IEEE Transactions on}
-  \field{year}{2000}
-\endentry
-
-\entry{li2014jpeg}{article}{}
-  \name{author}{5}{}{%
-    {{}%
-     {Li}{L.}%
-     {Bin}{B.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Ng}{N.}%
-     {Tian-Tsong}{T.-T.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Li}{L.}%
-     {Xiaolong}{X.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Tan}{T.}%
-     {Shunquan}{S.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Huang}{H.}%
-     {Jiwu}{J.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{LB+1}
-  \strng{fullhash}{LBNTTLXTSHJ1}
-  \field{labelalpha}{Li+14}
-  \field{sortinit}{L}
-  \field{title}{JPEG noises beyond the first compression cycle}
-  \field{journaltitle}{arXiv preprint arXiv:1405.7571}
-  \field{year}{2014}
-\endentry
-
-\entry{oikawa2016manifold}{article}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Oikawa}{O.}%
-     {Marina~A}{M.~A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Dias}{D.}%
-     {Zanoni}{Z.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Rezende~Rocha}{R.~R.}%
-     {Anderson}{A.}%
-     {de}{d.}%
-     {}{}}%
-    {{}%
-     {Goldenstein}{G.}%
-     {Siome}{S.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {IEEE}%
-  }
-  \strng{namehash}{OMA+1}
-  \strng{fullhash}{OMADZRRAdGS1}
-  \field{labelalpha}{Oik+16}
-  \field{sortinit}{O}
-  \field{number}{1}
-  \field{pages}{5\bibrangedash 18}
-  \field{title}{Manifold learning and spectral clustering for image phylogeny
-  forests}
-  \field{volume}{11}
-  \field{journaltitle}{Information Forensics and Security, IEEE Transactions
-  on}
-  \field{year}{2016}
-\endentry
-
-\entry{oliveira2014multiple}{inproceedings}{}
-  \name{author}{8}{}{%
-    {{}%
-     {Oliveira}{O.}%
-     {A}{A}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Ferrara}{F.}%
-     {Pasquale}{P.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {De~Rosa}{D.~R.}%
-     {Alessia}{A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Piva}{P.}%
-     {Alessandro}{A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Barni}{B.}%
-     {Mauro}{M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Goldenstein}{G.}%
-     {Siome}{S.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Dias}{D.}%
-     {Zanoni}{Z.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Rocha}{R.}%
-     {Anderson}{A.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{organization}{1}{%
-    {IEEE}%
-  }
-  \strng{namehash}{OA+1}
-  \strng{fullhash}{OAFPDRAPABMGSDZRA1}
-  \field{labelalpha}{Oli+14}
-  \field{sortinit}{O}
-  \field{booktitle}{Image Processing (ICIP), 2014 IEEE International Conference
-  on}
-  \field{pages}{5347\bibrangedash 5351}
-  \field{title}{Multiple parenting identification in image phylogeny}
-  \field{year}{2014}
-\endentry
-
-\entry{de2016multiple}{article}{}
-  \name{author}{8}{}{%
-    {{}%
-     {Oliveira}{O.}%
-     {Alberto~A}{A.~A.}%
-     {de}{d.}%
-     {}{}}%
-    {{}%
-     {Ferrara}{F.}%
-     {Pasquale}{P.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {De~Rosa}{D.~R.}%
-     {Alessia}{A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Piva}{P.}%
-     {Alessandro}{A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Barni}{B.}%
-     {Mauro}{M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Goldenstein}{G.}%
-     {Siome}{S.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Dias}{D.}%
-     {Zanoni}{Z.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Rocha}{R.}%
-     {Anderson}{A.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {IEEE}%
-  }
-  \strng{namehash}{OAAd+1}
-  \strng{fullhash}{OAAdFPDRAPABMGSDZRA1}
-  \field{labelalpha}{Oli+16}
-  \field{sortinit}{O}
-  \field{number}{2}
-  \field{pages}{328\bibrangedash 343}
-  \field{title}{Multiple parenting phylogeny relationships in digital images}
-  \field{volume}{11}
-  \field{journaltitle}{Information Forensics and Security, IEEE Transactions
-  on}
-  \field{year}{2016}
-\endentry
-
 \entry{phylogeny}{online}{}
-  \field{labelalpha}{Phy}
   \field{sortinit}{P}
   \field{title}{Phylogénie}
   \verb{url}
   \verb https://fr.wikipedia.org/wiki/Phylogen%C3%A8se
   \endverb
-\endentry
-
-\entry{puglisi2013first}{inproceedings}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Puglisi}{P.}%
-     {Giovanni}{G.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Bruna}{B.}%
-     {Arcangelo~R}{A.~R.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Galvan}{G.}%
-     {Floyd}{F.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Battiato}{B.}%
-     {Sebastiano}{S.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{organization}{1}{%
-    {IEEE}%
-  }
-  \strng{namehash}{PG+1}
-  \strng{fullhash}{PGBARGFBS1}
-  \field{labelalpha}{Pug+13}
-  \field{sortinit}{P}
-  \field{booktitle}{Image Processing (ICIP), 2013 20th IEEE International
-  Conference on}
-  \field{pages}{4502\bibrangedash 4506}
-  \field{title}{First JPEG quantization matrix estimation based on histogram
-  analysis}
-  \field{year}{2013}
-\endentry
-
-\entry{yang2014effective}{article}{}
-  \name{author}{5}{}{%
-    {{}%
-     {Yang}{Y.}%
-     {Jianquan}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Xie}{X.}%
-     {Jin}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Zhu}{Z.}%
-     {Guopu}{G.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Kwong}{K.}%
-     {Sam}{S.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Shi}{S.}%
-     {Yun-Qing}{Y.-Q.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {IEEE}%
-  }
-  \strng{namehash}{YJ+1}
-  \strng{fullhash}{YJXJZGKSSYQ1}
-  \field{labelalpha}{Yan+14}
-  \field{sortinit}{Y}
-  \field{number}{11}
-  \field{pages}{1933\bibrangedash 1942}
-  \field{title}{An Effective Method for Detecting Double JPEG Compression With
-  the Same Quantization Matrix}
-  \field{volume}{9}
-  \field{journaltitle}{Information Forensics and Security, IEEE Transactions
-  on}
-  \field{year}{2014}
 \endentry
 
 \lossort

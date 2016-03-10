@@ -1,0 +1,2025 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2015.11.2)  10 MAR 2016 17:00
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**\input stageM2R.cls
+(./stageM2R.cls
+
+LaTeX Warning: You have requested package `',
+               but the package provides `stageM2R'.
+
+Package: stageM2R 2015/02/01 Classe de mise en page des rapports bibliographiqu
+es du M2R Informatique - U. Montpellier
+
+./stageM2R.cls:13: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.13 \newif\if@
+               final \@finalfalse
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no @ in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no @ in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no @ in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 13--21
+[]
+ []
+
+(/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls
+Document Class: memoir 2015/04/23 v3.7d configurable book, report, article docu
+ment class
+\onelineskip=\skip41
+\lxvchars=\skip42
+\xlvchars=\skip43
+\@memcnta=\count79
+\c@@memmarkcntra=\count80
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/ifetex/ifetex.sty
+Package: ifetex 2011/12/15 v1.2 ifetex
+
+(/usr/share/texlive/texmf-dist/tex/plain/ifetex/ifetex.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+\stockheight=\skip44
+\stockwidth=\skip45
+\trimtop=\skip46
+\trimedge=\skip47
+
+(/usr/share/texlive/texmf-dist/tex/latex/etex-pkg/etex.sty
+Package: etex 2015/03/02 v2.1 eTeX basic definition package (PEB,DPC)
+\et@xins=\count81
+)
+(/usr/share/texlive/texmf-dist/tex/latex/memoir/mem11.clo
+File: mem11.clo 2008/01/30 v0.3 memoir class 11pt size option
+)
+Runaway argument?
+@nnil ifx external@font @empty @latex@error {Font expandafter string ETC.
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:753: File ended while
+ scanning use of reserved@f.
+<inserted text> 
+                par 
+l.753         \input{mem1\@ptsize.clo}
+                                      
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+binding=skip48
+spinemargin=skip49
+foremargin=skip50
+uppermargin=skip51
+lowermargin=skip52
+headdrop=skip53
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:1035: Arithmetic over
+flow.
+<recently read> baselineskip 
+                             
+l.1035   \divide\@tempdima\baselineskip
+                                       
+I can't carry out that multiplication or division,
+since the result is out of range.
+
+normalrulethickness=skip54
+mem@maxheadheight=skip55
+mem@maxfootheight=skip56
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:1896: Use of m@mopthf
+width doesn't match its definition.
+makepagestyle ... {#1}{}{}{}makerunningwidth {#1}{
+                                                  textwidth }makeheadpositio...
+l.1896 \makepagestyle{empty}
+                            
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:1896: Missing number,
+ treated as zero.
+<to be read again> 
+                   }
+l.1896 \makepagestyle{empty}
+                            
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:1896: Illegal unit of
+ measure (pt inserted).
+<to be read again> 
+                   }
+l.1896 \makepagestyle{empty}
+                            
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:1896: Extra }, or for
+gotten endgroup.
+<recently read> }
+                 
+l.1896 \makepagestyle{empty}
+                            
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:1898: Use of m@mopthf
+width doesn't match its definition.
+makepagestyle ... {#1}{}{}{}makerunningwidth {#1}{
+                                                  textwidth }makeheadpositio...
+l.1898 \makepagestyle{plain}
+                            
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:1898: Missing number,
+ treated as zero.
+<to be read again> 
+                   }
+l.1898 \makepagestyle{plain}
+                            
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:1898: Illegal unit of
+ measure (pt inserted).
+<to be read again> 
+                   }
+l.1898 \makepagestyle{plain}
+                            
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:1898: Extra }, or for
+gotten endgroup.
+<recently read> }
+                 
+l.1898 \makepagestyle{plain}
+                            
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:1902: Use of m@mopthf
+width doesn't match its definition.
+makepagestyle ... {#1}{}{}{}makerunningwidth {#1}{
+                                                  textwidth }makeheadpositio...
+l.1902 \makepagestyle{simple}
+                             
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:1902: Missing number,
+ treated as zero.
+<to be read again> 
+                   }
+l.1902 \makepagestyle{simple}
+                             
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:1902: Illegal unit of
+ measure (pt inserted).
+<to be read again> 
+                   }
+l.1902 \makepagestyle{simple}
+                             
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:1902: Extra }, or for
+gotten endgroup.
+<recently read> }
+                 
+l.1902 \makepagestyle{simple}
+                             
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2012: Use of m@mopthf
+width doesn't match its definition.
+makepagestyle ... {#1}{}{}{}makerunningwidth {#1}{
+                                                  textwidth }makeheadpositio...
+l.2012   \makepagestyle{headings}
+                                 
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2012: Missing number,
+ treated as zero.
+<to be read again> 
+                   }
+l.2012   \makepagestyle{headings}
+                                 
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2012: Illegal unit of
+ measure (pt inserted).
+<to be read again> 
+                   }
+l.2012   \makepagestyle{headings}
+                                 
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2012: Extra }, or for
+gotten endgroup.
+<recently read> }
+                 
+l.2012   \makepagestyle{headings}
+                                 
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2073: Use of m@mopthf
+width doesn't match its definition.
+makepagestyle ... {#1}{}{}{}makerunningwidth {#1}{
+                                                  textwidth }makeheadpositio...
+l.2073 \makepagestyle{myheadings}
+                                 
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2073: Missing number,
+ treated as zero.
+<to be read again> 
+                   }
+l.2073 \makepagestyle{myheadings}
+                                 
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2073: Illegal unit of
+ measure (pt inserted).
+<to be read again> 
+                   }
+l.2073 \makepagestyle{myheadings}
+                                 
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2073: Extra }, or for
+gotten endgroup.
+<recently read> }
+                 
+l.2073 \makepagestyle{myheadings}
+                                 
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2094: Use of m@mopthf
+width doesn't match its definition.
+makepagestyle ... {#1}{}{}{}makerunningwidth {#1}{
+                                                  textwidth }makeheadpositio...
+l.2094 \makepagestyle{ruled}
+                            
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2094: Missing number,
+ treated as zero.
+<to be read again> 
+                   }
+l.2094 \makepagestyle{ruled}
+                            
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2094: Illegal unit of
+ measure (pt inserted).
+<to be read again> 
+                   }
+l.2094 \makepagestyle{ruled}
+                            
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2094: Extra }, or for
+gotten endgroup.
+<recently read> }
+                 
+l.2094 \makepagestyle{ruled}
+                            
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2129: Use of m@mopthf
+width doesn't match its definition.
+makepagestyle ... {#1}{}{}{}makerunningwidth {#1}{
+                                                  textwidth }makeheadpositio...
+l.2129 \makepagestyle{Ruled}
+                            
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2129: Missing number,
+ treated as zero.
+<to be read again> 
+                   }
+l.2129 \makepagestyle{Ruled}
+                            
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2129: Illegal unit of
+ measure (pt inserted).
+<to be read again> 
+                   }
+l.2129 \makepagestyle{Ruled}
+                            
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2129: Extra }, or for
+gotten endgroup.
+<recently read> }
+                 
+l.2129 \makepagestyle{Ruled}
+                            
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2130: Use of m@mopthf
+width doesn't match its definition.
+l.2130 \makerunningwidth{Ruled}{
+                                1.1\textwidth}
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2130: LaTeX Error: Mi
+ssing begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2130 \makerunningwidth{Ruled}{1
+                                 .1\textwidth}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 1 in font nullfont!
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2130: Missing number,
+ treated as zero.
+<to be read again> 
+                   }
+l.2130 \makerunningwidth{Ruled}{1.1\textwidth}
+                                              
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2130: Illegal unit of
+ measure (pt inserted).
+<to be read again> 
+                   }
+l.2130 \makerunningwidth{Ruled}{1.1\textwidth}
+                                              
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2130: Extra }, or for
+gotten endgroup.
+<recently read> }
+                 
+l.2130 \makerunningwidth{Ruled}{1.1\textwidth}
+                                              
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 2130--2138
+[]
+ []
+
+headwidth=skip57
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2141: Use of m@mopthf
+width doesn't match its definition.
+makepagestyle ... {#1}{}{}{}makerunningwidth {#1}{
+                                                  textwidth }makeheadpositio...
+l.2141 \makepagestyle{companion}
+                                
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2141: Missing number,
+ treated as zero.
+<to be read again> 
+                   }
+l.2141 \makepagestyle{companion}
+                                
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2141: Illegal unit of
+ measure (pt inserted).
+<to be read again> 
+                   }
+l.2141 \makepagestyle{companion}
+                                
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2141: Extra }, or for
+gotten endgroup.
+<recently read> }
+                 
+l.2141 \makepagestyle{companion}
+                                
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2145: Use of m@mopthf
+width doesn't match its definition.
+l.2145 \makerunningwidth{companion}{
+                                    \headwidth}
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2145: Missing number,
+ treated as zero.
+<to be read again> 
+                   }
+l.2145 \makerunningwidth{companion}{\headwidth}
+                                               
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2145: Illegal unit of
+ measure (pt inserted).
+<to be read again> 
+                   }
+l.2145 \makerunningwidth{companion}{\headwidth}
+                                               
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2145: Extra }, or for
+gotten endgroup.
+<recently read> }
+                 
+l.2145 \makerunningwidth{companion}{\headwidth}
+                                               
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2207: Use of m@mopthf
+width doesn't match its definition.
+makepagestyle ... {#1}{}{}{}makerunningwidth {#1}{
+                                                  textwidth }makeheadpositio...
+l.2207 \makepagestyle{showlocs}
+                               
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2207: Missing number,
+ treated as zero.
+<to be read again> 
+                   }
+l.2207 \makepagestyle{showlocs}
+                               
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2207: Illegal unit of
+ measure (pt inserted).
+<to be read again> 
+                   }
+l.2207 \makepagestyle{showlocs}
+                               
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2207: Extra }, or for
+gotten endgroup.
+<recently read> }
+                 
+l.2207 \makepagestyle{showlocs}
+                               
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+c@storedpagenumber=count82
+Runaway argument?
+@nnil ifx external@font @empty @latex@error {Font expandafter string ETC.
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2256: Paragraph ended
+ before reserved@f was complete.
+<to be read again> 
+                   par 
+l.2256 
+       
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+memPD=dimen102
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2393: LaTeX Error: Co
+mmand \minipage already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2393   \hbox{\vrule depth \memPD width \z@}}
+                                              
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+m@mabparskip=skip58
+thanksmarkwidth=skip59
+thanksmarksep=skip60
+droptitle=skip61
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:2540: LaTeX Error: Co
+mmand \maketitle already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2540   \vskip 1.5em}
+                      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+c@book=count83
+c@part=count84
+c@chapter=count85
+c@section=count86
+c@subsection=count87
+c@subsubsection=count88
+c@paragraph=count89
+c@subparagraph=count90
+beforechapskip=skip62
+midchapskip=skip63
+afterchapskip=skip64
+chapindent=skip65
+bottomsectionskip=skip66
+secindent=skip67
+beforesecskip=skip68
+aftersecskip=skip69
+subsecindent=skip70
+beforesubsecskip=skip71
+aftersubsecskip=skip72
+subsubsecindent=skip73
+beforesubsubsecskip=skip74
+aftersubsubsecskip=skip75
+paraindent=skip76
+beforeparaskip=skip77
+afterparaskip=skip78
+subparaindent=skip79
+beforesubparaskip=skip80
+aftersubparaskip=skip81
+pfbreakskip=skip82
+c@@ppsavesec=count91
+c@@ppsaveapp=count92
+ragrparindent=dimen103
+everylistparindent=dimen104
+parsepi=skip83
+topsepi=skip84
+itemsepi=skip85
+parsepii=skip86
+topsepii=skip87
+topsepiii=skip88
+itemsepii=skip89
+itemsepiii=skip90
+partopsepii=skip91
+partopsepiii=skip92
+m@msavetopsep=skip93
+m@msavepartopsep=skip94
+@enLab=toks14
+abstitleskip=skip95
+absleftindent=skip96
+abs@leftindent=dimen105
+absrightindent=skip97
+absparindent=skip98
+absparsep=skip99
+c@vslineno=count93
+c@poemline=count94
+c@modulo@vs=count95
+c@memfvsline=count96
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:4928: LaTeX Error: Co
+mmand \leftskip already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4928 \newlength{\vleftskip}
+                             
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:4929: Undefined contr
+ol sequence.
+<argument> vleftskip 
+                     
+l.4929   \setlength{\vleftskip}{3em}
+                                    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:4929: LaTeX Error: Mi
+ssing begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4929   \setlength{\vleftskip}{3em}
+                                    
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 3 in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:4930: LaTeX Error: Co
+mmand \rightskip already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4930 \newlength{\vrightskip}
+                              
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:4931: Undefined contr
+ol sequence.
+<argument> vrightskip 
+                      
+l.4931   \setlength{\vrightskip}{1em}
+                                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 4929--4932
+[]
+ []
+
+stanzaskip=skip100
+versewidth=skip101
+vgap=skip102
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:4942: LaTeX Error: Co
+mmand \in already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4942 \newcommand{\vin}{\hspace*{\vgap}}
+                                         
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:4943: LaTeX Error: Co
+mmand \indent already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4943 \newlength{\vindent}
+                            \setlength{\vindent}{2\vgap}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:4943: Undefined contr
+ol sequence.
+<argument> vindent 
+                   
+l.4943 ...h{\vindent} \setlength{\vindent}{2\vgap}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:4943: LaTeX Error: Mi
+ssing begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4943 ...h{\vindent} \setlength{\vindent}{2\vgap}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 2 in font nullfont!
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:4943: Missing number,
+ treated as zero.
+<to be read again> 
+                   relax 
+l.4943 ...h{\vindent} \setlength{\vindent}{2\vgap}
+                                                  
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:4943: Illegal unit of
+ measure (pt inserted).
+<to be read again> 
+                   relax 
+l.4943 ...h{\vindent} \setlength{\vindent}{2\vgap}
+                                                  
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+vleftmargin=dimen106
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 4943--4948
+[]
+ []
+
+c@verse=count97
+c@chrsinstr=count98
+beforepoemtitleskip=skip103
+afterpoemtitleskip=skip104
+c@poem=count99
+beforePoemTitleskip=skip105
+midPoemTitleskip=skip106
+afterPoemTitleskip=skip107
+col@sep=dimen107
+extrarowheight=dimen108
+NC@list=toks15
+extratabsurround=skip108
+backup@length=skip109
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:5607: LaTeX Error: re
+served@a undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.5607       \ifnum0=`{\fi}}
+                            
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+TX@col@width=dimen109
+TX@old@table=dimen110
+TX@old@col=dimen111
+TX@target=dimen112
+TX@delta=dimen113
+TX@cols=count100
+TX@ftn=toks16
+heavyrulewidth=dimen114
+lightrulewidth=dimen115
+cmidrulewidth=dimen116
+belowrulesep=dimen117
+belowbottomsep=dimen118
+aboverulesep=dimen119
+abovetopsep=dimen120
+cmidrulesep=dimen121
+cmidrulekern=dimen122
+defaultaddspace=dimen123
+@cmidla=count101
+@cmidlb=count102
+@aboverulesep=dimen124
+@belowrulesep=dimen125
+@thisruleclass=count103
+@lastruleclass=count104
+@thisrulewidth=dimen126
+ctableftskip=skip110
+ctabrightskip=skip111
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:6052: LaTeX Error: Co
+mmand \tabular already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.6052   \gdef\@halignto{to\hsize}\NC@tabular}
+                                              
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+abovecolumnspenalty=count105
+@linestogo=count106
+@cellstogo=count107
+@cellsincolumn=count108
+crtok=toks17
+@mincolumnwidth=dimen127
+c@newflo@tctr=count109
+mem@margin@floatbox=box26
+@contcwidth=skip112
+@contindw=skip113
+abovecaptionskip=skip114
+belowcaptionskip=skip115
+subfloattopskip=skip116
+subfloatcapskip=skip117
+subfloatcaptopadj=skip118
+subfloatbottomskip=skip119
+subfloatlabelskip=skip120
+subfloatcapmargin=dimen128
+c@@contsubnum=count110
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:6930: LaTeX Error: Co
+mmand \memlistsubcaptions already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.6930   \gdef\@memsubfigcaptionlist{}}
+                                       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+m@mscap@capbox=box27
+m@mscap@fbox=box28
+sidecapsep=dimen129
+sidecapwidth=dimen130
+m@m@tempdima=dimen131
+m@mscapraise=dimen132
+sidecapraise=dimen133
+m@mscapmainwidth=dimen134
+m@mscaplkern=dimen135
+beforeepigraphskip=skip121
+afterepigraphskip=skip122
+epigraphwidth=skip123
+epigraphrule=skip124
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:7367: LaTeX Error: Co
+mmand \item already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7367   \end{minipage}}}
+                         
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+LaTeX Info: Redefining em on input line 7533.
+LaTeX Info: Redefining emph on input line 7541.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:7543: LaTeX Error: Co
+mmand \ref already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7543 ...mand*{\fref}[1]{\figurerefname~\ref{#1}}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:7544: LaTeX Error: Co
+mmand \ref already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7544 ...mmand*{\tref}[1]{\tablerefname~\ref{#1}}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:7545: LaTeX Error: Co
+mmand \ref already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7545 ...nd*{\pref}[1]{\pagerefname~\pageref{#1}}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:7546: LaTeX Error: Co
+mmand \ref already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7546 ...and*{\Aref}[1]{\appendixrefname\ref{#1}}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:7547: LaTeX Error: Co
+mmand \ref already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7547 ...command*{\Bref}[1]{\bookrefname\ref{#1}}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:7548: LaTeX Error: Co
+mmand \ref already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7548 ...command*{\Pref}[1]{\partrefname\ref{#1}}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:7549: LaTeX Error: Co
+mmand \ref already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7549 ...mand*{\Cref}[1]{\chapterrefname\ref{#1}}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:7550: LaTeX Error: Co
+mmand \ref already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7550 ...mand*{\Sref}[1]{\sectionrefname\ref{#1}}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+tocentryskip=skip125
+tocbaseline=skip126
+cftparskip=skip127
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:7823: LaTeX Error: Co
+mmand \@book already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7823   \fi}
+             
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+cftbeforebookskip=skip128
+cftbookindent=dimen136
+cftbooknumwidth=dimen137
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:7887: LaTeX Error: Co
+mmand \@part already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7887   \fi}
+             
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+cftbeforepartskip=skip129
+cftpartindent=skip130
+cftpartnumwidth=skip131
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:7949: LaTeX Error: Co
+mmand \@chapapp already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7949   \fi}
+             
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:7952: LaTeX Error: Co
+mmand \@chapter already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7952   \l@chapapp{#1}{#2}{\cftchaptername}}
+                                             
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+cftbeforechapterskip=skip132
+cftchapterindent=skip133
+cftchapternumwidth=skip134
+cftbeforesectionskip=skip135
+cftsectionindent=skip136
+cftsectionnumwidth=skip137
+cftbeforesubsectionskip=skip138
+cftsubsectionindent=skip139
+cftsubsectionnumwidth=skip140
+cftbeforesubsubsectionskip=skip141
+cftsubsubsectionindent=skip142
+cftsubsubsectionnumwidth=skip143
+cftbeforeparagraphskip=skip144
+cftparagraphindent=skip145
+cftparagraphnumwidth=skip146
+cftbeforesubparagraphskip=skip147
+cftsubparagraphindent=skip148
+cftsubparagraphnumwidth=skip149
+prechapterprecisshift=dimen138
+c@maxsecnumdepth=count111
+bibindent=dimen139
+bibitemsep=skip150
+indexcolsep=skip151
+indexrule=skip152
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:8328: LaTeX Error: Co
+mmand \@index already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.8328 ...{\l@index}{\@dottedtocline{1}{0em}{0pt}}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:8400: LaTeX Error: Co
+mmand \@wrindexm@m already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.8400   \@@@wrindexm@m}
+                        
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+indexmarkstyle=toks18
+@indexbox=insert233
+glossarycolsep=dimen140
+glossaryrule=dimen141
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:8656: LaTeX Error: Co
+mmand \@wrglom@m already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.8656   \memwritetoglo}
+                        
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+sideparvshift=skip153
+sideins=insert232
+sidebartopsep=skip154
+sidebarhsep=skip155
+sidebarvsep=skip156
+sidebarwidth=skip157
+
+Class memoir Warning: sidebarhsep is zero or negative on input line 8991.
+
+
+Class memoir Warning: sidebarheight is zero or negative on input line 8991.
+
+footmarkwidth=skip158
+footmarksep=skip159
+footparindent=skip160
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:9202: Use of setfootn
+oterule doesn't match its definition.
+l.9202 \setfootnoterule{
+                        3pt}{0.4\columnwidth}{\normalrulethickness}
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:9202: LaTeX Error: Mi
+ssing begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9202 \setfootnoterule{3
+                         pt}{0.4\columnwidth}{\normalrulethickness}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 3 in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:9202: Extra }, or for
+gotten endgroup.
+l.9202 \setfootnoterule{3pt}
+                            {0.4\columnwidth}{\normalrulethickness}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 4 in font nullfont!
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:9202: Missing number,
+ treated as zero.
+<to be read again> 
+                   }
+l.9202 \setfootnoterule{3pt}{0.4\columnwidth}
+                                             {\normalrulethickness}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:9202: Illegal unit of
+ measure (pt inserted).
+<to be read again> 
+                   }
+l.9202 \setfootnoterule{3pt}{0.4\columnwidth}
+                                             {\normalrulethickness}
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:9202: Missing number,
+ treated as zero.
+<to be read again> 
+                   }
+l.9202 ...}{0.4\columnwidth}{\normalrulethickness}
+                                                  
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:9202: Illegal unit of
+ measure (pt inserted).
+<to be read again> 
+                   }
+l.9202 ...}{0.4\columnwidth}{\normalrulethickness}
+                                                  
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 9202--9203
+[] 
+ []
+
+footinsdim=skip161
+footinsv@r=insert231
+@mpfootinsv@r=insert230
+m@m@k=count112
+m@m@h=dimen142
+m@mipn@skip=skip162
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:9741: Undefined contr
+ol sequence.
+foottextfont ->footnotesize 
+                            
+l.9741 ...nterparanoteglue{1em plus.4em minus.4em}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+sidefootins=insert229
+sidefootadjust=skip163
+sidefootheight=skip164
+sidefoothsep=skip165
+sidefootvsep=skip166
+sidefootwidth=skip167
+
+Class memoir Warning: sidefoothsep is zero or negative on input line 10162.
+
+
+Class memoir Warning: sidefootvsep is zero or negative on input line 10162.
+
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:10162: Class memoir E
+rror: sidefootheight is zero or negative.
+
+See the memoir class documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.10162 ...{\normalfont\footnotesize}{\textheight}
+                                                  %
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+m@mdownsf=skip168
+c@sidefootnote=count113
+sidefootmarkwidth=skip169
+sidefootmarksep=skip170
+sidefootparindent=skip171
+c@pagenote=count114
+c@pagenoteshadow=count115
+mem@pn@lastkern=skip172
+every@verbatim=toks19
+afterevery@verbatim=toks20
+verbatim@line=toks21
+tab@position=count116
+verbatim@in@stream=read1
+verbatimindent=skip173
+verbatim@out=write3
+bvboxsep=skip174
+c@memfbvline=count117
+c@bvlinectr=count118
+bvnumlength=skip175
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:11236: Argument of re
+served@f has an extra }.
+<inserted text> 
+                par 
+l.11236 \settowidth{\bvnumlength}{\normalfont 999}
+                                                  
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+@nnil ifx external@font @empty @latex@error {Font expandafter string ETC.
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:11236: Paragraph ende
+d before reserved@f was complete.
+<to be read again> 
+                   par 
+l.11236 \settowidth{\bvnumlength}{\normalfont 999}
+                                                  
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:11236: Extra }, or fo
+rgotten endgroup.
+<recently read> }
+                 
+l.11236 \settowidth{\bvnumlength}{\normalfont 999}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:11236: Extra }, or fo
+rgotten endgroup.
+@settodim #1#2#3->setbox @tempboxa hbox {{#3}}
+                                              #2#1@tempboxa setbox @tempboxa...
+l.11236 \settowidth{\bvnumlength}{\normalfont 999}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:11334: LaTeX Error: C
+ommand \vbox already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.11334   \renewcommand{\bvendrulehook}{\hrule}}
+                                                
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+fb@frw=dimen143
+fb@frh=dimen144
+FrameRule=dimen145
+FrameSep=dimen146
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:11615: LaTeX Error: C
+ommand \frame already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.11615  {\endMakeFramed}
+                         
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+c@cp@cntr=count119
+LaTeX Info: Redefining : on input line 12050.
+LaTeX Info: Redefining ! on input line 12052.
+c@ism@mctr=count120
+c@xsm@mctr=count121
+c@csm@mctr=count122
+c@ksm@mctr=count123
+c@xksm@mctr=count124
+c@cksm@mctr=count125
+c@msm@mctr=count126
+c@xmsm@mctr=count127
+c@cmsm@mctr=count128
+c@bsm@mctr=count129
+c@workm@mctr=count130
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:12275: LaTeX Error: C
+ommand \cardinal already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.12275   \endgroup}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:12305: LaTeX Error: C
+ommand \ordinal already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.12305 }
+         
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+c@sheetsequence=count131
+c@lastsheet=count132
+c@lastpage=count133
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:12866: Undefined cont
+rol sequence.
+vlvnumfont ->small 
+                   rmfamily 
+l.12866 ...towidth{\bvnumlength}{\vlvnumfont 9999}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:12866: Argument of re
+served@f has an extra }.
+<inserted text> 
+                par 
+l.12866 ...towidth{\bvnumlength}{\vlvnumfont 9999}
+                                                  
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+@nnil ifx external@font @empty @latex@error {Font expandafter string ETC.
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:12866: Paragraph ende
+d before reserved@f was complete.
+<to be read again> 
+                   par 
+l.12866 ...towidth{\bvnumlength}{\vlvnumfont 9999}
+                                                  
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:12866: Extra }, or fo
+rgotten endgroup.
+<recently read> }
+                 
+l.12866 ...towidth{\bvnumlength}{\vlvnumfont 9999}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:12866: Extra }, or fo
+rgotten endgroup.
+@settodim #1#2#3->setbox @tempboxa hbox {{#3}}
+                                              #2#1@tempboxa setbox @tempboxa...
+l.12866 ...towidth{\bvnumlength}{\vlvnumfont 9999}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:12877: Missing endgro
+up inserted.
+<inserted text> 
+                endgroup 
+l.12877   \onecolumn
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:12877: Missing } inse
+rted.
+<inserted text> 
+                }
+l.12877   \onecolumn
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:12877: Missing } inse
+rted.
+<inserted text> 
+                }
+l.12877   \onecolumn
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:12877: Missing endgro
+up inserted.
+<inserted text> 
+                endgroup 
+l.12877   \onecolumn
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:12877: Missing } inse
+rted.
+<inserted text> 
+                }
+l.12877   \onecolumn
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:12877: Missing } inse
+rted.
+<inserted text> 
+                }
+l.12877   \onecolumn
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:12877: Argument of re
+served@f has an extra }.
+<inserted text> 
+                par 
+l.12877   \onecolumn
+                    
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+@nnil ifx external@font @empty @latex@error {Font expandafter string ETC.
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:12877: Paragraph ende
+d before reserved@f was complete.
+<to be read again> 
+                   par 
+l.12877   \onecolumn
+                    
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:12877: Extra }, or fo
+rgotten endgroup.
+<recently read> }
+                 
+l.12877   \onecolumn
+                    
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:12877: Extra }, or fo
+rgotten endgroup.
+nopfbreakOutput ...else global vsize maxdimen fi }
+                                                  
+l.12877   \onecolumn
+                    
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls:12877: Extra }, or fo
+rgotten endgroup.
+<output> {pfbreakOutput }
+                         
+l.12877   \onecolumn
+                    
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+c@figure=count134
+c@lofdepth=count135
+cftbeforefigureskip=skip176
+cftfigureindent=skip177
+cftfigurenumwidth=skip178
+c@table=count136
+c@lotdepth=count137
+cftbeforetableskip=skip179
+cfttableindent=skip180
+cfttablenumwidth=skip181
+Package abstract [2008/07/23] (with options ) emulated by memoir.
+Package appendix [2008/07/23] (with options ) emulated by memoir.
+Package array [2008/09/09] (with options ) emulated by memoir.
+Package booktabs [2008/07/23] (with options ) emulated by memoir.
+Package ccaption [2008/07/23] (with options ) emulated by memoir.
+Package changepage [2008/07/23] (with options ) emulated by memoir.
+Package chngcntr [2008/07/23] (with options ) emulated by memoir.
+Package chngpage [2008/07/23] (with options ) emulated by memoir.
+Package crop (with options ) emulated by memoir.
+Package dcolumn [2008/07/23] (with options ) emulated by memoir.
+Package delarray [2008/07/23] (with options ) emulated by memoir.
+Package enumerate [2008/07/23] (with options ) emulated by memoir.
+Package epigraph [2008/07/23] (with options ) emulated by memoir.
+Package ifmtarg [2008/07/23] (with options ) emulated by memoir.
+Package index [2008/07/23] (with options ) emulated by memoir.
+Package makeidx [2008/07/23] (with options ) emulated by memoir.
+Package moreverb [2008/07/23] (with options ) emulated by memoir.
+Package mparhack [2008/07/23] (with options ) emulated by memoir.
+Package needspace [2008/07/23] (with options ) emulated by memoir.
+Package newfile [2008/07/23] (with options ) emulated by memoir.
+Package nextpage [2008/07/23] (with options ) emulated by memoir.
+Package pagenote [2008/07/23] (with options ) emulated by memoir.
+Package parskip [2008/07/23] (with options ) emulated by memoir.
+Package patchcmd [2008/07/23] (with options ) emulated by memoir.
+Package setspace [2008/07/23] (with options ) emulated by memoir.
+Package shortvrb [2008/07/23] (with options ) emulated by memoir.
+Package showidx [2008/07/23] (with options ) emulated by memoir.
+Package tabularx [2008/07/23] (with options ) emulated by memoir.
+Package titleref [2008/07/23] (with options ) emulated by memoir.
+Package titling [2008/07/23] (with options ) emulated by memoir.
+Package tocbibind [2008/07/23] (with options ) emulated by memoir.
+Package tocloft [2008/07/23] (with options ) emulated by memoir.
+Package tocvsec2 [2008/07/23] (with options ) emulated by memoir.
+Package verbatim [2008/07/23] (with options ) emulated by memoir.
+Package verse [2008/07/23] (with options ) emulated by memoir.
+(/usr/share/texlive/texmf-dist/tex/latex/memoir/mempatch.sty
+Package: mempatch 2009/07/24 v6.0f Patches for memoir class v1.6180339
+))
+./stageM2R.cls:38: Use of checkandfixthelayout doesn't match its definition.
+l.38 
+     
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2014/09/25 3.9l The Babel package
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel-french/frenchb.ldf
+Language: frenchb 2015/06/26 v3.1g French support from the babel system
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2014/09/25 3.9l Babel common definitions
+babel@savecnt=count138
+U@D=dimen147
+
+
+/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def:1202: LaTeX Error: re
+served@a undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1202     \fi}
+               
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+)
+/usr/share/texlive/texmf-dist/tex/generic/babel-french/frenchb.ldf:64: Undefine
+d control sequence.
+<argument> captionsfrench 
+                          
+l.64 \LdfInit\CurrentOption\captionsfrench
+                                          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+l@acadian = a dialect from languagel@french 
+l@canadien = a dialect from languagel@french 
+FBcolonskip=skip182
+FBthinskip=skip183
+FB@interchartokenstateORI=count139
+Package babel Info: Making : an active character on input line 353.
+Package babel Info: Making ; an active character on input line 354.
+Package babel Info: Making ! an active character on input line 355.
+Package babel Info: Making ? an active character on input line 356.
+FBguillskip=skip184
+FBguill@level=count140
+/usr/share/texlive/texmf-dist/tex/generic/babel-french/frenchb.ldf:589: Use of 
+bbl@startcmds@ii doesn't match its definition.
+l.589 ...tartBabelCommands*{\BabelLanguages}{date}
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no E in font nullfont!
+Missing character: There is no U in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no E in font nullfont!
+Missing character: There is no U in font nullfont!
+Missing character: There is no 2 in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no 8 in font nullfont!
+Missing character: There is no ] in font nullfont!
+/usr/share/texlive/texmf-dist/tex/generic/babel-french/frenchb.ldf:591: Undefin
+ed control sequence.
+l.591     \SetString
+                    \monthiiname{f√©vrier}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+/usr/share/texlive/texmf-dist/tex/generic/babel-french/frenchb.ldf:591: Undefin
+ed control sequence.
+l.591     \SetString\monthiiname
+                                {f√©vrier}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no f in font nullfont!
+Missing character: There is no √ in font nullfont!
+Missing character: There is no © in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+/usr/share/texlive/texmf-dist/tex/generic/babel-french/frenchb.ldf:592: Undefin
+ed control sequence.
+l.592     \SetString
+                    \monthviiiname{ao√ªt}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+/usr/share/texlive/texmf-dist/tex/generic/babel-french/frenchb.ldf:592: Undefin
+ed control sequence.
+l.592     \SetString\monthviiiname
+                                  {ao√ªt}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no a in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no √ in font nullfont!
+Missing character: There is no ª in font nullfont!
+Missing character: There is no t in font nullfont!
+/usr/share/

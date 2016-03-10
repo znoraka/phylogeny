@@ -10,6 +10,9 @@
 
 \usepackage[style=numeric,citestyle=numeric,backend=bibtex]{biblatex}
 \usepackage{wrapfig}
+\usepackage{hhline}
+\usepackage{subcaption}
+\usepackage[]{algorithm2e}
 
 \bibliography{../../articles/biblio.bib}
 
@@ -24,7 +27,7 @@
 %% auteur
 \author{Noé Le Philippe}
 %% encadrants
-\supervisors{William Puech}
+\supervisor{William Puech}
 %% lieu du stage (Optionnel)
 \location{Équipe ICAR - LIRMM UM5506 - CNRS, Université de Montpellier}
 %% titre du stage
@@ -65,7 +68,7 @@ La phylogénie, en sciences naturelles, est définie\cite{phylogeny} comme l'ét
 À l'ère des réseaux sociaux, il n'a jamais été aussi simple de partager des idées et du contenu. À chaque partage cependant, l'information peut être amenée à être modifiée. Les images, puisque c'est là notre sujet d'étude, peuvent avoir subi un certain nombre de transformations et modifications avant de nous parvenir. C'est dans ce contexte que nous allons intervenir, et tenter de reconstituer la phylogénie de l'image. Il peut être difficile de différentier cette image de l'originale, et de savoir laquelle est l'originale, mais c'est pourtant crucial dans un monde où l'information peut être falsifiée par tout le monde et extrêmement facilement. Les applications sont variées, et ne se cantonnent pas à la détection et la discrimination d'images altérées, on peut également se servir de la phylogénie de l'image pour optimiser de l'espace de stockage en ne gardant que l'originale ou encore suivre la diffusion et l'évolution des idées sur les réseaux sociaux.
 \newpage
 
-\subsection{Near-duplicate images (NDI)}
+\section{Near-duplicate images (NDI)}
 \label{subsec:ndi}
 Nous travaillons sur un ensemble d'images, toutes similaires, et au milieu de cette jungle d'images, nous devons décider quelle image est le parent de quelle autre, ou autrement dit, quelles images sont des \textbf{near-duplicates}. Joly et al. \cite{joly2007content} définit la notion de near-duplicate comme suit : $I_{1} = T(I), T \in \mathcal{T}$ où $I$ est l'image parent, $I_{1}$ est l'image enfant et $\mathcal{T}$ est un ensemble de transformations autorisées, $I_{1}$ et $I$ sont alors des NDI. Dans le cas général, $\mathcal{T} = $ \textit{\{resampling, cropping, affine warping, color changing, lossy compression\}}, Fig. \ref{fig:near-duplicates-images} montre un exemple de near-duplicates, dans le cadre de ce stage cependant, $\mathcal{T} = $ \textit{\{lossy compression\}}. Notons l'utilisations du terme \textit{transformations autorisées}. Ce terme est double, d'une part, il place une limite arbitraire dans la force de la transformation, par exemple une image cropée à plus de 10\% pourra ne pas pas être considérée comme un near-duplicate, et d'autre part, il permet de restreindre l'espace des transformations possibles. Ainsi, dans le cadre du stage, seules les images de la troisième case de Fig. \ref{fig:near-duplicates-images} seront des NDI. Ces transformations peuvent évidemment se composer, et une image enfant peut être le résultat de plusieurs transformations.
 
@@ -84,7 +87,7 @@ Nous travaillons sur un ensemble d'images, toutes similaires, et au milieu de ce
 \end{center}
 \end{figure}
 
-\subsection{Arbre phylogénétique (Image Phylogeny Tree - IPT)}
+\section{Arbre phylogénétique (Image Phylogeny Tree - IPT)}
 C'est l'arbre représentant les relations de parenté entre les différentes images. Il sera extrait d'un ensemble de NDI, c'est l'objectif final de l'application. Un exemple est disponible Fig. \ref{fig:set_to_tree}. Le passage d'une génération à l'autre, autrement dit d'un noeud à son fils se fait à travers la transformation $I_{1} = T(I)$, ainsi, une image et son parent sont des NDI, alors qu'une images et ses soeurs ne le sont pas (Fig \ref{fig:tree_extract}).
 \\ \indent
 La reconstruction de l'arbre se concentre autour de deux problèmes principaux. Le premier est l'identification de la racine, et le second et l'estimation du reste de l'arbre. Il est en effet critique d'identifier correctement la racine. Prenons par exemple un des cas d'utilisation de l'IPT, la détection d'altération d'images. L'idée est que pour un ensemble d'images, plus on est proche de la racine, moins l'image a subi de transformations, et donc moins elle est altérée, avec dans le meilleur des cas, la racine en image originale. On voit bien que si on identifie mal la racine, on déduira, à tort, qu'une image n'a pas été altérée. Il n'est pas toujours garanti que la totalité des images de l'arbre original soit présente, de plus, certaines transformations peuvent être mineures, et difficile à détecter, c'est donc bien une estimation de l'arbre original qui sera faite.
@@ -105,7 +108,7 @@ La reconstruction de l'arbre se concentre autour de deux problèmes principaux. 
   \end{center}
 \end{figure}
 
-\subsection{Pourquoi se restreindre à la compression ?}
+\section{Pourquoi se restreindre à la compression ?}
 Comme mentionné précédemment, nous ne considérons que le cas de la compression avec perte en laissant de coté les autres transformations. Nous avons décidé de ne nous concentrer que sur une seule transformation pour avoir la possibilité de la traiter en détail et en profondeur dans le cadre du stage et ne pas devoir survoler sans approfondir toutes les transformations. Le choix de la compression est assez naturel, cela n'a, à notre connaissance, pas encore été traité dans le cadre le la phylogénie, et c'est un domaine largement étudié en forensic.
 
 \chapter{État de l'art}
@@ -114,9 +117,9 @@ C'est un sujet qui, ces dernières années, n'a retenu l'attention que de deux �
 \subsection{La Visual Migration Map (VMM)}
 C'est à notre connaissance, le premier article concernant vraiment notre sujet. Kennedy et al. \cite{kennedy2008internet} proposent une approche permettant d'automatiquement détecter la manière dont une image a été éditée ou manipulée, et d'en extraire des relations parent-enfant entre les images. Il vont construire à partir le l'estimation de ces transformations une Visual Migration Map (VMM) (voir Fig. \ref{vmm}) qui est en fait notre arbre de phylogénie.
 \\ \indent
-Ils partent du principe que les transformations sont directionnelles, c'est à dire que l'on de ne peut passer que d'une image moins transformée à une image plus transformée. Ainsi, ils vont tenter d'estimer la direction de chaque transformation entre deux images $I_{1}$ et $I_{2}$ (sachant que $\mathcal{T}$ = \textit{\{scaling, cropping, grayscale, overlay, insertion\}}). Trois scénarios sont alors possibles : si toutes des transformations sont dans le même sens, l'image fille est alors celle vers qui pointent les transformations, si les transformations sont dans des sens contraires, les images sont surement des soeurs, elles n'ont ent tous cas pas de relation parent-enfant, et enfin si aucune transformation n'a été détectée, c'est que soit les images sont identiques, soit elles ne sont pas des near-duplicates. On peut en voir un exemple Fig. \ref{vmm_directionnel}.
+Ils partent du principe que les transformations sont directionnelles, c'est à dire que l'on de ne peut passer que d'une image moins transformée à une image plus transformée. Ainsi, ils vont tenter d'estimer la direction de chaque transformation entre deux images $I_{1}$ et $I_{2}$ (sachant que $\mathcal{T}$ = \textit{\{scaling, cropping, grayscale, overlay, insertion\}}). Trois scénarios sont alors possibles : si toutes des transformations sont dans le même sens, l'image fille est alors celle vers qui pointent les transformations, si les transformations sont dans des sens contraires, les images sont surement des soeurs, elles n'ont ent tous cas pas de relation parent-enfant, et enfin si aucune transformation n'a été détectée, c'est que soit les images sont identiques, soit elles ne sont pas des near-duplicates. On peut en voir un exemple Fig. \ref{vmm-directionnel}.
 \\ \indent
-Un graphe va ensuite être construit à partir des couples d'images pour lesquels une relation parent-enfant a été détectée. À noter qu'une relation parent-enfant ne veut pas forcément dire que c'est le parent direct mais plutôt un ancêtre. Ainsi, un noeud du graphe (une image) peut avoir plusieurs noeuds parents, pour finalement obtenir l'arbre désiré, seuls les chemins les plus longs sont conservés, comme on peut le voir Fig. \ref{vmm_tree}.
+Un graphe va ensuite être construit à partir des couples d'images pour lesquels une relation parent-enfant a été détectée. À noter qu'une relation parent-enfant ne veut pas forcément dire que c'est le parent direct mais plutôt un ancêtre. Ainsi, un noeud du graphe (une image) peut avoir plusieurs noeuds parents, pour finalement obtenir l'arbre désiré, seuls les chemins les plus longs sont conservés, comme on peut le voir Fig. \ref{vmm-tree}.
 
 %%%%% parler de comment sont calculés les directions des transformations.
 %%%%% parler des résultats ?
@@ -133,35 +136,136 @@ Un graphe va ensuite être construit à partir des couples d'images pour lesquel
 \begin{figure}
   \begin{center}
     \includegraphics[width=70mm]{images/vmm.png}
-    \label{vmm}
     \caption{Exemple de VMM, issu de \cite{kennedy2008internet}}
+    \label{vmm}
   \end{center}
 \end{figure}
 
 \begin{figure}
   \begin{center}
     \includegraphics[width=70mm]{images/vmm_directionnel.png}
-    \label{vmm_directionnel}
     \caption{Exemple de direction des transformations, issu de \cite{kennedy2008internet}}
+    \label{vmm-directionnel}
   \end{center}
 \end{figure}
 
 \begin{figure}
   \begin{center}
     \includegraphics[width=100mm]{images/vmm_tree.png}
-    \label{vmm_tree}
     \caption{Exemple de simplification de graphe, issu de \cite{kennedy2008internet}}
+    \label{vmm-tree}
   \end{center}
 \end{figure}
 
 \subsection{Image Phylogeny Tree (IPT)}
+\cite{dias2010first}
+\cite{dias2012image}
 
 \section{État de l'art - Analyse des recompression JPEG}
+\subsection{Détection des double compressions JPEG avec la même matrice de quantification}
+\cite{huang2010detecting}
+
+\subsection{Détection des recompressions JPEG}
+\cite{feng2010jpeg}
+
+\subsection{Convergence des blocs lors de compressions successives}
+\cite{lai2013block}
+
+\section{État de l'art - Distances entre distributions}
 
 \chapter{Notre approche}
+\section{Principe}
 
-\chapter*{Conclusion}
+\fbox{
+  \parbox{\textwidth}{
+    \underline{Énoncé} :\\
+    Pour tout couple d'image (A, B), s'il n'est pas possible de prouver que A n'est pas le parent de B, alors il y a une relation parent-enfant entre A et B, A $\to$ B.
+  }
+}
+\\ \\ 
+\fbox{
+  \parbox{\textwidth}{
+    \underline{Preuve (empirique)} :\\
+    Si une fonction détecte à chaque fois qu'il est présent un marqueur prouvant qu'il n'y a pas de relation de parenté entre deux images, alors s'il n'en détecte pas c'est qu'il y a une relation de parenté entre les deux images.
+  }
+}
 
+\section{La construction de l'arbre}
+On va ainsi pour tout couple d'image de notre ensemble tenter de nier qu'il existe une relation de parenté, cela va permettre d'extraire une matrice binaire, de la taille de l'ensemble d'image, où une case à vrai indiquera une relation de parenté. À noter une fois de plus que ce n'est pas forcément un parent direct mais plutôt un ancêtre. \\ \indent
+On peut noter plusieurs choses intéressantes de l'exemple Fig. \ref{parentage_tree}. L'image $I_{2}$ a toute sa colonne marquée à vrai, c'est à dire que c'est un parent commun à toutes les autres images, et sa ligne n'a que des 0, elle n'a donc aucun parent. On se sert de ce principe pour la reconstruction de l'arbre à partir de la matrice : une image qui n'a pas de parent est la racine. On peut également remarquer les colonnes où toutes les cases sont à 0, cela veut dire que ces images ne sont le parent de personne, et donc sont des feuilles.
+
+\begin{figure}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=.5\linewidth]{images/algo_tree.png}
+    \caption{Arbre de phylogénie}
+    \label{algo_tree}
+  \end{subfigure}%
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \begin{tabular}{|r||c|c|c|c|c|}
+      \hline
+      - & $I_{0}$ & $I_{1}$ & $I_{2}$ & $I_{3}$ & $I_{4}$ \\ \hhline{|=||=|=|=|=|=|}
+      $I_{0}$ & - & 0 & 0 & 0 & 0 \\ \hline
+      $I_{1}$ & 0 & - & 0 & 1 & 1 \\ \hline
+      $I_{2}$ & 1 & 1 & - & 1 & 1 \\ \hline
+      $I_{3}$ & 0 & 0 & 0 & - & 0 \\ \hline
+      $I_{4}$ & 0 & 0 & 0 & 0 & - \\ \hline
+    \end{tabular} 
+    \caption{Matrice de parenté}
+    \label{parentage_matrix}
+  \end{subfigure}
+  \caption{Une arbre de phylogénie et sa matrice de parenté}
+  \label{parentage_tree}
+\end{figure}
+
+\subsection{L'algorithme de reconstruction}
+De ces quelques principes nous avons extrait un algorithme. \vspace{5mm}
+
+\begin{algorithm}[H]
+  \LinesNumbered
+  \KwData{M a n*n parentage matrix}
+  \KwResult{the root of the tree}
+  \BlankLine
+  $nextRoot \leftarrow$ row with min sum of elements\;
+  $treeRoot \leftarrow nextRoot$\;
+  \BlankLine
+
+  \ForAll{rows row of M}{
+    $root \leftarrow nextRoot$\;
+    mark $root$ as done\;
+    \BlankLine
+    \For{$i\leftarrow 0$ \KwTo n}{
+      $row[i] \leftarrow 0$\;
+      \If{sum of elements of row == 0} {
+        add $i$ as child of $root$\;
+      }
+      \If{row has the smallest sum of elements and is not marked as done} {
+        $nextRoot \leftarrow i$\;
+      }
+    }
+  }
+  \KwRet treeRoot
+\end{algorithm}
+\vspace{5mm}
+
+Il prend en entrée la matrice de parenté détaillée précédemment et retourne la racine de l'arbre. La philosophie de l'algorithme est qu'une image n'ayant aucun parent est la racine, et ce de manière récursive grâce à la structure d'arbre.
+
+% La ligne 1 marque $nextRoot$ comme la ligne avec la plus petite somme des éléments, étant une matrice binaire, où les valeurs sont 0 et 1, c'est donc l'image qui a le moins de parent, autrement dit la racine.
+
+% La ligne 5 marque $root$ comme terminée, c'est pour ne la traiter qu'une fois, en effet, dans un arbre, il n'y a pas de cycle, on ne peut donc pas 
+% La condition lignes 8-10 ajoute l'image à l'indice $i$ comme enfant de $root$. La condition d'avoir tous les éléments de la ligne à 0, c'est à dire de n'avoir plus aucun parent
+
+À chaque tour de boucle, une image est sélectionnée comme la racine (lignes 1 et 11) et nommée $root$, elle est retirée (ligne 7) des ancêtres des autres images si c'est un ancêtre. Si ces autres images n'ont plus d'ancêtre (ligne 8), c'est que $root$ était le parent direct de l'image en train d'être traitée, cette image est donc ajoutée comme enfant de $root$ (ligne 9). La ligne 5 permet de ne traiter qu'une fois chaque image comme racine potentielle.
+
+Cet algorithme a une complexité de $O(n^{2})$. Il y a deux boucles imbriquées, et si les sommes sont calculées une une seule fois au début et mises à jour à chaque fois qu'un parent est enlevé, il n'y a pas de boucle supplémentaire augmentant la complexité.
+
+Le but est donc de trouver la fonction permettant de détecter le marqueur prouvant qu'il n'y a pas de parenté. Et même si cette fonction n'est pas parfaite, et qu'elle se trompe dans ses prédictions, l'algorithme est robuste et premet tout de même d'obtenir des résultats cohérents si on s'appuie sur les métriques introduites pas \cite{dias2010first} pour évaluer l'arbre (voir Fig. \ref{algo-robuste}).
+
+%%%% faire une trace de l'algo %%%%%
+\chapter{Conclusion}
+
+% \nocite{*}
 \printbibliography
 
 \end{document}

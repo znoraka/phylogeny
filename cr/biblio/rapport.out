@@ -1,7 +1,14 @@
 \BOOKMARK [0][-]{section*.1}{Table des mati\350res}{}% 1
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}% 2
-\BOOKMARK [0][-]{chapter.2}{\311tat de l'art}{}% 3
-\BOOKMARK [1][-]{section.2.1}{\311tat de l'art - \311tude de l'arbre phylog\351n\351tique}{chapter.2}% 4
-\BOOKMARK [1][-]{section.2.2}{\311tat de l'art - Analyse des recompression JPEG}{chapter.2}% 5
-\BOOKMARK [0][-]{chapter.3}{Notre approche}{}% 6
-\BOOKMARK [0][-]{section*.9}{Bibliographie}{}% 7
+\BOOKMARK [1][-]{section.1.1}{Near-duplicate images \(NDI\)}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.2}{Arbre phylog\351n\351tique \(Image Phylogeny Tree - IPT\)}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.3}{Pourquoi se restreindre \340 la compression ?}{chapter.1}% 5
+\BOOKMARK [0][-]{chapter.2}{\311tat de l'art}{}% 6
+\BOOKMARK [1][-]{section.2.1}{\311tat de l'art - \311tude de l'arbre phylog\351n\351tique}{chapter.2}% 7
+\BOOKMARK [1][-]{section.2.2}{\311tat de l'art - Analyse des recompression JPEG}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.3}{\311tat de l'art - Distances entre distributions}{chapter.2}% 9
+\BOOKMARK [0][-]{chapter.3}{Notre approche}{}% 10
+\BOOKMARK [1][-]{section.3.1}{Principe}{chapter.3}% 11
+\BOOKMARK [1][-]{section.3.2}{La construction de l'arbre}{chapter.3}% 12
+\BOOKMARK [0][-]{chapter.4}{Conclusion}{}% 13
+\BOOKMARK [0][-]{section*.16}{Bibliographie}{}% 14

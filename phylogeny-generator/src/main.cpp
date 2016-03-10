@@ -477,8 +477,9 @@ void exportPhylogeny(std::ostream& stream, Node *root) {
   f = [&](Node *n) {
     stream << "[" << std::endl;
     // stream << "\\includegraphics{" << n->name << "}" << std::endl;
-    stream << "\\href{run:" << n->name << "}{"<< n->name << " // " << n->compression << " // " << n->entropy << " // " << n->entropy2 << "}" << std::endl;
+    // stream << "\\href{run:" << n->name << "}{"<< n->name << " // " << n->compression << " // " << n->entropy << " // " << n->entropy2 << "}" << std::endl;
 
+    stream << "\\href{run:" << n->name << "}{"<< n->name << "}" << std::endl;
     // stream << "\\href{run:" << n->name << "}{\\includegraphics{" << n->name << "}}" << std::endl;
     // stream << n->name << std::endl;
     for(auto i : n->children) {

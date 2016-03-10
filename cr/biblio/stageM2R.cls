@@ -23,16 +23,17 @@
 \LoadClass[a4paper,11pt]{memoir}
 
 
-\settrimmedsize{297mm}{210mm}{*}
-\setlength{\trimtop}{0pt}
-\setlength{\trimedge}{\stockwidth}
-\addtolength{\trimedge}{-\paperwidth}
-\settypeblocksize{614pt}{418.13pt}{*}
-\setulmargins{4cm}{*}{*}
-\setlrmargins{*}{*}{1.5}
-\setmarginnotes{17pt}{51pt}{\onelineskip}
-\setheadfoot{\onelineskip}{2\onelineskip}
-\setheaderspaces{*}{2\onelineskip}{*}
+% \settrimmedsize{297mm}{210mm}{*}
+% \setlength{\trimtop}{0pt}
+% \setlength{\trimedge}{\stockwidth}
+% \addtolength{\trimedge}{-\paperwidth}
+\settypeblocksize{614pt}{458.13pt}{*}
+% \setulmargins{4cm}{*}{*}
+% \setlrmargins{*}{*}{1.5}
+% \setmarginnotes{17pt}{51pt}{\onelineskip}
+% \setheadfoot{\onelineskip}{2\onelineskip}
+% \setheaderspaces{*}{2\onelineskip}{*}
+\setlrmargins{*}{*}{1}
 \checkandfixthelayout
 
 %% paquets nécessaire
