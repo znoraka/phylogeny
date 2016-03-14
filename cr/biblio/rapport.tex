@@ -13,6 +13,9 @@
 \usepackage{hhline}
 \usepackage{subcaption}
 \usepackage[]{algorithm2e}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{float}
 
 \bibliography{../../articles/biblio.bib}
 
@@ -70,10 +73,13 @@ La phylogénie, en sciences naturelles, est définie\cite{phylogeny} comme l'ét
 
 \section{Near-duplicate images (NDI)}
 \label{subsec:ndi}
-Nous travaillons sur un ensemble d'images, toutes similaires, et au milieu de cette jungle d'images, nous devons décider quelle image est le parent de quelle autre, ou autrement dit, quelles images sont des \textbf{near-duplicates}. Joly et al. \cite{joly2007content} définit la notion de near-duplicate comme suit : $I_{1} = T(I), T \in \mathcal{T}$ où $I$ est l'image parent, $I_{1}$ est l'image enfant et $\mathcal{T}$ est un ensemble de transformations autorisées, $I_{1}$ et $I$ sont alors des NDI. Dans le cas général, $\mathcal{T} = $ \textit{\{resampling, cropping, affine warping, color changing, lossy compression\}}, Fig. \ref{fig:near-duplicates-images} montre un exemple de near-duplicates, dans le cadre de ce stage cependant, $\mathcal{T} = $ \textit{\{lossy compression\}}. Notons l'utilisations du terme \textit{transformations autorisées}. Ce terme est double, d'une part, il place une limite arbitraire dans la force de la transformation, par exemple une image cropée à plus de 10\% pourra ne pas pas être considérée comme un near-duplicate, et d'autre part, il permet de restreindre l'espace des transformations possibles. Ainsi, dans le cadre du stage, seules les images de la troisième case de Fig. \ref{fig:near-duplicates-images} seront des NDI. Ces transformations peuvent évidemment se composer, et une image enfant peut être le résultat de plusieurs transformations.
+Nous travaillons sur un ensemble d'images, toutes similaires, et au milieu de cette jungle d'images, nous devons décider quelle image est le parent de quelle autre, ou autrement dit, quelles images sont des \textbf{near-duplicates}. Joly et al. \cite{joly2007content} définit la notion de near-duplicate comme suit : $I_{1} = T(I), T \in \mathcal{T}$ où $I$ est l'image parent, $I_{1}$ est l'image enfant et $\mathcal{T}$ est un ensemble de transformations autorisées, $I_{1}$ et $I$ sont alors des NDI. Dans le cas général, $\mathcal{T} = $ \textit{\{resampling, cropping, affine warping, color changing, lossy compression\}}, Fig. \ref{fig:near-duplicates-images} montre un exemple de near-duplicates, dans le cadre de ce stage cependant, $\mathcal{T} = $ \textit{\{lossy compression\}}. Notons l'utilisation du terme \textit{transformations autorisées}. Ce terme est double, d'une part, il place une limite arbitraire dans la force de la transformation, par exemple une image cropée à plus de 10\% pourra ne pas pas être considérée comme un near-duplicate, et d'autre part, il permet de restreindre l'espace des transformations possibles. Ainsi, dans le cadre du stage, seules les images de la troisième case de Fig. \ref{fig:near-duplicates-images} seront des NDI. Ces transformations peuvent évidemment se composer, et une image enfant peut être le résultat de plusieurs transformations.
 
-\begin{figure}
+\vspace{5mm}
+\textbf{Note.} \textit{Nous utiliserons relation parent-enfant et relation de parenté de manière interchangeable dans le reste de ce rapport, mais c'est bien d'une relation parent-enfant qu'il s'agit.}
+
 \begin{center}
+\begin{figure}
 \begin{tabular}{|c|c|c|}
       \hline
       \addheight{\includegraphics[width=23mm]{images/lena_base.jpg} \includegraphics[width=23mm]{images/lena_bw.jpg}} &
@@ -82,13 +88,12 @@ Nous travaillons sur un ensemble d'images, toutes similaires, et au milieu de ce
       \small couleur $\to$ noir et blanc & image entière $\to$ crop & image $\to$ image compressée\\
       \hline
 \end{tabular}
-\label{fig:near-duplicates-images}
 \caption{Exemples de near-duplicates}
-\end{center}
+\label{fig:near-duplicates-images}
 \end{figure}
-
+\end{center}
 \section{Arbre phylogénétique (Image Phylogeny Tree - IPT)}
-C'est l'arbre représentant les relations de parenté entre les différentes images. Il sera extrait d'un ensemble de NDI, c'est l'objectif final de l'application. Un exemple est disponible Fig. \ref{fig:set_to_tree}. Le passage d'une génération à l'autre, autrement dit d'un noeud à son fils se fait à travers la transformation $I_{1} = T(I)$, ainsi, une image et son parent sont des NDI, alors qu'une images et ses soeurs ne le sont pas (Fig \ref{fig:tree_extract}).
+C'est l'arbre représentant les relations de parenté entre les différentes images. Il sera extrait d'un ensemble de NDI, c'est l'objectif final de l'application. Un exemple est disponible Fig. \ref{fig:set-to-tree}. Le passage d'une génération à l'autre, autrement dit d'un noeud à son fils se fait à travers la transformation $I_{1} = T(I)$, ainsi, une image et son parent sont des NDI, alors qu'une images et ses soeurs ne le sont pas (Fig \ref{fig:tree-extract}).
 \\ \indent
 La reconstruction de l'arbre se concentre autour de deux problèmes principaux. Le premier est l'identification de la racine, et le second et l'estimation du reste de l'arbre. Il est en effet critique d'identifier correctement la racine. Prenons par exemple un des cas d'utilisation de l'IPT, la détection d'altération d'images. L'idée est que pour un ensemble d'images, plus on est proche de la racine, moins l'image a subi de transformations, et donc moins elle est altérée, avec dans le meilleur des cas, la racine en image originale. On voit bien que si on identifie mal la racine, on déduira, à tort, qu'une image n'a pas été altérée. Il n'est pas toujours garanti que la totalité des images de l'arbre original soit présente, de plus, certaines transformations peuvent être mineures, et difficile à détecter, c'est donc bien une estimation de l'arbre original qui sera faite.
 
@@ -96,7 +101,7 @@ La reconstruction de l'arbre se concentre autour de deux problèmes principaux. 
   \begin{center}
     \includegraphics[width=120mm]{images/set_to_tree}
     \caption{Passage d'un ensemble de NDI à un arbre phylogénétique}
-    \label{fig:set_to_tree}
+    \label{fig:set-to-tree}
   \end{center}
 \end{figure}
 
@@ -104,7 +109,7 @@ La reconstruction de l'arbre se concentre autour de deux problèmes principaux. 
   \begin{center}
     \includegraphics[width=120mm]{images/tree_extract}
     \caption{Passage d'une image parent à l'image enfant}
-    \label{fig:tree_extract}
+    \label{fig:tree-extract}
   \end{center}
 \end{figure}
 
@@ -112,16 +117,15 @@ La reconstruction de l'arbre se concentre autour de deux problèmes principaux. 
 Comme mentionné précédemment, nous ne considérons que le cas de la compression avec perte en laissant de coté les autres transformations. Nous avons décidé de ne nous concentrer que sur une seule transformation pour avoir la possibilité de la traiter en détail et en profondeur dans le cadre du stage et ne pas devoir survoler sans approfondir toutes les transformations. Le choix de la compression est assez naturel, cela n'a, à notre connaissance, pas encore été traité dans le cadre le la phylogénie, et c'est un domaine largement étudié en forensic.
 
 \chapter{État de l'art}
-\section{État de l'art - Étude de l'arbre phylogénétique}
-C'est un sujet qui, ces dernières années, n'a retenu l'attention que de deux équipes de recherche, nous allons ici présenter leurs travaux.
+\section{Étude de l'arbre phylogénétique}
 \subsection{La Visual Migration Map (VMM)}
 C'est à notre connaissance, le premier article concernant vraiment notre sujet. Kennedy et al. \cite{kennedy2008internet} proposent une approche permettant d'automatiquement détecter la manière dont une image a été éditée ou manipulée, et d'en extraire des relations parent-enfant entre les images. Il vont construire à partir le l'estimation de ces transformations une Visual Migration Map (VMM) (voir Fig. \ref{vmm}) qui est en fait notre arbre de phylogénie.
 \\ \indent
-Ils partent du principe que les transformations sont directionnelles, c'est à dire que l'on de ne peut passer que d'une image moins transformée à une image plus transformée. Ainsi, ils vont tenter d'estimer la direction de chaque transformation entre deux images $I_{1}$ et $I_{2}$ (sachant que $\mathcal{T}$ = \textit{\{scaling, cropping, grayscale, overlay, insertion\}}). Trois scénarios sont alors possibles : si toutes des transformations sont dans le même sens, l'image fille est alors celle vers qui pointent les transformations, si les transformations sont dans des sens contraires, les images sont surement des soeurs, elles n'ont ent tous cas pas de relation parent-enfant, et enfin si aucune transformation n'a été détectée, c'est que soit les images sont identiques, soit elles ne sont pas des near-duplicates. On peut en voir un exemple Fig. \ref{vmm-directionnel}.
+Ils partent du principe que les transformations sont directionnelles, c'est à dire que l'on de ne peut passer que d'une image moins transformée à une image plus transformée. Ainsi, ils vont tenter d'estimer la direction de chaque transformation entre deux images $I_{1}$ et $I_{2}$ (sachant que $\mathcal{T}$ = \textit{\{scaling, cropping, grayscale, overlay, insertion\}}). Trois scénarios sont alors possibles : si toutes les transformations sont dans le même sens, l'image fille est alors celle vers qui pointent les transformations, si les transformations sont dans des sens contraires, les images sont sûrement des soeurs, elles n'ont en tous cas pas de relation parent-enfant, et enfin si aucune transformation n'a été détectée, c'est que soit les images sont identiques, soit qu'elles ne sont pas des near-duplicates. On peut en voir un exemple Fig. \ref{vmm-directionnel}.
 \\ \indent
 Un graphe va ensuite être construit à partir des couples d'images pour lesquels une relation parent-enfant a été détectée. À noter qu'une relation parent-enfant ne veut pas forcément dire que c'est le parent direct mais plutôt un ancêtre. Ainsi, un noeud du graphe (une image) peut avoir plusieurs noeuds parents, pour finalement obtenir l'arbre désiré, seuls les chemins les plus longs sont conservés, comme on peut le voir Fig. \ref{vmm-tree}.
 
-%%%%% parler de comment sont calculés les directions des transformations.
+%%%%% parler de comment sont calculées les directions des transformations.
 %%%%% parler des résultats ?
 %%%%% parler de ce qui est bien dans cette méthode et de ce que l'on va utiliser.
 
@@ -158,37 +162,127 @@ Un graphe va ensuite être construit à partir des couples d'images pour lesquel
 \end{figure}
 
 \subsection{Image Phylogeny Tree (IPT)}
-\cite{dias2010first}
-\cite{dias2012image}
 
-\section{État de l'art - Analyse des recompression JPEG}
-\subsection{Détection des double compressions JPEG avec la même matrice de quantification}
-\cite{huang2010detecting}
+Tout comme l'approche présentée précédemment, Dias et al. \cite{dias2010first}\cite{dias2012image} proposent une approche basée sur le contenu de l'image. Cela consiste a mapper une image sur le domaine d'une autre, pour pouvoir les comparer, et ensuite estimer le coût de cette opération, cela fait comme hypothèse que si deux images sont dépendantes, alors il est possible d'obtenir l'une en appliquant une transformation à l'autre. 
+
+%%% proches = 
+Les images sont comparées à l'aide d'une \textit{dissimilarity function d(.,.)} qui renvoie des petites valeurs lorsque les images sont proches (elles ont subi des transformations similaires). L'équation \ref{dissimilarity-function} détaille cette fonction. $A$ et $B$ sont les deux images qui vont être comparées, et $T_{\overrightarrow{\beta}} \in \mathcal{T}$ est la transformation en train d'être estimée. La transformation la plus faible est gardée comme résultat, c'est la transformation la plus probable qu'a pu subir l'image. À noter que $d(.,.)$ est asymétrique, c'est à dire que $d(A,B) \neq d(B,A)$, ce qui est parfaitement logique, en plus d'être nécessaire, sachant que les transformation sont directionnelles, comme expliqué précédemment.
+
+\begin{equation}
+  d(A,B) = \underset{T_{\overrightarrow{\beta}}}{min}\left | B - T_{\overrightarrow{\beta}}(A) \right |_{comparison\ method}
+  \label{dissimilarity-function}
+\end{equation}
+
+On voit donc bien que la problématique principale de cette méthode est de trouver une bonne méthode de comparaison. On pourra toutefois regretter que les auteurs soient restés assez vagues sur leurs méthodes de comparaison.
+
+%%%%%% parler des 4 étapes pages 4-5 ???
+\vspace{3mm}
+
+$d(.,.)$ est donc appliquée à tous les couples d'images de l'ensemble, pour créer une \textit{dissimilarity matrix}, une matrice de taille $n\times n$ qui sera ensuite donnée comme entrée à leur algorithme de reconstruction d'arbre, Oriented Kruskal. Nous n'allons pas entrer dans les détails de cet algorithme, il est expliqué de manière exhaustive dans \cite{dias2012image}, et ayant une approche différente, comme détaillé Chap. \ref{chap:notre_approche}, la reconstruction sera également différente.
+
+En plus de proposer une approche pour reconstituer l'arbre de phylogénie, ils proposent une approche pour comparer deux arbres, et donc évaluer notre arbre reconstruit si on le compare avec la vérité terrain. Cela consiste en quatre métriques : \\
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{ll}
+  \textbf{Root} & $
+                  R(IPT_{1}, IPT_{2}) = $
+                  \scalebox{0.65}{%
+                  $
+                  \begin{cases}
+                    1 & if\ \texttt{Root(IPT}_{1}) = \texttt{Root(IPT}_{2}) \\
+                    0 & Otherwise
+                  \end{cases}
+                        $} \\
+  \textbf{Edges} & $E(IPT_{1}, IPT_{2}) = \frac{|E_{1} \cap E_{2}|} {n - 1}$ \\
+  \textbf{Leaves} & $L(IPT_{1}, IPT_{2}) = \frac{|L_{1} \cap L_{2}|} {|L_{1} \cup L_{2}|}$ \\
+  \textbf{Ancestry} & $A(IPT_{1}, IPT_{2}) = \frac{|A_{1} \cap A_{2}|} {|A_{1} \cup A_{2}|}$
+\end{tabular}
+\renewcommand{\arraystretch}{1.}
+\vspace{5mm}
+
+\textbf{Root} est triviale, et renvoie si les racines sont identiques. \textbf{Edges} mesure le ratio de noeuds ayant le bon parent, \textbf{Leaves} est le ratio de feuilles correctes, et enfin \textbf{Ancestry} est le ratio d'ancêtres corrects jusqu'à la racine.
+
+Ces métriques serviront à évaluer nos résultats dans la suite du stage.
+
+\section{Analyse des recompression JPEG}
+\subsection{Qu'est ce que JPEG ?}
+Une rapide introduction sur ce qu'est le JPEG et son fonctionnement s'impose, nous ne parlerons cependant que du mode de compression avec perte, en laissant de coté son mode de compression sans perte, peu intéressant en plus de n'être virtuellement jamais utilisé. Pour de plus amples détails, le lecteur se dirigera vers \cite{wallace1992jpeg}.
+
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=120mm]{images/jpeg.png}
+    \caption{Étapes de compression et décompression, issu de \cite{jpeg}}
+    \label{fig:jpeg}
+  \end{center}
+\end{figure}
+
+Fig. \ref{fig:jpeg} liste toutes les étapes permettant de passer d'une image non compressée à une image compressée pour finir par la décompresser, mais les étapse sont sommairement : 
+
+\begin{itemize}
+  \item L'image est convertie dans l'espace YUV
+  \item Les canaux U et V sont sous-échantillonés
+  \item Chaque canal est découpé en blocs de 8$\times$8
+  \item Une DCT est appliquée à chacun de ces blocs
+  \item Chaque coefficient est quantifié selon la table de quantification (voir Fig. \ref{fig:quantization_table}) correspondant au facteur de qualité Q $\in$ \textit{\{1,2,3,...,100\}}
+  \item Le tout est ensuite compressé à l'aide d'un codage entropique
+\end{itemize}
+
+C'est surtout l'étape de quantification qui va réduire la quantité d'information, et permettre de réduire la taille du fichier. Cette quantification, si elle est trop agressive va faire apparaitre des artefacts de bloc, des blocs 8$\times$8 visibles (voir Fig. \ref{fig:blocs_artefacts}). C'est ce qui caractérise le JPEG, et qui permet de détecter un certain nombres de choses, comme l'altération d'image \cite{bianchi2012image}, les doubles compressions \cite{bianchi2012detection} ou encore dans notre cas les relations de parenté.
+
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=60mm]{images/quantization_table.png}
+    \caption{Exemple de table de quantification, issu de \cite{jpeg}}
+    \label{fig:quantization_table}
+  \end{center}
+\end{figure}
+
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=120mm]{images/eyes.png}
+    \caption{Artefacts de blocs, à gauche avec Q=90, à droite avec Q=20}
+    \label{fig:blocs_artefacts}
+  \end{center}
+\end{figure}
+
 
 \subsection{Détection des recompressions JPEG}
 \cite{feng2010jpeg}
 
+\subsection{Détection des double compressions JPEG avec la même matrice de quantification}
+\cite{huang2010detecting}
+
 \subsection{Convergence des blocs lors de compressions successives}
 \cite{lai2013block}
 
-\section{État de l'art - Distances entre distributions}
+\section{Distances entre distributions}
+\cite{oikawa2015distances}
 
 \chapter{Notre approche}
+\label{chap:notre_approche}
 \section{Principe}
 
-\fbox{
-  \parbox{\textwidth}{
-    \underline{Énoncé} :\\
-    Pour tout couple d'image (A, B), s'il n'est pas possible de prouver que A n'est pas le parent de B, alors il y a une relation parent-enfant entre A et B, A $\to$ B.
-  }
-}
-\\ \\ 
-\fbox{
-  \parbox{\textwidth}{
-    \underline{Preuve (empirique)} :\\
-    Si une fonction détecte à chaque fois qu'il est présent un marqueur prouvant qu'il n'y a pas de relation de parenté entre deux images, alors s'il n'en détecte pas c'est qu'il y a une relation de parenté entre les deux images.
-  }
-}
+% \fbox{
+%   \parbox{\textwidth}{
+%     \underline{Énoncé} :\\
+%     Pour tout couple d'image (A, B), s'il n'est pas possible de prouver que A n'est pas le parent de B, alors il y a une relation parent-enfant entre A et B, A $\to$ B.
+%   }
+% }
+% \\ \\ 
+% \fbox{
+%   \parbox{\textwidth}{
+%     \underline{Preuve (empirique)} :\\
+%     Si une fonction détecte à chaque fois qu'il est présent un marqueur prouvant qu'il n'y a pas de relation de parenté entre deux images, alors s'il n'en détecte pas c'est qu'il y a une relation de parenté entre les deux images.
+%   }
+% }
+
+\newtheorem*{parentage}{Théorème}
+\begin{parentage}
+  Pour tout couple d'image (A, B), s'il n'est pas possible de prouver que A n'est pas le parent de B, alors il y a une relation parent-enfant entre A et B, A $\to$ B.
+\end{parentage}
+
+\begin{proof}
+  Soit $f(A,B)$ une fonction qui pour tout couple d'image $(A, B)$ détecte à chaque qu'il est présent un marqueur prouvant qu'il n'y a pas de relation de parenté entre $A$ et $B$. Si $f(A,B)$ ne détecte rien alors c'est que A est le parent de B.
+\end{proof}
 
 \section{La construction de l'arbre}
 On va ainsi pour tout couple d'image de notre ensemble tenter de nier qu'il existe une relation de parenté, cela va permettre d'extraire une matrice binaire, de la taille de l'ensemble d'image, où une case à vrai indiquera une relation de parenté. À noter une fois de plus que ce n'est pas forcément un parent direct mais plutôt un ancêtre. \\ \indent
@@ -204,8 +298,7 @@ On peut noter plusieurs choses intéressantes de l'exemple Fig. \ref{parentage_t
   \begin{subfigure}{.5\textwidth}
     \centering
     \begin{tabular}{|r||c|c|c|c|c|}
-      \hline
-      - & $I_{0}$ & $I_{1}$ & $I_{2}$ & $I_{3}$ & $I_{4}$ \\ \hhline{|=||=|=|=|=|=|}
+      - & $I_{0}$ & $I_{1}$ & $I_{2}$ & $I_{3}$ & $I_{4}$ \\ \hhline{|=::=|=|=|=|=|}
       $I_{0}$ & - & 0 & 0 & 0 & 0 \\ \hline
       $I_{1}$ & 0 & - & 0 & 1 & 1 \\ \hline
       $I_{2}$ & 1 & 1 & - & 1 & 1 \\ \hline
@@ -224,7 +317,7 @@ De ces quelques principes nous avons extrait un algorithme. \vspace{5mm}
 
 \begin{algorithm}[H]
   \LinesNumbered
-  \KwData{M a n*n parentage matrix}
+  \KwData{M a n$\times$n parentage matrix}
   \KwResult{the root of the tree}
   \BlankLine
   $nextRoot \leftarrow$ row with min sum of elements\;
@@ -260,7 +353,12 @@ Il prend en entrée la matrice de parenté détaillée précédemment et retourn
 
 Cet algorithme a une complexité de $O(n^{2})$. Il y a deux boucles imbriquées, et si les sommes sont calculées une une seule fois au début et mises à jour à chaque fois qu'un parent est enlevé, il n'y a pas de boucle supplémentaire augmentant la complexité.
 
-Le but est donc de trouver la fonction permettant de détecter le marqueur prouvant qu'il n'y a pas de parenté. Et même si cette fonction n'est pas parfaite, et qu'elle se trompe dans ses prédictions, l'algorithme est robuste et premet tout de même d'obtenir des résultats cohérents si on s'appuie sur les métriques introduites pas \cite{dias2010first} pour évaluer l'arbre (voir Fig. \ref{algo-robuste}).
+Le but est donc de trouver la fonction permettant de détecter le marqueur prouvant qu'il n'y a pas de parenté. 
+% Et même si cette fonction n'est pas parfaite, et qu'elle se trompe dans ses prédictions, l'algorithme est robuste et premet tout de même d'obtenir des résultats cohérents si on s'appuie sur les métriques introduites pas \cite{dias2010first} pour évaluer l'arbre (voir Fig. \ref{algo-robuste}).
+
+Il nous a semblé important, même dans le cadre de l'étude bibliographique, d'élaborer cet algorithme. Il est en effet assez simple mais néanmoins indispensable à notre méthode, et aurait pu orienter différemment nos recherche et notre méthode s'il n'avait pas été imaginé. Le reste du stage sera consacré à élaborer la fonction énoncée précédemment, et c'est là que la majorité du travail se concentrera.
+
+Cette approche a pour avantage de réduire l'évaluation d'un arbre de phylogénie à partir d'un ensemble d'images à l'évaluation binaire de parenté entre deux images.
 
 %%%% faire une trace de l'algo %%%%%
 \chapter{Conclusion}

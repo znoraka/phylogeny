@@ -16,6 +16,64 @@
   {}
 \endgroup
 
+\entry{bianchi2012detection}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Bianchi}{B.}%
+     {Tiziano}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Piva}{P.}%
+     {Alessandro}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {IEEE}%
+  }
+  \strng{namehash}{BTPA1}
+  \strng{fullhash}{BTPA1}
+  \field{sortinit}{B}
+  \field{number}{2}
+  \field{pages}{842\bibrangedash 848}
+  \field{title}{Detection of nonaligned double JPEG compression based on
+  integer periodicity maps}
+  \field{volume}{7}
+  \field{journaltitle}{Information Forensics and Security, IEEE Transactions
+  on}
+  \field{year}{2012}
+\endentry
+
+\entry{bianchi2012image}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Bianchi}{B.}%
+     {Tiziano}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Piva}{P.}%
+     {Alessandro}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {IEEE}%
+  }
+  \strng{namehash}{BTPA1}
+  \strng{fullhash}{BTPA1}
+  \field{sortinit}{B}
+  \field{number}{3}
+  \field{pages}{1003\bibrangedash 1017}
+  \field{title}{Image forgery localization via block-grained analysis of JPEG
+  artifacts}
+  \field{volume}{7}
+  \field{journaltitle}{Information Forensics and Security, IEEE Transactions
+  on}
+  \field{year}{2012}
+\endentry
+
 \entry{dias2010first}{inproceedings}{}
   \name{author}{3}{}{%
     {{}%
@@ -173,6 +231,14 @@
   \field{year}{2007}
 \endentry
 
+\entry{jpeg}{online}{}
+  \field{sortinit}{J}
+  \field{title}{JPEG}
+  \verb{url}
+  \verb https://fr.wikipedia.org/wiki/JPEG
+  \endverb
+\endentry
+
 \entry{kennedy2008internet}{inproceedings}{}
   \name{author}{2}{}{%
     {{}%
@@ -227,12 +293,68 @@
   \field{year}{2013}
 \endentry
 
+\entry{oikawa2015distances}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Oikawa}{O.}%
+     {Marina~A}{M.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Dias}{D.}%
+     {Zanoni}{Z.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rocha}{R.}%
+     {Anderson}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Goldenstein}{G.}%
+     {Siome}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Wiley Online Library}%
+  }
+  \strng{namehash}{OMA+1}
+  \strng{fullhash}{OMADZRAGS1}
+  \field{sortinit}{O}
+  \field{title}{Distances in multimedia phylogeny}
+  \field{journaltitle}{International Transactions in Operational Research}
+  \field{year}{2015}
+\endentry
+
 \entry{phylogeny}{online}{}
   \field{sortinit}{P}
   \field{title}{Phylogénie}
   \verb{url}
   \verb https://fr.wikipedia.org/wiki/Phylogen%C3%A8se
   \endverb
+\endentry
+
+\entry{wallace1992jpeg}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Wallace}{W.}%
+     {Gregory~K}{G.~K.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {IEEE}%
+  }
+  \strng{namehash}{WGK1}
+  \strng{fullhash}{WGK1}
+  \field{sortinit}{W}
+  \field{number}{1}
+  \field{pages}{xviii\bibrangedash xxxiv}
+  \field{title}{The JPEG still picture compression standard}
+  \field{volume}{38}
+  \field{journaltitle}{Consumer Electronics, IEEE Transactions on}
+  \field{year}{1992}
 \endentry
 
 \lossort

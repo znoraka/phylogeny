@@ -13,7 +13,7 @@
 \defcounter {refsection}{0}\relax 
 \select@language {french}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Table des mati\`eres}{v}{section*.1}
+\contentsline {chapter}{Table des mati\`eres}{iii}{section*.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\chapternumberline {1}Introduction}{1}{chapter.1}
 \defcounter {refsection}{0}\relax 
@@ -23,23 +23,25 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.3}Pourquoi se restreindre \IeC {\`a} la compression ?}{3}{section.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {2}\IeC {\'E}tat de l'art}{5}{chapter.2}
+\contentsline {chapter}{\chapternumberline {2}\IeC {\'E}tat de l'art}{4}{chapter.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}\IeC {\'E}tat de l'art - \IeC {\'E}tude de l'arbre phylog\IeC {\'e}n\IeC {\'e}tique}{5}{section.2.1}
+\contentsline {section}{\numberline {2.1}\IeC {\'E}tude de l'arbre phylog\IeC {\'e}n\IeC {\'e}tique}{4}{section.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{La Visual Migration Map (VMM)}{5}{section*.5}
+\contentsline {subsection}{La Visual Migration Map (VMM)}{4}{section*.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Image Phylogeny Tree (IPT)}{5}{section*.9}
+\contentsline {subsection}{Image Phylogeny Tree (IPT)}{4}{section*.9}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}\IeC {\'E}tat de l'art - Analyse des recompression JPEG}{7}{section.2.2}
+\contentsline {section}{\numberline {2.2}Analyse des recompression JPEG}{6}{section.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{D\IeC {\'e}tection des double compressions JPEG avec la m\IeC {\^e}me matrice de quantification}{7}{section*.10}
+\contentsline {subsection}{Qu'est ce que JPEG ?}{6}{section*.10}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{D\IeC {\'e}tection des recompressions JPEG}{7}{section*.11}
+\contentsline {subsection}{D\IeC {\'e}tection des recompressions JPEG}{8}{section*.14}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Convergence des blocs lors de compressions successives}{7}{section*.12}
+\contentsline {subsection}{D\IeC {\'e}tection des double compressions JPEG avec la m\IeC {\^e}me matrice de quantification}{8}{section*.15}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.3}\IeC {\'E}tat de l'art - Distances entre distributions}{7}{section.2.3}
+\contentsline {subsection}{Convergence des blocs lors de compressions successives}{8}{section*.16}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}Distances entre distributions}{8}{section.2.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\chapternumberline {3}Notre approche}{9}{chapter.3}
 \defcounter {refsection}{0}\relax 
@@ -47,8 +49,8 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.2}La construction de l'arbre}{9}{section.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{L'algorithme de reconstruction}{9}{section*.14}
+\contentsline {subsection}{L'algorithme de reconstruction}{9}{section*.18}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {4}Conclusion}{13}{chapter.4}
+\contentsline {chapter}{\chapternumberline {4}Conclusion}{12}{chapter.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliographie}{15}{section*.16}
+\contentsline {chapter}{Bibliographie}{13}{section*.20}
