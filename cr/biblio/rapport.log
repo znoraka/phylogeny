@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2015.11.2)  14 MAR 2016 17:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2015.11.2)  15 MAR 2016 17:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1621,89 +1621,104 @@ Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 
 
 [5 <./images/vmm.png> <./images/vmm_directionnel.png> <./images/vmm_tree.png>]
-LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 194
+LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 178.
+LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 206
 .
 
 (/usr/share/texmf/tex/latex/lm/ot1lmtt.fd
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<images/jpeg.png, id=170, 702.625pt x 233.87375pt>
+Overfull \vbox (0.85185pt too high) has occurred while \output is active []
+
+
+[6] <images/jpeg.png, id=190, 702.625pt x 233.87375pt>
 File: images/jpeg.png Graphic file (type png)
  <use images/jpeg.png>
-Package pdftex.def Info: images/jpeg.png used on input line 212.
+Package pdftex.def Info: images/jpeg.png used on input line 227.
 (pdftex.def)             Requested size: 341.43306pt x 113.64987pt.
 
 Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 
 
-[6]
-LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 221.
- <images/quantization_table.png, id=193, 374.39874pt x 192.72pt>
+[7 <./images/jpeg.png>]
+<images/quantization_table.png, id=208, 374.39874pt x 192.72pt>
 File: images/quantization_table.png Graphic file (type png)
 
 <use images/quantization_table.png>
-Package pdftex.def Info: images/quantization_table.png used on input line 233.
+Package pdftex.def Info: images/quantization_table.png used on input line 248.
 (pdftex.def)             Requested size: 170.71652pt x 87.87593pt.
 
-<images/eyes.png, id=196, 210.7875pt x 77.28876pt>
+<images/eyes.png, id=211, 210.7875pt x 77.28876pt>
 File: images/eyes.png Graphic file (type png)
  <use images/eyes.png>
-Package pdftex.def Info: images/eyes.png used on input line 241.
+Package pdftex.def Info: images/eyes.png used on input line 256.
 (pdftex.def)             Requested size: 341.43306pt x 125.19528pt.
 
 Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 
 
-[7 <./images/jpeg.png> <./images/quantization_table.png>]
+[8 <./images/quantization_table.png> <./images/eyes.png>]
+<images/insertion_blocs.png, id=234, 745.78625pt x 641.39626pt>
+File: images/insertion_blocs.png Graphic file (type png)
+
+<use images/insertion_blocs.png>
+Package pdftex.def Info: images/insertion_blocs.png used on input line 286.
+(pdftex.def)             Requested size: 227.62204pt x 195.75769pt.
+
 Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 
 
-[8 <./images/eyes.png>] <images/algo_tree.png, id=226, 655.44875pt x 570.13pt>
+[9]
+Overfull \vbox (0.85185pt too high) has occurred while \output is active []
+
+
+[10 <./images/insertion_blocs.png (PNG copy)>]
+<images/algo_tree.png, id=256, 655.44875pt x 570.13pt>
 File: images/algo_tree.png Graphic file (type png)
 
 <use images/algo_tree.png>
-Package pdftex.def Info: images/algo_tree.png used on input line 294.
+Package pdftex.def Info: images/algo_tree.png used on input line 335.
 (pdftex.def)             Requested size: 114.5pt x 99.59155pt.
 
 
 Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
 ne argument
-(hhline)                 on input line 301.
+(hhline)                 on input line 342.
 
 
 Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
 ne argument
-(hhline)                 on input line 301.
+(hhline)                 on input line 342.
 
-[9
+[11
 
-] [10 <./images/algo_tree.png (PNG copy)>] [11] [12
+] [12 <./images/algo_tree.png (PNG copy)>] [13] [14
 
-] [13
+] [15
 
 ]
 
 Class memoir Warning: The material used in the headers is too large
 (14.45186pt) for the given head height (13.6pt), it is recommended to
 either increase the head height or redesign the header
-(in both cases you will find help in the memoir manual). on input line 369.
+(in both cases you will find help in the memoir manual). on input line 410.
 
-[14]
+[16]
 \tf@toc=\write6
 \openout6 = `rapport.toc'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 369.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 369.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 410.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 410.
  (./rapport.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 369.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 369.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 410.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 410.
 Package rerunfilecheck Info: File `rapport.out' has not changed.
-(rerunfilecheck)             Checksum: 479C5F99BC28FA810A3D20AFCB464089;936.
+(rerunfilecheck)             Checksum: DC022CA69EEDC48E502EFF97E52D9EE6;936.
 Package logreq Info: Writing requests to 'rapport.run.xml'.
 \openout1 = `rapport.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 369.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 410.
  )
 (\end occurred inside a group at level 1)
 
@@ -1711,13 +1726,13 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 369.
 ### bottom level
 (\end occurred when \iffalse on line 60 was incomplete) 
 Here is how much of TeX's memory you used:
- 25695 strings out of 493085
- 423728 string characters out of 6136917
+ 25725 strings out of 493085
+ 424390 string characters out of 6136917
  693231 words of memory out of 5000000
- 28791 multiletter control sequences out of 15000+600000
+ 28808 multiletter control sequences out of 15000+600000
  84305 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 48i,19n,48p,10366b,10482s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 48i,19n,49p,10366b,10485s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/
 enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rmtt.enc}{/usr/s
 hare/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/l
@@ -1736,10 +1751,10 @@ fb></usr/share/texmf/fonts/type1/public/lm/lmro10.pfb></usr/share/texmf/fonts/t
 ype1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></
 usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/p
 ublic/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
-Output written on rapport.pdf (17 pages, 3164317 bytes).
+Output written on rapport.pdf (19 pages, 3520708 bytes).
 PDF statistics:
- 368 PDF objects out of 1000 (max. 8388607)
- 300 compressed objects within 3 object streams
- 81 named destinations out of 1000 (max. 500000)
- 183 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 404 PDF objects out of 1000 (max. 8388607)
+ 331 compressed objects within 4 object streams
+ 93 named destinations out of 1000 (max. 500000)
+ 188 words of extra memory for PDF output out of 10000 (max. 10000000)
 

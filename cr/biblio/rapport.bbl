@@ -16,6 +16,43 @@
   {}
 \endgroup
 
+\entry{bay2008speeded}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Bay}{B.}%
+     {Herbert}{H.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ess}{E.}%
+     {Andreas}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tuytelaars}{T.}%
+     {Tinne}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Van~Gool}{V.~G.}%
+     {Luc}{L.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Elsevier}%
+  }
+  \strng{namehash}{BH+1}
+  \strng{fullhash}{BHEATTVGL1}
+  \field{sortinit}{B}
+  \field{number}{3}
+  \field{pages}{346\bibrangedash 359}
+  \field{title}{Speeded-up robust features (SURF)}
+  \field{volume}{110}
+  \field{journaltitle}{Computer vision and image understanding}
+  \field{year}{2008}
+\endentry
+
 \entry{bianchi2012detection}{article}{}
   \name{author}{2}{}{%
     {{}%
@@ -72,6 +109,67 @@
   \field{journaltitle}{Information Forensics and Security, IEEE Transactions
   on}
   \field{year}{2012}
+\endentry
+
+\entry{carnein2015forensics}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Carnein}{C.}%
+     {Matthias}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Schottle}{S.}%
+     {Pascal}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bohme}{B.}%
+     {Rainer}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{organization}{1}{%
+    {IEEE}%
+  }
+  \strng{namehash}{CMSPBR1}
+  \strng{fullhash}{CMSPBR1}
+  \field{sortinit}{C}
+  \field{booktitle}{Information Forensics and Security (WIFS), 2015 IEEE
+  International Workshop on}
+  \field{pages}{1\bibrangedash 6}
+  \field{title}{Forensics of high-quality JPEG images with color subsampling}
+  \field{year}{2015}
+\endentry
+
+\entry{CarneinSB2016TelltaleWatermarks}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Carnein}{C.}%
+     {Matthias}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Schöttle}{S.}%
+     {Pascal}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Böhme}{B.}%
+     {Rainer}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CMSPBR2}
+  \strng{fullhash}{CMSPBR2}
+  \field{sortinit}{C}
+  \field{booktitle}{Proceedings of the Electronic Imaging 2016}
+  \field{note}{Publication status: Published}
+  \field{title}{Telltale Watermarks for Counting JPEG Compressions}
+  \list{location}{1}{%
+    {San Francisco, USA}%
+  }
+  \field{year}{2016}
 \endentry
 
 \entry{dias2010first}{inproceedings}{}
@@ -162,6 +260,47 @@
   \field{pages}{75410J\bibrangedash 75410J}
   \field{title}{JPEG recompression detection}
   \field{year}{2010}
+\endentry
+
+\entry{ransac}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Fischler}{F.}%
+     {Martin~A.}{M.~A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bolles}{B.}%
+     {Robert~C.}{R.~C.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {ACM}%
+  }
+  \keyw{automated cartography, camera calibration, image matching, location
+  determination, model fitting, scene analysis}
+  \strng{namehash}{FMABRC1}
+  \strng{fullhash}{FMABRC1}
+  \field{sortinit}{F}
+  \verb{doi}
+  \verb 10.1145/358669.358692
+  \endverb
+  \field{issn}{0001-0782}
+  \field{number}{6}
+  \field{pages}{381\bibrangedash 395}
+  \field{title}{Random Sample Consensus: A Paradigm for Model Fitting with
+  Applications to Image Analysis and Automated Cartography}
+  \verb{url}
+  \verb http://doi.acm.org/10.1145/358669.358692
+  \endverb
+  \field{volume}{24}
+  \list{location}{1}{%
+    {New York, NY, USA}%
+  }
+  \field{journaltitle}{Commun. ACM}
+  \field{month}{06}
+  \field{year}{1981}
 \endentry
 
 \entry{huang2010detecting}{article}{}

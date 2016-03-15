@@ -173,12 +173,24 @@ Les images sont comparées à l'aide d'une \textit{dissimilarity function d(.,.)
   \label{dissimilarity-function}
 \end{equation}
 
-On voit donc bien que la problématique principale de cette méthode est de trouver une bonne méthode de comparaison. On pourra toutefois regretter que les auteurs soient restés assez vagues sur leurs méthodes de comparaison.
+On voit donc bien que la problématique principale de cette méthode est de trouver une bonne méthode de comparaison. Les auteurs procèdent de la manière suivante : 
+\begin{itemize}
+  \item Trouver des points caractéristiques (SURF \cite{bay2008speeded})
+  \item Filtrer les points et estimer les paramètres de transforamtion affines tels que les translations, rotations, rééchantillonages... avec RANSAC \cite{ransac}
+  \item Calculer la moyenne et la variance de chaque canal couleur de B pour normaliser les couleurs de A
+  \item Compresser les résultats des deux étapes précédentes avec la table de quantification de B
+\end{itemize}
 
-%%%%%% parler des 4 étapes pages 4-5 ???
-\vspace{3mm}
+La dissimilarité entre les deux images est enfin obtenue en utilisant la \textit{minimum squared error} (MSE) entre les deux images dans le domaine spatial comme technique de comparaison pour Équation \ref{dissimilarity-function}.
 
-$d(.,.)$ est donc appliquée à tous les couples d'images de l'ensemble, pour créer une \textit{dissimilarity matrix}, une matrice de taille $n\times n$ qui sera ensuite donnée comme entrée à leur algorithme de reconstruction d'arbre, Oriented Kruskal. Nous n'allons pas entrer dans les détails de cet algorithme, il est expliqué de manière exhaustive dans \cite{dias2012image}, et ayant une approche différente, comme détaillé Chap. \ref{chap:notre_approche}, la reconstruction sera également différente.
+Ces quatre étapes ont servi à rendre les images comparables, en mappant l'une dans le domaine de l'autre, pour avoir des résultats pertinents.
+%%%% Analyser leur méthode et ne pas simplement la décrire ?
+% \vspace{3mm}
+\paragraph{}
+
+$d(.,.)$ est donc appliquée à tous les couples d'images de l'ensemble, pour créer une \textit{dissimilarity matrix}, une matrice de taille $n\times n$ qui sera ensuite donnée comme entrée à leur algorithme de reconstruction d'arbre, Oriented Kruskal. Nous n'allons pas entrer dans les détails de cet algorithme, il est expliqué de manière exhaustive dans \cite{dias2012image}, et ayant une approche différente (Chap. \ref{chap:notre_approche}), la reconstruction sera également différente.
+% \vspace{3mm}
+\paragraph{}                    
 
 En plus de proposer une approche pour reconstituer l'arbre de phylogénie, ils proposent une approche pour comparer deux arbres, et donc évaluer notre arbre reconstruit si on le compare avec la vérité terrain. Cela consiste en quatre métriques : \\
 \renewcommand{\arraystretch}{2}
@@ -197,13 +209,16 @@ En plus de proposer une approche pour reconstituer l'arbre de phylogénie, ils p
   \textbf{Ancestry} & $A(IPT_{1}, IPT_{2}) = \frac{|A_{1} \cap A_{2}|} {|A_{1} \cup A_{2}|}$
 \end{tabular}
 \renewcommand{\arraystretch}{1.}
-\vspace{5mm}
+% \vspace{5mm}
+\paragraph{}
 
 \textbf{Root} est triviale, et renvoie si les racines sont identiques. \textbf{Edges} mesure le ratio de noeuds ayant le bon parent, \textbf{Leaves} est le ratio de feuilles correctes, et enfin \textbf{Ancestry} est le ratio d'ancêtres corrects jusqu'à la racine.
 
 Ces métriques serviront à évaluer nos résultats dans la suite du stage.
 
 \section{Analyse des recompression JPEG}
+Notre but n'est pas vraiment de détecter si une image a été compressée plusieurs fois, nous sommes en effet quasi-certains que nos images auront été recompressées, puisque c'est précisément sur cela que nous travaillons, un ensemble de NDI, où $\mathcal{T} = {\{lossy\ compression\}}$. L'important est plutôt de savoir combien de fois, et à partir de qui l'image a été compressée, et donc pouvoir en déduire sa distance à la racine. La majorité des articles dans le domaine du forensic ne se concentrent que sur une image, pour en extraire le maximum d'informations possible. Ce n'est pas exactement notre cas, puisque les informations pertinentes pour nous ne sont pas dans l'image directement, mais plutôt dans ses relations avec les autres. Il nous a cependant paru important de traiter l'aspect forensic du problème, et se renseigner sur les différentes techniques, qui bien que créées pour un autre cas d'utilisation, peuvent, sinon s'adapter, au moins nous donner des pistes.
+
 \subsection{Qu'est ce que JPEG ?}
 Une rapide introduction sur ce qu'est le JPEG et son fonctionnement s'impose, nous ne parlerons cependant que du mode de compression avec perte, en laissant de coté son mode de compression sans perte, peu intéressant en plus de n'être virtuellement jamais utilisé. Pour de plus amples détails, le lecteur se dirigera vers \cite{wallace1992jpeg}.
 
@@ -215,14 +230,14 @@ Une rapide introduction sur ce qu'est le JPEG et son fonctionnement s'impose, no
   \end{center}
 \end{figure}
 
-Fig. \ref{fig:jpeg} liste toutes les étapes permettant de passer d'une image non compressée à une image compressée pour finir par la décompresser, mais les étapse sont sommairement : 
+Fig. \ref{fig:jpeg} liste toutes les étapes permettant de passer d'une image non compressée à une image compressée pour finir par la décompresser, mais les étapes sont sommairement : 
 
 \begin{itemize}
   \item L'image est convertie dans l'espace YUV
   \item Les canaux U et V sont sous-échantillonés
   \item Chaque canal est découpé en blocs de 8$\times$8
   \item Une DCT est appliquée à chacun de ces blocs
-  \item Chaque coefficient est quantifié selon la table de quantification (voir Fig. \ref{fig:quantization_table}) correspondant au facteur de qualité Q $\in$ \textit{\{1,2,3,...,100\}}
+  \item Chaque coefficient est quantifié selon la table de quantification (voir Fig. \ref{fig:quantization_table}) correspondant au facteur de qualité Q $\in$ \textit{\{1,2,3,...,100\}} et arrondi
   \item Le tout est ensuite compressé à l'aide d'un codage entropique
 \end{itemize}
 
@@ -246,13 +261,39 @@ C'est surtout l'étape de quantification qui va réduire la quantité d'informat
 
 
 \subsection{Détection des recompressions JPEG}
+% La plupart des appareils photos aujourd'hui utilisent la compression JPEG pour compresser leurs images. 
+% Le but dans la détection n'est pas simplement de savoir si l'image a 
 \cite{feng2010jpeg}
 
 \subsection{Détection des double compressions JPEG avec la même matrice de quantification}
 \cite{huang2010detecting}
 
+
 \subsection{Convergence des blocs lors de compressions successives}
-\cite{lai2013block}
+L'intérêt de la méthode proposée par \citeauthor{CarneinSB2016TelltaleWatermarks} \cite{CarneinSB2016TelltaleWatermarks} est l'estimation du nombre de compression JPEG qu'a pu subir l'image, une estimation qui va au-delà de deux ou trois compression successives \cite{huang2010detecting}\cite{}, il est en effet possible d'aller jusqu'à plusieurs centaines de compressions. Cette approche se base sur la notion de blocs cycliques.
+
+Lors de compressions successives, une phénomène appelé \textit{convergence de bloc} peut être observé. Un bloc converge lorsque la valeur des pixels du bloc à la compression $t$ est égale à la valeurs des pixels à la compression $t + 1$, ce bloc est alors appelé stable \cite{lai2013block}. Certains blocs cependant échappent à cet effet et exhibe un phénomène de cycle. C'est à dire que $valeur\ des\ pixels(t) = valeur\ des\ pixels(t + n), n > 1$.
+
+Ces blocs sont nommés blocs compteurs. Ainsi, si un bloc de l'image a un cycle de longueur $l=9$, on pourra savoir, modulo $l$, combien de compressions a subi l'image. Et avec plus de blocs, ayant chacun des $l$ différents, il est possible d'aller bien plus loin dans le nombre de compressions. Prenons l'exemple de trois blocs pour lesquels $l_{1} = 2$, $l_{2} = 5$ et $l_{3} = 9$. Le nombre maximum de compressions successives que l'on pourra estimer est le \textit{plus petit commun multiple} des ces longueurs, autrement dit, $ppcm(2, 5, 9) = 90$, soit 90 compressions successives, et pour l'exemple Fig. \ref{fig:insertion_blocs}, $ppcm(6, 7, 10, 12) = 420$.
+
+\paragraph{}
+Les auteurs proposent deux approches pour les blocs cycliques. La première est de détecter les blocs cyliques à l'aide d'une recherche exhaustive sur l'ensemble des blocs et un certain nombre de compressions puis sélectionner les blocs intéressants. Cette méthode, bien qu'étant la plus simple, et ne modifiant pas l'image, peut cependant rencontrer des problèmes lorsqu'elle comporte un grand nombre de blocs plats, des blocs ayant tous les pixels de la même valeur, ces blocs ne peuvent en effet pas être des blocs cycliques, et il peut alors être difficile de trouver des blocs ayant des cycles de longueur intéressante. La deuxième approche proposée est donc d'insérer des blocs artificiellement créés dans l'image (voir Fig. \ref{fig:insertion_blocs}). 
+
+Cette méthode nécessite de prendre un certain nombre de précaution et requiert une protection (padding) autour des blocs insérés. L'algorithme de sur-échantillonage est en effet parfois amené à utiliser les valeurs des pixels des blocs adjacents pour un meilleur rendu et provoquer un effet de débordement (spill over) des valeurs \cite{carnein2015forensics}, ce qui modifie le bloc artificiellement créé (dans le vide) et donc modifie son cycle, rendant nulle son information.
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=80mm]{images/insertion_blocs}
+    \caption{Exemple d'insertion de blocs, issu de \cite{CarneinSB2016TelltaleWatermarks}}
+    \label{fig:insertion_blocs}
+  \end{center}
+\end{figure}
+
+
+%%%%parler du calcul des blocs et tout
+\paragraph{}
+
+Le principal inconvénient de cette méthode, si on utilise les blocs de l'image, et qu'on laisse de coté l'insertion de blocs, est qu'elle se restreint à des images ayant toutes le même facteur de qualité, et en particulier $Q = 100$, pour lequel les cycles sont les plus longs, et donc donnent le plus d'informations. C'est un cas trop spécifique pour notre cadre d'utilisation : les réseaux sociaux, où les facteurs de qualité de compression varient en fonction de l'application utilisée. Cette méthode est en effet plus orientée vers le tatouage et le tracage d'images, et est la plus simple à utiliser lorsque l'on a, à un moment, été en possession de l'image originale et pris soin de noter les blocs intéressants.
 
 \section{Distances entre distributions}
 \cite{oikawa2015distances}
