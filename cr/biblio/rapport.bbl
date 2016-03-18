@@ -432,6 +432,29 @@
   \field{year}{2013}
 \endentry
 
+\entry{lukavs2003estimation}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Luk{\'a}{\v{s}}}{L.}%
+     {Jan}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Fridrich}{F.}%
+     {Jessica}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{LJFJ1}
+  \strng{fullhash}{LJFJ1}
+  \field{sortinit}{L}
+  \field{booktitle}{Proc. Digital Forensic Research Workshop}
+  \field{pages}{5\bibrangedash 8}
+  \field{title}{Estimation of primary quantization matrix in double compressed
+  JPEG images}
+  \field{year}{2003}
+\endentry
+
 \entry{oikawa2015distances}{article}{}
   \name{author}{4}{}{%
     {{}%

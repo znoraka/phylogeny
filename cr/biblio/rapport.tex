@@ -16,6 +16,10 @@
 \usepackage{amsthm}
 \usepackage{mathtools}
 \usepackage{float}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usetikzlibrary{trees}
+\usetikzlibrary{babel}
 
 \bibliography{../../articles/biblio.bib}
 
@@ -30,7 +34,7 @@
 %% auteur
 \author{Noé Le Philippe}
 %% encadrants
-\supervisor{William Puech}
+\supervisors{William Puech \\ Chistophe Fiorio}
 %% lieu du stage (Optionnel)
 \location{Équipe ICAR - LIRMM UM5506 - CNRS, Université de Montpellier}
 %% titre du stage
@@ -67,35 +71,54 @@ Ce stage de master.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Introduction}
-La phylogénie, en sciences naturelles, est définie\cite{phylogeny} comme l'étude des relations de parenté entre êtres vivants. Et c'est exactement de cela qu'il s'agit dans le cas des images, l'étude des relations de parenté entre images. \\
-À l'ère des réseaux sociaux, il n'a jamais été aussi simple de partager des idées et du contenu. À chaque partage cependant, l'information peut être amenée à être modifiée. Les images, puisque c'est là notre sujet d'étude, peuvent avoir subi un certain nombre de transformations et modifications avant de nous parvenir. C'est dans ce contexte que nous allons intervenir, et tenter de reconstituer la phylogénie de l'image. Il peut être difficile de différentier cette image de l'originale, et de savoir laquelle est l'originale, mais c'est pourtant crucial dans un monde où l'information peut être falsifiée par tout le monde et extrêmement facilement. Les applications sont variées, et ne se cantonnent pas à la détection et la discrimination d'images altérées, on peut également se servir de la phylogénie de l'image pour optimiser de l'espace de stockage en ne gardant que l'originale ou encore suivre la diffusion et l'évolution des idées sur les réseaux sociaux.
+La phylogénie, en sciences naturelles, est définie comme l'étude des relations de parenté entre êtres vivants. Et c'est exactement de cela qu'il s'agit dans le cas des images, l'étude des relations de parenté entre images. \cite{phylogeny} \\
+À l'ère du numérique et des réseaux sociaux, il n'a jamais été aussi simple de partager des idées et du contenu. À chaque partage cependant, l'information peut être modifiée plus ou moins fortement. Les images, puisque c'est là notre sujet d'étude, peuvent avoir subi un certain nombre de transformations et modifications avant d'être publiée sur les réseaux sociaux. C'est dans ce contexte que nous allons intervenir afin tenter de reconstituer la phylogénie des images. Il peut être difficile de différentier une image modifiée de l'originale, et de savoir laquelle est l'originale, alors que c'est crucial dans un monde où l'information peut être facilement falsifiée par tout un chacun. Les applications sont multiples et variées, et ne se cantonnent pas à la détection et la discrimination d'images altérées. Il est également poissble de se servir de la phylogénie des images pour optimiser de l'espace de stockage en ne gardant que l'originale ou encore suivre la diffusion et l'évolution des idées sur les réseaux sociaux. 
+
+Dans ce chapitre nous commencerons par définir ce que sont que les near-duplicates, puis nous détaillerons la notion d'arbre phylogénétique et enfin nous expliquerons pourquoi nous nous sommes restreint à la compression JPEG dans le cadre de cette étude. Nous ferons un état de l'art dans le chapitre \ref{chap2} où présenterons les différentes approches pour calculer l'arbre de phylogénie, nous y traiterons également la détection des recompressions ou l'estimation du nombre de recompressions. Nous présenterons ensuite notre approche dans le chapitre \ref{chap3}, où un algorithme de reconstruction d'arbre sera détaillé, en plus du théorème qui sera la base de la suite du stage. Nous finirons par conclure chapitre \ref{chap4}.
 \newpage
 
 \section{Near-duplicate images (NDI)}
 \label{subsec:ndi}
-Nous travaillons sur un ensemble d'images, toutes similaires, et au milieu de cette jungle d'images, nous devons décider quelle image est le parent de quelle autre, ou autrement dit, quelles images sont des \textbf{near-duplicates}. Joly et al. \cite{joly2007content} définit la notion de near-duplicate comme suit : $I_{1} = T(I), T \in \mathcal{T}$ où $I$ est l'image parent, $I_{1}$ est l'image enfant et $\mathcal{T}$ est un ensemble de transformations autorisées, $I_{1}$ et $I$ sont alors des NDI. Dans le cas général, $\mathcal{T} = $ \textit{\{resampling, cropping, affine warping, color changing, lossy compression\}}, Fig. \ref{fig:near-duplicates-images} montre un exemple de near-duplicates, dans le cadre de ce stage cependant, $\mathcal{T} = $ \textit{\{lossy compression\}}. Notons l'utilisation du terme \textit{transformations autorisées}. Ce terme est double, d'une part, il place une limite arbitraire dans la force de la transformation, par exemple une image cropée à plus de 10\% pourra ne pas pas être considérée comme un near-duplicate, et d'autre part, il permet de restreindre l'espace des transformations possibles. Ainsi, dans le cadre du stage, seules les images de la troisième case de Fig. \ref{fig:near-duplicates-images} seront des NDI. Ces transformations peuvent évidemment se composer, et une image enfant peut être le résultat de plusieurs transformations.
+Nous travaillons sur un ensemble d'images, toutes similaires visuellement, et au milieu de cet ensemble d'images, nous devons décider quelle image est le parent de quelle autre, ou autrement dit, quelles images sont des \textbf{near-duplicates}. \citeauthor{joly2007content} \cite{joly2007content} définissent la notion de near-duplicate comme suit : $I_{n+1} = T(I_{n}), T \in \mathcal{T}$ où $I_{n}$ est l'image parent, $I_{n+1}$ est l'image à la génération $n+1$, l'image enfant et $\mathcal{T}$ est un ensemble de transformations autorisées, $I_{n+1}$ et $I_{n}$ sont alors des NDI. Dans le cas général, $\mathcal{T} = $ \textit{\{resampling, cropping, affine warping, color changing, lossy compression\}}, la figure \ref{fig:near-duplicates-images} montre un exemple de near-duplicates. Le \textit{resampling}, ou rééchantillonage en français revient à changer le nombre de pixels de l'image, le \textit{crop} est illustré figure \ref{lena-crop}, \textit{affine warping} englobe tout ce qui peut être translation ou rotation, \textit{color changing} concerne tout ce qui va changer la couleur, comme le changement de contraste par exemple, ou le passage au noir et blanc (figure \ref{lena-bw}), et enfin \textit{lossy compression} est la compression avec perte, une dégradation de l'image pour réduire son poids.
+% , dans le cadre de ce stage cependant, $\mathcal{T} = $ \textit{\{lossy compression\}}. 
+Notons l'utilisation du terme \textit{transformations autorisées}. Ce terme est double, d'une part, il place une limite arbitraire dans la force de la transformation, par exemple une image cropée à plus de 10\% pourra ne pas pas être considérée comme un near-duplicate, et d'autre part, il permet de restreindre l'espace des transformations possibles. 
+% Ainsi, dans le cadre du stage, seules les images de la troisième case de Fig. \ref{fig:near-duplicates-images} seront des NDI.
+Ces transformations peuvent évidemment se composer, et une image enfant peut être le résultat de plusieurs transformations.
+
 
 \vspace{5mm}
-\textbf{Note.} \textit{Nous utiliserons relation parent-enfant et relation de parenté de manière interchangeable dans le reste de ce rapport, mais c'est bien d'une relation parent-enfant qu'il s'agit.}
+\textbf{Note.} \textit{Nous utiliserons les notions relation parent-enfant et relation de parenté de manière interchangeable dans le reste de ce rapport, mais c'est bien d'une relation parent-enfant qu'il s'agit.}
 
 \begin{center}
-\begin{figure}
-\begin{tabular}{|c|c|c|}
-      \hline
-      \addheight{\includegraphics[width=23mm]{images/lena_base.jpg} \includegraphics[width=23mm]{images/lena_bw.jpg}} &
-      \addheight{\includegraphics[width=23mm]{images/lena_base.jpg} \includegraphics[width=23mm]{images/lena_crop.jpg}} &
-      \addheight{\includegraphics[width=23mm]{images/lena_base.jpg} \includegraphics[width=23mm]{images/lena_comp.jpg}} \\
-      \small couleur $\to$ noir et blanc & image entière $\to$ crop & image $\to$ image compressée\\
-      \hline
-\end{tabular}
-\caption{Exemples de near-duplicates}
-\label{fig:near-duplicates-images}
-\end{figure}
+  \begin{figure}
+    \begin{subfigure}{.33\textwidth}
+      \centering
+      \includegraphics[width=23mm]{images/lena_base.jpg} \includegraphics[width=23mm]{images/lena_bw.jpg}
+      \caption{quantifié une fois}
+      \label{lena-bw}
+    \end{subfigure}
+    \begin{subfigure}{.33\textwidth}
+      \centering
+      \includegraphics[width=23mm]{images/lena_base.jpg} \includegraphics[width=23mm]{images/lena_crop.jpg}
+      \caption{re-quantifié, $Q^{1} > Q^{2}$}
+      \label{lena-crop}
+    \end{subfigure}
+    \begin{subfigure}{.33\textwidth}
+      \centering
+      \includegraphics[width=23mm]{images/lena_base.jpg} \includegraphics[width=23mm]{images/lena_comp.jpg}
+      \caption{re-quantifié, $Q^{1} < Q^{2}$}
+      \label{lena-comp}
+    \end{subfigure}
+    \caption{Exemple de quantifications sur l'histogramme d'une gaussienne avec des classes de largeur 1, issu de \cite{feng2010jpeg}}
+    \label{fig:near-duplicates-images}
+  \end{figure}
 \end{center}
+
 \section{Arbre phylogénétique (Image Phylogeny Tree - IPT)}
-C'est l'arbre représentant les relations de parenté entre les différentes images. Il sera extrait d'un ensemble de NDI, c'est l'objectif final de l'application. Un exemple est disponible Fig. \ref{fig:set-to-tree}. Le passage d'une génération à l'autre, autrement dit d'un noeud à son fils se fait à travers la transformation $I_{1} = T(I)$, ainsi, une image et son parent sont des NDI, alors qu'une images et ses soeurs ne le sont pas (Fig \ref{fig:tree-extract}).
-\\ \indent
-La reconstruction de l'arbre se concentre autour de deux problèmes principaux. Le premier est l'identification de la racine, et le second et l'estimation du reste de l'arbre. Il est en effet critique d'identifier correctement la racine. Prenons par exemple un des cas d'utilisation de l'IPT, la détection d'altération d'images. L'idée est que pour un ensemble d'images, plus on est proche de la racine, moins l'image a subi de transformations, et donc moins elle est altérée, avec dans le meilleur des cas, la racine en image originale. On voit bien que si on identifie mal la racine, on déduira, à tort, qu'une image n'a pas été altérée. Il n'est pas toujours garanti que la totalité des images de l'arbre original soit présente, de plus, certaines transformations peuvent être mineures, et difficile à détecter, c'est donc bien une estimation de l'arbre original qui sera faite.
+L'arbre phylogénétique est l'arbre représentant les relations de parenté entre les différentes images. Il est extrait d'un ensemble de NDI, et constitue l'objectif final de l'application. La figure \ref{fig:set-to-tree} illustre la construction de l'IPT à partir d'un ensemble de NDI. Le passage d'une génération à l'autre, autrement dit d'un noeud à son fils, se fait à travers la transformation $I_{n+1} = T(I_{n})$, ainsi, une image et son parent sont des NDI, alors qu'une image $I_{n+1,i}$ et sa soeur $I_{n+1,j}$, $i \neq j$ ne le sont pas (figure \ref{fig:tree-extract}).
+
+La reconstruction de l'arbre se concentre autour de deux problèmes principaux. Le premier est l'identification de la racine, et le second est l'estimation du reste de l'arbre, et en particulior positionner précisément chacune des images dans leur génération respective. Il est en effet critique d'identifier correctement la racine. Prenons par exemple un des cas d'utilisation de l'IPT, la détection d'altération d'images. L'idée est que pour un ensemble d'images, plus la génération est proche de la racine, c'est à dire plus $n$ est petit, moins l'image a subi de transformations, et donc moins elle est altérée. Avec comme cas particulier $n = 0$, l'image est alors la génération $0$ : la racine. Notons que si la racine est mal identifiée, une image pourra être à tort marquée comme altérée.
+on déduira, à tort, qu'une image n'a pas été altérée. Il n'est pas toujours garanti que la totalité des images de l'arbre original soit présente, l'identification précise de la génération peut alors se révéler complexe. Certaines transformations peuvent être mineures, et difficile à détecter, dans ce cas deux images de deux génération proches $n+i$ et $n+j$, peuvent être identifées à tort comme appartenant à la même génération. En conclusion, il est clair que l'arbre ne sera qu'une estimation, et sauf dans de cas idéaux, ne sera pas l'arbre original.
 
 \begin{figure}
   \begin{center}
@@ -113,17 +136,40 @@ La reconstruction de l'arbre se concentre autour de deux problèmes principaux. 
   \end{center}
 \end{figure}
 
-\section{Pourquoi se restreindre à la compression ?}
-Comme mentionné précédemment, nous ne considérons que le cas de la compression avec perte en laissant de coté les autres transformations. Nous avons décidé de ne nous concentrer que sur une seule transformation pour avoir la possibilité de la traiter en détail et en profondeur dans le cadre du stage et ne pas devoir survoler sans approfondir toutes les transformations. Le choix de la compression est assez naturel, cela n'a, à notre connaissance, pas encore été traité dans le cadre le la phylogénie, et c'est un domaine largement étudié en forensic.
+\section{Pourquoi se restreindre à la compression comme transformation ?}
+Dans le cadre du stage, l'espace des transformations sera réduit à $\mathcal{T} = \{lossy compression\}$ avec JPEG comme compression. L'étude et la détection des recompressions est en effet à sujet suffisament vaste et complexe pour que cela soit la seule transformation étudiée dans le cadre de ce stage. C'est de plus un sujet qui n'a à notre connaissance pas été traité dans le cadre de la phylogénie des images, et qui est largement étudié dans le domaine du forensic. L'étude et la détection des recompressions est en effet un sujet vaste, la figure \ref{comp_vaste} détaille l'étendue du problème. La compression JPEG sera détaillée chapitre \ref{chap2}~section~\ref{detail_jpeg}, aussi la seul caractéristique dont nous parlerons maintenant est le facteur de compression $Q$. $Q \in [1..100]$ et plus $Q$ est grand, plus l'image sera de bonne qualité, mais moins elle sera compressée. Nous sommes donc en présence de trois cas pour les recompressions successives : le premier est le cas où tous les $Q$ successifs sont égaux, lors du second cas, l'image est dégradée à chaque recompression, et dans le troisième cas, nous n'avons aucune idée sur la manière dont l'image a été compressée par rapport à son parent, elle peut avoir été recompressée avec la même qualité, ou une meilleure qualité, ou encore une moins bonne qualité.
+
+\begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[level distance=2in,sibling distance=.25in]
+      \tikzset{edge from parent/.style= 
+        {thick, draw
+        },every tree node/.style={draw,minimum width=1.3in,text width=1.3in, align=center,fill=blue!30},grow'=right}
+      \Tree 
+      [. {image originale}
+         [. {Première compression JPEG avec $Q_{1}$}
+           \node(equal){$Q_{n+1} = Q_{n}$};
+           \node(neq){$Q_{n+1} < Q_{n}$};
+           \node(all){$Q_{n+1}\ \{<,>,=\}\ Q_{n}$};
+      ]]
+      \draw[thick,->] (equal.east)..controls +(north east:2) and +(south east:2)..(equal.east);
+      \draw[thick,->] (neq.east)..controls +(north east:2) and +(south east:2)..(neq.east);
+      \draw[thick,->] (all.east)..controls +(north east:2) and +(south east:2)..(all.east);
+    \end{tikzpicture}
+    \caption{Exemple des différents scénarios de recompression}
+    \label{comp_vaste}
+  \end{center}
+\end{figure}
 
 \chapter{État de l'art}
+\label{chap2}
 \section{Étude de l'arbre phylogénétique}
 \subsection{La Visual Migration Map (VMM)}
 C'est à notre connaissance, le premier article concernant vraiment notre sujet. Kennedy et al. \cite{kennedy2008internet} proposent une approche permettant d'automatiquement détecter la manière dont une image a été éditée ou manipulée, et d'en extraire des relations parent-enfant entre les images. Il vont construire à partir le l'estimation de ces transformations une Visual Migration Map (VMM) (voir Fig. \ref{vmm}) qui est en fait notre arbre de phylogénie.
 \\ \indent
-Ils partent du principe que les transformations sont directionnelles, c'est à dire que l'on de ne peut passer que d'une image moins transformée à une image plus transformée. Ainsi, ils vont tenter d'estimer la direction de chaque transformation entre deux images $I_{1}$ et $I_{2}$ (sachant que $\mathcal{T}$ = \textit{\{scaling, cropping, grayscale, overlay, insertion\}}). Trois scénarios sont alors possibles : si toutes les transformations sont dans le même sens, l'image fille est alors celle vers qui pointent les transformations, si les transformations sont dans des sens contraires, les images sont sûrement des soeurs, elles n'ont en tous cas pas de relation parent-enfant, et enfin si aucune transformation n'a été détectée, c'est que soit les images sont identiques, soit qu'elles ne sont pas des near-duplicates. On peut en voir un exemple Fig. \ref{vmm-directionnel}.
+Ils partent du principe que les transformations sont directionnelles, c'est à dire qu'il n'est possible d'aller que d'une image moins transformée vers une image plus transfromée. Ainsi, ils vont tenter d'estimer la direction de chaque transformation entre deux images $I_{1}$ et $I_{2}$ (sachant que $\mathcal{T}$ = \textit{\{scaling, cropping, grayscale, overlay, insertion\}}). Trois scénarios sont alors possibles : si toutes les transformations sont dans le même sens, l'image fille est alors celle vers qui pointent les transformations, si les transformations sont dans des sens contraires, les images sont sûrement des soeurs, elles n'ont en tous cas pas de relation parent-enfant, et enfin si aucune transformation n'a été détectée, c'est que soit les images sont identiques, soit qu'elles ne sont pas des near-duplicates. La figure \ref{vmm-directionnel} illustre ce principe.
 \\ \indent
-Un graphe va ensuite être construit à partir des couples d'images pour lesquels une relation parent-enfant a été détectée. À noter qu'une relation parent-enfant ne veut pas forcément dire que c'est le parent direct mais plutôt un ancêtre. Ainsi, un noeud du graphe (une image) peut avoir plusieurs noeuds parents, pour finalement obtenir l'arbre désiré, seuls les chemins les plus longs sont conservés, comme on peut le voir Fig. \ref{vmm-tree}.
+Un graphe va ensuite être construit à partir des couples d'images pour lesquels une relation parent-enfant a été détectée. À noter qu'une relation parent-enfant ne veut pas forcément dire que c'est le parent direct mais plutôt un ancêtre. Ainsi, un noeud du graphe (une image) peut avoir plusieurs noeuds parents, pour finalement obtenir l'arbre désiré, seuls les chemins les plus longs sont conservés, comme on peut le voir figure \ref{vmm-tree}.
 
 %%%%% parler de comment sont calculées les directions des transformations.
 %%%%% parler des résultats ?
@@ -163,7 +209,7 @@ Un graphe va ensuite être construit à partir des couples d'images pour lesquel
 
 \subsection{Image Phylogeny Tree (IPT)}
 
-Tout comme l'approche présentée précédemment, Dias et al. \cite{dias2010first}\cite{dias2012image} proposent une approche basée sur le contenu de l'image. Cela consiste a mapper une image sur le domaine d'une autre, pour pouvoir les comparer, et ensuite estimer le coût de cette opération, cela fait comme hypothèse que si deux images sont dépendantes, alors il est possible d'obtenir l'une en appliquant une transformation à l'autre. 
+Tout comme l'approche présentée précédemment, \citeauthor{dias2010first} \cite{dias2010first}\cite{dias2012image} proposent une approche basée sur le contenu de l'image. Cela consiste a mapper une image sur le domaine d'une autre, pour pouvoir les comparer, et ensuite estimer le coût de cette opération, cela fait comme hypothèse que si deux images sont dépendantes, alors il est possible d'obtenir l'une en appliquant une transformation à l'autre. 
 
 %%% proches = 
 Les images sont comparées à l'aide d'une \textit{dissimilarity function d(.,.)} qui renvoie des petites valeurs lorsque les images sont proches (elles ont subi des transformations similaires). L'équation \ref{dissimilarity-function} détaille cette fonction. $A$ et $B$ sont les deux images qui vont être comparées, et $T_{\overrightarrow{\beta}} \in \mathcal{T}$ est la transformation en train d'être estimée. La transformation la plus faible est gardée comme résultat, c'est la transformation la plus probable qu'a pu subir l'image. À noter que $d(.,.)$ est asymétrique, c'est à dire que $d(A,B) \neq d(B,A)$, ce qui est parfaitement logique, en plus d'être nécessaire, sachant que les transformation sont directionnelles, comme expliqué précédemment.
@@ -176,7 +222,7 @@ Les images sont comparées à l'aide d'une \textit{dissimilarity function d(.,.)
 On voit donc bien que la problématique principale de cette méthode est de trouver une bonne méthode de comparaison. Les auteurs procèdent de la manière suivante : 
 \begin{itemize}
   \item Trouver des points caractéristiques (SURF \cite{bay2008speeded})
-  \item Filtrer les points et estimer les paramètres de transforamtion affines tels que les translations, rotations, rééchantillonages... avec RANSAC \cite{ransac}
+  \item Filtrer les points et estimer les paramètres de transformation affines tels que les translations, rotations, rééchantillonages... avec RANSAC \cite{ransac}
   \item Calculer la moyenne et la variance de chaque canal couleur de B pour normaliser les couleurs de A
   \item Compresser les résultats des deux étapes précédentes avec la table de quantification de B
 \end{itemize}
@@ -217,6 +263,7 @@ En plus de proposer une approche pour reconstituer l'arbre de phylogénie, ils p
 Ces métriques serviront à évaluer nos résultats dans la suite du stage.
 
 \section{Analyse des recompression JPEG}
+\label{detail_jpeg}
 Notre but n'est pas vraiment de détecter si une image a été compressée plusieurs fois, nous sommes en effet quasi-certains que nos images auront été recompressées, puisque c'est précisément sur cela que nous travaillons, un ensemble de NDI, où $\mathcal{T} = {\{lossy\ compression\}}$. L'important est plutôt de savoir combien de fois, et à partir de qui l'image a été compressée, et donc pouvoir en déduire sa distance à la racine. La majorité des articles dans le domaine du forensic ne se concentrent que sur une image, pour en extraire le maximum d'informations possible. Ce n'est pas exactement notre cas, puisque les informations pertinentes pour nous ne sont pas dans l'image directement, mais plutôt dans ses relations avec les autres. Il nous a cependant paru important de traiter l'aspect forensic du problème, et se renseigner sur les différentes techniques, qui bien que créées pour un autre cas d'utilisation, peuvent, sinon s'adapter, au moins nous donner des pistes.
 
 \subsection{Qu'est ce que JPEG ?}
@@ -236,12 +283,12 @@ Fig. \ref{fig:jpeg} liste toutes les étapes permettant de passer d'une image no
   \item L'image est convertie dans l'espace YUV
   \item Les canaux U et V sont sous-échantillonés
   \item Chaque canal est découpé en blocs de 8$\times$8
-  \item Une DCT est appliquée à chacun de ces blocs
+  \item Une DCT est appliquée à chacun de ces blocs pour avoir une matrice de $8\times 8$ coefficients
   \item Chaque coefficient est quantifié selon la table de quantification (voir Fig. \ref{fig:quantization_table}) correspondant au facteur de qualité Q $\in$ \textit{\{1,2,3,...,100\}} et arrondi
   \item Le tout est ensuite compressé à l'aide d'un codage entropique
 \end{itemize}
 
-C'est surtout l'étape de quantification qui va réduire la quantité d'information, et permettre de réduire la taille du fichier. Cette quantification, si elle est trop agressive va faire apparaitre des artefacts de bloc, des blocs 8$\times$8 visibles (voir Fig. \ref{fig:blocs_artefacts}). C'est ce qui caractérise le JPEG, et qui permet de détecter un certain nombres de choses, comme l'altération d'image \cite{bianchi2012image}, les doubles compressions \cite{bianchi2012detection} ou encore dans notre cas les relations de parenté.
+C'est surtout l'étape de quantification qui va réduire la quantité d'information, et permettre de réduire la taille du fichier. Cette quantification, si elle est trop agressive va faire apparaître des artefacts de bloc, des blocs 8$\times$8 visibles (voir Fig. \ref{fig:blocs_artefacts}). C'est ce qui caractérise le JPEG, et qui permet de détecter un certain nombres de choses, comme l'altération d'image \cite{bianchi2012image}, les doubles compressions \cite{bianchi2012detection} ou encore dans notre cas les relations de parenté.
 
 \begin{figure}[H]
   \begin{center}
@@ -260,24 +307,102 @@ C'est surtout l'étape de quantification qui va réduire la quantité d'informat
 \end{figure}
 
 
-\subsection{Détection des recompressions JPEG}
-% La plupart des appareils photos aujourd'hui utilisent la compression JPEG pour compresser leurs images. 
-% Le but dans la détection n'est pas simplement de savoir si l'image a 
-\cite{feng2010jpeg}
+\subsection{Estimation de la matrice de compression primaire dans les images JPEG doublement compressées}
+
+
+% \subsection{Estimation of primary quantization matrix in double compressed JPEG images}
+
+% \subsection{Détection des recompressions JPEG}
+% \citeauthor{feng2010jpeg} \cite{feng2010jpeg}
+\citeauthor{lukavs2003estimation} \cite{lukavs2003estimation} proposent dans leur approche non seulement de détecter si une image est doublement compressée, mais également de d'estimer les paramètres de la première compression. Pour bien comprendre la suite de leurs travaux, il convient d'expliquer plus avant l'étape de quantification de JPEG.
+
+La quantification se fait de la manière suivante :
+\begin{equation}
+  F^*(u,v) = \left \lfloor \frac{F(u,v) + \left \lfloor \frac{Q(u,v)}{2} \right \rfloor }{Q(u,v)} \right \rfloor
+  \label{eqn:quantization}
+\end{equation}
+
+Et le calcul inverse :
+\begin{equation}
+  F'(u,v) = F^*(u,v) * Q(u,v)
+  \label{eqn:iquantization}
+\end{equation}
+
+où $F(u,v)$ est la valeur aux indices $u$ et $v$ dans la matrice 8$\times$8 de coefficients DCT et Q(u,v) et la valeur dans la table de quantification (Fig. \ref{fig:quantization_table}) à ces même indices.
+
+On voit bien à partir des équations \ref{eqn:quantization} et \ref{eqn:iquantization} que le résultat après décompression sera un multiple de $Q(u,v)$ et que toutes les valeurs n'étant pas des multiples seront absentes.
+
+La double compression est donc le fait de compresser deux fois une image, et donc de lui faire subir deux fois toutes les étapes de compression et décompression, avec tous les arrondis et troncage que cela peut comporter. On notera, pour la double compression, $Q^{1}$ comme la matrice primaire, c'est à dire la table de quantification ayant servi à faire la première compression (inconnue donc), et $Q^{2}$ comme la matrice secondaire, ou la table de quantification actuelle, disponible dans l'en-tête du fichier JPEG. Les auteurs limitent la double compressions aux cas où $Q^{1} \neq Q^{2}$.
+
+Lors de la première compression, les coefficients sont quantifiés avec $Q^{1}$, ce qui veut dire que les coefficients sont des multiples de $Q^{1}$. Cependant, lorsque l'image est repassée du domaine fréquentiel au domaine spatial grâce à la DCT inverse, un certain nombre d'arrondis et de troncages se produisent pour rester dans l'intervalle [0..255]. Lors de la seconde compression, les coefficients DCT sont calculés à partir des ces valeurs inexactes, et donc ne seront pas multiples de $Q^{1}$, mais se concentreront autour. Ces nouveaux coefficients DCT seront ensuite quantifiés pour former la nouvelle image, doublement compressée.
+
+Les auteurs ayant laissé de coté le cas où $Q^{1} \neq Q^{2}$, nous sommes en présence de deux cas : $Q^{1} > Q^{2}$ et $Q^{1} < Q^{2}$. Chacun des cas à des artefacts distincts et reconnaissables. Fig. \ref{fig:histo} montre un exemple de distributions ayant subi des quantifications, \ref{ha} n'a subi qu'une seule quantification, \ref{hb} correspond au cas où $Q^{1} > Q^{2}$ et \ref{hc} correspond au deuxième cas. Un autre cas est délaissé, c'est celui où $Q^{1}$ est facteur $Q^{2}$, ce qui est assez logique, ils auront les même multiples, et il sera donc impossible de détecter quoi que ce soit, du moins en utilisant la méthode proposée ici.
+
+L'estimation de la première table de quantification se limite aux basses fréquences, les hautes fréquences étant plus fortement quantifiés (souvent jusqu'à 0), elles contiennent moins d'informations et donc rendent leur estimation difficile.
+
+Leur technique consiste à se munir d'une série de candidats pour la matrice primaire, notés $\{Q^{1,1},...,Q^{1,n}\}$. Ces tables de quantification viennent des tables utilisées dans les appareils photos, les téléphones portables ou les différentes implémentations de la compression JPEG. Parmi ces $\{Q^{1,1},...,Q^{1,n}\}$, le meilleur candidat, et donc la table la plus probable sera la table de quantification pour laquelle la différence entre l'histogramme de l'image et l'histogramme de l'image compressée avec $Q^{1,k}$ sera la plus faible.
+
+% \paragraph{$\mathbf{Q^{1} > Q^{2}}$ : }
+% On peut constater qu'il manque des valeurs, notamment des multiples de $Q^{2}$
+
+% Ils se basent sur les signes laissés par une double quantification. Il semble cependant important de commencer par bien définir et détailler l'étape de quantification lors de la compression JPEG. C'est là que se produit la majeure partie de la perte d'information, c'est donc cette étape de la compression JPEG qui laissera les marqueurs les plus évidents d'une simple (double) compression.
+
+% La quantification se fait de la manière suivante :
+% \begin{equation}
+%   F^*(u,v) = \left \lfloor \frac{F(u,v) + \left \lfloor \frac{Q(u,v)}{2} \right \rfloor }{Q(u,v)} \right \rfloor
+%   \label{eqn:quantization}
+% \end{equation}
+
+% Et le calcul inverse :
+% \begin{equation}
+%   F'(u,v) = F^*(u,v) * Q(u,v)
+%   \label{eqn:iquantization}
+% \end{equation}
+
+% où $F(u,v)$ est la valeur aux indices $u$ et $v$ dans le bloc 8$\times$8 et Q(u,v) et la valeur dans la table de quantification (Fig. \ref{fig:quantization_table}) à ces même indices.
+
+% On voit bien à partir des équations \ref{eqn:quantization} et \ref{eqn:iquantization} que le résultat après décompression sera un multiple de $Q(u,v)$ et que toutes les valeurs n'étant pas des multiples seront absentes.
+
+% \paragraph{}
+% Par la suite nous noterons $Q_{\Delta}(.)$ comme l'étape de quantification, avec $\Delta$ comme pas de quantification ($Q(u,v)$ dans les équations précédentes).
+%  La double quantification se notera donc $Q_{\Delta_{2}}(Q_{\Delta_{1}}(.))$ et le ratio de re-quantification sera $\rho = \Delta_{1} / \Delta_{2} $. 
+
+\begin{figure}
+  \begin{subfigure}{.33\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{images/h1}
+    \caption{quantifié une fois}
+    \label{ha}
+  \end{subfigure}
+  \begin{subfigure}{.33\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{images/h2}
+    \caption{re-quantifié, $Q^{1} > Q^{2}$}
+    \label{hb}
+  \end{subfigure}
+  \begin{subfigure}{.33\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{images/h3}
+    \caption{re-quantifié, $Q^{1} < Q^{2}$}
+    \label{hc}
+  \end{subfigure}
+  \caption{Exemple de quantifications sur l'histogramme d'une gaussienne avec des classes de largeur 1, issu de \cite{feng2010jpeg}}
+  \label{fig:histo}
+\end{figure}
 
 \subsection{Détection des double compressions JPEG avec la même matrice de quantification}
 \cite{huang2010detecting}
 
 
 \subsection{Convergence des blocs lors de compressions successives}
-L'intérêt de la méthode proposée par \citeauthor{CarneinSB2016TelltaleWatermarks} \cite{CarneinSB2016TelltaleWatermarks} est l'estimation du nombre de compression JPEG qu'a pu subir l'image, une estimation qui va au-delà de deux ou trois compression successives \cite{huang2010detecting}\cite{}, il est en effet possible d'aller jusqu'à plusieurs centaines de compressions. Cette approche se base sur la notion de blocs cycliques.
+L'intérêt de la méthode proposée par \citeauthor{CarneinSB2016TelltaleWatermarks} \cite{CarneinSB2016TelltaleWatermarks} est l'estimation du nombre de compression JPEG qu'a pu subir l'image, une estimation qui va au-delà de deux ou trois compression successives \cite{huang2010detecting}\cite{lukavs2003estimation}, il est en effet possible d'aller jusqu'à plusieurs centaines de compressions. Cette approche se base sur la notion de blocs cycliques.
 
 Lors de compressions successives, une phénomène appelé \textit{convergence de bloc} peut être observé. Un bloc converge lorsque la valeur des pixels du bloc à la compression $t$ est égale à la valeurs des pixels à la compression $t + 1$, ce bloc est alors appelé stable \cite{lai2013block}. Certains blocs cependant échappent à cet effet et exhibe un phénomène de cycle. C'est à dire que $valeur\ des\ pixels(t) = valeur\ des\ pixels(t + n), n > 1$.
 
-Ces blocs sont nommés blocs compteurs. Ainsi, si un bloc de l'image a un cycle de longueur $l=9$, on pourra savoir, modulo $l$, combien de compressions a subi l'image. Et avec plus de blocs, ayant chacun des $l$ différents, il est possible d'aller bien plus loin dans le nombre de compressions. Prenons l'exemple de trois blocs pour lesquels $l_{1} = 2$, $l_{2} = 5$ et $l_{3} = 9$. Le nombre maximum de compressions successives que l'on pourra estimer est le \textit{plus petit commun multiple} des ces longueurs, autrement dit, $ppcm(2, 5, 9) = 90$, soit 90 compressions successives, et pour l'exemple Fig. \ref{fig:insertion_blocs}, $ppcm(6, 7, 10, 12) = 420$.
+Ces blocs sont nommés blocs compteurs. Ainsi, si un bloc de l'image a un cycle de longueur $l=9$, on pourra savoir, modulo $l$, combien de compressions a subi l'image. Et avec plus de blocs, ayant chacun des $l$ différents, il est possible d'aller bien plus loin dans le nombre de compressions. Prenons l'exemple de trois blocs pour lesquels $l_{1} = 2$, $l_{2} = 5$ et $l_{3} = 9$. Le nombre maximum de compressions successives qu'il sera possible d'estimer est le \textit{plus petit commun multiple} des ces longueurs, autrement dit, $ppcm(2, 5, 9) = 90$, soit 90 compressions successives, et pour l'exemple Fig. \ref{fig:insertion_blocs}, $ppcm(6, 7, 10, 12) = 420$.
 
 \paragraph{}
-Les auteurs proposent deux approches pour les blocs cycliques. La première est de détecter les blocs cyliques à l'aide d'une recherche exhaustive sur l'ensemble des blocs et un certain nombre de compressions puis sélectionner les blocs intéressants. Cette méthode, bien qu'étant la plus simple, et ne modifiant pas l'image, peut cependant rencontrer des problèmes lorsqu'elle comporte un grand nombre de blocs plats, des blocs ayant tous les pixels de la même valeur, ces blocs ne peuvent en effet pas être des blocs cycliques, et il peut alors être difficile de trouver des blocs ayant des cycles de longueur intéressante. La deuxième approche proposée est donc d'insérer des blocs artificiellement créés dans l'image (voir Fig. \ref{fig:insertion_blocs}). 
+Les auteurs proposent deux approches pour les blocs cycliques. La première est de détecter les blocs cycliques à l'aide d'une recherche exhaustive sur l'ensemble des blocs et un certain nombre de compressions puis sélectionner les blocs intéressants. Cette méthode, bien qu'étant la plus simple, et ne modifiant pas l'image, peut cependant rencontrer des problèmes lorsqu'elle comporte un grand nombre de blocs plats, des blocs ayant tous les pixels de la même valeur, ces blocs ne peuvent en effet pas être des blocs cycliques, puisque tous les coefficient DCT sauf le premier sont nuls, et il peut alors être difficile de trouver des blocs ayant des cycles de longueur intéressante. La deuxième approche proposée est donc d'insérer des blocs artificiellement créés dans l'image (voir Fig. \ref{fig:insertion_blocs}). 
 
 Cette méthode nécessite de prendre un certain nombre de précaution et requiert une protection (padding) autour des blocs insérés. L'algorithme de sur-échantillonage est en effet parfois amené à utiliser les valeurs des pixels des blocs adjacents pour un meilleur rendu et provoquer un effet de débordement (spill over) des valeurs \cite{carnein2015forensics}, ce qui modifie le bloc artificiellement créé (dans le vide) et donc modifie son cycle, rendant nulle son information.
 
@@ -293,12 +418,21 @@ Cette méthode nécessite de prendre un certain nombre de précaution et requier
 %%%%parler du calcul des blocs et tout
 \paragraph{}
 
-Le principal inconvénient de cette méthode, si on utilise les blocs de l'image, et qu'on laisse de coté l'insertion de blocs, est qu'elle se restreint à des images ayant toutes le même facteur de qualité, et en particulier $Q = 100$, pour lequel les cycles sont les plus longs, et donc donnent le plus d'informations. C'est un cas trop spécifique pour notre cadre d'utilisation : les réseaux sociaux, où les facteurs de qualité de compression varient en fonction de l'application utilisée. Cette méthode est en effet plus orientée vers le tatouage et le tracage d'images, et est la plus simple à utiliser lorsque l'on a, à un moment, été en possession de l'image originale et pris soin de noter les blocs intéressants.
+Le principal inconvénient de cette méthode, si ce sont les blocs présents dans l'image qui sont utilisés, et que la technique d'insertion de blocs est laissée de coté, est qu'elle se restreint à des images ayant toutes le même facteur de qualité, et en particulier $Q = 100$, pour lequel les cycles sont les plus longs, et donc donnent le plus d'informations. C'est un cas spécifique pour notre cadre d'utilisation : les réseaux sociaux, où les facteurs de qualité de compression varient en fonction de l'application utilisée. Cette méthode est en effet plus orientée vers le tatouage et le traçage d'images.
+% , et est la plus simple à utiliser lorsque l'on a, à un moment, été en possession de l'image originale et pris soin de noter les blocs intéressants.
 
 \section{Distances entre distributions}
 \cite{oikawa2015distances}
 
+Même si notre apprcohe, et donc pourquoi nous devons avoir la distance entre histogrammes ne sera expliqué qu'au chapitre suivant, nous aurons besoin de comparer des histogrammes, et c'est dans l'état de l'art que nous traiterons les différentes techniques.
+
+Il convient également de définir la différence entre une distance et une divergence.
+Une distance, contrairement à une divergence, est symétrique, c'est à dire que $distance(A,B) = distance(B,A)$, et elle vérifie l'inégalité triangulaire.
+
+Si dans notre cas la distance pourrait servir à estimer la proximité entre deuximages, nous étudions les relations parent-enfant, relation qui n'est pas symétrique. L'utilisation d'une divergence est indispensable si nous voulons estimer la direction de cette relation.
+
 \chapter{Notre approche}
+\label{chap3}
 \label{chap:notre_approche}
 \section{Principe}
 
@@ -318,15 +452,15 @@ Le principal inconvénient de cette méthode, si on utilise les blocs de l'image
 
 \newtheorem*{parentage}{Théorème}
 \begin{parentage}
-  Pour tout couple d'image (A, B), s'il n'est pas possible de prouver que A n'est pas le parent de B, alors il y a une relation parent-enfant entre A et B, A $\to$ B.
+  Pour tout couple d'images (A, B), s'il n'est pas possible de prouver que A n'est pas le parent de B, alors il y a une relation parent-enfant entre A et B, A $\to$ B.
 \end{parentage}
 
 \begin{proof}
-  Soit $f(A,B)$ une fonction qui pour tout couple d'image $(A, B)$ détecte à chaque qu'il est présent un marqueur prouvant qu'il n'y a pas de relation de parenté entre $A$ et $B$. Si $f(A,B)$ ne détecte rien alors c'est que A est le parent de B.
+  Soit $f(A,B)$ une fonction qui pour tout couple d'images $(A, B)$ détecte à chaque fois qu'il est présent un marqueur prouvant qu'il n'y a pas de relation de parenté entre $A$ et $B$. Si $f(A,B)$ ne détecte rien alors c'est que A est le parent de B.
 \end{proof}
 
 \section{La construction de l'arbre}
-On va ainsi pour tout couple d'image de notre ensemble tenter de nier qu'il existe une relation de parenté, cela va permettre d'extraire une matrice binaire, de la taille de l'ensemble d'image, où une case à vrai indiquera une relation de parenté. À noter une fois de plus que ce n'est pas forcément un parent direct mais plutôt un ancêtre. \\ \indent
+On va ainsi pour tout couple d'images de notre ensemble tenter de nier qu'il existe une relation de parenté, cela va permettre d'extraire une matrice binaire, de la taille de l'ensemble d'image, où une case à vrai indiquera une relation de parenté. À noter une fois de plus que ce n'est pas forcément un parent direct mais plutôt un ancêtre. \\ \indent
 On peut noter plusieurs choses intéressantes de l'exemple Fig. \ref{parentage_tree}. L'image $I_{2}$ a toute sa colonne marquée à vrai, c'est à dire que c'est un parent commun à toutes les autres images, et sa ligne n'a que des 0, elle n'a donc aucun parent. On se sert de ce principe pour la reconstruction de l'arbre à partir de la matrice : une image qui n'a pas de parent est la racine. On peut également remarquer les colonnes où toutes les cases sont à 0, cela veut dire que ces images ne sont le parent de personne, et donc sont des feuilles.
 
 \begin{figure}
@@ -383,7 +517,7 @@ De ces quelques principes nous avons extrait un algorithme. \vspace{5mm}
 \end{algorithm}
 \vspace{5mm}
 
-Il prend en entrée la matrice de parenté détaillée précédemment et retourne la racine de l'arbre. La philosophie de l'algorithme est qu'une image n'ayant aucun parent est la racine, et ce de manière récursive grâce à la structure d'arbre.
+L'algorithme prend en entrée la matrice de parenté détaillée précédemment et retourne la racine de l'arbre. La philosophie de cet algorithme est qu'une image n'ayant aucun parent est la racine, et ce de manière récursive grâce à la structure d'arbre.
 
 % La ligne 1 marque $nextRoot$ comme la ligne avec la plus petite somme des éléments, étant une matrice binaire, où les valeurs sont 0 et 1, c'est donc l'image qui a le moins de parent, autrement dit la racine.
 
@@ -403,6 +537,7 @@ Cette approche a pour avantage de réduire l'évaluation d'un arbre de phylogén
 
 %%%% faire une trace de l'algo %%%%%
 \chapter{Conclusion}
+\label{chap4}
 
 % \nocite{*}
 \printbibliography
