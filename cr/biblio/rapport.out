@@ -5,10 +5,10 @@
 \BOOKMARK [1][-]{section.1.3}{Pourquoi se restreindre \340 la compression comme transformation ?}{chapter.1}% 5
 \BOOKMARK [0][-]{chapter.2}{\311tat de l'art}{}% 6
 \BOOKMARK [1][-]{section.2.1}{\311tude de l'arbre phylog\351n\351tique}{chapter.2}% 7
-\BOOKMARK [1][-]{section.2.2}{Analyse des recompression JPEG}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.2}{Analyse des recompressions JPEG}{chapter.2}% 8
 \BOOKMARK [1][-]{section.2.3}{Distances entre distributions}{chapter.2}% 9
 \BOOKMARK [0][-]{chapter.3}{Notre approche}{}% 10
-\BOOKMARK [1][-]{section.3.1}{Principe}{chapter.3}% 11
-\BOOKMARK [1][-]{section.3.2}{La construction de l'arbre}{chapter.3}% 12
+\BOOKMARK [1][-]{section.3.1}{Principe et th\351or\350me}{chapter.3}% 11
+\BOOKMARK [1][-]{section.3.2}{L'algorithme de reconstruction}{chapter.3}% 12
 \BOOKMARK [0][-]{chapter.4}{Conclusion}{}% 13
-\BOOKMARK [0][-]{section*.28}{Bibliographie}{}% 14
+\BOOKMARK [0][-]{section*.27}{Bibliographie}{}% 14

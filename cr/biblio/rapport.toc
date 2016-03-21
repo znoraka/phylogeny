@@ -37,30 +37,28 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{}{8}{section*.13}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}Analyse des recompression JPEG}{8}{section.2.2}
+\contentsline {section}{\numberline {2.2}Analyse des recompressions JPEG}{8}{section.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Qu'est ce que JPEG ?}{8}{section*.14}
+\contentsline {subsection}{La compression JPEG}{8}{section*.14}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Estimation de la matrice de compression primaire dans les images JPEG doublement compress\IeC {\'e}es}{9}{section*.18}
+\contentsline {subsection}{Estimation de la matrice de compression primaire dans les images JPEG doublement compress\IeC {\'e}es}{10}{section*.18}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{D\IeC {\'e}tection des double compressions JPEG avec la m\IeC {\^e}me matrice de quantification}{10}{section*.20}
+\contentsline {subsection}{D\IeC {\'e}tection des double compressions JPEG avec la m\IeC {\^e}me matrice de quantification}{11}{section*.20}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Convergence des blocs lors de compressions successives}{10}{section*.21}
+\contentsline {subsection}{Convergence des blocs lors de compressions successives}{11}{section*.21}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{11}{section*.22}
+\contentsline {paragraph}{}{12}{section*.22}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{}{12}{section*.24}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.3}Distances entre distributions}{12}{section.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {3}Notre approche}{13}{chapter.3}
+\contentsline {chapter}{\chapternumberline {3}Notre approche}{14}{chapter.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Principe}{13}{section.3.1}
+\contentsline {section}{\numberline {3.1}Principe et th\IeC {\'e}or\IeC {\`e}me}{14}{section.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}La construction de l'arbre}{13}{section.3.2}
+\contentsline {section}{\numberline {3.2}L'algorithme de reconstruction}{15}{section.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{L'algorithme de reconstruction}{13}{section*.26}
+\contentsline {chapter}{\chapternumberline {4}Conclusion}{17}{chapter.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {4}Conclusion}{16}{chapter.4}
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliographie}{17}{section*.28}
+\contentsline {chapter}{Bibliographie}{18}{section*.27}
