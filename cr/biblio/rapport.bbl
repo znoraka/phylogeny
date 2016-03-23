@@ -132,8 +132,8 @@
   \list{organization}{1}{%
     {IEEE}%
   }
-  \strng{namehash}{CMSPBR1}
-  \strng{fullhash}{CMSPBR1}
+  \strng{namehash}{CM+1}
+  \strng{fullhash}{CMSPBR2}
   \field{sortinit}{C}
   \field{booktitle}{Information Forensics and Security (WIFS), 2015 IEEE
   International Workshop on}
@@ -160,8 +160,8 @@
      {}{}%
      {}{}}%
   }
-  \strng{namehash}{CMSPBR2}
-  \strng{fullhash}{CMSPBR2}
+  \strng{namehash}{CM+1}
+  \strng{fullhash}{CMSPBR1}
   \field{sortinit}{C}
   \field{booktitle}{Proceedings of the Electronic Imaging 2016}
   \field{note}{Publication status: Published}
@@ -170,6 +170,26 @@
     {San Francisco, USA}%
   }
   \field{year}{2016}
+\endentry
+
+\entry{cha2007comprehensive}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Cha}{C.}%
+     {Sung-Hyuk}{S.-H.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CSH1}
+  \strng{fullhash}{CSH1}
+  \field{sortinit}{C}
+  \field{number}{2}
+  \field{pages}{1}
+  \field{title}{Comprehensive survey on distance/similarity measures between
+  probability density functions}
+  \field{volume}{1}
+  \field{journaltitle}{City}
+  \field{year}{2007}
 \endentry
 
 \entry{dias2010first}{inproceedings}{}
@@ -193,7 +213,7 @@
   \list{organization}{1}{%
     {IEEE}%
   }
-  \strng{namehash}{DZRAGS1}
+  \strng{namehash}{DZ+1}
   \strng{fullhash}{DZRAGS1}
   \field{sortinit}{D}
   \field{booktitle}{Information Forensics and Security (WIFS), 2010 IEEE
@@ -224,7 +244,7 @@
   \list{publisher}{1}{%
     {IEEE}%
   }
-  \strng{namehash}{DZRAGS1}
+  \strng{namehash}{DZ+1}
   \strng{fullhash}{DZRAGS1}
   \field{sortinit}{D}
   \field{number}{2}
@@ -324,7 +344,7 @@
   \list{publisher}{1}{%
     {IEEE}%
   }
-  \strng{namehash}{HFHJSYQ1}
+  \strng{namehash}{HF+1}
   \strng{fullhash}{HFHJSYQ1}
   \field{sortinit}{H}
   \field{number}{4}
@@ -358,7 +378,7 @@
   \list{publisher}{1}{%
     {IEEE}%
   }
-  \strng{namehash}{JABOFC1}
+  \strng{namehash}{JA+1}
   \strng{fullhash}{JABOFC1}
   \field{sortinit}{J}
   \field{number}{2}
@@ -453,40 +473,6 @@
   \field{title}{Estimation of primary quantization matrix in double compressed
   JPEG images}
   \field{year}{2003}
-\endentry
-
-\entry{oikawa2015distances}{article}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Oikawa}{O.}%
-     {Marina~A}{M.~A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Dias}{D.}%
-     {Zanoni}{Z.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Rocha}{R.}%
-     {Anderson}{A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Goldenstein}{G.}%
-     {Siome}{S.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {Wiley Online Library}%
-  }
-  \strng{namehash}{OMA+1}
-  \strng{fullhash}{OMADZRAGS1}
-  \field{sortinit}{O}
-  \field{title}{Distances in multimedia phylogeny}
-  \field{journaltitle}{International Transactions in Operational Research}
-  \field{year}{2015}
 \endentry
 
 \entry{phylogeny}{online}{}

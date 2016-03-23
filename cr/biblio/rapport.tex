@@ -150,9 +150,10 @@ Ces transformations peuvent évidemment se composer, et une image enfant peut ê
 \end{center}
 
 \section{Arbre phylogénétique (Image Phylogeny Tree - IPT)}
+\label{ipt}
 L'arbre phylogénétique est l'arbre représentant les relations de parenté entre les différentes images. Il est extrait d'un ensemble de NDI, et constitue l'objectif final de l'application. La figure \ref{fig:set-to-tree} illustre la construction de l'IPT à partir d'un ensemble de NDI. Le passage d'une génération à l'autre, autrement dit d'un noeud à son fils, se fait à travers la transformation $I_{n+1} = T(I_{n})$, ainsi, une image $I_{n+1}$ et son parent $I_{n}$ sont des NDI, alors qu'une image $I_{n+1,i}$ et sa soeur $I_{n+1,j}$, $i \neq j$ ne le sont pas (figure \ref{fig:tree-extract}).
 
-La reconstruction de l'arbre se concentre autour de deux problèmes principaux. Le premier est l'identification de la racine ($n=0$), et le second est l'estimation du reste de l'arbre, et en particulior positionner précisément chacune des images dans leur génération respective (valeur de $n$). Il est en effet critique d'identifier correctement la racine. Prenons par exemple un des cas d'utilisation de l'IPT, la détection d'altération d'images. L'idée est que pour un ensemble d'images, plus la génération est proche de la racine, c'est à dire plus $n$ est petit, moins l'image a subi de transformations, et donc moins elle est altérée. Avec comme cas particulier $n = 0$, l'image est alors la génération $0$ : la racine. Notons que si la racine est mal identifiée, une image pourra être à tort marquée comme altérée.
+La reconstruction de l'arbre se concentre autour de deux problèmes principaux. Le premier est l'identification de la racine ($n=0$), et le second est l'estimation du reste de l'arbre, et en particulier positionner précisément chacune des images dans leur génération respective (valeur de $n$). Il est en effet critique d'identifier correctement la racine. Prenons par exemple un des cas d'utilisation de l'IPT, la détection d'altération d'images. L'idée est que pour un ensemble d'images, plus la génération est proche de la racine, c'est à dire plus $n$ est petit, moins l'image a subi de transformations, et donc moins elle est altérée. Avec comme cas particulier $n = 0$, l'image est alors la génération $0$ : la racine. Notons que si la racine est mal identifiée, une image pourra être à tort marquée comme altérée.
 Nous déduirons, à tort, qu'une image n'a pas été altérée. Il n'est pas toujours garanti que la totalité des images de l'arbre original soit présente, l'identification précise de la génération peut alors se révéler complexe. Certaines transformations peuvent être mineures, et difficile à détecter, dans ce cas deux images de deux générations proches $n$ et $n+k$, avec $k$ petit ($k = 1, 2$ ou 3 par exemple), peuvent être identifées à tort comme appartenant à la même génération. En conclusion, il est clair que l'arbre ne sera qu'une estimation, et sauf dans des cas idéaux, ne sera pas l'arbre original.
 
 \begin{figure}
@@ -246,6 +247,7 @@ Dans le cadre du stage, nous proposons de réduire l'espace des transformations 
 \label{chap2}
 Ce chapitre tentera de faire un état de l'art des différentes techniques de calcul d'un arbre phylogénétique, puis traitera des différentes méthodes permettant d'extraire des informations de plusieurs compressions successives, et enfin présentera quelques calculs de distances.
 \section{Étude de l'arbre phylogénétique}
+\label{etude}
 \subsection{La Visual Migration Map (VMM)}
 L'article de \citeauthornsc{kennedy2008internet} est à notre connaissance le premier article concernant vraiment notre sujet \autocite{kennedy2008internet}. Lesauteurs proposent une approche permettant d'automatiquement détecter la manière dont une image a été éditée ou manipulée, et d'en extraire des relations parent-enfant entre les images. Il vont construire à partir le l'estimation de ces transformations une Visual Migration Map (VMM) (voir figure \ref{vmm}) qui est en fait un arbre de phylogénie.
 
@@ -290,6 +292,7 @@ Un graphe est ensuite construit à partir des couples d'images pour lesquels une
 \end{figure}
 
 \subsection{Image Phylogeny Tree (IPT)}
+\label{diasetal}
 
 Tout comme l'approche présentée précédemment, \citeauthornsc{dias2010first} \autocite{dias2010first}\autocite{dias2012image} proposent une approche basée sur le contenu de l'image. Cela consiste a mapper une image sur le domaine d'une autre, pour pouvoir les comparer, et ensuite estimer le coût de cette opération, cela fait comme hypothèse que si deux images sont dépendantes, alors il est possible d'obtenir l'une en appliquant une transformation à l'autre. 
 
@@ -427,31 +430,6 @@ L'estimation de la première table de quantification se limite aux basses fréqu
 
 Leur technique consiste à se munir d'une série de candidats pour la matrice primaire, notés $\{Q^{1,1},...,Q^{1,n}\}$. Ces tables de quantification viennent des tables utilisées dans les appareils photos, les téléphones portables ou les différentes implémentations de la compression JPEG. Parmi ces $\{Q^{1,1},...,Q^{1,n}\}$, le meilleur candidat, et donc la table la plus probable sera la table de quantification pour laquelle la différence entre l'histogramme de l'image et l'histogramme de l'image compressée avec $Q^{1,k}$ sera la plus faible.
 
-% \paragraph{$\mathbf{Q^{1} > Q^{2}}$ : }
-% On peut constater qu'il manque des valeurs, notamment des multiples de $Q^{2}$
-
-% Ils se basent sur les signes laissés par une double quantification. Il semble cependant important de commencer par bien définir et détailler l'étape de quantification lors de la compression JPEG. C'est là que se produit la majeure partie de la perte d'information, c'est donc cette étape de la compression JPEG qui laissera les marqueurs les plus évidents d'une simple (double) compression.
-
-% La quantification se fait de la manière suivante :
-% \begin{equation}
-%   F^*(u,v) = \left \lfloor \frac{F(u,v) + \left \lfloor \frac{Q(u,v)}{2} \right \rfloor }{Q(u,v)} \right \rfloor
-%   \label{eqn:quantization}
-% \end{equation}
-
-% Et le calcul inverse :
-% \begin{equation}
-%   F'(u,v) = F^*(u,v) * Q(u,v)
-%   \label{eqn:iquantization}
-% \end{equation}
-
-% où $F(u,v)$ est la valeur aux indices $u$ et $v$ dans le bloc 8$\times$8 et Q(u,v) et la valeur dans la table de quantification (Fig. \ref{fig:quantization_table}) à ces même indices.
-
-% On voit bien à partir des équations \ref{eqn:quantization} et \ref{eqn:iquantization} que le résultat après décompression sera un multiple de $Q(u,v)$ et que toutes les valeurs n'étant pas des multiples seront absentes.
-
-% \paragraph{}
-% Par la suite nous noterons $Q_{\Delta}(.)$ comme l'étape de quantification, avec $\Delta$ comme pas de quantification ($Q(u,v)$ dans les équations précédentes).
-%  La double quantification se notera donc $Q_{\Delta_{2}}(Q_{\Delta_{1}}(.))$ et le ratio de re-quantification sera $\rho = \Delta_{1} / \Delta_{2} $. 
-
 \begin{figure}
   \begin{subfigure}{.33\textwidth}
     \centering
@@ -475,9 +453,12 @@ Leur technique consiste à se munir d'une série de candidats pour la matrice pr
   \label{fig:histo}
 \end{figure}
 
-\subsection{Détection des double compressions JPEG avec la même matrice de quantification}
-[en travaux]
-\autocite{huang2010detecting}
+\subsection{Détection des doubles compressions JPEG avec la même matrice de quantification}
+% [en travaux]
+% \autocite{huang2010detecting}
+Comme expliqué section \ref{ipt}, nous tentons dans un premier temps d'identifier la génération $n$ d'une image $I_{n}$. Une tâche qui peut s'avérer difficile si les transformations sont minimes. En sachant que deux images $I_{m}$ et $I_{n}$ sont extrêmement similaire, sommes-nous en présence d'une double compression avec la même matrice de quantification, donc l'une est le parent de l'autre, ou sommes-nous dans le cas où les images sont soeurs, et une matrice de quantification identique a été utilisée pour les générer ?
+
+Nous avons choisi d'inclure l'article de \citeauthornsc{huang2010detecting} \autocite{huang2010detecting} car il traite précisément de ce problème.
 
 
 \subsection{Convergence des blocs lors de compressions successives}
@@ -505,49 +486,70 @@ Cette méthode nécessite de prendre un certain nombre de précaution et requier
 \paragraph{}
 
 Le principal inconvénient de cette méthode, si ce sont les blocs présents dans l'image qui sont utilisés, et que la technique d'insertion de blocs est laissée de coté, est qu'elle se restreint à des images ayant toutes le même facteur de qualité, et en particulier $Q = 100$, pour lequel les cycles sont les plus longs, et donc donnent le plus d'informations. C'est un cas spécifique pour notre cadre d'utilisation : les réseaux sociaux, où les facteurs de qualité de compression varient en fonction de l'application utilisée. Cette méthode est en effet plus orientée vers le tatouage et le traçage d'images.
-% , et est la plus simple à utiliser lorsque l'on a, à un moment, été en possession de l'image originale et pris soin de noter les blocs intéressants.
 
 \section{Distances entre distributions}
-[en travaux]
-\autocite{oikawa2015distances}
+% [en travaux]
+% \autocite{oikawa2015distances}
 
 Dans l'approche que nous proposons de développer lors de ce stage, il nous sera nécessaire de calculer des distances entre des distributions. C'est la raison pour laquelle nous avons décidé passer en revue un certain nombre de distance dans l'état de l'art.
-% Même si notre approche, et donc pourquoi nous devons avoir la distance entre histogrammes ne sera expliqué qu'au chapitre suivant, nous aurons besoin de comparer des histogrammes, et c'est dans l'état de l'art que nous traiterons les différentes techniques.
 
-Commençons par définir la différence entre une distance et une divergence. Une distance, contrairement à une divergence, est symétrique, c'est à dire que $distance(I_{m},I_{n}) = distance(I_{n},I_{m})$, et elle vérifie l'inégalité triangulaire. Une distance est parfaite pour mesurer la proximité entre deux objets. Elle est cependant dans l'incapacité de nous donner des indication sur une direction. Nous traiterons donc des divergences dans cet état de l'art, puisque comme expliqué chapitre \ref{chap:notre_approche}, nous tentons d'estimer la direction d'une transformation, c'est à dire de savoir si une image est le parent d'une autre, autrement dit une relation asymétrique.
+Commençons par définir la différence entre une distance et une divergence. Une distance, contrairement à une divergence, est symétrique, c'est à dire que $distance(I_{m},I_{n}) = distance(I_{n},I_{m})$, et elle vérifie l'inégalité triangulaire. Une distance est parfaite pour mesurer la proximité entre deux objets. Elle est cependant dans l'incapacité de nous donner des indications sur une direction.
 
-% L'utilisation d'une divergence est cruciale à notre approche, nous ne voulons en effet pas seulement 
-% Si dans notre cas la distance pourrait servir à estimer la proximité entre deux images, nous étudions les relations parent-enfant, relation qui n'est pas symétrique. L'utilisation d'une divergence est indispensable si nous voulons estimer la direction de cette relation.
+\paragraph{}
+
+Nous travaillons avec une relation asymétrique (relation parent-enfant), une divergence semble donc être mieux adaptée pour estimer la direction de cette relation (voir chapitre \ref{chap:notre_approche}).
+
+Cependant, comme expliqué chapitre \ref{chap2} section \ref{etude}, \citeauthornsc{dias2012image} mappent une image dans le domaine d'une autre, ce qui est en soit une opération asymétrique, et donc qui permettrait d'utiliser une distance. C'est pourquoi nous traiterons aussi bien les distances que les divergences.
+
+\paragraph{}
+
+ Il existe un grand nombre de mesure de distances \autocite{cha2007comprehensive}, aussi, nous ne parlerons que des distances entre distributions les plus utilisées. Nous n'entrerons cependant pas dans les détails de ces calculs de distance et quelle distance est la mieux adaptée à quel type de donnée, nous utiliserons ces distances comme des boites noires et choisirons de manière experimentale la plus adaptée. Nous allons donc donner pour chaque distance son nom et sa formule.
+
+Dans la suite de cette section, $P$ et $Q$ seront des densité de probabilité.
+
+\subsection{Les distances}
+
+La distance euclidienne : 
+\begin{equation}
+  D_{euc}(P,Q) = \sqrt{\sum\limits_{i=1}^{d}|P_{i} - Q_{i}|^2}
+\end{equation}
+\\
+La distance de Bhattacharyya :
+
+\begin{equation}
+  D_{B}(P,Q) = -ln\sum\limits_{i=1}^{d} \sqrt{P_{i}Q_{i}}
+\end{equation}
+\\
+L'index de Jaccard est donné comme : 
+
+\begin{equation}
+  S_{Jac}(P,Q) = \frac{\sum\limits_{i=1}^{d} P_{i}Q_{i}}{\sum\limits_{i=1}^{d} P^{2}_{i} + \sum\limits_{i=1}^{d} Q^{2}_{i} - \sum\limits_{i=1}^{d} P_{i}Q_{i}}
+\end{equation}
+
+Il correspond à la taille de l'intersection entre deux distributions divisé par la taille de leur union. La distance de Jaccard est :
+
+\begin{equation}
+  D_{Jac}(P,Q) = 1 - S_{Jac}(P,Q) = \frac{\sum\limits_{i=1}^{d} (P_{i} - Q_{i})^2}{\sum\limits_{i=1}^{d} P^{2}_{i} + \sum\limits_{i=1}^{d} Q^{2}_{i} - \sum\limits_{i=1}^{d} P_{i}Q_{i}}
+\end{equation}
+
+\subsection{Les divergences}
+
+La divergence de Kullback–Leibler :%\autocite{kullback1951} :
+
+\begin{equation}
+  D_{KL}(P||Q) = \sum\limits_{i=1}^{d} P_{i}\ log\ \frac{P_{i}}{Q_{i}}
+\end{equation}
+\\
+La K divergence : 
+\begin{equation}
+  D_{kdiv}(P||Q) = \sum\limits_{i=1}^{d} P_{i}\ log\ \frac{2P_{i}}{P_{i}+Q_{i}}
+\end{equation}
+
 
 \chapter{Notre approche}
 Ce chapitre sera consacré à présenter notre approche, nous y détaillerons notre approche, formalisée par un théorème, puis nous présenterons un algorithme permettant de reconstruire l'arbre de phylogénie.
 \label{chap3}
 \label{chap:notre_approche}
-% \section{Principe}
-
-% \fbox{
-%   \parbox{\textwidth}{
-%     \underline{Énoncé} :\\
-%     Pour tout couple d'image (A, B), s'il n'est pas possible de prouver que A n'est pas le parent de B, alors il y a une relation parent-enfant entre A et B, A $\to$ B.
-%   }
-% }
-% \\ \\ 
-% \fbox{
-%   \parbox{\textwidth}{
-%     \underline{Preuve (empirique)} :\\
-%     Si une fonction détecte à chaque fois qu'il est présent un marqueur prouvant qu'il n'y a pas de relation de parenté entre deux images, alors s'il n'en détecte pas c'est qu'il y a une relation de parenté entre les deux images.
-%   }
-% }
-
-% \newtheorem*{parentage}{Théorème}
-% \begin{parentage}
-%   Pour tout couple d'images ($I_{m}$, $I_{n}$), s'il n'est pas possible de prouver que $I_{m}$ n'est pas le parent de $I_{n}$, alors il y a une relation parent-enfant entre $I_{m}$ et $I_{n}$, $I_{m}$ $\to$ $I_{n}$.
-% \end{parentage}
-
-% \begin{proof}
-%   Soit $f(I_{m},I_{n})$ une fonction qui pour tout couple d'images $(I_{m}, I_{n})$ détecte à chaque fois qu'il est présent un marqueur prouvant qu'il n'y a pas de relation de parenté entre $I_{m}$ et $I_{n}$. Si $f(I_{m},I_{n})$ ne détecte rien alors c'est que $I_{m}$ est le parent de $I_{n}$.
-% \end{proof}
-
 \section{Principe et théorème}
 Pour tout couple d'images de notre ensemble, nous allons tenter de nier qu'il existe une relation de parenté, cela va permettre d'extraire une matrice binaire, de la taille de l'ensemble d'image, où une case à vrai indiquera une relation de parenté. À noter une fois de plus que ce n'est pas forcément un parent direct mais plutôt un ancêtre. \\ \indent
 Nous pouvons noter plusieurs choses intéressantes de l'exemple figure \ref{parentage_tree}. L'image $I_{2}$ a toute sa colonne marquée à vrai, c'est à dire que c'est un parent commun à toutes les autres images, et sa ligne n'a que des 0, elle n'a donc aucun parent. On se sert de ce principe pour la reconstruction de l'arbre à partir de la matrice : une image qui n'a pas de parent est donc la racine. Nous pouvons également remarquer les colonnes où toutes les cases sont à 0, cela veut dire que ces images ne sont les parents de personne, et donc sont des feuilles.

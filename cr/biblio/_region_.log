@@ -1,11 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2015.11.2)  8 MAR 2016 13:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2015.11.2)  23 MAR 2016 11:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**\nonstopmode\nofiles\PassOptionsToPackage{active,tightpage,auctex}{preview}\A
-tBeginDocument{\ifx\ifPreview\undefined\RequirePackage[displaymath,floats,graph
-ics,textmath,sections,footnotes]{preview}[2004/11/05]\fi} \input _region_.tex
+**\input _region_.tex
 (./_region_.tex  !name(rapport.tex) (./stageM2R.cls
 Document Class: stageM2R 2015/02/01 Classe de mise en page des rapports bibliog
 raphiques du M2R Informatique - U. Montpellier
@@ -348,18 +346,18 @@ Package: mempatch 2009/07/24 v6.0f Patches for memoir class v1.6180339
 Stock height and width: 845.04684pt by 597.50787pt
 Top and edge trims: 0pt and 0pt
 Page height and width: 845.04684pt by 597.50787pt
-Text height and width: 623.00027pt by 418pt
-Spine and edge margins: 71.74683pt and 107.63104pt
-Upper and lower margins: 113.81102pt and 108.23555pt
-Headheight and headsep: 13.6pt and 27.20001pt
-Footskip: 27.20001pt
+Text height and width: 623.00027pt by 458pt
+Spine and edge margins: 69.68689pt and 69.69098pt
+Upper and lower margins: 126.74379pt and 95.30278pt
+Headheight and headsep: 13.6pt and 19.8738pt
+Footskip: 27.46295pt
 Columnsep and columnseprule: 10pt and 0pt
-Marginparsep and marginparwidth: 17pt and 51pt
-Sidecapsep and sidecapwidth: 7pt and 101pt
-Sidebarhsep and sidebarwidth: 7pt and 101pt
+Marginparsep and marginparwidth: 7pt and 55.69098pt
+Sidecapsep and sidecapwidth: 7pt and 49pt
+Sidebarhsep and sidebarwidth: 7pt and 49pt
 Sidebarvsep and sidebartopsep: 13.6pt and 0pt
 Sidebarheight: 594.32022pt
-Sidefoothsep and sidefootwidth: 7pt and 101pt
+Sidefoothsep and sidefootwidth: 7pt and 49pt
 Sidefootvsep and sidefootheight: 13.6pt and 594.32022pt
 ******************************************************
 
@@ -1038,18 +1036,540 @@ Package: xparse 2015/06/15 v5630 L3 Experimental document command parser
 \l__xparse_processor_int=\count195
 \l__xparse_v_nesting_int=\count196
 )
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 184.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 185.
 
 
 (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OT1+lmss on input line 184
+LaTeX Font Info:    Try loading font information for OT1+lmss on input line 185
 .
 
 (/usr/share/texmf/tex/latex/lm/ot1lmss.fd
 File: ot1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ))
+(/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen197
+\WF@size=\dimen198
+\c@WF@wrappedlines=\count197
+\WF@box=\box46
+\WF@everypar=\toks31
+Package: wrapfig 2003/01/31  v 3.6
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/hhline.sty
+Package: hhline 2014/10/28 v2.03 Table rule package (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
+
+
+Class memoir Warning: You are using the caption package with the memoir class. 
+To prepare we will now reset all captioning macros and configurations to kernel
+ defaults, and then let the caption package take over. Please remember to use t
+he caption package interfaces in order to configure your captions. .
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen199
+\captionmargin@=\dimen200
+\captionwidth=\dimen201
+\caption@tempdima=\dimen202
+\caption@indent=\dimen203
+\caption@parindent=\dimen204
+\caption@hangindent=\dimen205
+)
+\c@ContinuedFloat=\count198
+Package caption Info: hyperref package is loaded.
+Package caption Info: wrapfig package is loaded.
+)
+\c@subfigure=\count199
+\c@subtable=\count200
+)
+(/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+Package: algorithm2e 2013/01/06 v5.00 algorithms environments
+\c@AlgoLine=\count201
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+********************************************************
+Package `algorithm2e' Release 5.0 -- january 06 2013 --
+- algorithm2e-announce@lirmm.fr mailing list for announcement about releases
+- algorithm2e-discussion@lirmm.fr mailing list for discussion about package
+subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
+- Author: Christophe Fiorio (cfiorio@um2.fr)
+********************************************************
+\skiptotal=\skip202
+\skiplinenumber=\skip203
+\skiprule=\skip204
+\skiphlne=\skip205
+\skiptext=\skip206
+\skiplength=\skip207
+\algomargin=\skip208
+\skipalgocfslide=\skip209
+\algowidth=\dimen206
+\inoutsize=\dimen207
+\inoutindent=\dimen208
+\interspacetitleruled=\dimen209
+\interspacealgoruled=\dimen210
+\interspacetitleboxruled=\dimen211
+\algocf@inoutbox=\box47
+\algocf@inputbox=\box48
+\AlCapSkip=\skip210
+\AlCapHSkip=\skip211
+\algoskipindent=\skip212
+\algocf@nlbox=\box49
+\algocf@hangingbox=\box50
+\algocf@untilbox=\box51
+\algocf@skipuntil=\skip213
+\algocf@capbox=\box52
+\algoheightruledefault=\skip214
+\algoheightrule=\skip215
+\algotitleheightruledefault=\skip216
+\algotitleheightrule=\skip217
+\c@algocfline=\count202
+\c@algocfproc=\count203
+\c@algocf=\count204
+\algocf@algoframe=\box53
+\algocf@algobox=\box54
+) (/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2015/03/04 v2.20.2
+\thm@style=\toks32
+\thm@bodyfont=\toks33
+\thm@headfont=\toks34
+\thm@notefont=\toks35
+\thm@headpunct=\toks36
+\thm@preskip=\skip218
+\thm@postskip=\skip219
+\thm@headsep=\skip220
+\dth@everypar=\toks37
+)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
+Package: mathtools 2015/06/17 v1.17 mathematical typesetting tools
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count205
+\calc@Bcount=\count206
+\calc@Adimen=\dimen212
+\calc@Bdimen=\dimen213
+\calc@Askip=\skip221
+\calc@Bskip=\skip222
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count207
+\calc@Cskip=\skip223
+)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty
+Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
+)
+LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count208
+\l_MT_multwidth_dim=\dimen214
+\origjot=\skip224
+\l_MT_shortvdotswithinadjustabove_dim=\dimen215
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen216
+\l_MT_above_intertext_sep=\dimen217
+\l_MT_below_intertext_sep=\dimen218
+\l_MT_above_shortintertext_sep=\dimen219
+\l_MT_below_shortintertext_sep=\dimen220
+)
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count209
+\float@exts=\toks38
+\float@box=\box55
+\@float@everytoks=\toks39
+\@floatcapt=\box56
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks40
+\pgfutil@tempdima=\dimen221
+\pgfutil@tempdimb=\dimen222
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
+ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box57
+(/usr/share/texlive/texmf-dist/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+Package: pgfrcs 2013/12/20 v3.0.0 (rcs-revision 1.28)
+))
+Package: pgf 2013/12/18 v3.0.0 (rcs-revision 1.14)
+
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2013/11/30 v3.0.0 (rcs-revision 1.47)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks41
+\pgfkeys@temptoks=\toks42
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.t
+ex
+\pgfkeys@tmptoks=\toks43
+))
+\pgf@x=\dimen223
+\pgf@y=\dimen224
+\pgf@xa=\dimen225
+\pgf@ya=\dimen226
+\pgf@xb=\dimen227
+\pgf@yb=\dimen228
+Normal \dimen register pool exhausted, switching to extended pool.
+\pgf@xc=\dimen256
+\pgf@yc=\dimen257
+\w@pgf@writea=\write4
+\r@pgf@reada=\read2
+\c@pgf@counta=\count210
+\c@pgf@countb=\count211
+\c@pgf@countc=\count212
+\c@pgf@countd=\count213
+\t@pgf@toka=\toks44
+\t@pgf@tokb=\toks45
+\t@pgf@tokc=\toks46
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2013/07/18  (rcs-revision 1.33)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
+f
+File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
+tex
+File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
+\pgfsyssoftpath@smallbuffer@items=\count214
+\pgfsyssoftpath@bigbuffer@items=\count215
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
+tex
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2010/04/11 v3.0.0 (rcs-revision 1.7)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen258
+\pgfmath@count=\count216
+\pgfmath@box=\box58
+\pgfmath@toks=\toks47
+\pgfmath@stack@operand=\toks48
+\pgfmath@stack@operation=\toks49
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
+ric.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
+e.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
+thmetics.code.tex)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count217
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
+x
+File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
+\pgf@picminx=\dimen259
+\pgf@picmaxx=\dimen260
+\pgf@picminy=\dimen261
+\pgf@picmaxy=\dimen262
+\pgf@pathminx=\dimen263
+\pgf@pathmaxx=\dimen264
+\pgf@pathminy=\dimen265
+\pgf@pathmaxy=\dimen266
+\pgf@xx=\dimen267
+\pgf@xy=\dimen268
+\pgf@yx=\dimen269
+\pgf@yy=\dimen270
+\pgf@zx=\dimen271
+\pgf@zy=\dimen272
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
+code.tex
+File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
+\pgf@path@lastx=\dimen273
+\pgf@path@lasty=\dimen274
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
+.tex
+File: pgfcorepathusage.code.tex 2013/12/13  (rcs-revision 1.23)
+\pgf@shorten@end@additional=\dimen275
+\pgf@shorten@start@additional=\dimen276
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
+x
+File: pgfcorescopes.code.tex 2013/10/09  (rcs-revision 1.44)
+\pgfpic=\box59
+\pgf@hbox=\box60
+\pgf@layerbox@main=\box61
+\pgf@picture@serial@count=\count218
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
+ode.tex
+File: pgfcoregraphicstate.code.tex 2013/09/19  (rcs-revision 1.11)
+\pgflinewidth=\dimen277
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
+s.code.tex
+File: pgfcoretransformations.code.tex 2013/10/10  (rcs-revision 1.17)
+\pgf@pt@x=\dimen278
+\pgf@pt@y=\dimen279
+\pgf@pt@temp=\dimen280
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
+ex
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
+.code.tex
+File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
+x
+File: pgfcorearrows.code.tex 2013/11/07  (rcs-revision 1.40)
+\pgfarrowsep=\dimen281
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
+\pgf@max=\dimen282
+\pgf@sys@shading@range@num=\count219
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
+tex
+File: pgfcoreexternal.code.tex 2013/07/15  (rcs-revision 1.20)
+\pgfexternal@startupbox=\box62
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
+x
+File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
+ode.tex
+File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
+tex
+File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2013/10/31  (rcs-revision 1.34)
+\pgfnodeparttextbox=\box63
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2013/07/31  (rcs-revision 1.12)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
+.sty
+Package: pgfcomp-version-0-65 2007/07/03 v3.0.0 (rcs-revision 1.7)
+\pgf@nodesepstart=\dimen283
+\pgf@nodesepend=\dimen284
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
+.sty
+Package: pgfcomp-version-1-18 2007/07/23 v3.0.0 (rcs-revision 1.1)
+)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2013/12/13 v3.0.0 (rcs-revision 1.25)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+\pgffor@iter=\dimen285
+\pgffor@skip=\dimen286
+\pgffor@stack=\toks50
+\pgffor@toks=\toks51
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2013/12/13 v3.0.0 (rcs-revision 1.142)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
+.code.tex
+File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.0 (rcs-revision 1.20)
+\pgf@plot@mark@count=\count220
+\pgfplotmarksize=\dimen287
+)
+\tikz@lastx=\dimen288
+\tikz@lasty=\dimen289
+\tikz@lastxsaved=\dimen290
+\tikz@lastysaved=\dimen291
+\tikzleveldistance=\dimen292
+\tikzsiblingdistance=\dimen293
+\tikz@figbox=\box64
+\tikz@figbox@bg=\box65
+\tikz@tempbox=\box66
+\tikz@tempbox@bg=\box67
+\tikztreelevel=\count221
+\tikznumberofchildren=\count222
+\tikznumberofcurrentchild=\count223
+\tikz@fig@count=\count224
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
+\pgfmatrixcurrentrow=\count225
+\pgfmatrixcurrentcolumn=\count226
+\pgf@matrix@numberofcolumns=\count227
+)
+\tikz@expandcount=\count228
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.0 (rcs-revision 1.2)
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/tikz-qtree/tikz-qtree.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tikz-qtree/pgftree.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tikz-qtree/pgfsubpic.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tikz-qtree/pgfsubpic.tex
+\pgf@subpicminx=\dimen294
+\pgf@subpicminy=\dimen295
+\pgf@subpicmaxx=\dimen296
+\pgf@subpicmaxy=\dimen297
+))
+(/usr/share/texlive/texmf-dist/tex/latex/tikz-qtree/pgftree.tex
+\levelsep=\dimen298
+\subtreesep=\dimen299
+\smuggle@levelsep=\dimen300
+\smuggle@subtreesep=\dimen301
+\this@levelsep=\dimen302
+\this@subtreesep=\dimen303
+\pgftree@childx=\dimen304
+\pgftree@savechildx=\dimen305
+\pgftree@childy=\dimen306
+\pgftree@savechildy=\dimen307
+Normal \count register pool exhausted, switching to extended pool.
+\pgftree@childi=\count277
+\pgftree@savechildi=\count278
+\pgftree@level=\count279
+\pgftree@depth=\dimen308
+\pgf@subpic@hbox@children=\box68
+\pgf@subpic@minx@children=\dimen309
+\pgf@subpic@miny@children=\dimen310
+\pgf@subpic@maxx@children=\dimen311
+\pgf@subpic@maxy@children=\dimen312
+\pgftree@lastchildx=\dimen313
+\pgftree@lastchildy=\dimen314
+))
+(/usr/share/texlive/texmf-dist/tex/latex/tikz-qtree/tikz-qtree.tex
+\@result=\toks52
+\child@list=\toks53
+\root@node=\toks54
+))
+(/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.sty
+Package: csquotes 2015/07/18 v5.1f context-sensitive quotations (JAW)
+
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count280
+)
+\csq@reset=\count281
+\csq@gtype=\count282
+\csq@glevel=\count283
+\csq@qlevel=\count284
+\csq@maxlvl=\count285
+\csq@tshold=\count286
+\csq@ltx@everypar=\toks55
+
+(/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.def
+File: csquotes.def 2015/07/18 v5.1f csquotes generic definitions (JAW)
+)
+Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
+Package csquotes Info: ... configuration file loaded successfully.
+
+(/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.cfg
+File: csquotes.cfg 
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarytrees.code.tex
+File: tikzlibrarytrees.code.tex 2008/02/24 v3.0.0 (rcs-revision 1.2)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarybabel.code.tex
+File: tikzlibrarybabel.code.tex 2013/06/24 v3.0.0 (rcs-revision 1.1)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryarrows.code.tex
+File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.0 (rcs-revision 1.1)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.
+tex
+File: pgflibraryarrows.code.tex 2013/09/23 v3.0.0 (rcs-revision 1.16)
+\arrowsize=\dimen315
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryautomata.code.tex
+File: tikzlibraryautomata.code.tex 2008/07/14 v3.0.0 (rcs-revision 1.3)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryshapes.multipart.code.tex
+File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.0 (rcs-revision 1.1)
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
+s.multipart.code.tex
+File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.0 (rcs-revision 1.2)
+\pgfnodepartlowerbox=\box69
+\pgfnodeparttwobox=\box70
+\pgfnodepartthreebox=\box71
+\pgfnodepartfourbox=\box72
+\pgfnodeparttwentybox=\box73
+\pgfnodepartnineteenbox=\box74
+\pgfnodeparteighteenbox=\box75
+\pgfnodepartseventeenbox=\box76
+\pgfnodepartsixteenbox=\box77
+\pgfnodepartfifteenbox=\box78
+\pgfnodepartfourteenbox=\box79
+\pgfnodepartthirteenbox=\box80
+\pgfnodeparttwelvebox=\box81
+\pgfnodepartelevenbox=\box82
+\pgfnodeparttenbox=\box83
+\pgfnodepartninebox=\box84
+\pgfnodeparteightbox=\box85
+\pgfnodepartsevenbox=\box86
+\pgfnodepartsixbox=\box87
+\pgfnodepartfivebox=\box88
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarypositioning.code.tex
+File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.0 (rcs-revision 1.7)
+)
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
 Package: biblatex 2015/04/19 v3.0 programmable bibliographies (PK/JW/AB)
 
@@ -1057,135 +1577,128 @@ Package: biblatex 2015/04/19 v3.0 programmable bibliographies (PK/JW/AB)
 Package: biblatex1 2015/04/19 v3.0 programmable bibliographies (bibtex) (PK/JW/
 AB)
 
-(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count197
-)
 (/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.sty
 Package: logreq 2010/08/04 v1.0 xml request logger
-\lrq@indent=\count198
+\lrq@indent=\count287
 
 (/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.def
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
 ))
-(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
-Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
-)
-\c@tabx@nest=\count199
-\c@listtotal=\count200
-\c@listcount=\count201
-\c@liststart=\count202
-\c@liststop=\count203
-\c@citecount=\count204
-\c@citetotal=\count205
-\c@multicitecount=\count206
-\c@multicitetotal=\count207
-\c@instcount=\count208
-\c@maxnames=\count209
-\c@minnames=\count210
-\c@maxitems=\count211
-\c@minitems=\count212
-\c@citecounter=\count213
-\c@savedcitecounter=\count214
-\c@uniquelist=\count215
-\c@uniquename=\count216
-\c@refsection=\count217
-\c@refsegment=\count218
-\c@maxextrayear=\count219
-\c@maxextraalpha=\count220
-\c@abbrvpenalty=\count221
-\c@highnamepenalty=\count222
-\c@lownamepenalty=\count223
-\c@maxparens=\count224
-\c@parenlevel=\count225
-\blx@tempcnta=\count226
-\blx@tempcntb=\count227
-\blx@tempcntc=\count228
-Normal \count register pool exhausted, switching to extended pool.
-\blx@maxsection=\count277
-\blx@maxsegment=\count278
-\blx@notetype=\count279
-\blx@parenlevel@text=\count280
-\blx@parenlevel@foot=\count281
-\labelnumberwidth=\skip202
-\labelalphawidth=\skip203
-\shorthandwidth=\skip204
-\biblabelsep=\skip205
-\bibnamesep=\skip206
-\bibinitsep=\skip207
-\bibparsep=\skip208
-\bibhang=\skip209
-\blx@auxin=\read2
-\blx@auxout=\write4
-\c@mincomprange=\count282
-\c@maxcomprange=\count283
-\c@mincompwidth=\count284
-\c@labelname=\count285
-\c@savedlabelname=\count286
-\c@author=\count287
-\c@savedauthor=\count288
-\c@shortauthor=\count289
-\c@savedshortauthor=\count290
-\c@editor=\count291
-\c@savededitor=\count292
-\c@editora=\count293
-\c@savededitora=\count294
-\c@editorb=\count295
-\c@savededitorb=\count296
-\c@editorc=\count297
-\c@savededitorc=\count298
-\c@shorteditor=\count299
-\c@savedshorteditor=\count300
-\c@bookauthor=\count301
-\c@savedbookauthor=\count302
-\c@translator=\count303
-\c@savedtranslator=\count304
-\c@annotator=\count305
-\c@savedannotator=\count306
-\c@commentator=\count307
-\c@savedcommentator=\count308
-\c@introduction=\count309
-\c@savedintroduction=\count310
-\c@foreword=\count311
-\c@savedforeword=\count312
-\c@afterword=\count313
-\c@savedafterword=\count314
-\c@holder=\count315
-\c@savedholder=\count316
-\c@namea=\count317
-\c@savednamea=\count318
-\c@nameb=\count319
-\c@savednameb=\count320
-\c@namec=\count321
-\c@savednamec=\count322
-\c@institution=\count323
-\c@savedinstitution=\count324
-\c@language=\count325
-\c@savedlanguage=\count326
-\c@location=\count327
-\c@savedlocation=\count328
-\c@organization=\count329
-\c@savedorganization=\count330
-\c@origlocation=\count331
-\c@savedoriglocation=\count332
-\c@origpublisher=\count333
-\c@savedorigpublisher=\count334
-\c@pageref=\count335
-\c@savedpageref=\count336
-\c@publisher=\count337
-\c@savedpublisher=\count338
-\c@lista=\count339
-\c@savedlista=\count340
-\c@listb=\count341
-\c@savedlistb=\count342
-\c@listc=\count343
-\c@savedlistc=\count344
-\c@listd=\count345
-\c@savedlistd=\count346
-\c@liste=\count347
-\c@savedliste=\count348
-\c@listf=\count349
-\c@savedlistf=\count350
+\c@tabx@nest=\count288
+\c@listtotal=\count289
+\c@listcount=\count290
+\c@liststart=\count291
+\c@liststop=\count292
+\c@citecount=\count293
+\c@citetotal=\count294
+\c@multicitecount=\count295
+\c@multicitetotal=\count296
+\c@instcount=\count297
+\c@maxnames=\count298
+\c@minnames=\count299
+\c@maxitems=\count300
+\c@minitems=\count301
+\c@citecounter=\count302
+\c@savedcitecounter=\count303
+\c@uniquelist=\count304
+\c@uniquename=\count305
+\c@refsection=\count306
+\c@refsegment=\count307
+\c@maxextrayear=\count308
+\c@maxextraalpha=\count309
+\c@abbrvpenalty=\count310
+\c@highnamepenalty=\count311
+\c@lownamepenalty=\count312
+\c@maxparens=\count313
+\c@parenlevel=\count314
+\blx@tempcnta=\count315
+\blx@tempcntb=\count316
+\blx@tempcntc=\count317
+\blx@maxsection=\count318
+\blx@maxsegment=\count319
+\blx@notetype=\count320
+\blx@parenlevel@text=\count321
+\blx@parenlevel@foot=\count322
+\labelnumberwidth=\skip225
+\labelalphawidth=\skip226
+\shorthandwidth=\skip227
+\biblabelsep=\skip228
+Normal \skip register pool exhausted, switching to extended pool.
+\bibnamesep=\skip256
+\bibinitsep=\skip257
+\bibparsep=\skip258
+\bibhang=\skip259
+\blx@auxin=\read3
+\blx@auxout=\write5
+\c@mincomprange=\count323
+\c@maxcomprange=\count324
+\c@mincompwidth=\count325
+\c@labelname=\count326
+\c@savedlabelname=\count327
+\c@author=\count328
+\c@savedauthor=\count329
+\c@shortauthor=\count330
+\c@savedshortauthor=\count331
+\c@editor=\count332
+\c@savededitor=\count333
+\c@editora=\count334
+\c@savededitora=\count335
+\c@editorb=\count336
+\c@savededitorb=\count337
+\c@editorc=\count338
+\c@savededitorc=\count339
+\c@shorteditor=\count340
+\c@savedshorteditor=\count341
+\c@bookauthor=\count342
+\c@savedbookauthor=\count343
+\c@translator=\count344
+\c@savedtranslator=\count345
+\c@annotator=\count346
+\c@savedannotator=\count347
+\c@commentator=\count348
+\c@savedcommentator=\count349
+\c@introduction=\count350
+\c@savedintroduction=\count351
+\c@foreword=\count352
+\c@savedforeword=\count353
+\c@afterword=\count354
+\c@savedafterword=\count355
+\c@holder=\count356
+\c@savedholder=\count357
+\c@namea=\count358
+\c@savednamea=\count359
+\c@nameb=\count360
+\c@savednameb=\count361
+\c@namec=\count362
+\c@savednamec=\count363
+\c@institution=\count364
+\c@savedinstitution=\count365
+\c@language=\count366
+\c@savedlanguage=\count367
+\c@location=\count368
+\c@savedlocation=\count369
+\c@organization=\count370
+\c@savedorganization=\count371
+\c@origlocation=\count372
+\c@savedoriglocation=\count373
+\c@origpublisher=\count374
+\c@savedorigpublisher=\count375
+\c@pageref=\count376
+\c@savedpageref=\count377
+\c@publisher=\count378
+\c@savedpublisher=\count379
+\c@lista=\count380
+\c@savedlista=\count381
+\c@listb=\count382
+\c@savedlistb=\count383
+\c@listc=\count384
+\c@savedlistc=\count385
+\c@listd=\count386
+\c@savedlistd=\count387
+\c@liste=\count388
+\c@savedliste=\count389
+\c@listf=\count390
+\c@savedlistf=\count391
 Package biblatex Info: Trying to load compatibility code...
 Package biblatex Info: ... file 'blx-compat.def' found.
 
@@ -1197,13 +1710,13 @@ Package biblatex Info: ... file 'biblatex.def' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.def
 File: biblatex.def 
-\c@textcitecount=\count351
-\c@textcitetotal=\count352
-\c@textcitemaxnames=\count353
-\c@biburlnumpenalty=\count354
-\c@biburlucpenalty=\count355
-\c@biburllcpenalty=\count356
-\c@smartand=\count357
+\c@textcitecount=\count392
+\c@textcitetotal=\count393
+\c@textcitemaxnames=\count394
+\c@biburlnumpenalty=\count395
+\c@biburlucpenalty=\count396
+\c@biburllcpenalty=\count397
+\c@smartand=\count398
 )
 Package biblatex Info: Trying to load bibliography style 'numeric'...
 Package biblatex Info: ... file 'numeric.bbx' found.
@@ -1215,8 +1728,8 @@ Package biblatex Info: ... file 'standard.bbx' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
 File: standard.bbx 2015/04/19 v3.0 biblatex bibliography style (PK/JW/AB)
-\c@bbx:relatedcount=\count358
-\c@bbx:relatedtotal=\count359
+\c@bbx:relatedcount=\count399
+\c@bbx:relatedtotal=\count400
 ))
 Package biblatex Info: Trying to load citation style 'numeric'...
 Package biblatex Info: ... file 'numeric.cbx' found.
@@ -1241,95 +1754,79 @@ Package biblatex Info: ... file 'biblatex.cfg' found.
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.cfg
 File: biblatex.cfg 
 )))
+Package csquotes Info: Checking for multilingual support...
+Package csquotes Info: ... found 'babel' package.
+Package csquotes Info: Adjusting default style.
+Package csquotes Info: Redefining alias 'default' -> 'english'.
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 File: english.lbx 2015/04/19 v3.0 biblatex localization (PK/JW/AB)
 )
-
-Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
-(biblatex)                Loading 'csquotes' recommended.
-
-\@quotelevel=\count360
-\@quotereset=\count361
 No file _region_.aux.
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-(/home/noe/.emacs.d/elpa/auctex-11.88.9/latex/preview.sty
-Package: preview 2010/02/14 11.88 (AUCTeX/preview-latex)
+\openout1 = `_region_.aux'.
 
-(/home/noe/.emacs.d/elpa/auctex-11.88.9/latex/prtightpage.def
-\PreviewBorder=\dimen197
-)
-(/home/noe/.emacs.d/elpa/auctex-11.88.9/latex/prauctex.def
-No auxiliary output files.
-
-
-\hbadness=\count362
-\hfuzz=\dimen198
-(/home/noe/.emacs.d/elpa/auctex-11.88.9/latex/prauctex.cfg))
-(/home/noe/.emacs.d/elpa/auctex-11.88.9/latex/prfootnotes.def)
-\pr@snippet=\count363
-\pr@box=\box46
-\pr@output=\toks31
-
-Preview: Fontsize 10.95pt
-Preview: PDFoutput 1
-)
-\providecommand*{\memsetcounter}[2]{}
-LaTeX Info: Redefining \degres on input line 50.
-LaTeX Info: Redefining \dots on input line 50.
-LaTeX Info: Redefining \up on input line 50.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 94.
+LaTeX Font Info:    ... okay on input line 94.
+LaTeX Info: Redefining \degres on input line 94.
+LaTeX Info: Redefining \dots on input line 94.
+LaTeX Info: Redefining \up on input line 94.
 
 Package frenchb.ldf Warning: OT1 encoding should not be used for French.
 (frenchb.ldf)                Add \usepackage[T1]{fontenc} to the preamble
-(frenchb.ldf)                of your document, on input line 50.
+(frenchb.ldf)                of your document, on input line 94.
 
+(/usr/share/texlive/texmf-dist/tex/latex/tools/hhline.sty
+Package: hhline 2014/10/28 v2.03 Table rule package (DPC)
+)
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count364
-\scratchdimen=\dimen199
-\scratchbox=\box47
-\nofMPsegments=\count365
-\nofMParguments=\count366
-\everyMPshowfont=\toks32
-\MPscratchCnt=\count367
-\MPscratchDim=\dimen200
-\MPnumerator=\count368
-\makeMPintoPDFobject=\count369
-\everyMPtoPDFconversion=\toks33
+\scratchcounter=\count401
+\scratchdimen=\dimen316
+\scratchbox=\box89
+\nofMPsegments=\count402
+\nofMParguments=\count403
+\everyMPshowfont=\toks56
+\MPscratchCnt=\count404
+\MPscratchDim=\dimen317
+\MPnumerator=\count405
+\makeMPintoPDFobject=\count406
+\everyMPtoPDFconversion=\toks57
 )
-\AtBeginShipoutBox=\box48
-Package hyperref Info: Link coloring OFF on input line 50.
+\AtBeginShipoutBox=\box90
+Package hyperref Info: Link coloring OFF on input line 94.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count370
+\c@section@level=\count407
 LaTeX Info: Redefining \Ref on input line 513.
 )
 Redoing nameref's sectioning
 Redoing nameref's label
-LaTeX Info: Redefining \nameref on input line 50.
-LaTeX Info: Redefining \ref on input line 50.
-LaTeX Info: Redefining \pageref on input line 50.
-LaTeX Info: Redefining \nameref on input line 50.
-LaTeX Info: Redefining \Ref on input line 50.
+LaTeX Info: Redefining \nameref on input line 94.
+LaTeX Info: Redefining \ref on input line 94.
+LaTeX Info: Redefining \pageref on input line 94.
+LaTeX Info: Redefining \nameref on input line 94.
+\@outlinefile=\write6
+\openout6 = `_region_.out'.
+
+LaTeX Info: Redefining \Ref on input line 94.
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -1345,6 +1842,11 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: End \AtBeginDocument code.
+
+ABD: EveryShipout initializing macros
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
@@ -1353,35 +1855,2327 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Warning: Data encoding is 'utf8'.
 (biblatex)                Use backend=biber.
 
-Package biblatex Info: Reference section=0 on input line 50.
-Package biblatex Info: Reference segment=0 on input line 50.
- !name(rapport.tex) !offset(68) 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 53.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 53.
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 53.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 53.
-Package logreq Info: Writing requests to '_region_.run.xml'.
-\openout1 = `_region_.run.xml'.
+\openout5 = `_region_-blx.bib'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 53.
- )
-(\end occurred inside a group at level 1)
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file '_region_.bbl' not found.
+No file _region_.bbl.
+Package biblatex Info: Reference section=0 on input line 94.
+Package biblatex Info: Reference segment=0 on input line 94.
+ !name(rapport.tex) !offset(464) 
+./_region_.tex:97: Missing $ inserted.
+<inserted text> 
+                $
+l.97 \ \frac{P_{i}}{Q_{i}}
+                          
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
 
-### simple group (level 1) entered at line 79 ({)
-### bottom level 
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 97.
+(/usr/share/texmf/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 97.
+
+
+(/usr/share/texmf/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 97.
+
+
+(/usr/share/texmf/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 97.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 97.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 97.
+LaTeX Font Info:    Try loading font information for U+msa on input line 97.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 97.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+./_region_.tex:97: Missing $ inserted.
+<inserted text> 
+                $
+l.97 \ \frac{P_{i}}{Q_{i}}
+                          
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./_region_.tex:97: Missing $ inserted.
+<inserted text> 
+                $
+l.97 \ \frac{P_{i}}{Q_{i}}
+                          
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./_region_.tex:97: Extra }, or forgotten $.
+\frac  #1#2->{\begingroup #1\endgroup \@@over #2}
+                                                 
+l.97 \ \frac{P_{i}}{Q_{i}}
+                          
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./_region_.tex:98: You can't use `\eqno' in math mode.
+\endmathdisplay@a ...\df@tag \@empty \else \veqno 
+                                                  \alt@tag \df@tag \fi \ifx ...
+l.98 \end{equation}
+                   
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+./_region_.tex:98: LaTeX Error: \begin{document} ended by \end{equation}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.98 \end{equation}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./_region_.tex:98: Missing $ inserted.
+<inserted text> 
+                $
+l.98 \end{equation}
+                   
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./_region_.tex:98: Missing } inserted.
+<inserted text> 
+                }
+l.98 \end{equation}
+                   
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./_region_.tex:98: Missing } inserted.
+<inserted text> 
+                }
+l.98 \end{equation}
+                   
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./_region_.tex:98: Undefined control sequence.
+\extrasenglish ...\HyLang@english \blx@resetpunct 
+                                                  \abx@extras@english \abx@s...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Undefined control sequence.
+\abx@extras@english ...field {##1}}}}\savecommand 
+                                                  \mkbibrangecomp \savecomma...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Undefined control sequence.
+\abx@extras@english ...avecommand \mkbibrangecomp 
+                                                  \savecommand \mkbibrangeco...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Undefined control sequence.
+\abx@extras@english ...kbibrangecomp \savecommand 
+                                                  \mkbibrangecompextra \save...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Undefined control sequence.
+\abx@extras@english ...mmand \mkbibrangecompextra 
+                                                  \savecommand \mkbibrangete...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Undefined control sequence.
+\abx@extras@english ...angecompextra \savecommand 
+                                                  \mkbibrangeterse \savecomm...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Undefined control sequence.
+\abx@extras@english ...vecommand \mkbibrangeterse 
+                                                  \savecommand \mkbibrangete...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Undefined control sequence.
+\abx@extras@english ...bibrangeterse \savecommand 
+                                                  \mkbibrangeterseextra \pro...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Undefined control sequence.
+\abx@extras@english ...mand \mkbibrangeterseextra 
+                                                  \protected \def \mkbibrang...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Undefined control sequence.
+\abx@strings@english ...ot \ req\adddot }\ifcsdef 
+                                                  {\abx@str @bibliography} {...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Undefined control sequence.
+\abx@strings@english ...dddot }\ifcsdef {\abx@str 
+                                                  @bibliography} {\letcs \bi...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Undefined control sequence.
+\abx@strings@english ...tr @bibliography} {\letcs 
+                                                  \bibname {\abx@str @biblio...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Undefined control sequence.
+\abx@strings@english ...\letcs \bibname {\abx@str 
+                                                  @bibliography}} {\let \bib...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Undefined control sequence.
+\abx@strings@english ...bibname \@empty }\ifcsdef 
+                                                  {\abx@str @references} {\l...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Undefined control sequence.
+\abx@strings@english ...empty }\ifcsdef {\abx@str 
+                                                  @references} {\letcs \refn...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Undefined control sequence.
+\abx@strings@english ...@str @references} {\letcs 
+                                                  \refname {\abx@str @refere...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Undefined control sequence.
+\abx@strings@english ...\letcs \refname {\abx@str 
+                                                  @references}} {\let \refna...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Undefined control sequence.
+\abx@strings@english ...refname \@empty }\ifcsdef 
+                                                  {\abx@str @shorthands} {\l...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Undefined control sequence.
+\abx@strings@english ...empty }\ifcsdef {\abx@str 
+                                                  @shorthands} {\letcs \bibl...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Undefined control sequence.
+\abx@strings@english ...@str @shorthands} {\letcs 
+                                                  \biblistname {\abx@str @sh...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Undefined control sequence.
+\abx@strings@english ...nds} {\letcs \biblistname 
+                                                  {\abx@str @shorthands}} {\...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Undefined control sequence.
+\abx@strings@english ...cs \biblistname {\abx@str 
+                                                  @shorthands}} {\let \bibli...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:98: Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.98 \end{equation}
+                   
+Things are pretty mixed up, but I think the worst is over.
+
+./_region_.tex:98: Undefined control sequence.
+\end ... \endgroup \if@endpe \@doendpe \fi \csuse 
+                                                  {@afterend@#1@hook}\if@ign...
+l.98 \end{equation}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (53.26096pt too wide) in paragraph at lines 97--101
+[] \OT1/lmr/m/n/10.95 P$[]$$[]$$$[][][][][]\OT1/cmr/m/n/10.95 @bibliography Bi-
+blio-gra-phy@bibliography @re-fe-rences Re-fe-rences@references
+ []
+
+./_region_.tex:106: Undefined control sequence.
+\set@color ...\@pdfcolorstack push{\current@color 
+                                                  }\aftergroup \reset@color 
+l.106 \chapter
+              {Notre approche}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:106: Undefined control sequence.
+\set@color ...\@pdfcolorstack push{\current@color 
+                                                  }\aftergroup \reset@color 
+l.106 \chapter
+              {Notre approche}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:106: Undefined control sequence.
+\pdfstringdefPreHook ...cquote }\csq@mkpdfstrings 
+                                                  \def \csqQQ ##1{\csuse {cs...
+l.106 \chapter
+              {Notre approche}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:106: Undefined control sequence.
+\pdfstringdefPreHook ...cquote }\csq@mkpdfstrings 
+                                                  \def \csqQQ ##1{\csuse {cs...
+l.106 \chapter
+              {Notre approche}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+
+./_region_.tex:106: Undefined control sequence.
+<write> \@writefile{toc}{\boolfalse 
+                                    {citerequest}\boolfalse {citetracker}\bo...
+l.106 \chapter
+              {Notre approche}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:106: Undefined control sequence.
+<write> ...oc}{\boolfalse {citerequest}\boolfalse 
+                                                  {citetracker}\boolfalse {p...
+l.106 \chapter
+              {Notre approche}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:106: Undefined control sequence.
+<write> ...est}\boolfalse {citetracker}\boolfalse 
+                                                  {pagetracker}\boolfalse {b...
+l.106 \chapter
+              {Notre approche}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:106: Undefined control sequence.
+<write> ...ker}\boolfalse {pagetracker}\boolfalse 
+                                                  {backtracker}\relax }
+l.106 \chapter
+              {Notre approche}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:106: Undefined control sequence.
+<write> \@writefile{lof}{\boolfalse 
+                                    {citerequest}\boolfalse {citetracker}\bo...
+l.106 \chapter
+              {Notre approche}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:106: Undefined control sequence.
+<write> ...of}{\boolfalse {citerequest}\boolfalse 
+                                                  {citetracker}\boolfalse {p...
+l.106 \chapter
+              {Notre approche}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:106: Undefined control sequence.
+<write> ...est}\boolfalse {citetracker}\boolfalse 
+                                                  {pagetracker}\boolfalse {b...
+l.106 \chapter
+              {Notre approche}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:106: Undefined control sequence.
+<write> ...ker}\boolfalse {pagetracker}\boolfalse 
+                                                  {backtracker}\relax }
+l.106 \chapter
+              {Notre approche}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:106: Undefined control sequence.
+<write> \@writefile{lot}{\boolfalse 
+                                    {citerequest}\boolfalse {citetracker}\bo...
+l.106 \chapter
+              {Notre approche}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:106: Undefined control sequence.
+<write> ...ot}{\boolfalse {citerequest}\boolfalse 
+                                                  {citetracker}\boolfalse {p...
+l.106 \chapter
+              {Notre approche}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:106: Undefined control sequence.
+<write> ...est}\boolfalse {citetracker}\boolfalse 
+                                                  {pagetracker}\boolfalse {b...
+l.106 \chapter
+              {Notre approche}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:106: Undefined control sequence.
+<write> ...ker}\boolfalse {pagetracker}\boolfalse 
+                                                  {backtracker}\relax }
+l.106 \chapter
+              {Notre approche}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:106: Undefined control sequence.
+<write> \@writefile{toc}{\defcounter 
+                                     {refsection}{0}\relax }\@writefile{toc}...
+l.106 \chapter
+              {Notre approche}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:106: Undefined control sequence.
+<write> \@writefile{lof}{\defcounter 
+                                     {refsection}{0}\relax }\@writefile{lof}...
+l.106 \chapter
+              {Notre approche}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:106: Undefined control sequence.
+<write> \@writefile{lot}{\defcounter 
+                                     {refsection}{0}\relax }\@writefile{lot}...
+l.106 \chapter
+              {Notre approche}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+]
+./_region_.tex:106: Undefined control sequence.
+\pdfstringdefPreHook ...cquote }\csq@mkpdfstrings 
+                                                  \def \csqQQ ##1{\csuse {cs...
+l.106 \chapter{Notre approche}
+                              
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:135: Undefined control sequence.
+\pdfstringdefPreHook ...cquote }\csq@mkpdfstrings 
+                                                  \def \csqQQ ##1{\csuse {cs...
+l.135 \section{Principe et théorème}
+                                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Reference `parentage_tree' on page 2 undefined on input line 137
+.
+
+./_region_.tex:139: Undefined control sequence.
+\donemaincaptionfalse ...\caption@savesubcounters 
+                                                  
+l.139 \begin{figure}
+                    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:140: Undefined control sequence.
+\set@color ...\@pdfcolorstack push{\current@color 
+                                                  }\aftergroup \reset@color 
+l.140   \begin
+              {subfigure}{.5\textwidth}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./_region_.tex:140: LaTeX Error: Environment subfigure undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.140   \begin{subfigure}
+                         {.5\textwidth}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./_region_.tex:140: Missing number, treated as zero.
+<to be read again> 
+                   }
+l.140   \begin{subfigure}{.5\textwidth}
+                                       
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./_region_.tex:140: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.140   \begin{subfigure}{.5\textwidth}
+                                       
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+<images/algo_tree.png, id=21, 655.44875pt x 570.13pt>
+File: images/algo_tree.png Graphic file (type png)
+
+<use images/algo_tree.png>
+Package pdftex.def Info: images/algo_tree.png used on input line 142.
+(pdftex.def)             Requested size: 184.5pt x 160.47916pt.
+
+./_region_.tex:143: Undefined control sequence.
+\@makecaption #1#2->\caption@iftop 
+                                   {\vskip \belowcaptionskip }{\caption@rule...
+l.143     \caption{Arbre de phylogénie}
+                                        
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:143: Undefined control sequence.
+\@makecaption ...belowcaptionskip }{\caption@rule 
+                                                  \vskip \abovecaptionskip }...
+l.143     \caption{Arbre de phylogénie}
+                                        
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:143: Undefined control sequence.
+\@makecaption ...abovecaptionskip }\caption@@make 
+                                                  {#1}{#2}\caption@iftop {\v...
+l.143     \caption{Arbre de phylogénie}
+                                        
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:143: Undefined control sequence.
+\@makecaption ...ion@@make {#1}{#2}\caption@iftop 
+                                                  {\vskip \abovecaptionskip ...
+l.143     \caption{Arbre de phylogénie}
+                                        
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:143: Undefined control sequence.
+\@makecaption ... \abovecaptionskip \caption@rule 
+                                                  }{\vskip \belowcaptionskip }
+l.143     \caption{Arbre de phylogénie}
+                                        
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./_region_.tex:145: LaTeX Error: \begin{figure} on input line 139 ended by \end
+{subfigure}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.145   \end{subfigure}
+                       %
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./_region_.tex:146: LaTeX Error: Environment subfigure undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.146   \begin{subfigure}
+                         {.5\textwidth}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./_region_.tex:146: Missing number, treated as zero.
+<to be read again> 
+                   }
+l.146   \begin{subfigure}{.5\textwidth}
+                                       
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./_region_.tex:146: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.146   \begin{subfigure}{.5\textwidth}
+                                       
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./_region_.tex:150: Undefined control sequence.
+<recently read> \hhline 
+                        
+l.150 ... & $I_{2}$ & $I_{3}$ & $I_{4}$ \\ \hhline
+                                                  {|=::=|=|=|=|=|}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:157: Undefined control sequence.
+\@makecaption #1#2->\caption@iftop 
+                                   {\vskip \belowcaptionskip }{\caption@rule...
+l.157     \caption{Matrice de parenté}
+                                       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:157: Undefined control sequence.
+\@makecaption ...belowcaptionskip }{\caption@rule 
+                                                  \vskip \abovecaptionskip }...
+l.157     \caption{Matrice de parenté}
+                                       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:157: Undefined control sequence.
+\@makecaption ...abovecaptionskip }\caption@@make 
+                                                  {#1}{#2}\caption@iftop {\v...
+l.157     \caption{Matrice de parenté}
+                                       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:157: Undefined control sequence.
+\@makecaption ...ion@@make {#1}{#2}\caption@iftop 
+                                                  {\vskip \abovecaptionskip ...
+l.157     \caption{Matrice de parenté}
+                                       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:157: Undefined control sequence.
+\@makecaption ... \abovecaptionskip \caption@rule 
+                                                  }{\vskip \belowcaptionskip }
+l.157     \caption{Matrice de parenté}
+                                       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./_region_.tex:159: LaTeX Error: \begin{figure} on input line 139 ended by \end
+{subfigure}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.159   \end{subfigure}
+                       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./_region_.tex:160: Undefined control sequence.
+\@makecaption #1#2->\caption@iftop 
+                                   {\vskip \belowcaptionskip }{\caption@rule...
+l.160 ...e phylogénie et sa matrice de parenté.}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:160: Undefined control sequence.
+\@makecaption ...belowcaptionskip }{\caption@rule 
+                                                  \vskip \abovecaptionskip }...
+l.160 ...e phylogénie et sa matrice de parenté.}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:160: Undefined control sequence.
+\@makecaption ...abovecaptionskip }\caption@@make 
+                                                  {#1}{#2}\caption@iftop {\v...
+l.160 ...e phylogénie et sa matrice de parenté.}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:160: Undefined control sequence.
+\@makecaption ...ion@@make {#1}{#2}\caption@iftop 
+                                                  {\vskip \abovecaptionskip ...
+l.160 ...e phylogénie et sa matrice de parenté.}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:160: Undefined control sequence.
+\@makecaption ... \abovecaptionskip \caption@rule 
+                                                  }{\vskip \belowcaptionskip }
+l.160 ...e phylogénie et sa matrice de parenté.}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./_region_.tex:165: LaTeX Error: Command \* already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.165 \newtheorem*{parentage}{
+                              Théorème}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./_region_.tex:166: LaTeX Error: Environment parentage undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.166 \begin{parentage}
+                       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./_region_.tex:168: LaTeX Error: \begin{document} ended by \end{parentage}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.168 \end{parentage}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./_region_.tex:170: LaTeX Error: Environment proof undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.170 \begin{proof}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./_region_.tex:172: LaTeX Error: \begin{document} ended by \end{proof}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.172 \end{proof}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./_region_.tex:175: Undefined control sequence.
+\pdfstringdefPreHook ...cquote }\csq@mkpdfstrings 
+                                                  \def \csqQQ ##1{\csuse {cs...
+l.175 \section{L'algorithme de reconstruction}
+                                              
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./_region_.tex:178: LaTeX Error: Environment algorithm undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.178 \begin{algorithm}
+                       [H]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./_region_.tex:180: Undefined control sequence.
+l.180   \LinesNumbered
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:181: Undefined control sequence.
+l.181   \KwData
+               {M a n$\times$n parentage matrix}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:182: Undefined control sequence.
+l.182   \KwResult
+                 {the root of the tree}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:183: Undefined control sequence.
+l.183   \BlankLine
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:186: Undefined control sequence.
+l.186   \BlankLine
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:188: Undefined control sequence.
+l.188   \ForAll
+               {rows row of M}{
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:188: Undefined control sequence.
+\set@color ...\@pdfcolorstack push{\current@color 
+                                                  }\aftergroup \reset@color 
+l.188   \ForAll{r
+                 ows row of M}{
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:188: Undefined control sequence.
+\set@color ...\@pdfcolorstack push{\current@color 
+                                                  }\aftergroup \reset@color 
+l.188   \ForAll{r
+                 ows row of M}{
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:188: Undefined control sequence.
+\pdfstringdefPreHook ...cquote }\csq@mkpdfstrings 
+                                                  \def \csqQQ ##1{\csuse {cs...
+l.188   \ForAll{r
+                 ows row of M}{
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:188: Undefined control sequence.
+\pdfstringdefPreHook ...cquote }\csq@mkpdfstrings 
+                                                  \def \csqQQ ##1{\csuse {cs...
+l.188   \ForAll{r
+                 ows row of M}{
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[2
+
+]
+./_region_.tex:191: Undefined control sequence.
+l.191     \BlankLine
+                    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:192: Undefined control sequence.
+l.192     \For
+              {$i\leftarrow 0$ \KwTo n}{
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:192: Undefined control sequence.
+l.192     \For{$i\leftarrow 0$ \KwTo
+                                     n}{
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:194: Undefined control sequence.
+l.194       \If
+               {sum of elements of row == 0} {
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:197: Undefined control sequence.
+l.197       \If
+               {row has the smallest sum of elements and is not marked as do...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:202: Undefined control sequence.
+l.202   \KwRet
+               treeRoot
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./_region_.tex:203: LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.203 \caption
+              {Construction de l'arbre}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./_region_.tex:205: LaTeX Error: \begin{document} ended by \end{algorithm}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.205 \end{algorithm}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+LaTeX Warning: Reference `algo_' on page 3 undefined on input line 208.
+
+
+Overfull \hbox (12.14859pt too wide) in paragraph at lines 208--209
+[]\OT1/cmr/m/n/10.95 L'algorithme [] prend en entr^^See la ma-trice de par-ent^
+^Se d^^Setaill^^See pr^^Sec^^Sedemment
+ []
+
+./_region_.tex:218: Undefined control sequence.
+\set@color ...\@pdfcolorstack push{\current@color 
+                                                  }\aftergroup \reset@color 
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\noextrasenglish ->\blx@resetpunct 
+                                   \abx@noextras@english 
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\abx@noextras@english ->\restorecommand 
+                                        \mkbibrangecomp \restorecommand \mkb...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetrunc@long #1#2->\iffieldundef 
+                                                 {#2year} {} {\printtext [#2...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetrunc@long ...r} {} {\printtext 
+                                                  [#2date]{\iffieldsequal {#...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetrunc@long ...e]{\iffieldsequal 
+                                                  {#2year}{#2endyear} {\csus...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetrunc@long ...2endyear} {\csuse 
+                                                  {mkbibdate#1}{}{#2month}{#...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetrunc@long ...}{#2day}} {\csuse 
+                                                  {mkbibdate#1}{#2year}{#2mo...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetrunc@long ...ay}}\iffieldundef 
+                                                  {#2endyear} {} {\iffieldeq...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetrunc@long ...{\iffieldequalstr 
+                                                  {#2endyear}{} {\mbox {\bib...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetrunc@long ...sh \iffieldsequal 
+                                                  {#2year}{#2endyear} {\iffi...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetrunc@long ...} {\iffieldsequal 
+                                                  {#2month}{#2endmonth} {\cs...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetrunc@long ...endmonth} {\csuse 
+                                                  {mkbibdate#1}{#2endyear}{}...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetrunc@long ...2endday}} {\csuse 
+                                                  {mkbibdate#1}{#2endyear}{#...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetrunc@long ...endday}}} {\csuse 
+                                                  {mkbibdate#1}{#2endyear}{#...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetruncextra@long ...iffieldundef 
+                                                  {#2year} {} {\printtext [#...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetruncextra@long ... {\printtext 
+                                                  [#2date]{\iffieldsequal {#...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetruncextra@long ...ffieldsequal 
+                                                  {#2year}{#2endyear} {\csus...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetruncextra@long ...ear} {\csuse 
+                                                  {mkbibdate#1}{}{#2month}{#...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetruncextra@long ...ay}} {\csuse 
+                                                  {mkbibdate#1}{#2year}{#2mo...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetruncextra@long ...iffieldundef 
+                                                  {#2endyear} {\printfield {...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetruncextra@long ...{\printfield 
+                                                  {extrayear}} {\iffieldequa...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetruncextra@long ...ieldequalstr 
+                                                  {#2endyear}{} {\printfield...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetruncextra@long ...{\printfield 
+                                                  {extrayear}\mbox {\bibdate...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetruncextra@long ...ffieldsequal 
+                                                  {#2year}{#2endyear} {\iffi...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetruncextra@long ...ffieldsequal 
+                                                  {#2month}{#2endmonth} {\cs...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetruncextra@long ...nth} {\csuse 
+                                                  {mkbibdate#1}{#2endyear}{}...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetruncextra@long ...ay}} {\csuse 
+                                                  {mkbibdate#1}{#2endyear}{#...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetruncextra@long ...y}}} {\csuse 
+                                                  {mkbibdate#1}{#2endyear}{#...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetruncextra@long ...}\printfield 
+                                                  {extrayear}}}}}
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetrunc@short #1#2->\iffieldundef 
+                                                  {#2year} {} {\printtext [#...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetrunc@short ...} {} {\printtext 
+                                                  [#2date]{\iffieldsequal {#...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetrunc@short ...]{\iffieldsequal 
+                                                  {#2year}{#2endyear} {\csus...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetrunc@short ...endyear} {\csuse 
+                                                  {mkbibdate#1}{}{#2month}{#...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetrunc@short ...{#2day}} {\csuse 
+                                                  {mkbibdate#1}{#2year}{#2mo...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetrunc@short ...y}}\iffieldundef 
+                                                  {#2endyear} {} {\iffieldeq...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetrunc@short ...\iffieldequalstr 
+                                                  {#2endyear}{} {\mbox {\bib...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetrunc@short ...bdatedash \csuse 
+                                                  {mkbibdate#1}{#2endyear}{#...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+<argument> \restorecommand 
+                           
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Undefined control sequence.
+\lbx@us@mkbibrangetruncextra@short ...ffieldundef 
+                                                  {#2year} {} {\printtext [#...
+l.218 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./_region_.tex:218: Missing control sequence inserted.
+<inserted text> 
+                \inaccessible 
+l.218 
+      
+(That makes 100 errors; please try again.) 
 Here is how much of TeX's memory you used:
- 22208 strings out of 493085
- 366864 string characters out of 6136917
- 575794 words of memory out of 5000000
- 25498 multiletter control sequences out of 15000+600000
- 12881 words of font info for 19 fonts, out of 8000000 for 9000
+ 36403 strings out of 493085
+ 668476 string characters out of 6136917
+ 896640 words of memory out of 5000000
+ 39373 multiletter control sequences out of 15000+600000
+ 42869 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 48i,1n,39p,10581b,6078s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,12n,66p,10367b,18460s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-No pages of output.
-PDF statistics:
- 3 PDF objects out of 1000 (max. 8388607)
- 1 compressed objects within 1 object stream
- 0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+./_region_.tex:218:  ==> Fatal error occurred, no output PDF file produced!
