@@ -458,10 +458,30 @@ Leur technique consiste à se munir d'une série de candidats pour la matrice pr
 % \autocite{huang2010detecting}
 Comme expliqué section \ref{ipt}, nous tentons dans un premier temps d'identifier la génération $n$ d'une image $I_{n}$. Une tâche qui peut s'avérer difficile si les transformations sont minimes. En sachant que deux images $I_{m}$ et $I_{n}$ sont extrêmement similaire, sommes-nous en présence d'une double compression avec la même matrice de quantification, donc l'une est le parent de l'autre, ou sommes-nous dans le cas où les images sont soeurs, et une matrice de quantification identique a été utilisée pour les générer ?
 
-Nous avons choisi d'inclure l'article de \citeauthornsc{huang2010detecting} \autocite{huang2010detecting} car il traite précisément de ce problème.
+Nous avons choisi d'inclure l'article de \citeauthornsc{huang2010detecting} \autocite{huang2010detecting} car il traite précisément de ce problème. Les auteurs constatent que les différences entre deux images issues de compressions successives diminue lorsque le nombre de compressions augmente (voir figure \ref{d_courbe}), ce qui est en accord avec l'article de \citeauthornsc{lai2013block} \autocite{lai2013block}. Leur méthode, même si elle permet de détecter jusqu'à trois ou quatre compression, est la plus efficace lorsque qu'il n'y a eu qu'une seule recompression.
 
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=130mm]{images/d_courbe}
+    \caption{Diminution du nombre de valeurs différentes au fil des recompressions, issu de \autocite{huang2010detecting}.}
+    \label{d_courbe}
+  \end{center}
+\end{figure}
+
+Les auteurs vont s'appuyer sur trois signes distinctifs laissés par la compression JPEG : les erreurs de quantification, les erreurs de troncage et les erreurs d'arrondis. Leur méthode de détection est basée sur la perturbation aléatoire des coefficients DCT de l'image.
+
+À partir d'une image $I$ compressée un nombre inconnu de fois, ils vont calculer $D$ comme le nombre de coefficients DCT différents entre $I$ et $I$ recompressée avec sa table de quantification, cette nouvelle image est notée $I'$
+
+Ils vont ensuite perturber (ajouter ou soustraire 1) aléatoirement un nombre $n$ de coefficients DCT de $I'$. Le nombre $n$ est déterminé à partir d'un ratio $r$ qu'il faudra choisir avec soin. Ce ratio est le nombre de coefficients modifiés par coefficient différent de zéro.
+
+Cette image perturbée $I'$ est ensuite recompressée avec sa table de quantification pour donner $I''$. La nombre $Dm$ est calculé comme le nombre de coefficients DCT différents entre $I'$ et $I''$. Cette étape est répétée $k$ fois, à chaque fois avec la nouvelle image obtenue. On obtient alors $\bar{D}m$, la moyenne de tous les $Dm$.
+
+Et enfin, I est doublement compressée si $\bar{D}m \geqslant D$. Ce résultat est donné ar le fait que si c'est la première recompression, $D$ est grand (voir figure \ref{d_courbe}). C'est là qu'intervient le choix du ratio $r$. Un ratio mal choisi perturbera trop l'image et la modifiera plus que sa première recompression ou alors ne la perturbera pas suffisament et l'image srait alors détectée à tort comme simplement compressée. Le choix de ce ratio est effectué de manière experimentale par les auteurs.
+
+Cette méthode offre un moyen de détecter la présence de double compressions avec la même matrice de quantification, un cas probable dans le cadre des réseaux sociaux. Même si elle a été pensée pour la détection dans le cas de la première compression, nous ne travaillons pas sur une seule image, qui est la totalité de l'information disponible aux auteurs, nous travaillons sur un ensemble d'image. Nous disposons donc de bien plus d'informations, en plus des informations contenues dans les images, nous pouvons calcuer des informations sur les images les unes par rapport aux autres. On pourrait donc très bien adapter cette méthode à la $n^{ieme}$ et la $n+1^{ieme}$ compression de deux images.
 
 \subsection{Convergence des blocs lors de compressions successives}
+\label{convergence}
 L'intérêt de la méthode proposée par \citeauthornsc{CarneinSB2016TelltaleWatermarks} \autocite{CarneinSB2016TelltaleWatermarks} est l'estimation du nombre de compressions JPEG qu'a pu subir l'image, une estimation qui va au-delà de deux ou trois compression successives \autocite{huang2010detecting}\autocite{lukavs2003estimation}, il est en effet possible d'aller jusqu'à plusieurs centaines de compressions. Cette approche se base sur la notion de blocs cycliques.
 
 Lors de compressions successives, une phénomène appelé \textit{convergence de bloc} peut être observé. Un bloc converge lorsque la valeur des pixels du bloc à la compression $t$ est égale à la valeurs des pixels à la compression $t + 1$, ce bloc est alors appelé stable \autocite{lai2013block}. Certains blocs cependant échappent à cet effet et exhibe un phénomène de cycle. C'est à dire que la valeur des pixels à la compression $t$ est égale à la valeur des pixels à la compression $t + n, n > 1$. Le deuxième type de bloc à échapper à ce phénomène est les blocs plats, ayant tous les pixels de la même valeur, ils ne peuvent pas être cycliques puisque tous les coefficients DCT sauf le premier sont nuls.

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2015.11.2)  23 MAR 2016 15:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2015.11.2)  23 MAR 2016 17:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2062,22 +2062,34 @@ File: images/h3.png Graphic file (type png)
 Package pdftex.def Info: images/h3.png used on input line 448.
 (pdftex.def)             Requested size: 151.14084pt x 119.36623pt.
 
+<images/d_courbe.png, id=269, 1161.33875pt x 442.65375pt>
+File: images/d_courbe.png Graphic file (type png)
+
+<use images/d_courbe.png>
+Package pdftex.def Info: images/d_courbe.png used on input line 465.
+(pdftex.def)             Requested size: 369.88582pt x 140.9834pt.
+
 Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 
 
 [11 <./images/h1.png (PNG copy)> <./images/h2.png (PNG copy)> <./images/h3.png 
-(PNG copy)>] <images/insertion_blocs.png, id=285, 745.78625pt x 641.39626pt>
+(PNG copy)>]
+Overfull \vbox (0.85185pt too high) has occurred while \output is active []
+
+
+[12 <./images/d_courbe.png (PNG copy)>]
+<images/insertion_blocs.png, id=297, 745.78625pt x 641.39626pt>
 File: images/insertion_blocs.png Graphic file (type png)
 
 <use images/insertion_blocs.png>
-Package pdftex.def Info: images/insertion_blocs.png used on input line 478.
+Package pdftex.def Info: images/insertion_blocs.png used on input line 498.
 (pdftex.def)             Requested size: 227.62204pt x 195.75769pt.
 
 Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 
 
-[12 <./images/insertion_blocs.png (PNG copy)>]
-Overfull \hbox (11.4284pt too wide) in paragraph at lines 496--497
+[13 <./images/insertion_blocs.png (PNG copy)>]
+Overfull \hbox (11.4284pt too wide) in paragraph at lines 516--517
 \OT1/lmr/m/n/10.95 contrai-re-ment ^^Ra une di-ver-gence, est sym^^Setrique, c'
 est ^^Ra dire que $\OML/lmm/m/it/10.95 distance\OT1/lmr/m/n/10.95 (\OML/lmm/m/i
 t/10.95 I[]; I[]\OT1/lmr/m/n/10.95 ) = \OML/lmm/m/it/10.95 distance\OT1/lmr/m/n
@@ -2088,55 +2100,55 @@ t/10.95 I[]; I[]\OT1/lmr/m/n/10.95 ) = \OML/lmm/m/it/10.95 distance\OT1/lmr/m/n
 Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 
 
-[13]
+[14]
 Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 
 
-[14] <images/algo_tree.png, id=321, 655.44875pt x 570.13pt>
+[15] <images/algo_tree.png, id=333, 655.44875pt x 570.13pt>
 File: images/algo_tree.png Graphic file (type png)
 
 <use images/algo_tree.png>
-Package pdftex.def Info: images/algo_tree.png used on input line 560.
+Package pdftex.def Info: images/algo_tree.png used on input line 580.
 (pdftex.def)             Requested size: 114.5pt x 99.59155pt.
 
 
 Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
 ne argument
-(hhline)                 on input line 568.
+(hhline)                 on input line 588.
 
 
 Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
 ne argument
-(hhline)                 on input line 568.
+(hhline)                 on input line 588.
 
-[15
+[16
 
- <./images/algo_tree.png (PNG copy)>] [16] [17] [18
+ <./images/algo_tree.png (PNG copy)>] [17] [18] [19
 
-] [19
+] [20
 
 ]
 
 Class memoir Warning: The material used in the headers is too large
 (14.45186pt) for the given head height (13.6pt), it is recommended to
 either increase the head height or redesign the header
-(in both cases you will find help in the memoir manual). on input line 651.
+(in both cases you will find help in the memoir manual). on input line 671.
 
-[20]
+[21]
 \tf@toc=\write7
 \openout7 = `rapport.toc'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 651.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 651.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 671.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 671.
  (./rapport.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 651.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 651.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 671.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 671.
 Package rerunfilecheck Info: File `rapport.out' has not changed.
-(rerunfilecheck)             Checksum: 27B2435CC064D6AC5266719D6B5D2DB1;980.
+(rerunfilecheck)             Checksum: C32E1AFFC90E956090345E7A5BAF17FB;980.
 Package logreq Info: Writing requests to 'rapport.run.xml'.
 \openout1 = `rapport.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 651.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 671.
  )
 (\end occurred inside a group at level 1)
 
@@ -2144,10 +2156,10 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 651.
 ### bottom level
 (\end occurred when \iffalse on line 99 was incomplete) 
 Here is how much of TeX's memory you used:
- 37106 strings out of 493085
- 680006 string characters out of 6136917
+ 37115 strings out of 493085
+ 680160 string characters out of 6136917
  931811 words of memory out of 5000000
- 39912 multiletter control sequences out of 15000+600000
+ 39918 multiletter control sequences out of 15000+600000
  84305 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,19n,71p,10366b,20140s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2169,11 +2181,12 @@ nts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb
 e1/public/lm/lmro10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></us
 r/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/pu
 blic/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share
-/texmf/fonts/type1/public/lm/lmtt10.pfb>
-Output written on rapport.pdf (23 pages, 3632534 bytes).
+/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/symbols/msam10.pfb>
+Output written on rapport.pdf (24 pages, 3793005 bytes).
 PDF statistics:
- 477 PDF objects out of 1000 (max. 8388607)
- 395 compressed objects within 4 object streams
- 116 named destinations out of 1000 (max. 500000)
- 215 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 493 PDF objects out of 1000 (max. 8388607)
+ 406 compressed objects within 5 object streams
+ 118 named destinations out of 1000 (max. 500000)
+ 220 words of extra memory for PDF output out of 10000 (max. 10000000)
 
