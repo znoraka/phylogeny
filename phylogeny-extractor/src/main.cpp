@@ -51,7 +51,7 @@ Node *buildTreeFromMatrix(std::vector<std::vector<bool> > matrix) {
   }
 
   for(auto kkk : matrix) {
-    int nextSum = 99999;
+    int nextSum = matrix.size() + 1;
     ref *r = nextRoot;
     r->done = true;
    
