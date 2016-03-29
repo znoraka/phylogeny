@@ -51,7 +51,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{}{13}{section*.25}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.3}Distances entre distributions}{14}{section.2.3}
+\contentsline {section}{\numberline {2.3}Distances entre distributions}{13}{section.2.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{}{14}{section*.26}
 \defcounter {refsection}{0}\relax 
