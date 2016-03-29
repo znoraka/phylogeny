@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2015.11.2)  29 MAR 2016 11:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2015.11.2)  29 MAR 2016 17:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1775,28 +1775,28 @@ File: french.lbx 2015/04/19 v3.0 biblatex localization (PK/JW/AB)
 ))
 \openout1 = `rapport.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Info: Redefining \degres on input line 95.
-LaTeX Info: Redefining \dots on input line 95.
-LaTeX Info: Redefining \up on input line 95.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 99.
+LaTeX Font Info:    ... okay on input line 99.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 99.
+LaTeX Font Info:    ... okay on input line 99.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 99.
+LaTeX Font Info:    ... okay on input line 99.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 99.
+LaTeX Font Info:    ... okay on input line 99.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 99.
+LaTeX Font Info:    ... okay on input line 99.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 99.
+LaTeX Font Info:    ... okay on input line 99.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 99.
+LaTeX Font Info:    ... okay on input line 99.
+LaTeX Info: Redefining \degres on input line 99.
+LaTeX Info: Redefining \dots on input line 99.
+LaTeX Info: Redefining \up on input line 99.
 
 
 Package frenchb.ldf Warning: OT1 encoding should not be used for French.
 (frenchb.ldf)                Add \usepackage[T1]{fontenc} to the preamble
-(frenchb.ldf)                of your document, on input line 95.
+(frenchb.ldf)                of your document, on input line 99.
 
 (/usr/share/texlive/texmf-dist/tex/latex/tools/hhline.sty
 Package: hhline 2014/10/28 v2.03 Table rule package (DPC)
@@ -1816,7 +1816,7 @@ Package: hhline 2014/10/28 v2.03 Table rule package (DPC)
 \everyMPtoPDFconversion=\toks57
 )
 \AtBeginShipoutBox=\box90
-Package hyperref Info: Link coloring OFF on input line 95.
+Package hyperref Info: Link coloring OFF on input line 99.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -1828,15 +1828,15 @@ LaTeX Info: Redefining \Ref on input line 513.
 )
 Redoing nameref's sectioning
 Redoing nameref's label
-LaTeX Info: Redefining \nameref on input line 95.
-LaTeX Info: Redefining \ref on input line 95.
-LaTeX Info: Redefining \pageref on input line 95.
-LaTeX Info: Redefining \nameref on input line 95.
+LaTeX Info: Redefining \nameref on input line 99.
+LaTeX Info: Redefining \ref on input line 99.
+LaTeX Info: Redefining \pageref on input line 99.
+LaTeX Info: Redefining \nameref on input line 99.
 (./rapport.out) (./rapport.out)
 \@outlinefile=\write6
 \openout6 = `rapport.out'.
 
-LaTeX Info: Redefining \Ref on input line 95.
+LaTeX Info: Redefining \Ref on input line 99.
 
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -1871,16 +1871,16 @@ Package biblatex Warning: Data encoding is 'utf8'.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'rapport.bbl' found.
 (./rapport.bbl)
-Package biblatex Info: Reference section=0 on input line 95.
-Package biblatex Info: Reference segment=0 on input line 95.
+Package biblatex Info: Reference section=0 on input line 99.
+Package biblatex Info: Reference segment=0 on input line 99.
  <logo-um-complet.png, id=63, 265.9536pt x 86.724pt>
 File: logo-um-complet.png Graphic file (type png)
 
 <use logo-um-complet.png>
-Package pdftex.def Info: logo-um-complet.png used on input line 100.
+Package pdftex.def Info: logo-um-complet.png used on input line 104.
 (pdftex.def)             Requested size: 265.95294pt x 86.72377pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 100--100
+Underfull \hbox (badness 10000) in paragraph at lines 104--104
 
  []
 
@@ -1901,52 +1901,52 @@ Underfull \hbox (badness 10000) in paragraph at lines 100--100
 
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 118.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 122.
 
  (/usr/share/texmf/tex/latex/lm/omslmr.fd
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/it' in size <10.95> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 118.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 122.
 
 <images/lena_base.jpg, id=114, 128.48pt x 128.48pt>
 File: images/lena_base.jpg Graphic file (type jpg)
  <use images/lena_base.jpg>
-Package pdftex.def Info: images/lena_base.jpg used on input line 132.
+Package pdftex.def Info: images/lena_base.jpg used on input line 136.
 (pdftex.def)             Requested size: 65.44133pt x 65.44159pt.
 
 <images/lena_bw.jpg, id=115, 128.48pt x 128.48pt>
 File: images/lena_bw.jpg Graphic file (type jpg)
  <use images/lena_bw.jpg>
-Package pdftex.def Info: images/lena_bw.jpg used on input line 132.
+Package pdftex.def Info: images/lena_bw.jpg used on input line 136.
 (pdftex.def)             Requested size: 65.44133pt x 65.44159pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 133.
+(Font)              <10> on input line 137.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 133.
+(Font)              <7> on input line 137.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 133.
+(Font)              <5> on input line 137.
 File: images/lena_base.jpg Graphic file (type jpg)
 
 <use images/lena_base.jpg>
-Package pdftex.def Info: images/lena_base.jpg used on input line 138.
+Package pdftex.def Info: images/lena_base.jpg used on input line 142.
 (pdftex.def)             Requested size: 65.44133pt x 65.44159pt.
 
 <images/lena_crop.jpg, id=116, 90.3375pt x 90.3375pt>
 File: images/lena_crop.jpg Graphic file (type jpg)
 
 <use images/lena_crop.jpg>
-Package pdftex.def Info: images/lena_crop.jpg used on input line 138.
+Package pdftex.def Info: images/lena_crop.jpg used on input line 142.
 (pdftex.def)             Requested size: 65.44133pt x 65.4413pt.
 File: images/lena_base.jpg Graphic file (type jpg)
  <use images/lena_base.jpg>
-Package pdftex.def Info: images/lena_base.jpg used on input line 144.
+Package pdftex.def Info: images/lena_base.jpg used on input line 148.
 (pdftex.def)             Requested size: 65.44133pt x 65.44159pt.
 
 <images/lena_comp.jpg, id=117, 128.48pt x 128.48pt>
 File: images/lena_comp.jpg Graphic file (type jpg)
  <use images/lena_comp.jpg>
-Package pdftex.def Info: images/lena_comp.jpg used on input line 144.
+Package pdftex.def Info: images/lena_comp.jpg used on input line 148.
 (pdftex.def)             Requested size: 65.44133pt x 65.44159pt.
 
 [2 <./images/lena_base.jpg> <./images/lena_bw.jpg> <./images/lena_crop.jpg> <./
@@ -1955,35 +1955,35 @@ images/lena_comp.jpg>]
 File: images/set_to_tree.png Graphic file (type png)
 
 <use images/set_to_tree.png>
-Package pdftex.def Info: images/set_to_tree.png used on input line 163.
+Package pdftex.def Info: images/set_to_tree.png used on input line 167.
 (pdftex.def)             Requested size: 341.43306pt x 124.94493pt.
 
 <images/tree_extract.png, id=135, 1863.96375pt x 766.36313pt>
 File: images/tree_extract.png Graphic file (type png)
 
 <use images/tree_extract.png>
-Package pdftex.def Info: images/tree_extract.png used on input line 171.
+Package pdftex.def Info: images/tree_extract.png used on input line 175.
 (pdftex.def)             Requested size: 341.43306pt x 140.3717pt.
  [3 <./images/set_to_tree.png> <./images/tree_extract.png>] [4] <images/vmm.png
 , id=155, 752.8125pt x 668.4975pt>
 File: images/vmm.png Graphic file (type png)
 
 <use images/vmm.png>
-Package pdftex.def Info: images/vmm.png used on input line 274.
+Package pdftex.def Info: images/vmm.png used on input line 278.
 (pdftex.def)             Requested size: 199.16928pt x 176.86537pt.
 
 <images/vmm_directionnel.png, id=158, 688.5725pt x 688.5725pt>
 File: images/vmm_directionnel.png Graphic file (type png)
 
 <use images/vmm_directionnel.png>
-Package pdftex.def Info: images/vmm_directionnel.png used on input line 282.
+Package pdftex.def Info: images/vmm_directionnel.png used on input line 286.
 (pdftex.def)             Requested size: 199.16928pt x 199.16608pt.
 
 <images/vmm_tree.png, id=161, 676.5275pt x 244.915pt>
 File: images/vmm_tree.png Graphic file (type png)
 
 <use images/vmm_tree.png>
-Package pdftex.def Info: images/vmm_tree.png used on input line 290.
+Package pdftex.def Info: images/vmm_tree.png used on input line 294.
 (pdftex.def)             Requested size: 284.52756pt x 103.0056pt.
  [5
 
@@ -1992,14 +1992,14 @@ Package pdftex.def Info: images/vmm_tree.png used on input line 290.
 Class memoir Warning: The material used in the headers is too large
 (14.45186pt) for the given head height (13.6pt), it is recommended to
 either increase the head height or redesign the header
-(in both cases you will find help in the memoir manual). on input line 300.
+(in both cases you will find help in the memoir manual). on input line 304.
 
 
 Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 
 
 [6 <./images/vmm.png> <./images/vmm_directionnel.png> <./images/vmm_tree.png>]
-LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 340
+LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 344
 .
 
 (/usr/share/texmf/tex/latex/lm/ot1lmtt.fd
@@ -2011,7 +2011,7 @@ Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 [7] <images/jpeg.png, id=207, 702.625pt x 233.87375pt>
 File: images/jpeg.png Graphic file (type png)
  <use images/jpeg.png>
-Package pdftex.def Info: images/jpeg.png used on input line 362.
+Package pdftex.def Info: images/jpeg.png used on input line 366.
 (pdftex.def)             Requested size: 341.43306pt x 113.64987pt.
 
 Overfull \vbox (0.85185pt too high) has occurred while \output is active []
@@ -2019,19 +2019,19 @@ Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 
 [8 <./images/jpeg.png>]
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 371.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 375.
 
 <images/quantization_table.png, id=227, 374.39874pt x 192.72pt>
 File: images/quantization_table.png Graphic file (type png)
 
 <use images/quantization_table.png>
-Package pdftex.def Info: images/quantization_table.png used on input line 383.
+Package pdftex.def Info: images/quantization_table.png used on input line 387.
 (pdftex.def)             Requested size: 170.71652pt x 87.87593pt.
 
 <images/eyes.png, id=230, 210.7875pt x 77.28876pt>
 File: images/eyes.png Graphic file (type png)
  <use images/eyes.png>
-Package pdftex.def Info: images/eyes.png used on input line 391.
+Package pdftex.def Info: images/eyes.png used on input line 395.
 (pdftex.def)             Requested size: 341.43306pt x 125.19528pt.
 
 Overfull \vbox (0.85185pt too high) has occurred while \output is active []
@@ -2044,26 +2044,26 @@ Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 [10] <images/h1.png, id=260, 726.715pt x 573.14125pt>
 File: images/h1.png Graphic file (type png)
  <use images/h1.png>
-Package pdftex.def Info: images/h1.png used on input line 441.
+Package pdftex.def Info: images/h1.png used on input line 445.
 (pdftex.def)             Requested size: 151.14084pt x 119.20007pt.
 
 <images/h2.png, id=261, 725.71124pt x 573.14125pt>
 File: images/h2.png Graphic file (type png)
  <use images/h2.png>
-Package pdftex.def Info: images/h2.png used on input line 447.
+Package pdftex.def Info: images/h2.png used on input line 451.
 (pdftex.def)             Requested size: 151.14084pt x 119.36623pt.
 
 <images/h3.png, id=262, 725.71124pt x 573.14125pt>
 File: images/h3.png Graphic file (type png)
  <use images/h3.png>
-Package pdftex.def Info: images/h3.png used on input line 453.
+Package pdftex.def Info: images/h3.png used on input line 457.
 (pdftex.def)             Requested size: 151.14084pt x 119.36623pt.
 
 <images/d_courbe.png, id=269, 1161.33875pt x 442.65375pt>
 File: images/d_courbe.png Graphic file (type png)
 
 <use images/d_courbe.png>
-Package pdftex.def Info: images/d_courbe.png used on input line 470.
+Package pdftex.def Info: images/d_courbe.png used on input line 474.
 (pdftex.def)             Requested size: 369.88582pt x 140.9834pt.
 
 Overfull \vbox (0.85185pt too high) has occurred while \output is active []
@@ -2079,10 +2079,10 @@ Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 File: images/insertion_blocs.png Graphic file (type png)
 
 <use images/insertion_blocs.png>
-Package pdftex.def Info: images/insertion_blocs.png used on input line 509.
+Package pdftex.def Info: images/insertion_blocs.png used on input line 513.
 (pdftex.def)             Requested size: 227.62204pt x 195.75769pt.
 
-Overfull \hbox (11.4284pt too wide) in paragraph at lines 528--529
+Overfull \hbox (11.4284pt too wide) in paragraph at lines 532--533
 \OT1/lmr/m/n/10.95 contrai-re-ment ^^Ra une di-ver-gence, est sym^^Setrique, c'
 est ^^Ra dire que $\OML/lmm/m/it/10.95 distance\OT1/lmr/m/n/10.95 (\OML/lmm/m/i
 t/10.95 I[]; I[]\OT1/lmr/m/n/10.95 ) = \OML/lmm/m/it/10.95 distance\OT1/lmr/m/n
@@ -2105,18 +2105,18 @@ Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 File: images/algo_tree.png Graphic file (type png)
 
 <use images/algo_tree.png>
-Package pdftex.def Info: images/algo_tree.png used on input line 592.
+Package pdftex.def Info: images/algo_tree.png used on input line 596.
 (pdftex.def)             Requested size: 114.5pt x 99.59155pt.
 
 
 Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
 ne argument
-(hhline)                 on input line 600.
+(hhline)                 on input line 604.
 
 
 Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
 ne argument
-(hhline)                 on input line 600.
+(hhline)                 on input line 604.
 
 [16
 
@@ -2129,61 +2129,62 @@ ne argument
 Class memoir Warning: The material used in the headers is too large
 (14.45186pt) for the given head height (13.6pt), it is recommended to
 either increase the head height or redesign the header
-(in both cases you will find help in the memoir manual). on input line 697.
+(in both cases you will find help in the memoir manual). on input line 714.
 
 [21]
 \tf@toc=\write7
 \openout7 = `rapport.toc'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 697.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 697.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 714.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 714.
  (./rapport.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 697.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 697.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 714.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 714.
 Package rerunfilecheck Info: File `rapport.out' has not changed.
 (rerunfilecheck)             Checksum: C32E1AFFC90E956090345E7A5BAF17FB;980.
 Package logreq Info: Writing requests to 'rapport.run.xml'.
 \openout1 = `rapport.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 697.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 714.
  )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 80 ({)
 ### bottom level
-(\end occurred when \iffalse on line 100 was incomplete) 
+(\end occurred when \iffalse on line 104 was incomplete) 
 Here is how much of TeX's memory you used:
- 37123 strings out of 493085
- 680393 string characters out of 6136917
- 931876 words of memory out of 5000000
- 39923 multiletter control sequences out of 15000+600000
- 84305 words of font info for 68 fonts, out of 8000000 for 9000
+ 37129 strings out of 493085
+ 680460 string characters out of 6136917
+ 932924 words of memory out of 5000000
+ 39928 multiletter control sequences out of 15000+600000
+ 88531 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,19n,71p,10366b,20146s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,19n,71p,10366b,20150s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts
 /enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rmtt.enc}{/usr/
 share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/
 lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share
 /texmf/fonts/enc/dvips/lm/lm-rmsc.enc}</usr/share/texmf/fonts/type1/public/lm/l
 mbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/
-fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10
-.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts
-/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb><
-/usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/
-public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/sha
-re/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/l
-m/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/f
-onts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pf
-b></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/ty
-pe1/public/lm/lmro10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></u
-sr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/p
-ublic/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/shar
-e/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/symbols/msam10.pfb>
-Output written on rapport.pdf (24 pages, 3794889 bytes).
+fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmbxi10
+.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/font
+s/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb
+></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type
+1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/s
+hare/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public
+/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texm
+f/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.p
+fb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/t
+ype1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmro10.pfb></
+usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/
+public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/sh
+are/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/
+lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbol
+s/msam10.pfb>
+Output written on rapport.pdf (24 pages, 3807250 bytes).
 PDF statistics:
- 493 PDF objects out of 1000 (max. 8388607)
- 406 compressed objects within 5 object streams
+ 498 PDF objects out of 1000 (max. 8388607)
+ 410 compressed objects within 5 object streams
  118 named destinations out of 1000 (max. 500000)
  220 words of extra memory for PDF output out of 10000 (max. 10000000)
 

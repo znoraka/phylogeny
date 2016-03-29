@@ -72,7 +72,7 @@
 %% encadrants
 \supervisors{William Puech \\ Christophe Fiorio}
 %% lieu du stage (Optionnel)
-\location{Équipe ICAR - LIRMM UM5506 - CNRS, Université de Montpellier}
+\location{Équipe ICAR - LIRMM UMR 5506 - CNRS, Université de Montpellier}
 %% titre du stage
 \title{La phylogénie des images dans les réseaux sociaux} 
 %% parcours du master
@@ -83,7 +83,11 @@
 \version{1}
 %% Résumé en francais
 \abstractfr{
-Ce stage de master.
+  Il est aujourd'hui extrêmement facile de manipuler des images et de les partager à l'aide des réseaux sociaux. Il est important d'identifier l'historique des transformations appliquées aux images afin de leur accorder la moindre crédibilité. Dans le cadre de ce stage, l'objectif principal de nos recherches consiste à calculer l'arbre de phylogénie d'un ensemble d'images où les images sont issues de différentes compressions JPEG successives. À chaque étape, une image enfant est donc créée à partir de la compression d'une image parent. Dans ce rapport nous présenterons dans l'état de l'art les différentes méthodes de reconstruction d'un arbre phylogénétique et traiterons de la détection et de l'identification des compressions JPEG multiples. Nous présenterons également dans notre approche un théorème permettant de réduire le calcul de l'arbre à une décision binaire entre deux images et un algorithme de reconstruction d'arbre.
+
+\vspace{5mm}
+\textbf{Mots clés.} Phylogénie des images, JPEG, compressions multiples, arbre de phylogénie
+
 }
 %% Résumé en anglais
 \abstracteng{
@@ -537,7 +541,7 @@ Il peut cependant être envisagé d'utiliser une distance pour estimer une direc
 
  Il existe un grand nombre de mesure de distances \autocite{cha2007comprehensive}, aussi, nous ne parlerons que des distances entre distributions les plus utilisées. Nous n'entrerons cependant pas dans les détails théoriques de ces calculs de distance, qui nécessiteraient une étude bibliographique à eux seuls, nous utiliserons ces distances comme des boites noires et choisirons de manière expérimentale la plus adaptée. Nous allons donc donner pour chaque distance son nom et sa formule.
 
-Dans la suite de cette section, $P$ et $Q$ seront des densité de probabilité.
+Dans la suite de cette section, $P$ et $Q$ seront des densités de probabilité.
 
 \subsection{Les distances}
 
@@ -555,13 +559,13 @@ La distance de Bhattacharyya :
 L'index de Jaccard est donné comme : 
 
 \begin{equation}
-  S_{Jac}(P,Q) = \frac{\sum\limits_{i=1}^{d} P_{i}Q_{i}}{\sum\limits_{i=1}^{d} P^{2}_{i} + \sum\limits_{i=1}^{d} Q_{2}^{i} - \sum\limits_{i=1}^{d} P_{i}Q^{i}}
+  S_{Jac}(P,Q) = \frac{\sum\limits_{i=1}^{d} P_{i}Q_{i}}{\sum\limits_{i=1}^{d} P^{2}_{i} + \sum\limits_{i=1}^{d} Q_{i}^{2} - \sum\limits_{i=1}^{d} P_{i}Q_{i}}
 \end{equation}
 
 Il correspond à la taille de l'intersection entre deux distributions divisé par la taille de leur union. La distance de Jaccard est :
 
 \begin{equation}
-  D_{Jac}(P,Q) = 1 - S_{Jac}(P,Q) = \frac{\sum\limits_{i=1}^{d} (P_{i} - Q_{i})^2}{\sum\limits_{i=1}^{d} P^{2}_{i} + \sum\limits_{i=1}^{d} Q_{2}^{i} - \sum\limits_{i=1}^{d} P_{i}Q_{i}}
+  D_{Jac}(P,Q) = 1 - S_{Jac}(P,Q) = \frac{\sum\limits_{i=1}^{d} (P_{i} - Q_{i})^2}{\sum\limits_{i=1}^{d} P^{2}_{i} + \sum\limits_{i=1}^{d} Q^{2}_{i} - \sum\limits_{i=1}^{d} P_{i}Q_{i}}
 \end{equation}
 
 \subsection{Les divergences}
@@ -579,12 +583,12 @@ La K divergence :
 
 
 \chapter{Notre approche}
-Ce chapitre sera consacré à présenter notre approche, nous y détaillerons notre approche, formalisée par un théorème, puis nous présenterons un algorithme permettant de reconstruire l'arbre de phylogénie.
+Ce chapitre est consacré à présenter notre approche, nous y détaillons notre approche, formalisée par un théorème, puis nous présentons un algorithme permettant de reconstruire l'arbre de phylogénie.
 \label{chap3}
 \label{chap:notre_approche}
 \section{Principe et théorème}
-Pour tout couple d'images de notre ensemble, nous allons tenter de nier qu'il existe une relation de parenté, cela va permettre d'extraire une matrice binaire, appelée \textit{matrice de parenté}, de la taille de l'ensemble d'image, où une valeur à 1 indiquera une relation de parenté et une valeur à 0 en indiquera l'absence. À noter une fois de plus que ce n'est pas forcément un parent direct mais plutôt un ancêtre. \\ \indent
-Nous pouvons noter plusieurs choses intéressantes de l'exemple figure \ref{parentage_tree}. Toutes les valeurs de la colonne de l''image $I_{2}$ sont à 1 , c'est à dire que c'est un parent commun à toutes les autres images, et sa ligne n'a que des 0, elle n'a donc aucun parent. Nous nous servons de ce principe pour la reconstruction de l'arbre à partir de la matrice : une image qui n'a pas de parent est la racine. Nous pouvons également remarquer les colonnes où toutes les cases sont à 0, cela veut dire que ces images ne sont les parents de personne, et donc sont des feuilles.
+Pour tout couple d'images de notre ensemble, nous allons tenter de nier qu'il existe une relation de parenté, cela va permettre d'extraire une matrice binaire, appelée \textit{matrice de parenté}, de la taille de l'ensemble d'images, où une valeur à 1 indiquera une relation de parenté et une valeur à 0 en indiquera l'absence. À noter une fois de plus que ce n'est pas forcément un parent direct mais plutôt un ancêtre. \\ \indent
+Nous pouvons noter plusieurs choses intéressantes de l'exemple illustré figure \ref{parentage_tree}. Toutes les valeurs de la colonne de l'image $I_{2}$ sont à 1 , c'est à dire que c'est un parent commun à toutes les autres images, et sa ligne n'a que des 0, elle n'a donc aucun parent. Nous nous servons de ce principe pour la reconstruction de l'arbre à partir de la matrice : une image qui n'a pas de parent est la racine. Nous pouvons également remarquer les colonnes où toutes les cases sont à 0, cela veut dire que ces images ne sont les parents de personne, et donc sont des feuilles.
 
 \begin{figure}
   \begin{subfigure}{.5\textwidth}
@@ -611,7 +615,20 @@ Nous pouvons noter plusieurs choses intéressantes de l'exemple figure \ref{pare
   \label{parentage_tree}
 \end{figure}
 
-Nous avons formalisé ce principe en un théorème : 
+Nous avons formalisé ce principe en un théorème présenté ci-dessous: 
+\newtheorem*{marqueur}{Définition}
+\begin{marqueur}
+  Un \textbf{marqueur} est une caractéristique locale ou globale extraite de l'image qui indique qu'une certaine opération a été effectuée. Ce marqueur va se transmettre aux enfants de l'image, et serviront potentiellement à prouver qu'une image n'est pas le parent d'une autre.
+
+Par exemple une image en noir et blanc ne peut pas être le parent d'une image couleur car le marqueur ``couleur'' est absent de l'image noir et blanc.
+\end{marqueur}
+
+\newtheorem*{fonction}{Définition}
+\begin{fonction}
+  Soit $f(I_{m},I_{n})$ une fonction qui pour tout couple d'images $(I_{m}, I_{n})$ détecte à chaque fois qu'il est présent un marqueur indiquant qu'il n'y a pas de relation de parenté entre $I_{m}$ et $I_{n}$. Cette fonction est appelée fonction de négation. Notons que ce type de fonction est plus ou moins abstrait et qu'un des objectifs du stage sera d'essayer d'en proposer au moins une.
+ % est nous devrons la trouver dans la suite du stage.
+\end{fonction}
+
 \newtheorem*{parentage}{Théorème}
 \begin{parentage}
   % Supposons qu'il existe une fonction $f(.,.)$ qui pour tout couple d'image passé en paramètre détecte à chaque fois qu'il est présent un marqueur prouvant qu'il n'y a pas de relation de parenté entre ces deux images.
@@ -619,12 +636,12 @@ Nous avons formalisé ce principe en un théorème :
 \end{parentage}
 
 \begin{proof}
-  Soit $f(I_{m},I_{n})$ une fonction qui pour tout couple d'images $(I_{m}, I_{n})$ détecte à chaque fois qu'il est présent un marqueur prouvant qu'il n'y a pas de relation de parenté entre $I_{m}$ et $I_{n}$. Si $f(I_{m},I_{n})$ ne détecte rien alors c'est que $I_{m}$ est le parent de $I_{n}$, et donc $m < n$.
+  Si $f(I_{m},I_{n})$ ne parvient pas à trouver de marqueur prouvant que $I_{m}$ n'est pas de parent de $I_{n}$ alors c'est que ce marqueur n'existe pas et donc que $I_{m}$ est le parent de $I_{n}$, avec $m < n$.
 \end{proof}
 
 
 \section{L'algorithme de reconstruction}
-De ces quelques principes nous avons extrait un algorithme. \vspace{5mm}
+De ces quelques principes nous avons extrait l'algorithme \ref{algo_}. \vspace{5mm}
 
 \begin{algorithm}[H]
   % \SetAlgorithmName{MegaAlgorithm}{salut}
@@ -678,17 +695,17 @@ L'algorithme \ref{algo_} prend en entrée la matrice de parenté détaillée pr�
 
 Cet algorithme a une complexité de $O(n^{2})$. Il y a deux boucles imbriquées, et si les sommes sont calculées une seule fois au début et mises à jour à chaque fois qu'un parent est enlevé, il n'y a pas de boucle supplémentaire augmentant la complexité.
 
-Le but est donc de trouver la fonction permettant de détecter le marqueur prouvant qu'il n'y a pas de parenté. 
+Le but est donc de trouver une fonction $f(I_{m}, I_{n})$ permettant de détecter le marqueur prouvant qu'il n'y a pas de parenté. 
 % Et même si cette fonction n'est pas parfaite, et qu'elle se trompe dans ses prédictions, l'algorithme est robuste et premet tout de même d'obtenir des résultats cohérents si on s'appuie sur les métriques introduites pas \autocite{dias2010first} pour évaluer l'arbre (voir Fig. \ref{algo-robuste}).
 
-Il nous a semblé important, même dans le cadre de l'étude bibliographique, d'élaborer cet algorithme. Il est en effet assez simple mais néanmoins indispensable à notre méthode, et aurait pu orienter différemment nos recherche et notre méthode s'il n'avait pas été imaginé. Le reste du stage sera consacré à élaborer la fonction énoncée précédemment, en plus d'appliquer cet algorithme à plusieurs centaines d'exemples avec des configurations différentes pour pouvoir en tirer une analyse et une synthèse.
+Il nous a semblé important, même dans le cadre de l'étude bibliographique, d'élaborer cet algorithme et de poser ce théorème. Il est en effet assez simple mais néanmoins indispensable à notre méthode, et aurait pu orienter différemment nos recherches et notre méthode s'il n'avait pas été imaginé. Le reste du stage sera consacré à élaborer la fonction énoncée précédemment, en plus d'appliquer cet algorithme à plusieurs centaines d'exemples avec des configurations différentes pour pouvoir en tirer une analyse et une synthèse.
 
 Cette approche a pour avantage de réduire l'évaluation d'un arbre de phylogénie à partir d'un ensemble d'images à l'évaluation binaire de parenté entre deux images.
 
 %%%% faire une trace de l'algo %%%%%
 \chapter{Conclusion}
 \label{chap4}
-Au terme de cette étude, nous avons pu voir que le problème de la reconstruction d'arbre phylogénétique d'images dans les réseaux sociaux se divise en deux sous-parties : l'identification de la racine et l'estimation des relations parent-enfant. Nous avons également pu voir dans l'état de l'art les différentes approches de reconstruction d'arbre de phylogénie. Nous avons choisi de nous concentrer uniquement sur l'étude des recompressions JPEG pour le calcul de l'arbre. Cette décision est motivée par le fait que nous sommes intéressés par le domaine du forensics et que l'étude des recompressions un sujet suffisamment vaste et complexe. Cela nous a amené à étudier la détection des compressions multiples.
+Au terme de cette étude, nous avons pu voir que le problème de la reconstruction d'arbre phylogénétique d'images dans les réseaux sociaux n'est pas trivial et peut se diviser en deux sous-parties : l'identification de la racine et l'estimation des relations parent-enfant. Nous avons également pu voir dans l'état de l'art les différentes approches de reconstruction d'arbre de phylogénie. Nous avons choisi de nous concentrer uniquement sur l'étude des recompressions JPEG pour le calcul de l'arbre. Cette décision est motivée par le fait que nous sommes intéressés par le domaine du forensics et que l'étude des recompressions un sujet suffisamment vaste et complexe. Cela nous a amené à étudier la détection des compressions multiples.
 
 De cette étude nous avons formalisé un théorème et réduit la reconstruction de l'arbre à une décision binaire entre deux images. Nous avons également précisément identifié les buts à atteindre dans la suite de ce stage : identifier une fonction qui trouve s'il est présent un marqueur qui prouve qu'il n'y a pas de relation parent-enfant entre deux images.
 % \nocite{*}
