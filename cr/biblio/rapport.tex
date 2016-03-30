@@ -21,7 +21,7 @@
 \usepackage{indentfirst}
 \usetikzlibrary{trees}
 \usetikzlibrary{babel}
-\usetikzlibrary{arrows,automata, positioning}
+\usetikzlibrary{arrows,automata,positioning}
 
 \usepackage[
     maxbibnames=9,
@@ -86,12 +86,16 @@
   Il est aujourd'hui extrêmement facile de manipuler des images et de les partager à l'aide des réseaux sociaux. Il est important d'identifier l'historique des transformations appliquées aux images afin de leur accorder la moindre crédibilité. Dans le cadre de ce stage, l'objectif principal de nos recherches consiste à calculer l'arbre de phylogénie d'un ensemble d'images où les images sont issues de différentes compressions JPEG successives. À chaque étape, une image enfant est donc créée à partir de la compression d'une image parent. Dans ce rapport nous présenterons dans l'état de l'art les différentes méthodes de reconstruction d'un arbre phylogénétique et traiterons de la détection et de l'identification des compressions JPEG multiples. Nous présenterons également dans notre approche un théorème permettant de réduire le calcul de l'arbre à une décision binaire entre deux images et un algorithme de reconstruction d'arbre.
 
 \vspace{5mm}
-\textbf{Mots clés.} Phylogénie des images, JPEG, compressions multiples, arbre de phylogénie
+\textbf{Mots clés.} Phylogénie des images, JPEG, Compressions multiples, Arbre de phylogénie
 
 }
 %% Résumé en anglais
 \abstracteng{
-  This master thesis.
+  Nowadays it is extremely easy to tamper images and share them thanks to social media. Identifying the tamper history is mandatory to be able to trust any of those images. During this internship, our main goal is to compute the image phylogeny tree of an image set, where images are created from successive JPEG compressions. Every step, a child image is created from the compression of a parent image. In this master's thesis we present in a state of the art several methods for computing the image phylogeny tree and take an overview of the different methods for detecting and identifying multiple JPEG compressions. We also introduce our approach with a theorem that allows us to reduce the image phylogeny tree estimation to a binary decision between two images and we describe a tree building algorithm.
+
+\vspace{5mm}
+\textbf{Mots clés.} Image phylogeny, JPEG, Multiple compressions, Phylogeny tree
+
 }
 
 
@@ -114,7 +118,7 @@
 La phylogénie, en sciences naturelles, est définie comme l'étude des relations de parenté entre êtres vivants. Et c'est exactement de cela qu'il s'agit dans le cas des images, l'étude des relations de parenté entre images. \autocite{phylogeny} \\
 À l'ère du numérique et des réseaux sociaux, il n'a jamais été aussi simple de partager des idées et du contenu. À chaque partage cependant, l'information peut être modifiée plus ou moins fortement. Les images, puisque c'est là notre sujet d'étude, peuvent avoir subi un certain nombre de transformations et de modifications avant d'être publiées sur les réseaux sociaux. C'est dans ce contexte que nous allons intervenir afin de tenter de reconstituer la phylogénie d'une image. Il peut être difficile de différentier une image modifiée de l'originale, et de savoir laquelle est l'originale. Alors que cette détection est cruciale, surtout dans un monde où l'information peut être facilement falsifiée par tout un chacun. Les applications sont multiples et variées, et ne se cantonnent pas à la détection et la discrimination d'images altérées. Il est également possible de se servir de la phylogénie des images pour optimiser l'espace de stockage en ne gardant que l'image originale et l'historique des modifications ou encore suivre la diffusion et l'évolution des idées sur les réseaux sociaux. 
 
-Dans ce chapitre nous commencerons par définir ce que sont les near-duplicates images, puis nous détaillerons la notion d'arbre phylogénétique et enfin nous expliquerons pourquoi nous nous sommes restreints à la compression JPEG dans le cadre de cette étude. Nous ferons un état de l'art dans le chapitre \ref{chap2} où nous présenterons les différentes approches pour calculer l'arbre de phylogénie. Nous aborderons également la problématique de la détection des recompressions et l'estimation du nombre de recompressions. Nous présentons ensuite notre approche dans le chapitre \ref{chap3}, où un algorithme de reconstruction d'arbre sera détaillé, en plus du théorème qui sera la base de la suite du stage. Nous finirons par conclure dans le chapitre \ref{chap4}.
+Dans ce chapitre nous commencerons par définir ce que sont les near-duplicate images, puis nous détaillerons la notion d'arbre phylogénétique et enfin nous expliquerons pourquoi nous nous sommes restreints à la compression JPEG dans le cadre de cette étude. Nous ferons un état de l'art dans le chapitre \ref{chap2} où nous présenterons les différentes approches pour calculer l'arbre de phylogénie. Nous aborderons également la problématique de la détection des recompressions et l'estimation du nombre de recompressions. Nous présentons ensuite notre approche dans le chapitre \ref{chap3}, où un algorithme de reconstruction d'arbre sera détaillé, en plus du théorème qui sera la base de la suite du stage. Nous finirons par conclure dans le chapitre \ref{chap4}.
 \newpage
 
 \section{Near-duplicate images (NDI)}
@@ -203,7 +207,7 @@ Dans le cadre du stage, nous proposons de réduire l'espace des transformations 
         \tikzstyle{every state}=[shape=rectangle,minimum width=1.3in,text width=1.3in, align=center,fill=blue!30]
 
         \node[draw=none,fill=none] (A) {image originale};
-        \node[state] (B) [right=0.7cm of A] {Première compression JPEG avec $Q_{1}$};
+        \node[state] (B) [right=0.7cm of A] {première compression JPEG avec $Q_{1}$};
         \node[draw=none,fill=none,minimum width=1.1in,text width=1.1in] (C) [right=0.7cm of B] {première image compressée};
         \node[state] (D) [above right=1.7cm and 0.9cm of C] {$n^{ieme}$ compression JPEG avec $Q_{n+1} = Q_{n}$};
         \node[state] (E) [right=0.9cm of C] {$n^{ieme}$ compression JPEG avec $Q_{n+1} < Q_{n}$};
@@ -303,7 +307,7 @@ Un graphe est ensuite construit à partir des couples d'images pour lesquels une
 Tout comme l'approche présentée précédemment, \citeauthornsc{dias2010first} \autocite{dias2010first}\autocite{dias2012image} proposent une approche basée sur le contenu de l'image. Elle consiste a mapper une image sur le domaine d'une autre, pour pouvoir les comparer, et ensuite estimer le coût de cette opération. L'hypothèse est que si deux images sont dépendantes, alors il est possible d'obtenir l'une en appliquant une transformation à l'autre. 
 
 %%% proches = 
-Les images sont comparées à l'aide d'une fonction de dissimilarité, ou \textit{dissimilarity function d(.,.)} qui renvoie des petites valeurs lorsque les images sont proches (elles ont subi des transformations similaires). L'équation \ref{dissimilarity-function} détaille cette fonction. $I_{m}$ et $I_{n}$ sont les deux images qui vont être comparées, et $T_{\overrightarrow{\beta}} \in \mathcal{T}$ est la transformation en train d'être estimée. La transformation la plus faible est gardée comme résultat, c'est la transformation la plus probable qu'a pu subir l'image. À noter que $d(.,.)$ est asymétrique, c'est à dire que $d(I_{m},I_{n}) \neq d(I_{m},I_{n})$, ce qui est parfaitement logique, en plus d'être nécessaire, sachant que les transformation sont directionnelles, comme expliqué précédemment.
+Les images sont comparées à l'aide d'une fonction de dissimilarité, ou \textit{dissimilarity function d(.,.)} qui renvoie des petites valeurs lorsque les images sont proches (elles ont subi des transformations similaires). L'équation \ref{dissimilarity-function} détaille cette fonction. $I_{m}$ et $I_{n}$ sont les deux images qui vont être comparées, et $T_{\overrightarrow{\beta}} \in \mathcal{T}$ est la transformation en train d'être estimée. La transformation la plus faible est gardée comme résultat, c'est la transformation la plus probable qu'a pu subir l'image. À noter que $d(.,.)$ est asymétrique, c'est à dire que $d(I_{m},I_{n}) \neq d(I_{n},I_{m})$, ce qui est parfaitement logique, en plus d'être nécessaire, sachant que les transformation sont directionnelles, comme expliqué précédemment.
 
 \begin{equation}
   d(I_{m},I_{n}) = \underset{T_{\overrightarrow{\beta}}}{min}\left | I_{n} - T_{\overrightarrow{\beta}}(I_{m}) \right |_{comparison\ method}
@@ -581,6 +585,8 @@ La K divergence :
   D_{kdiv}(P||Q) = \sum\limits_{i=1}^{d} P_{i}\ log\ \frac{2P_{i}}{P_{i}+Q_{i}}
 \end{equation}
 
+\vspace{8mm}
+Au travers de cet état de l'art, nous avons pu voir différentes méthodes de calcul de l'arbre phylogénétique et avons vu que la difficulté se trouve dans l'estimation des relations de parenté entre les images. Ce que nous avons tenté de résoudre en nous intéressant à l'analyse des compressions multiples, analyse qui est loin d'être triviale et qui souvent se limite aux premières recompressions. Nous avons également vu plusieurs calculs de distances qui serviront eux aussi à estimer les relations de parenté entre images.
 
 \chapter{Notre approche}
 Ce chapitre est consacré à présenter notre approche, nous y détaillons notre approche, formalisée par un théorème, puis nous présentons un algorithme permettant de reconstruire l'arbre de phylogénie.
@@ -698,7 +704,7 @@ Cet algorithme a une complexité de $O(n^{2})$. Il y a deux boucles imbriquées,
 Le but est donc de trouver une fonction $f(I_{m}, I_{n})$ permettant de détecter le marqueur prouvant qu'il n'y a pas de parenté. 
 % Et même si cette fonction n'est pas parfaite, et qu'elle se trompe dans ses prédictions, l'algorithme est robuste et premet tout de même d'obtenir des résultats cohérents si on s'appuie sur les métriques introduites pas \autocite{dias2010first} pour évaluer l'arbre (voir Fig. \ref{algo-robuste}).
 
-Il nous a semblé important, même dans le cadre de l'étude bibliographique, d'élaborer cet algorithme et de poser ce théorème. Il est en effet assez simple mais néanmoins indispensable à notre méthode, et aurait pu orienter différemment nos recherches et notre méthode s'il n'avait pas été imaginé. Le reste du stage sera consacré à élaborer la fonction énoncée précédemment, en plus d'appliquer cet algorithme à plusieurs centaines d'exemples avec des configurations différentes pour pouvoir en tirer une analyse et une synthèse.
+Il nous a semblé important, même dans le cadre de l'étude bibliographique, d'élaborer cet algorithme et de poser ce théorème. Ils sont en effet assez simples mais néanmoins indispensables à notre méthode, et auraient pu orienter différemment nos recherches et notre méthode s'ils n'avaient pas été imaginés. Le reste du stage sera consacré à élaborer la fonction énoncée précédemment, en plus d'appliquer cet algorithme à plusieurs centaines d'exemples avec des configurations différentes pour pouvoir en tirer une analyse et une synthèse.
 
 Cette approche a pour avantage de réduire l'évaluation d'un arbre de phylogénie à partir d'un ensemble d'images à l'évaluation binaire de parenté entre deux images.
 
