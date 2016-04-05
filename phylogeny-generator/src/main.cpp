@@ -347,7 +347,7 @@ void plotDctCoefficients(std::ostream &stream, std::string path) {
   //   }  
 }
 
-void applyTransform(Image& image, Node *node) {
+void applyTransform(Image &image, Node *node) {
   std::vector<std::function<void(Image &image)> > functions;
 
   //resize

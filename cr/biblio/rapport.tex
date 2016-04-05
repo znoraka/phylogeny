@@ -83,7 +83,7 @@
 \version{1}
 %% Résumé en francais
 \abstractfr{
-  Il est aujourd'hui extrêmement facile de manipuler des images et de les partager à l'aide des réseaux sociaux. Il est important d'identifier l'historique des transformations appliquées aux images afin de leur accorder la moindre crédibilité. Dans le cadre de ce stage, l'objectif principal de nos recherches consiste à calculer l'arbre de phylogénie d'un ensemble d'images où les images sont issues de différentes compressions JPEG successives. À chaque étape, une image enfant est donc créée à partir de la compression d'une image parent. Dans ce rapport nous présenterons dans l'état de l'art les différentes méthodes de reconstruction d'un arbre phylogénétique et traiterons de la détection et de l'identification des compressions JPEG multiples. Nous présenterons également dans notre approche un théorème permettant de réduire le calcul de l'arbre à une décision binaire entre deux images et un algorithme de reconstruction d'arbre.
+  Il est aujourd'hui extrêmement facile de manipuler des images et de les partager à l'aide des réseaux sociaux. Il est important d'identifier l'historique des transformations appliquées aux images afin de leur accorder un minimum crédibilité. Dans le cadre de ce stage, l'objectif principal de nos recherches consiste à calculer l'arbre de phylogénie d'un ensemble d'images où les images sont issues de différentes compressions JPEG successives. À chaque étape, une image enfant est donc créée à partir de la compression d'une image parent. Dans ce rapport nous présentons dans l'état de l'art les différentes méthodes de reconstruction d'un arbre phylogénétique et traiterons de la détection et de l'identification des compressions JPEG multiples. Nous présentons également dans notre approche un théorème permettant de réduire le calcul de l'arbre à une décision binaire entre deux images et un algorithme de reconstruction d'arbre.
 
 \vspace{5mm}
 \textbf{Mots clés.} Phylogénie des images, JPEG, Compressions multiples, Arbre de phylogénie
@@ -626,7 +626,7 @@ Nous avons formalisé ce principe en un théorème présenté ci-dessous:
 \begin{marqueur}
   Un \textbf{marqueur} est une caractéristique locale ou globale extraite de l'image qui indique qu'une certaine opération a été effectuée. Ce marqueur va se transmettre aux enfants de l'image, et serviront potentiellement à prouver qu'une image n'est pas le parent d'une autre.
 
-Par exemple une image en noir et blanc ne peut pas être le parent d'une image couleur car le marqueur ``couleur'' est absent de l'image noir et blanc.
+Par exemple une image en noir et blanc ne peut pas être le parent d'une image couleur car le marqueur ``couleur'' est absent de l'image en noir et blanc.
 \end{marqueur}
 
 \newtheorem*{fonction}{Définition}
@@ -713,7 +713,7 @@ Cette approche a pour avantage de réduire l'évaluation d'un arbre de phylogén
 \label{chap4}
 Au terme de cette étude, nous avons pu voir que le problème de la reconstruction d'arbre phylogénétique d'images dans les réseaux sociaux n'est pas trivial et peut se diviser en deux sous-parties : l'identification de la racine et l'estimation des relations parent-enfant. Nous avons également pu voir dans l'état de l'art les différentes approches de reconstruction d'arbre de phylogénie. Nous avons choisi de nous concentrer uniquement sur l'étude des recompressions JPEG pour le calcul de l'arbre. Cette décision est motivée par le fait que nous sommes intéressés par le domaine du forensics et que l'étude des recompressions un sujet suffisamment vaste et complexe. Cela nous a amené à étudier la détection des compressions multiples.
 
-De cette étude nous avons formalisé un théorème et réduit la reconstruction de l'arbre à une décision binaire entre deux images. Nous avons également précisément identifié les buts à atteindre dans la suite de ce stage : identifier une fonction qui trouve s'il est présent un marqueur qui prouve qu'il n'y a pas de relation parent-enfant entre deux images.
+De cette étude nous avons formalisé un théorème et réduit la reconstruction de l'arbre à une décision binaire entre deux images. Nous avons également précisément identifié les buts à atteindre dans la suite de ce stage : identifier une fonction qui trouve, s'il est présent, un marqueur qui prouve qu'il n'y a pas de relation parent-enfant entre deux images.
 % \nocite{*}
 \printbibliography
 
