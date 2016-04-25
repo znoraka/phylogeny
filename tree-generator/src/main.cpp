@@ -29,7 +29,13 @@ void exportPhylogeny(std::ostream& stream, Node *root);
 void recompress(Image &parent, Node *node, int parentQ);
 
 void recompress(Image &image, Node *node, int parentQ) {
-  int q = fmax(30, parentQ - (1 + std::rand() % 4) * 5);
+  // int q = fmax(30, parentQ - (1 + std::rand() % 25));
+  // int q = fmax(30, parentQ - (1 + std::rand() % 3) * 5);
+  int q;
+  do {
+    q = 50 + std::rand() % 50;
+  } while(q == parentQ);
+  
   image.quality(q);
   node->compression = q;
 }

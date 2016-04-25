@@ -1,0 +1,45 @@
+# -*- mode: org -*-
+#+OPTIONS: toc:nil
+
+Après avoir tout recodé en C++ par soucis de performances, je me suis rendu compte que mon programme avait une erreur dans le calcul des valeurs présentes ou non dans deux distributions.
+
+Dans presque tous les cas toutes les valeurs sont présentes, c'est à dire qu'il n'y a pas de bin vide dans un histogramme alors qu'il ne l'est pas dans l'autre, et ce pour toutes les images de l'ensemble, comme montré figure [[fig:distribs]], issu de l'arbre figure [[fig:tree]].
+
+#+CAPTION: Distributions coefficients DC des images de l'arbre compressées avec Q_{13}, image 0 en haut à gauche, image 15 en bas à droite
+#+attr_html: :width 1000px
+#+NAME:   fig:distribs
+[[./data/distribs.png]]
+
+#+CAPTION: Arbre de phylogénie d'images issues de compressions successives
+#+attr_html: :width 500px
+#+NAME:   fig:tree
+[[./data/tree.png]]
+
+
+On peut voir que la seule image pour laquelle les deux distributions correspondent parfaitement est le parent direct. En partant de ce principe, il est trivial de concevoir un algorithme qui reconstruit l'arbre de phylogenie à partir d'un ensemble d'images. Cela marche aussi bien lorsque les compressions successives se font avec des coefficients de plus en plus petit qu'avec des coefficients aléatoires.
+
+Cette méthode est triviale et marche très bien si toutes les images de l'arbre sont en notre possession. Cette méthode n'étant en mesure de localiser que le parent direct, des pans entiers de l'arbre peuvent manquer.
+
+L'image et ses ancètres n'est pas aussi similaire qu'on aurait pu le croire, et c'est en général avec d'autre images ayant la même qualité qu'elle est la plus similaire. Le tableau suivant détaille les distances entre les distributions.
+
+| images    | kullback(13,i) | kullback(i,13) |
+|-----------+----------------+----------------|
+| 13 and 0  |       0.189216 |     0.00428459 |
+| 13 and 1  |       0.179013 |     0.00440951 |
+| 13 and 2  |       0.174458 |     0.00544813 |
+| 13 and 3  |       0.188023 |     0.00779201 |
+| 13 and 4  |       0.150308 |      0.0104852 |
+| 13 and 5  |       0.153584 |     0.00122824 |
+| 13 and 6  |       0.157971 |     0.00854999 |
+| 13 and 7  |       0.105605 |      0.0110084 |
+| 13 and 8  |      0.0823382 |      0.0159002 |
+| 13 and 9  |            0.0 |            0.0 |
+| 13 and 10 |       0.033909 |       0.012396 |
+| 13 and 11 |       0.111256 |     0.00866689 |
+| 13 and 12 |     0.00517545 |       0.141437 |
+| 13 and 14 |       0.122642 |     0.00664711 |
+| 13 and 15 |      0.0353649 |      0.0581111 |
+
+On voit que la distance entre 13 est 9 est égale à zéro, 9 est le parent direct de 13. On voit également que 0 qui est la racine n'est pas particulièrement plus proche que les autres, alors que 8 par exemple est très proche en distance sans être proche dans l'arbre de phylogénie.
+
+Le but est donc maintenant de ne pas retrouver que le parent direct mais au moins une partie des ancètres.

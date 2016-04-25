@@ -20,4 +20,4 @@
   (exec-script (~a "convert -quality " quality " " input-path " " output-path)))
 
 (define (get-dct-coefficients path)
-  (read (open-input-string (exec-script (~a "../c++/dctextractor " path)))))
+  (read (open-input-string (exec-script (~a "../c++/bin/dctextractor " path)))))

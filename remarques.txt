@@ -1,0 +1,44 @@
+La problématique est clairement exposées,. L’exercice est difficile avec ce type de sujet concernant le positionnement du point de vue mathématique (définitions, propriétés,…). Je trouve qu’il manque un peu de formalisme mathématique et de théorie des graphes pour clarifier les hypothèses/propriétés.
+
+   Je suis d'accord, mais en même temps ce n'est pas mon domaine de prédilection.
+
+Des phrases sont assez faibles en français  (en train de , c’est que, c’est à dire que c’est …)
+
+noeuds —> n\oeuds
+
+J’ai un doute sur la définition  (page 13) sur la distance $distance(I_n,I_m)$. La définition $d(I_m,I_n)$ (page 7) ne semble pas respecter l’inégalité triangulaire. Pourquoi l’introduction du vecteur $\beta$.  J’appelerai plus tôt écart.
+
+     J'ai choisi d'utiliser le mot distance pour que le lecteur sache de quoi il s'agit tout en précisant que c'était asymétrique, je n'ai à ce stade là pas encore parlé des distances et divergences, le mot distance est donc plus simple pour le lecteur. À noter également que dissimilarité est synonyme de divergence.
+
+page 5 : mapper —> Précision.
+
+     Il s'agit là d'un descriptif général de la méthode, et la définition précise d'un terme dans une description générale semble contre-intuitive. La méthode est détaillée plus tard et le lecteur averti fera la correspondance entre le terme "mapper" et les explications qui suivent.
+
+page 7 : ligne -2 :arbre de phylogénie. Tu pars de l’hypothèse que le graphe est forcément un arbre. Qui garantit que cette structure est toujours vraie ?
+
+     C'est limité grace aux "transformations autorisées", où la combinaison de deux images n'est pas possible, une image n'a donc forcément qu'un seul parent.
+ 
+
+page 10 : peut-on mesurer l’écart maximum entre les coefficients de la DCT  entre deux compressions ?
+
+     On a accès aux valeurs des coefficients DCT ainsi qu'à la table de quantification.
+
+page 12 : sous-optimal —> Sous optimal par rapport à quoi ? Quelle est la fonction objectif ?
+
+     Sous-optimal dans le sens ne permet pas d'estimer la présence de double compressions aussi bien que l'aurait pu faire un ratio parfait, comme expliqué à la ligne suivante. 
+
+L’algorithme 1 est évident et le théorème (page 17) n’est pas un théorème. Un marqueur est défini et caractérisé pour satisfaire cette propriété.
+
+     La notion de marqueur vient de la biologie https://en.wikipedia.org/wiki/Molecular_marker
+
+La bibliographie doit être mise à jour. 
+
+ 
+
+Que se passe-t’il quand il y a plusieurs composantes connexes dans le graphe pour reconstruire  l’historique ?
+
+    On part d'un ensemble de near-duplicates, on sait donc que toutes les images seront reliées
+
+Une question : Si on marque par tatouage les images, ne pourrions-nous profiter des propriétés du tatouage pour dériver des algorithmes efficaces ? 
+
+    C'est une autre problématique, cela impliquerait d'avoir un controle quelconque sur les images diffusées dans les réseaux sociaux, ce qui n'est pas faisable en tant que personne extérieure à la gestion de ce réseau.

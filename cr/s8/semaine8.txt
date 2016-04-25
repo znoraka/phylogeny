@@ -1,0 +1,31 @@
+# -*- mode: org -*-
+#+OPTIONS: toc:nil
+
+Pour pouvoir comparer les images entre elles, il faut qu'elles soient comparables.
+Pour rendre deux images I_{m} et I_{n} comparables, nous compressons I_{n} avec Q_{m} puis nous compressons les deux avec Q = 100. Cela permet entre autre de faire apparaitre les valeurs manquantes dans l'histogramme des valeurs des coefficients DCT.
+
+* er marqueur : les valeurs manquantes
+La compression des images avec Q = 100 fait apparaitre les valeurs manquantes. La compression avec un certain Q ne donnera que des valeurs multiples de ce Q. Si deux images n'ont pas été compressées avec le même Q, les multiples seront différents, et donc les valeurs manquantes également.
+Il faut cependant recaler les valeurs sur leurs multiples respectifs, en effet, à cause des arrondis de la DCT, les valeurs s'éparpillent autour des multiples, comme illustré figure [[fig:multiples]] et figure [[fig:recale]].
+Le problème de ce marqueur est qu'il peut confondre les frères et soeurs des parents qui ont un Q proche.
+#+CAPTION: Valeurs des coefficients DCT rassemblées autour des multiples
+#+attr_html: :width 600px
+#+NAME:   fig:multiples
+[[./multiples.png]]
+
+#+CAPTION: Valeurs des coefficients DCT calées sur les multiples
+#+attr_html: :width 600px
+#+NAME:   fig:recale
+[[./cale.png]]
+
+* eme marqueur : les coefficients nuls
+Un coefficient DCT mis à 0, même avec les erreurs d'arrondis, a très peu de chances de devenir autre chose que 0. Le nombre de coefficients DCT nuls dans l'image est un indicateur sur la plus forte compression qu'a pu subir l'image. Ainsi, si une image I_{m} a plus de coefficients nuls qu'une image I_{n}, c'est que dans l'historique de compressions de I_{m} un des Q_{m} a été plus petit que le plus petit des Q_{n}, donc que leur historique de compression est différent, et donc I_{m} ne peut pas être de parent de I_{n}.
+
+* eme marqueur : les images identiques
+Ce marqueur garantit qu'une image est l'enfant direct d'une autre. Si à l'issue des transformations appliquées aux images pour les rendre comparables elles sont toutes deux identiques, c'est que l'image I_{n} était une génération plus haut dans l'arbre de phylogénie, et avait jusque là le même historique.
+Cela permet de simplement reconstruire l'arbre si toutes les images sont présentes, mais si une image vient à manquer, tous les enfants de cette image seront absents de l'arbre.
+
+# #+CAPTION: Arbre de phylogénie d'images issues de compressions successives
+# #+attr_html: :width 800px
+# #+NAME:   fig:tree
+# [[./tree.png]]

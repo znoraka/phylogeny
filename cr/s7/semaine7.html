@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>semaine7</title>
+<!-- 2016-04-15 ven. 09:25 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="noe" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">semaine7</h1>
+<p>
+Après avoir tout recodé en C++ par soucis de performances, je me suis rendu compte que mon programme avait une erreur dans le calcul des valeurs présentes ou non dans deux distributions.
+</p>
+
+<p>
+Dans presque tous les cas toutes les valeurs sont présentes, c'est à dire qu'il n'y a pas de bin vide dans un histogramme alors qu'il ne l'est pas dans l'autre, et ce pour toutes les images de l'ensemble, comme montré figure <a href="#fig:distribs">1</a>, issu de l'arbre figure <a href="#fig:tree">2</a>.
+</p>
+
+
+<div id="fig:distribs" class="figure">
+<p><img src="./data/distribs.png" alt="distribs.png" width="1000px" />
+</p>
+<p><span class="figure-number">Figure 1:</span> Distributions coefficients DC des images de l'arbre compressées avec Q<sub>13</sub>, image 0 en haut à gauche, image 15 en bas à droite</p>
+</div>
+
+
+<div id="fig:tree" class="figure">
+<p><img src="./data/tree.png" alt="tree.png" width="500px" />
+</p>
+<p><span class="figure-number">Figure 2:</span> Arbre de phylogénie d'images issues de compressions successives</p>
+</div>
+
+
+<p>
+On peut voir que la seule image pour laquelle les deux distributions correspondent parfaitement est le parent direct. En partant de ce principe, il est trivial de concevoir un algorithme qui reconstruit l'arbre de phylogenie à partir d'un ensemble d'images. Cela marche aussi bien lorsque les compressions successives se font avec des coefficients de plus en plus petit qu'avec des coefficients aléatoires.
+</p>
+
+<p>
+Cette méthode est triviale et marche très bien si toutes les images de l'arbre sont en notre possession. Cette méthode n'étant en mesure de localiser que le parent direct, des pans entiers de l'arbre peuvent manquer.
+</p>
+
+<p>
+L'image et ses ancètres n'est pas aussi similaire qu'on aurait pu le croire, et c'est en général avec d'autre images ayant la même qualité qu'elle est la plus similaire. Le tableau suivant détaille les distances entre les distributions.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="right" />
+
+<col  class="right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">images</th>
+<th scope="col" class="right">kullback(13,i)</th>
+<th scope="col" class="right">kullback(i,13)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">13 and 0</td>
+<td class="right">0.189216</td>
+<td class="right">0.00428459</td>
+</tr>
+
+<tr>
+<td class="left">13 and 1</td>
+<td class="right">0.179013</td>
+<td class="right">0.00440951</td>
+</tr>
+
+<tr>
+<td class="left">13 and 2</td>
+<td class="right">0.174458</td>
+<td class="right">0.00544813</td>
+</tr>
+
+<tr>
+<td class="left">13 and 3</td>
+<td class="right">0.188023</td>
+<td class="right">0.00779201</td>
+</tr>
+
+<tr>
+<td class="left">13 and 4</td>
+<td class="right">0.150308</td>
+<td class="right">0.0104852</td>
+</tr>
+
+<tr>
+<td class="left">13 and 5</td>
+<td class="right">0.153584</td>
+<td class="right">0.00122824</td>
+</tr>
+
+<tr>
+<td class="left">13 and 6</td>
+<td class="right">0.157971</td>
+<td class="right">0.00854999</td>
+</tr>
+
+<tr>
+<td class="left">13 and 7</td>
+<td class="right">0.105605</td>
+<td class="right">0.0110084</td>
+</tr>
+
+<tr>
+<td class="left">13 and 8</td>
+<td class="right">0.0823382</td>
+<td class="right">0.0159002</td>
+</tr>
+
+<tr>
+<td class="left">13 and 9</td>
+<td class="right">0.0</td>
+<td class="right">0.0</td>
+</tr>
+
+<tr>
+<td class="left">13 and 10</td>
+<td class="right">0.033909</td>
+<td class="right">0.012396</td>
+</tr>
+
+<tr>
+<td class="left">13 and 11</td>
+<td class="right">0.111256</td>
+<td class="right">0.00866689</td>
+</tr>
+
+<tr>
+<td class="left">13 and 12</td>
+<td class="right">0.00517545</td>
+<td class="right">0.141437</td>
+</tr>
+
+<tr>
+<td class="left">13 and 14</td>
+<td class="right">0.122642</td>
+<td class="right">0.00664711</td>
+</tr>
+
+<tr>
+<td class="left">13 and 15</td>
+<td class="right">0.0353649</td>
+<td class="right">0.0581111</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+On voit que la distance entre 13 est 9 est égale à zéro, 9 est le parent direct de 13. On voit également que 0 qui est la racine n'est pas particulièrement plus proche que les autres, alors que 8 par exemple est très proche en distance sans être proche dans l'arbre de phylogénie.
+</p>
+
+<p>
+Le but est donc maintenant de ne pas retrouver que le parent direct mais au moins une partie des ancètres.
+</p>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: noe</p>
+<p class="date">Created: 2016-04-15 ven. 09:25</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

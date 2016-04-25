@@ -1,6 +1,7 @@
 #lang racket
 
 (require racket/file)
+(require math/statistics)
 (require "scripts.rkt")
 
 (struct distance-formula (global-func per-item-func) #:transparent)
@@ -92,8 +93,8 @@
     (* 100.0
        (/ (count (λ (i)
                    (ormap (λ (pj)
-                            (and (>= i (- pj (/ q 4)))
-                                (<= i (+ pj (/ q 4))))) p))
+                            (and (>= i (- pj (/ q 1)))
+                                (<= i (+ pj (/ q 1))))) p))
                    ;; (member i p))
                    
                  c)
@@ -116,7 +117,7 @@
                  [d3 (distance kb child3 parent3)]
                  ;; [v (f child1 parent1 q)]
                  ;; [v2 (f child2 parent2 q)]
-                 ;; [v3 (f child3 parent3 q)]
+                 [v3 (f child3 parent3 q)]
                  ;; [v4 (f child2 parent1 q)]
                  )
             ;; (displayln (~a "v = " v3))
@@ -124,7 +125,7 @@
             ;; (displayln (~a v3 " " v2))
             ;; (displayln (~a  v2))
             ;; (displayln (~a d1 " " d2 " " d3))
-            ;; (displayln d3)
+            (displayln (~a d3 " " v3))
             ;; (newline)
             ;; (>= v3 100)))
             ;; (>= v2 80)))
@@ -272,20 +273,30 @@
   (define (file-name path)
     (car (string-split (car (reverse (string-split path "/"))) ".")))
 
+  (define parentage-matrix (make-vector (length files)))
 
   (for-each (λ (i)
-              (displayln (~a "parents of " (file-name i) " "
-                             (foldl (λ (j l)
-                                      (if (equal? i j)
-                                          l
-                                          (let* ([quality-i (get-image-quality i)]
-                                                 [quality-j (get-image-quality j)])
-                                            (if (< quality-i quality-j)
-                                                (let* ([image-i `(0 ,(make-distrib (make-histo (cadr (get-dct-coefficients i)))))]
-                                                       [a (compress j "out.jpg" quality-i)]
-                                                       [image-j `(0 ,(make-distrib (make-histo (cadr (get-dct-coefficients "out.jpg")))))])
-                                                  ;; (display (~a `(,(file-name i) " - " ,(file-name j)) " "))
-                                                  (if (can-be-child? image-i image-j)
-                                                      (cons (file-name j) l) 
-                                                      l))
-                                                l)))) '() files)))) files))
+              ;; (displayln (~a "parents of " (file-name i) " "
+              (let* ([current-image (string->number (file-name i) )]
+                     [parents (map string->number
+                                   (foldl (λ (j l)
+                                       (if (equal? i j)
+                                           l
+                                           (let* ([quality-i (get-image-quality i)]
+                                                  [quality-j (get-image-quality j)])
+                                             (if (< quality-i quality-j)
+                                                 (let* ([image-i `(0 ,(make-distrib (make-histo (cadr (get-dct-coefficients i)))))]
+                                                        [a (compress j "out.jpg" quality-i)]
+                                                        [image-j `(0 ,(make-distrib (make-histo (cadr (get-dct-coefficients "out.jpg")))))])
+                                                   (display (~a `(,(file-name i) " - " ,(file-name j)) " "))
+                                                   (if (can-be-child? image-i image-j)
+                                                       (cons (file-name j) l) 
+                                                       l))
+                                                 l)))) '() files))]
+                     [parents-vector (build-vector (length files) (λ (i)
+                                                                    (if (member i parents =)
+                                                                        1
+                                                                        0)))])
+                (vector-set! parentage-matrix current-image parents-vector)
+                )) files)
+  parentage-matrix)

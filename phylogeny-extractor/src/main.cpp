@@ -7,6 +7,8 @@
 #include <ctime>
 #include <numeric>
 #include <algorithm>
+#include <fstream>
+#include <sstream>
 
 struct Node {
   std::string name;
@@ -18,6 +20,7 @@ Node *buildTreeFromMatrix(std::vector<std::vector<bool> > matrix);
 std::vector<std::vector<bool> > matrixFromTree(Node *root);
 void exportPhylogeny(std::ostream& stream, Node *root);
 bool compareTrees(Node *r1, Node *r2);
+std::vector<std::vector<bool> > parseMatrixFromFile(std::string path);
 
 Node *buildTreeFromMatrix(std::vector<std::vector<bool> > matrix) {
   struct ref {
@@ -135,39 +138,39 @@ std::vector<std::vector<bool> > matrixFromTree(Node *root) {
 void exportPhylogeny(std::ostream& stream, Node *root, Node *root2) {
   std::function<void(Node *n)> f;
   f = [&](Node *n) {
-    // stream << "[" << std::endl;
-    // // stream << "\\href{run:" << std::to_string(n->n) << "}{" << n->name << "}" << std::endl;
+    stream << "[" << std::endl;
+    stream << "\\href{run:" << std::to_string(n->n) << "}{" << std::to_string(n->n) << ".jpg" << "}" << std::endl;
     // stream << n->n << std::endl;
     for(auto i : n->children) {
-      stream << n->n << "--" << i->n << ";";
+      // stream << n->n << "--" << i->n << ";";
       f(i);
     }
-    // stream << "]" << std::endl;
+    stream << "]" << std::endl;
   };
 
-  stream << "graph model {";
-  f(root);
-  stream << "}" << std::endl;
+  // stream << "graph model {";
+  // f(root);
+  // stream << "}" << std::endl;
 
-  stream << "graph computed {";
-  f(root2);
-  stream << "}";
+  // stream << "graph computed {";
+  // f(root2);
+  // stream << "}";
 
   
-  // stream << "\\documentclass[tikz,border=10pt]{standalone}" << std::endl;
-  // stream << "\\usepackage{forest}" << std::endl;
-  // stream << "\\usepackage{hyperref}" << std::endl;
-  // stream << "\\begin{document}" << std::endl;
+  stream << "\\documentclass[tikz,border=10pt]{standalone}" << std::endl;
+  stream << "\\usepackage{forest}" << std::endl;
+  stream << "\\usepackage{hyperref}" << std::endl;
+  stream << "\\begin{document}" << std::endl;
 
-  // stream << "\\begin{forest}" << std::endl;
-  // f(root);
-  // stream << "\\end{forest}" << std::endl;
+  stream << "\\begin{forest}" << std::endl;
+  f(root);
+  stream << "\\end{forest}" << std::endl;
   
   // stream << "\\begin{forest}" << std::endl;
   // f(root2);
   // stream << "\\end{forest}" << std::endl;
 
-  // stream << "\\end{document}" << std::endl;
+  stream << "\\end{document}" << std::endl;
 }
 
 bool compareTrees(Node *r1, Node *r2) {
@@ -183,40 +186,74 @@ bool compareTrees(Node *r1, Node *r2) {
   return true;
 }
 
+std::vector<std::vector<bool> > parseMatrixFromFile(std::string path) {
+  std::vector<std::vector<bool> > matrix;
+  std::ifstream infile(path);
+
+  std::string str;
+
+  do {
+    std::getline(infile, str);
+    str.erase(std::remove(str.begin(), str.end(), '\''), str.end());
+    str.erase(std::remove(str.begin(), str.end(), '#'), str.end());
+    str.erase(std::remove(str.begin(), str.end(), '('), str.end());
+    str.erase(std::remove(str.begin(), str.end(), ')'), str.end());
+
+    std::string s;
+    std::stringstream ss;
+    ss << str;
+    std::vector<bool> v;
+    while(std::getline(ss, s, ' ')) {
+      if(s.compare("1") == 0) {
+	v.push_back(true);
+      } else if(s.compare("0") == 0) {
+	v.push_back(false);
+      }
+    }
+    if(v.size() > 0)
+      matrix.push_back(v);
+  } while (str.size() > 1);
+
+  return matrix;
+}
+
 int main(int argc, char **argv) {
   std::srand(std::time(NULL));
   std::vector<Node*> nodes;
 
-  auto f = [&](Node *root) {
-    Node *n = new Node();
-    n->n = nodes.size();
-    nodes.push_back(n);
-    root->children.push_back(n);
-  };
+  // parseMatrixFromFile(argv[1]);
 
-  Node *root = new Node();
-  root->n = 0;
-  nodes.push_back(root);
+  // auto f = [&](Node *root) {
+  //   Node *n = new Node();
+  //   n->n = nodes.size();
+  //   nodes.push_back(n);
+  //   root->children.push_back(n);
+  // };
 
-  for (int i = 0; i < atoi(argv[1]); i++) {
-    f(nodes[std::rand() % (nodes.size())]);
-  }
-  
-  Node *out = buildTreeFromMatrix(matrixFromTree(root));
+  // Node *root = new Node();
+  // root->n = 0;
+  // nodes.push_back(root);
 
-  // if(compareTrees(out, root)) {
-  //   std::cout << "trees are the same!" << std::endl;
-  // } else {
-  //   std::cout << "trees are not the same" << std::endl;
+  // for (int i = 0; i < atoi(argv[1]); i++) {
+  //   f(nodes[std::rand() % (nodes.size())]);
   // }
+  
+  // Node *out = buildTreeFromMatrix(matrixFromTree(root));
+  Node *out = buildTreeFromMatrix(parseMatrixFromFile(argv[1]));
+
+  // // if(compareTrees(out, root)) {
+  // //   std::cout << "trees are the same!" << std::endl;
+  // // } else {
+  // //   std::cout << "trees are not the same" << std::endl;
+  // // }
   
   std::string treePath = "tree.tex";
   std::ofstream stream(treePath);
   std::cout << "exporting" << std::endl;
-  exportPhylogeny(stream, out, root);
+  exportPhylogeny(stream, out, out);
   // exportPhylogeny(std::cout, out, root);
   
-  std::cout << "done" << std::endl;
+  // std::cout << "done" << std::endl;
 
   return 0;
 }
