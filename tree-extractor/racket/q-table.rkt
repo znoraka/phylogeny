@@ -17,6 +17,13 @@
                  #(81 85 0 86 81 89 0 85)
                  #(82 81 86 83 86 89 0 84)
                  #(88 88 90 84 85 88 0 81)))
+
+(define (random-block)
+  (let ([block (build-vector 8 (λ (i) (build-vector 8 (λ (i) (random 256)))))])
+    (displayln "block")
+    (pretty-print block)
+    (newline)
+    block))
                  
 (define (q u v)
   (define table #( #(16 11 10 16 24 40 51 61)
@@ -27,8 +34,12 @@
                    #(24 35 55 64 81 104 113 92)
                    #(49 64 78 87 103 121 120 101)
                    #(72 92 95 98 112 100 103 99)))
-
   (vector-ref (vector-ref table v) u))
+
+(define (q-table quality)
+  (for*/list ([u (in-range 8)]
+         [v (in-range 8)])  
+    (qf quality u v)))
 
 (define (qf val u v)
   (define qs (if (< val 50)
@@ -61,10 +72,18 @@
   out)
 
 (define (quantize-block block quality)
-  (proxy block quality quantize))
+  (define out (proxy block quality quantize))
+  (displayln "quantification")
+  (pretty-print out)
+  (newline)
+  out)
   
 (define (invert-quantize-block block quality)
-  (proxy block quality invert-quantize))
+  (define out (proxy block quality invert-quantize))
+  (displayln "quantification inverse")
+  (pretty-print out)
+  (newline)
+  out)
 
 
 (define (test-values quality u v)
@@ -74,7 +93,6 @@
 (define (test-q-list q-list value u v)
   (foldl (λ (i l)
            (let ([v (quantize-i value i u v)])
-             (displayln v)
              v))
          value q-list))
 
@@ -103,11 +121,11 @@
        (f u v)))
   
   (for* ([u (in-range 8)]
-         [v (in-range 8)])
-    (when (and (= u 0) (= v 0))
-      (displayln (compute-dct u v)))
-    
+         [v (in-range 8)])    
     (vector-set! (vector-ref out u) v (round (compute-dct u v))))
+  (displayln "dct")
+  (pretty-print out)
+  (newline)
   out)
 
 (define (i-dct v-table)
@@ -134,6 +152,9 @@
   (for* ([i (in-range 8)]
          [j (in-range 8)])
     (vector-set! (vector-ref out i) j (round (compute-idct i j))))
+  (displayln "dct inverse")
+  (pretty-print out)
+  (newline)
   out)
 
 
