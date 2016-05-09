@@ -70,7 +70,7 @@ std::vector<std::vector<int> > readDCT(jpeg_decompress_struct srcinfo, jvirt_bar
 	for (JDIMENSION i=0; i<DCTSIZE2; i++){
 
 	  // vec.push_back(rowPtrs[compNum][0][blockNum][zigzag[i]]);
-	  vec[i].push_back(rowPtrs[compNum][0][blockNum][zigzag[i]]);
+	  vec[i].push_back(rowPtrs[compNum][0][blockNum][zigzagb[i]]);
 	  /* vec[i].push_back(rowPtrs[compNum][0][blockNum][i]); */
 
 	}

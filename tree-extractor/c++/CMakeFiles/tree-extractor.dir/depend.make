@@ -5,6 +5,7 @@ CMakeFiles/tree-extractor.dir/src/main.cpp.o: src/dctextractor.h
 CMakeFiles/tree-extractor.dir/src/main.cpp.o: src/fft.h
 CMakeFiles/tree-extractor.dir/src/main.cpp.o: src/gnuplot_i.hpp
 CMakeFiles/tree-extractor.dir/src/main.cpp.o: src/main.cpp
+CMakeFiles/tree-extractor.dir/src/main.cpp.o: src/tools.h
 CMakeFiles/tree-extractor.dir/src/main.cpp.o: /usr/include/ImageMagick-6/Magick++.h
 CMakeFiles/tree-extractor.dir/src/main.cpp.o: /usr/include/ImageMagick-6/Magick++/Blob.h
 CMakeFiles/tree-extractor.dir/src/main.cpp.o: /usr/include/ImageMagick-6/Magick++/ChannelMoments.h
