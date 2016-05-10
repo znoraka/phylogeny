@@ -3,7 +3,7 @@ project( tree-extractor )
 cmake_minimum_required(VERSION 2.6)
 
 ADD_DEFINITIONS(
-  -std=c++11
+  -std=c++14
   -w
   -lpthread
   # -ljpeg

@@ -20,6 +20,28 @@ using namespace Magick;
 
 #define D Distance::distanceFormula Distance
 
+static std::vector<int> baseTable = {16,12,14,14,18,24,49,72,11,12,13,17,22,35,64,92,10,14,16,22,37,55,78,95,16,19,24,29,56,64,87,98,24,26,40,51,68,81,103,112,40,58,57,87,109,104,121,100,51,60,69,80,103,113,120,103,61,55,56,62,77,92,101,99};
+
+static std::vector<std::vector<int> > tables;
+
+std::vector<int> table(int quality) {
+  auto getQ = [&](int val) -> int {
+    if(val < 50) {
+      return 5000 / val;
+    }
+    return (200 - (val * 2));
+  };
+
+  int q = getQ(quality);
+  
+  std::vector<int> v(baseTable);
+  for(auto &i : v) {
+    i = fmax(fmin((i * q + 50) / 100, 255), 1);
+  }
+
+  return v;
+}
+
 class Distance {
 private:
   struct distanceFormula {
@@ -47,6 +69,7 @@ public:
     }
     return d.global(sum);
   }
+
   static double compute(distanceFormula d, std::vector<double> d1, std::vector<double> d2) {
     return compute(d, d1.begin(), d1.end(), d2.begin(), d2.end());
   }
@@ -148,7 +171,7 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
       if(vec[i] >= vec[i + 1]) return false;
     }
 
-    for (int i = index + 1; i <= index + width; i++) {
+    for (int i = index; i < index + width; i++) {
       if(vec[i] <= vec[i + 1]) return false;
     }
     return true;
@@ -182,12 +205,11 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
 
     for (int i = 1; i < fmin(255, vec.size()); i++) {
       double nextDistance = Distance::compute(metric, vec.begin(), vec.end(), vec.begin() + i, vec.end());
-      // plot.push_back(1000.0 / nextDistance);
       plot.push_back(nextDistance);
     }
     
     for (int i = 0; i < plot.size(); i++) {
-      // plot2.push_back(smooth(plot, 2, i));
+      // plot2.push_back(smooth(plot, 1, i));
       plot2.push_back(plot[i]);
     }
     
@@ -199,7 +221,7 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
     std::string s;
     
     for (int i = width; plot2.size() > 1 && i < plot2.size() - width; i++) {
-      if(/*plot2[i] > *maxElem * 0.05 && */isMode(plot, 1, i)) {
+      if(plot2[i] > *maxElem * 0.05 && isMode(plot2, 1, i)) {
 	indexes.push_back(i);
 	if(indexes.size() < 10)
 	  s += std::to_string(i) + "-";
@@ -208,13 +230,13 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
     // plotHistograms("autocorrelation" + std::to_string(n++), "auto correlation", s, plot, plot);
     
     
-    plotHistograms("autocorrelation" + std::to_string(n++), "auto correlation", s, plot2, plot2);
+    // plotHistograms("autocorrelation" + std::to_string(n++), "auto correlation", s, plot2, plot2);
 
     //TODO : s'il n'y a qu'un pic il s'agit surement de la fréquence.
     if(indexes.size() == 0) {
       qs.push_back(0);
       continue; 
-    } else if (indexes.size() == 1) {
+    } else if (indexes.size() <= 2) {
       qs.push_back(indexes[0]);
       continue;
     }
@@ -238,18 +260,44 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
       }
     }
 
-
     if(indexes.size() > 1) {
       qs.push_back(sum / t);
     }
   }
 
-  for(auto i : qs) {
-    std::cout << i << ", ";
-  }
-  std::cout << std::endl;
-  return 0;
+  // for(auto i : qs) {
+  //   std::cout << i << ", ";
+  // }
+  // std::cout << std::endl;
+
+  int index = 0;
+  int minValue = std::numeric_limits<int>::max();
+  // qs[0] *= 100;
   
+  for (int i = 1; i < 100; i++) {
+    std::vector<double> tabledouble(tables[i].begin(), tables[i].end());
+    std::vector<double> qsdouble;
+
+    for (int i = 0; i < qs.size(); i++) {
+      if(qs[zigzag[i]] <= 1) qsdouble.push_back(tabledouble[zigzag[i]]);
+      else qsdouble.push_back(qs[zigzag[i]]);
+    }
+
+    if(abs(qsdouble[0] - tabledouble[0]) < 3) {
+      
+      double d = Distance::compute(Distance::euclid, qsdouble, tabledouble);
+      // double d = Distance::compute(Distance::euclid, qsdouble.begin(), qsdouble.begin() + 10, tabledouble.begin(), tabledouble.begin() + 10);
+
+      // std::cout << i << " = " << d << std::endl;
+      if(d < minValue) {
+	minValue = d;
+	index = i;
+	// std::cout << "index = " << index << std::endl;
+      }
+    }
+  }
+
+  return index;
 }
 
 Node *buildTreeFromMatrix(std::vector<std::vector<bool> > matrix) {
@@ -540,11 +588,12 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
     //   plotHistograms("fft", "fft", "histo", fft(toDoubleVector(makeHisto(i.dct[0]), 1)), toDoubleVector(makeHisto(i.dct[0]), 1));
     // }
 
-    if(cpti == 4) {
+    // if(cpti == 7) {
       std::cout << cpti  << " = " << base.q << std::endl;
-      estimateQ(i.dct);
+      // estimateQ(i.dct);
+      std::cout << "q = " << estimateQ(i.dct) << std::endl;
       std::cout << std::endl;
-    }
+    // }
     // if(cpti == 0) {
     //   int n = 0;
     //   for(auto dctVec : i.dct) {
@@ -623,12 +672,20 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
 int main(int argc, char **argv) {
   InitializeMagick(*argv);
 
+  for (int i = 1; i < 101; i++) {
+    tables.push_back(table(i));
+  }
+
+
   auto matrix = estimateParents(argv[1]);
   Node *root = buildTreeFromMatrix(matrix);
 
   // std::vector<int> v = {600, 470, 170, 300, 430};
-  // std::cout << tools::standardDeviation(v) << std::endl;
-  // std::cout << estimateQ(v) << std::endl;
+
+  auto t = table(36);
+  for (int i = 0; i < t.size(); i++) {
+    std::cout << t[zigzag[i]] << " ";
+  }
   
   std::string treePath = "tree.tex";
   std::ofstream stream(treePath);
