@@ -166,7 +166,7 @@ void plotHistograms(std::string outFile, std::string name1, std::string name2, s
 }
 
 int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
-  auto isMode = [](std::vector<double> vec, int width, int index) {
+  auto isPeak = [](std::vector<double> vec, int width, int index) {
     for (int i = index - width; i < index; i++) {
       if(vec[i] >= vec[i + 1]) return false;
     }
@@ -190,7 +190,10 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
   
   std::vector<int> qs;
   int n = 0;
-  for(auto dct : dctCoeffs) {
+  // for(auto dct : dctCoeffs) {
+  for (int k = 0; k < 3; k++) {
+  // for (int k = 0; k < dctCoeffs.size(); k++) {
+    auto dct = dctCoeffs[zigzag[k]];
     std::vector<double> vec;
     double total = 0;
     for(auto i : makeHisto(dct)) {
@@ -221,16 +224,16 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
     std::string s;
     
     for (int i = width; plot2.size() > 1 && i < plot2.size() - width; i++) {
-      if(plot2[i] > *maxElem * 0.05 && isMode(plot2, 1, i)) {
+      if(plot2[i] > *maxElem * 0.05 && isPeak(plot2, 1, i)) {
 	indexes.push_back(i);
 	if(indexes.size() < 10)
 	  s += std::to_string(i) + "-";
       }
     }
-    // plotHistograms("autocorrelation" + std::to_string(n++), "auto correlation", s, plot, plot);
-    
-    
     // plotHistograms("autocorrelation" + std::to_string(n++), "auto correlation", s, plot2, plot2);
+    
+    // std::vector<int> v(vec.begin(), vec.end());
+    // plotHistograms("autocorrelation" + std::to_string(n++), "auto correlation", s, fft(v), fft(v));
 
     //TODO : s'il n'y a qu'un pic il s'agit surement de la fréquence.
     if(indexes.size() == 0) {
@@ -279,14 +282,17 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
     std::vector<double> qsdouble;
 
     for (int i = 0; i < qs.size(); i++) {
-      if(qs[zigzag[i]] <= 1) qsdouble.push_back(tabledouble[zigzag[i]]);
-      else qsdouble.push_back(qs[zigzag[i]]);
+      // if(qs[zigzag[i]] <= 1) qsdouble.push_back(tabledouble[zigzag[i]]);
+      // else qsdouble.push_back(qs[zigzag[i]]);
+      if(qs[i] <= 1) qsdouble.push_back(tabledouble[i]);
+      else qsdouble.push_back(qs[i]);
+
     }
 
-    if(abs(qsdouble[0] - tabledouble[0]) < 3) {
+    // if(abs(qsdouble[0] - tabledouble[0]) < 10) {
       
       double d = Distance::compute(Distance::euclid, qsdouble, tabledouble);
-      // double d = Distance::compute(Distance::euclid, qsdouble.begin(), qsdouble.begin() + 10, tabledouble.begin(), tabledouble.begin() + 10);
+      // double d = Distance::compute(Distance::euclid, qsdouble.begin(), qsdouble.begin() + 3, tabledouble.begin(), tabledouble.begin() + 3);
 
       // std::cout << i << " = " << d << std::endl;
       if(d < minValue) {
@@ -294,7 +300,7 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
 	index = i;
 	// std::cout << "index = " << index << std::endl;
       }
-    }
+    // }
   }
 
   return index;
@@ -460,7 +466,7 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
     for(auto i : v) {
       d += i;
     }
-    
+   
     return d;
   };
   
@@ -570,6 +576,7 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
   std::vector<std::string> pathes = getImagePathes(directory);
   
   int cpti = 0;
+  int error = 0;
   for(auto image_i : pathes) {
     std::vector<bool> vec;
     Image image2;
@@ -588,73 +595,87 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
     //   plotHistograms("fft", "fft", "histo", fft(toDoubleVector(makeHisto(i.dct[0]), 1)), toDoubleVector(makeHisto(i.dct[0]), 1));
     // }
 
-    // if(cpti == 7) {
-      std::cout << cpti  << " = " << base.q << std::endl;
-      // estimateQ(i.dct);
-      std::cout << "q = " << estimateQ(i.dct) << std::endl;
-      std::cout << std::endl;
+    // if(cpti == 14) {
+    std::cout << cpti  << " : " << std::endl;
+    int estimated = estimateQ(i.dct);
+    std::cout << "estimated = " << estimated << std::endl;
+    std::cout << "real      = " << quality << std::endl;
+    error += (abs(estimated - quality));
+    std::cout << std::endl;
+      // int n = 0;
+      // for(auto dctVec : i.dct) {
+      // // plotHistograms(std::to_string(n), std::to_string(cpti), std::to_string(n++), toDoubleVector(makeHisto(dctVec), 1), toDoubleVector(makeHisto(dctVec), 1));
+      // // plotHistograms(std::to_string(n), std::to_string(cpti), std::to_string(n++), fft(dctVec), fft(dctVec)); // 
+
+      // 	plotHistograms(std::to_string(n), std::to_string(cpti), std::to_string(n++), toDoubleVector(makeHisto(dctVec), 1), toDoubleVector(makeHisto(dctVec), 1));
+      // }
+      
     // }
+      
     // if(cpti == 0) {
-    //   int n = 0;
-    //   for(auto dctVec : i.dct) {
-    // 	plotHistograms(std::to_string(n), std::to_string(cpti), std::to_string(n++), toDoubleVector(makeHisto(dctVec), 1), toDoubleVector(makeHisto(dctVec), 1));
+      // int n = 0;
+      // for(auto dctVec : i.dct) {
+      // plotHistonnnngrams(std::to_string(n), std::to_string(cpti), std::to_string(n++), toDoubleVector(makeHisto(dctVec), 1), toDoubleVector(makeHisto(dctVec), 1));
     // 	// plotHistograms(std::to_string(n), std::to_string(cpti), std::to_string(n++), toDoubleVector(makeHisto(dctVec), 1), toDoubleVector(makeHisto(dctVec), 1));
-    //   }
+      // }
     // }
       // std::cout << base.q << " // " << estimateQ(i.dct) << std::endl;
     // }
-    
-    // int cptj = 0;
-    // for(auto image_j : pathes) {
-    //   Image image;
-    //   image.read(image_j);
 
-    //   if(cpti == cptj) {
-    // 	vec.push_back(false);
-    //   // } else if(i.q >= getQAndDct(image_j).q) {
-    //   // } else if(image2.quality() < image.quality()) {
-    //   } else if (1) {
-    // 	image.quality(quality);
-    // 	image.write("/media/ramdisk/out.jpg");
-    // 	Image image3;
-    // 	image3.read("/media/ramdisk/out.jpg");
-    // 	image3.quality(100);
-    // 	image3.write("/media/ramdisk/j.jpg");
-    // 	// q_dct j = getQAndDct("out.jpg");
-    // 	q_dct j = getQAndDct("/media/ramdisk/j.jpg");
-    // 	q_dct jUncompressed = getQAndDct(image_j);
+    //********************************//
+     /*
+    int cptj = 0;
+    for(auto image_j : pathes) {
+      Image image;
+      image.read(image_j);
 
-    // 	// q_dct j = getQAndDct(image_j);
+      if(cpti == cptj) {
+    	vec.push_back(false);
+      // } else if(i.q >= getQAndDct(image_j).q) {
+      // } else if(image2.quality() < image.quality()) {
+      } else if (1) {
+    	image.quality(quality);
+    	image.write("/media/ramdisk/out.jpg");
+    	Image image3;
+    	image3.read("/media/ramdisk/out.jpg");
+    	image3.quality(100);
+    	image3.write("/media/ramdisk/j.jpg");
+    	// q_dct j = getQAndDct("out.jpg");
+    	q_dct j = getQAndDct("/media/ramdisk/j.jpg");
+    	q_dct jUncompressed = getQAndDct(image_j);
+
+    	// q_dct j = getQAndDct(image_j);
 	
-    // 	auto dj = makeDistrib(makeHisto(j.dct[0]));
-    // 	// auto dj = toDoubleVector(j.dctDiffZero, j.numberOfBlocks);
+    	auto dj = makeDistrib(makeHisto(j.dct[0]));
+    	// auto dj = toDoubleVector(j.dctDiffZero, j.numberOfBlocks);
 
-    // 	// if(cpti == 8) {
-    // 	// plotHistograms(std::to_string(cpti) + " - " + std::to_string(cptj), std::to_string(cpti), std::to_string(cptj), fft(makeHisto(i.dct[2])), fft(makeHisto(j.dct[2])));
-    // 	  // plotHistograms(std::to_string(cptj), std::to_string(cpti), std::to_string(cptj), toDoubleVector(makeHisto(base.dct[0]), 1), toDoubleVector(makeHisto(i.dct[0]), 1));
-    // 	  // plotHistograms(std::to_string(cptj), std::to_string(cpti), std::to_string(cptj), reajust(i.dct[0], base.q), reajust(j.dct[0], base.q));
-    // 	  // plotHistograms(std::to_string(cptj), std::to_string(cpti), std::to_string(cptj), toDoubleVector(base.dctDiffZero, i.numberOfBlocks), toDoubleVector(jUncompressed.dctDiffZero, j.numberOfBlocks));
-    // 	  // plotHistograms(std::to_string(cptj), toDoubleVector(i.dctDiffZero, i.numberOfBlocks), toDoubleVector(jUncompressed.dctDiffZero, jUncompressed.numberOfBlocks));
-    // 	// }
+    	if(cpti == 8) {
+    	// plotHistograms(std::to_string(cpti) + " - " + std::to_string(cptj), std::to_string(cpti), std::to_string(cptj), fft(makeHisto(i.dct[2])), fft(makeHisto(j.dct[2])));
+    	  // plotHistograms(std::to_string(cptj), std::to_string(cpti), std::to_string(cptj), toDoubleVector(makeHisto(base.dct[0]), 1), toDoubleVector(makeHisto(i.dct[0]), 1));
+    	  plotHistograms(std::to_string(cptj), std::to_string(cpti), std::to_string(cptj), reajust(i.dct[0], base.q), reajust(j.dct[0], base.q));
+    	  // plotHistograms(std::to_string(cptj), std::to_string(cpti), std::to_string(cptj), toDoubleVector(base.dctDiffZero, i.numberOfBlocks), toDoubleVector(jUncompressed.dctDiffZero, j.numberOfBlocks));
+    	  // plotHistograms(std::to_string(cptj), toDoubleVector(i.dctDiffZero, i.numberOfBlocks), toDoubleVector(jUncompressed.dctDiffZero, jUncompressed.numberOfBlocks));
+    	}
 	
-    // 	std::cout << cpti << " and " << cptj << " = ";
-    // 	bool b1 = distancesOk(di, dj);
-    // 	bool b2 = areaUnderTheCurveOk(toDoubleVector(base.dctDiffZero, i.numberOfBlocks), toDoubleVector(jUncompressed.dctDiffZero, j.numberOfBlocks));
-    // 	bool b3 = missingValuesOk(reajust(i.dct[0], base.q), reajust(j.dct[0], base.q));
-    // 	bool b4 = distancesOk(fft(makeHisto(i.dct[0])), fft(makeHisto(j.dct[0])));
-    // 	bool b5 = missingValuesOk(fft(makeHisto(i.dct[1])), fft(makeHisto(j.dct[1])));
+    	std::cout << cpti << " and " << cptj << " = ";
+    	bool b1 = distancesOk(di, dj);
+    	bool b2 = areaUnderTheCurveOk(toDoubleVector(base.dctDiffZero, i.numberOfBlocks), toDoubleVector(jUncompressed.dctDiffZero, j.numberOfBlocks));
+    	bool b3 = missingValuesOk(reajust(i.dct[0], base.q), reajust(j.dct[0], base.q));
+    	bool b4 = distancesOk(fft(makeHisto(i.dct[0])), fft(makeHisto(j.dct[0])));
+    	bool b5 = missingValuesOk(fft(makeHisto(i.dct[1])), fft(makeHisto(j.dct[1])));
 
-    // 	vec.push_back(b1 || (b2 && b3));
-    // 	// vec.push_back(b1);
-    // 	std::cout << b2 << " " << b3 << " " << b4 << " " << b5 << std::endl;
-    // 	// std::cout << cpti << " and " << cptj << " = ";
-    // 	// canBeChild(toDoubleVector(i.dctDiffZero, i.numberOfBlocks), toDoubleVector(j.dctDiffZero, j.numberOfBlocks), i.q);
-    // 	// vec.push_back(!canBeChild(toDoubleVector(i.dctDiffZero, i.numberOfBlocks), toDoubleVector(j.dctDiffZero, j.numberOfBlocks), i.q));
-    //   } else {
-    // 	vec.push_back(false);
-    //   }
-    //   cptj++;
-    // }
+    	vec.push_back(b1 || (b2 && b3 && b4 && b5));
+    	// vec.push_back(b1);
+    	std::cout << b2 << " " << b3 << " " << b4 << " " << b5 << std::endl;
+    	// std::cout << cpti << " and " << cptj << " = ";
+    	// canBeChild(toDoubleVector(i.dctDiffZero, i.numberOfBlocks), toDoubleVector(j.dctDiffZero, j.numberOfBlocks), i.q);
+    	// vec.push_back(!canBeChild(toDoubleVector(i.dctDiffZero, i.numberOfBlocks), toDoubleVector(j.dctDiffZero, j.numberOfBlocks), i.q));
+      } else {
+    	vec.push_back(false);
+      }
+      cptj++;
+    }
+    //*/
     matrix.push_back(vec);
     cpti++;
   }
@@ -665,6 +686,8 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
     }
     std::cout << std::endl;
   }
+
+  std::cout << "mean error = " << (double)error / (double)cpti << std::endl;
 
   return matrix;
 }
@@ -681,11 +704,6 @@ int main(int argc, char **argv) {
   Node *root = buildTreeFromMatrix(matrix);
 
   // std::vector<int> v = {600, 470, 170, 300, 430};
-
-  auto t = table(36);
-  for (int i = 0; i < t.size(); i++) {
-    std::cout << t[zigzag[i]] << " ";
-  }
   
   std::string treePath = "tree.tex";
   std::ofstream stream(treePath);

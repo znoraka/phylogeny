@@ -22,26 +22,30 @@ struct Node {
   std::vector<Node*> children;
 };
 
-void createChild(std::string path, int imageCount, std::vector<Node*> &nodes);
-Node *createPhylogeny(std::string path, std::string rootImage, int imageCount);
+void createChild(std::string path, int imageCount, std::vector<Node*> &nodes, bool randomQ);
+Node *createPhylogeny(std::string path, std::string rootImage, int imageCount, bool randomQ);
 void applyTransform(Image &image, Node *node);
 void exportPhylogeny(std::ostream& stream, Node *root);
 void recompress(Image &parent, Node *node, int parentQ);
 
-void recompress(Image &image, Node *node, int parentQ) {
-  int q = fmax(30, parentQ - (1 + std::rand() % 25));
+void recompress(Image &image, Node *node, int parentQ, bool randomQ = false) {
+  int q;
+  if(randomQ) {
+    do {
+      q = 40 + std::rand() % 60;
+    } while(q == parentQ);
+  } else {
+    q = fmax(30, parentQ - (1 + std::rand() % 25));
+  }
   // int q = fmax(30, parentQ - (1 + std::rand() % 3) * 5);
   // int q;
-  // do {
-  //   q = 50 + std::rand() % 50;
-  // } while(q == parentQ);
   
   image.quality(q);
   node->compression = q;
 }
 
 
-Node *createPhylogeny(std::string path, std::string rootImage, int imageCount) {
+Node *createPhylogeny(std::string path, std::string rootImage, int imageCount, bool randomQ) {
   Image image;
   int count = 0;
   std::vector<Node*> nodes;
@@ -53,17 +57,17 @@ Node *createPhylogeny(std::string path, std::string rootImage, int imageCount) {
   
   rootPath = path + rootPath + ".jpg";
   image.read(rootImage);
-  recompress(image, root, 100);
+  recompress(image, root, 100, randomQ);
   image.write(rootPath);
   
   while (count < imageCount) {
-    createChild(path, count++, nodes);
+    createChild(path, count++, nodes, randomQ);
   }
 
   return root;
 }
 
-void createChild(std::string path, int imageCount, std::vector<Node*> &nodes) {
+void createChild(std::string path, int imageCount, std::vector<Node*> &nodes, bool randomQ) {
   Image image, parent;
   int parentIndex = (imageCount > 0) ? (std::rand() % imageCount) : 0;
   Node *n = new Node();
@@ -75,7 +79,7 @@ void createChild(std::string path, int imageCount, std::vector<Node*> &nodes) {
 
   image.read(parentPath);
 
-  recompress(image, n, parentNode->compression);
+  recompress(image, n, parentNode->compression, randomQ);
 
   std::string childPath = std::to_string(imageCount + 1);
   n->name = childPath + ".jpg";
@@ -115,7 +119,7 @@ int main(int argc, char **argv){
   std::srand(std::time(NULL));
   InitializeMagick(*argv);
 
-  Node *root = createPhylogeny(std::string(argv[1]) + "/", argv[2], atoi(argv[3]));
+  Node *root = createPhylogeny(std::string(argv[1]) + "/", argv[2], atoi(argv[3]), atoi(argv[4]));
   // std::cout << "phylogeny created" << std::endl;
   std::string treePath = std::string(argv[1]) + "/tree.tex";
   std::ofstream stream(treePath);

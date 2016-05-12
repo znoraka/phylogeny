@@ -157,6 +157,23 @@
   (newline)
   out)
 
+(define (dq-effect u q1 q2)
+  (round
+   (* (round (/ u q1))
+      (/ q1 q2))))
 
+(define (dummy u q1 q2)
+  (define (op f)
+    (define o (if (equal? f ceiling) - +))
+    (* q1
+       (o
+        (f
+         (* (/ q2 q1)
+            (o u 0.5)))
+        0.5)))
 
+  (displayln (~a (op ceiling) " ≤ u < " (op floor) ", number of bins = " (- (op floor) (op ceiling)))))
+
+(define (period q1 q2)
+  (/ q1 (gcd q1 q2)))
 
