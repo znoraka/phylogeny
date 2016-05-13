@@ -1,0 +1,110 @@
+			       ━━━━━━━━━━
+				SEMAINE9
+
+
+				  noe
+			       ━━━━━━━━━━
+
+
+
+
+
+1 Estimation du facteur de qualité d'une image
+══════════════════════════════════════════════
+
+  L'estimation se fait à partir des coefficients DCT d'une image
+  décompressée, cela donne donc deux options :
+  • décompression de l'image puis DCT sur les blocs 8x8 (évite une
+    recompression)
+  • compresser l'image à 100 et utiliser ces coefficients DCT
+
+  Nous allons ensuite tenter d'estimer la periode du signal (chaque
+  coefficient), la période est l'entier avec lequel il a été
+  quantifié. Pour cela nous allons calculer l'autocorrélation du signal
+  et en détecter les pics, comme illustré figure 1.
+  [./autocorrelation_good.png]
+
+  La moyenne de l'écart entre les valeurs des pics va nous donner la
+  valeur avec laquelle le signal a été quantifié.  Le facteur de qualité
+  le plus probable est alors celui pour laquelle la distance entre la
+  table est l'ensemble des valeurs estimées est la plus faible.
+
+  Bien qu'en théorie il soit mieux d'utiliser tous les coefficients, je
+  n'utilise que les 3 premiers (dans l'ordre zigzag), la détection des
+  pics de l'autocorrélation est grossière et sensible au bruit, et les
+  valeurs suivante vont faire baisser la précision de l'estimation.
+
+  J'ai testé cette méthode sur l'arbre de phylogénie généré
+  aléatoirement, et pour toutes les images avec un Q_{f} < 95, l'erreur
+  moyenne de prédiction se situe entre 0.5 et 2 selon l'image choisie
+  comme base de l'arbre.  Le manque de précision pour les images avec un
+  Q_{f} >= 95 s'explique par le fait que le signal n'est pas
+  suffisamment quantifié pour que des pics apparaissent dans
+  l'histogramme des coefficients DCT et donc se répercutent dans
+  l'autocorrélation (voir figure 2).
+  [./autocorrelation1.png]
+
+  Cette méthode a été testée dans le cas où les Q_{f} d'une image sont
+  toujours plus petits que ceux de leurs parents. Les résultats sont
+  corrects même si les Q_{f} sont aléatoires, mais ils sont moins bons à
+  cause du phénomène de double pics (voir figure 3) présent lorsqu'une
+  image est recompressée avec un Q_{f} plus important.
+  [./autocorrelation_double.png]
+
+
+2 DQ effect
+═══════════
+
+  h_{1} = histogramme des coefficients DCT avant la première
+  quantification h_{2} = histogramme des coefficients DCT après la
+  deuxième quantficiation
+
+  Imaginons qu'un coefficient DCT dans le bin u_{1} de h_{1} se déplace
+  dans le bin u_2 de h_2
+
+  u_1 après deux quantification = Q_{q_{1}q_{2}}(u_1)
+
+  Nous avons donc Q_{q_{1}q_{2}}(u_1) = $\left [ \left [ \frac{u1}{q1}
+  \right ] \frac{q1}{q2}\right ]$
+
+  Rappelons nous que u_{2}, q_1 et q_2 sont connus
+
+  Avant de tenter de borner u_1, détaillons comment cette formule a été
+  obtenue.
+
+  $\left [ \frac{u_1}{q_1} \right ] \to première\ quantification$
+
+  $\left [ \frac{u_1}{q_1} \right ] \times q_1 \to déquantification$
+
+  $\left [ \frac{\left ( \left [ \frac{u_1}{q_1} \right ] \times q_1
+  \right )}{q_2} \right ] \to deuxième\ quantification$
+
+  ou encore
+
+  $u_2 = \left [ \left [ \frac{u1}{q1} \right ] \frac{q1}{q2}\right ]$
+  de manière simplifiée
+
+  Tentons maintenant de borner u_1 pour savoir d'où vient u_2
+
+  $u_2 - \frac{1}{2} \leq \left [ \frac{u_1}{q_1} \right ] \times
+  \frac{q1}{q2} < u_2 + \frac{1}{2} \to$ borne de la valeur entière
+
+  $\frac{q_2}{q_1} \left ( u_2 - \frac{1}{2}\right ) \leq \left [
+  \frac{u_1}{q_1} \right ] < \frac{q_2}{q_1} \left (u_2 + \frac{1}{2}
+  \right)$
+
+  Il y a deux cas :
+  • q_1 pair
+
+  $q_1\left(\left \lceil \frac{q_2}{q_1} \left ( u_2 - \frac{1}{2}\right
+  ) \right \rceil - \frac{1}{2} \right) \leq u_1 < q_1\left(\left
+  \lfloor \frac{q_2}{q_1} \left ( u_2 + \frac{1}{2}\right ) \right
+  \rfloor + \frac{1}{2} \right)$
+  • q_1 impair
+
+    $\frac{q_2}{q_1} \left ( u_2 - \frac{1}{2}\right ) \leq \left [
+    \frac{u_1}{q_1} \right ] < \frac{q_2}{q_1} \left (u_2 + \frac{1}{2}
+    \right)$
+
+    Le $\frac{1}{2}$ vient du fait que l'on ne peut avoir que des
+    valeurs entières puisqu'il s'agit d'indices de l'histogramme.

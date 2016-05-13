@@ -191,9 +191,10 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
   std::vector<int> qs;
   int n = 0;
   // for(auto dct : dctCoeffs) {
-  for (int k = 0; k < 3; k++) {
+  for (int k = 0; k < 4; k++) {
   // for (int k = 0; k < dctCoeffs.size(); k++) {
-    auto dct = dctCoeffs[zigzag[k]];
+    // auto dct = dctCoeffs[zigzag[k]];
+    auto dct = dctCoeffs[k];
     std::vector<double> vec;
     double total = 0;
     for(auto i : makeHisto(dct)) {
@@ -212,26 +213,36 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
     }
     
     for (int i = 0; i < plot.size(); i++) {
-      // plot2.push_back(smooth(plot, 1, i));
+      // plot2.push_back(smooth(plot, 2, i));
       plot2.push_back(plot[i]);
     }
     
     auto maxElem = std::max_element(plot2.begin(), plot2.end());
+    long plotAvg = 0;
+    for(auto i : plot2) {
+      plotAvg += i;
+    }
+    plotAvg /= plot2.size();
 
+    // std::cout << "max elem = " << *maxElem << std::endl;
+    // std::cout << "plotAvg = " << plotAvg << std::endl;
     std::vector<int> indexes;
     int width = 2;
 
     std::string s;
     
     for (int i = width; plot2.size() > 1 && i < plot2.size() - width; i++) {
-      if(plot2[i] > *maxElem * 0.05 && isPeak(plot2, 1, i)) {
+      // if(plot2[i] > *maxElem * 0.3 && isPeak(plot2, 1, i)) {
+      if(plot2[i] > plotAvg * 5 && isPeak(plot2, 1, i)) {
 	indexes.push_back(i);
 	if(indexes.size() < 10)
 	  s += std::to_string(i) + "-";
       }
     }
-    // plotHistograms("autocorrelation" + std::to_string(n++), "auto correlation", s, plot2, plot2);
+
+    std::vector<double> tmp(plot.size(), plotAvg * 5);
     
+    // plotHistograms("autocorrelation" + std::to_string(n++), "auto correlation", s, plot2, tmp);
     // std::vector<int> v(vec.begin(), vec.end());
     // plotHistograms("autocorrelation" + std::to_string(n++), "auto correlation", s, fft(v), fft(v));
 
@@ -595,16 +606,17 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
     //   plotHistograms("fft", "fft", "histo", fft(toDoubleVector(makeHisto(i.dct[0]), 1)), toDoubleVector(makeHisto(i.dct[0]), 1));
     // }
 
-    // if(cpti == 14) {
+    // if(cpti == 0) {
     std::cout << cpti  << " : " << std::endl;
     int estimated = estimateQ(i.dct);
     std::cout << "estimated = " << estimated << std::endl;
     std::cout << "real      = " << quality << std::endl;
     error += (abs(estimated - quality));
     std::cout << std::endl;
+    // }
       // int n = 0;
       // for(auto dctVec : i.dct) {
-      // // plotHistograms(std::to_string(n), std::to_string(cpti), std::to_string(n++), toDoubleVector(makeHisto(dctVec), 1), toDoubleVector(makeHisto(dctVec), 1));
+	// plotHistograms(std::to_string(n), std::to_string(cpti), std::to_string(n++), toDoubleVector(makeHisto(dctVec), 1), toDoubleVector(makeHisto(dctVec), 1));
       // // plotHistograms(std::to_string(n), std::to_string(cpti), std::to_string(n++), fft(dctVec), fft(dctVec)); // 
 
       // 	plotHistograms(std::to_string(n), std::to_string(cpti), std::to_string(n++), toDoubleVector(makeHisto(dctVec), 1), toDoubleVector(makeHisto(dctVec), 1));
@@ -623,7 +635,7 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
     // }
 
     //********************************//
-     /*
+    /*
     int cptj = 0;
     for(auto image_j : pathes) {
       Image image;

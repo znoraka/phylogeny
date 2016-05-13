@@ -32,7 +32,7 @@ void recompress(Image &image, Node *node, int parentQ, bool randomQ = false) {
   int q;
   if(randomQ) {
     do {
-      q = 40 + std::rand() % 60;
+      q = 40 + std::rand() % 50;
     } while(q == parentQ);
   } else {
     q = fmax(30, parentQ - (1 + std::rand() % 25));
