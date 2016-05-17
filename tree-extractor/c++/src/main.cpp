@@ -82,6 +82,10 @@ void plotHistograms(std::string outFile, std::string name1, std::string name2, s
 }
 
 int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
+  int peakFactor = 5;
+  int peakCount = 3;
+  int dctCount = 40; //les 4 premiers coefficients dans l'ordre zigzag sont ceux qui permettent d'avoir la plus grande précision.
+  
   auto isPeak = [](std::vector<double> vec, int width, int index) {
     for (int i = index - width; i < index; i++) {
       if(vec[i] >= vec[i + 1]) return false;
@@ -99,7 +103,6 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
 	avg += vec[i + index];
       }
       avg /= (width * 2 + 1);
-      // vec[index] = avg;
       return avg;
   };
 
@@ -119,8 +122,8 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
     std::vector<int> peaks;
     double plotAvg = tools::mean(plot);
     
-    for (int i = width; plot.size() > 1 && i < plot.size() - width; i++) {
-      if(plot[i] > plotAvg * 5 && isPeak(plot, 1, i)) {
+    for (int i = width; plot.size() > 1 && i < plot.size() - width && peaks.size() < peakCount; i++) {
+      if(plot[i] > plotAvg * peakFactor && isPeak(plot, 1, i)) {
 	peaks.push_back(i);
       }
     }
@@ -153,11 +156,17 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
     int minValue = std::numeric_limits<int>::max();
   
     for (int i = 1; i < 100; i++) {
-      std::vector<double> tabledouble(tables[i].begin(), tables[i].end());
+      // std::vector<double> tabledouble(tables[i].begin(), tables[i].end());
+      std::vector<double> tabledouble;
+      for (int j = 0; j < tables[i].size(); j++) {
+	tabledouble.push_back(tables[i][zigzag[j]]);
+      }
+
       std::vector<double> qsdouble;
 
       for (int i = 0; i < periods.size(); i++) {
-	if(periods[i] <= 1) qsdouble.push_back(tabledouble[i]);
+	if(periods[i] == -1) qsdouble.push_back(1);
+	else if(periods[i] <= 1) qsdouble.push_back(tabledouble[i]);
 	else qsdouble.push_back(periods[i]);
       }
       
@@ -171,9 +180,9 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
     return index;
   };
 
-  auto plotPeaks = [](std::vector<double> plot, std::vector<int> peaks, int n) {
+  auto plotPeaks = [&](std::vector<double> plot, std::vector<int> peaks, int n) {
     double plotAvg = tools::mean(plot);
-    std::vector<double> tmp(plot.size(), plotAvg * 5);
+    std::vector<double> tmp(plot.size(), plotAvg * peakFactor);
 
     std::string s;
     for (int i = 0; i < peaks.size() && i < 10; i++) {
@@ -186,10 +195,8 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
   
   std::vector<int> qs;
   int n = 0;
-  // for(auto dct : dctCoeffs) {
-  for (int k = 0; k < 4; k++) {
+  for (int k = 0; k < dctCount; k++) {
   // for (int k = 0; k < dctCoeffs.size(); k++) {
-    // auto dct = dctCoeffs[zigzag[k]];
     auto dct = dctCoeffs[k];
     auto histo = makeHisto(dct);
     std::vector<double> vec(histo.begin(), histo.end());
@@ -199,22 +206,20 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
 
     // plotPeaks(plot, peaks, n++);
 
-    //TODO : s'il n'y a qu'un pic il s'agit surement de la fréquence.
     if(peaks.size() == 0) {
-      qs.push_back(0);
+      qs.push_back(1);
+      // qs.push_back(-1);
       continue; 
-    } else if (peaks.size() <= 2) {
+    } else if (peaks.size() == 1) {
       qs.push_back(peaks[0]);
+
       continue;
     }
     
-    if(peaks.size() > 1) {
-      qs.push_back(periodFromPeaks(peaks));
-    }
+    qs.push_back(periodFromPeaks(peaks));
   }
 
   return qFromPeriods(qs);
-
 }
 
 Node *buildTreeFromMatrix(std::vector<std::vector<bool> > matrix) {
@@ -491,12 +496,21 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
   int error = 0;
   for(auto image_i : pathes) {
     std::vector<bool> vec;
-    Image image2;
+    Image image2, imagepng;
     image2.read(image_i);
     q_dct base = getQAndDct(image_i);
     int quality = image2.quality();
+    /*
+    image2.write("/media/ramdisk/i.png");
+    imagepng.read("/media/ramdisk/i.png");
+    imagepng.quality(100);
+    imagepng.write("/media/ramdisk/i.jpg");
+    //*/
+    
     image2.quality(100);
     image2.write("/media/ramdisk/i.jpg");
+    //*/
+    
     // q_dct i = getQAndDct(image_i);
     q_dct i = getQAndDct("/media/ramdisk/i.jpg");
     auto di = makeDistrib(makeHisto(i.dct[0]));
@@ -507,7 +521,7 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
     //   plotHistograms("fft", "fft", "histo", fft(toDoubleVector(makeHisto(i.dct[0]), 1)), toDoubleVector(makeHisto(i.dct[0]), 1));
     // }
 
-    // if(cpti == 0) {
+    // if(cpti == 19) {
     std::cout << cpti  << " : " << std::endl;
     int estimated = estimateQ(i.dct);
     std::cout << "estimated = " << estimated << std::endl;
@@ -562,13 +576,13 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
     	auto dj = makeDistrib(makeHisto(j.dct[0]));
     	// auto dj = toDoubleVector(j.dctDiffZero, j.numberOfBlocks);
 
-    	if(cpti == 8) {
+    	// if(cpti == 8) {
     	// plotHistograms(std::to_string(cpti) + " - " + std::to_string(cptj), std::to_string(cpti), std::to_string(cptj), fft(makeHisto(i.dct[2])), fft(makeHisto(j.dct[2])));
     	  // plotHistograms(std::to_string(cptj), std::to_string(cpti), std::to_string(cptj), toDoubleVector(makeHisto(base.dct[0]), 1), toDoubleVector(makeHisto(i.dct[0]), 1));
-    	  plotHistograms(std::to_string(cptj), std::to_string(cpti), std::to_string(cptj), reajust(i.dct[0], base.q), reajust(j.dct[0], base.q));
+    	  // plotHistograms(std::to_string(cptj), std::to_string(cpti), std::to_string(cptj), reajust(i.dct[0], base.q), reajust(j.dct[0], base.q));
     	  // plotHistograms(std::to_string(cptj), std::to_string(cpti), std::to_string(cptj), toDoubleVector(base.dctDiffZero, i.numberOfBlocks), toDoubleVector(jUncompressed.dctDiffZero, j.numberOfBlocks));
     	  // plotHistograms(std::to_string(cptj), toDoubleVector(i.dctDiffZero, i.numberOfBlocks), toDoubleVector(jUncompressed.dctDiffZero, jUncompressed.numberOfBlocks));
-    	}
+    	// }
 	
     	std::cout << cpti << " and " << cptj << " = ";
     	bool b1 = distancesOk(di, dj);
