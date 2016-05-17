@@ -17,8 +17,7 @@
 #include "tools.h"
 
 using namespace Magick;
-
-#define D Distance::distanceFormula Distance
+using namespace tools;
 
 static std::vector<int> baseTable = {16,12,14,14,18,24,49,72,11,12,13,17,22,35,64,92,10,14,16,22,37,55,78,95,16,19,24,29,56,64,87,98,24,26,40,51,68,81,103,112,40,58,57,87,109,104,121,100,51,60,69,80,103,113,120,103,61,55,56,62,77,92,101,99};
 
@@ -42,89 +41,6 @@ std::vector<int> table(int quality) {
   return v;
 }
 
-class Distance {
-private:
-  struct distanceFormula {
-    std::function<double(double)> global;
-    std::function<double(double, double)> perItem;
-    
-    distanceFormula(std::function<double(double)> global,
-		    std::function<double(double, double)> perItem) {
-      this->global = global;
-      this->perItem = perItem;
-    }
-  };
-  
-public:
-  static double compute(distanceFormula d,
-			std::vector<double>::iterator begin1,
-			std::vector<double>::iterator end1,
-			std::vector<double>::iterator begin2,
-			std::vector<double>::iterator end2) {
-    double sum = 0;
-    for (int i = 0; begin1 + i != end1 && begin2 + i != end2; i++) {
-      double tmp = d.perItem(*(begin1 + i), *(begin2 + i));
-      if(tmp >= 0)
-	sum += tmp;
-    }
-    return d.global(sum);
-  }
-
-  static double compute(distanceFormula d, std::vector<double> d1, std::vector<double> d2) {
-    return compute(d, d1.begin(), d1.end(), d2.begin(), d2.end());
-  }
-
-  static distanceFormula euclid, autocorrelation, bhattacharyya, kb, hellinger, hellinger_b, s_hellinger, jeffreys, kdiv;
-
-};
-
-D::euclid = distanceFormula([](double d){return sqrt(d);},
-			    [](double i, double j) {
-			      return pow(i - j, 2);}
-			      // return pow((i - j), 2) * (i / j);}
-			    );
-
-D::autocorrelation = distanceFormula([](double d){return d;},
-				     [](double i, double j) {
-				       return i * j;}
-				     );
-
-D::bhattacharyya = distanceFormula([](double d){return log(d);},
-				   [](double i, double j) {
-				     return sqrt(i * j);}
-				   );
-
-D::kb = distanceFormula([](double d){return d;},
-			[](double i, double j) {
-			  if(i == 0 || j == 0) return 0.;
-			  // if(j == 0 || std::isnan(i / j)) return fmax(i, j);                               /***************/
-			  return i * log(i / j);}
-			);
-
-D::hellinger = distanceFormula([](double d){return sqrt(2 * d);},
-			       [](double i, double j) {
-				 return pow(sqrt(i) - sqrt(j) , 2);}
-			       );
-
-D::hellinger_b = distanceFormula([](double d){return 2 * sqrt(1 - d);},
-				 [](double i, double j) {
-				   return sqrt(i * j);}
-				 );
-
-D::s_hellinger = distanceFormula([](double d){return 2 * d;},
-				 [](double i, double j) {
-				   return pow(sqrt(i) - sqrt(j) , 2);}
-				 );
-
-D::jeffreys = distanceFormula([](double d){return d;},
-			      [](double i, double j) {
-				return (i - j) * log(i / j);}
-			      );
-
-D::kdiv = distanceFormula([](double d){return d;},
-			  [](double i, double j) {
-			    return i * log((2 * i) / (i + j));}
-			  );
 
 struct Node {
   std::string name;
@@ -187,6 +103,86 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
       return avg;
   };
 
+  auto computeAutocorrelation = [](std::vector<double> histo) {
+    auto metric = Distance::autocorrelation;
+    std::vector<double> plot2;
+
+    for (int i = 1; i < fmin(255, histo.size()); i++) {
+      double nextDistance = Distance::compute(metric, histo.begin(), histo.end(), histo.begin() + i, histo.end());
+      plot2.push_back(nextDistance);
+    }
+    
+    return plot2;
+  };
+
+  auto findPeaks = [&](int width, std::vector<double> plot){
+    std::vector<int> peaks;
+    double plotAvg = tools::mean(plot);
+    
+    for (int i = width; plot.size() > 1 && i < plot.size() - width; i++) {
+      if(plot[i] > plotAvg * 5 && isPeak(plot, 1, i)) {
+	peaks.push_back(i);
+      }
+    }
+    return peaks;
+  };
+
+  auto periodFromPeaks = [](std::vector<int> peaks) {
+    for (int i = peaks.size() - 1; i > 0; i--) {
+      peaks[i] = peaks[i] - peaks[i - 1];
+    }
+    peaks[0] = peaks[1];
+
+    double vecStdDev = tools::standardDeviation(peaks);
+    
+    int sum = 0;
+    int t = 0;
+
+    for(auto i : peaks) {
+      if(i > vecStdDev) {
+	sum += i;
+	t++;
+      }
+    }
+
+    return (int) (sum / t);
+  };
+
+  auto qFromPeriods = [](std::vector<int> periods) {
+    int index = 0;
+    int minValue = std::numeric_limits<int>::max();
+  
+    for (int i = 1; i < 100; i++) {
+      std::vector<double> tabledouble(tables[i].begin(), tables[i].end());
+      std::vector<double> qsdouble;
+
+      for (int i = 0; i < periods.size(); i++) {
+	if(periods[i] <= 1) qsdouble.push_back(tabledouble[i]);
+	else qsdouble.push_back(periods[i]);
+      }
+      
+      double d = Distance::compute(Distance::euclid, qsdouble, tabledouble);
+      if(d < minValue) {
+	minValue = d;
+	index = i;
+      }
+    }
+
+    return index;
+  };
+
+  auto plotPeaks = [](std::vector<double> plot, std::vector<int> peaks, int n) {
+    double plotAvg = tools::mean(plot);
+    std::vector<double> tmp(plot.size(), plotAvg * 5);
+
+    std::string s;
+    for (int i = 0; i < peaks.size() && i < 10; i++) {
+      s += std::to_string(peaks[i]) + " - ";
+    }
+
+    plotHistograms("autocorrelation" + std::to_string(n), "auto correlation", s, plot, tmp);
+  };
+
   
   std::vector<int> qs;
   int n = 0;
@@ -195,129 +191,34 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
   // for (int k = 0; k < dctCoeffs.size(); k++) {
     // auto dct = dctCoeffs[zigzag[k]];
     auto dct = dctCoeffs[k];
-    std::vector<double> vec;
-    double total = 0;
-    for(auto i : makeHisto(dct)) {
-      vec.push_back(i);
-      total += i;
-    }
+    auto histo = makeHisto(dct);
+    std::vector<double> vec(histo.begin(), histo.end());
 
-    total /= vec.size();
+    std::vector<double> plot = computeAutocorrelation(vec);
+    std::vector<int> peaks = findPeaks(2, plot);
 
-    auto metric = Distance::autocorrelation;
-    std::vector<double> plot, plot2;
-
-    for (int i = 1; i < fmin(255, vec.size()); i++) {
-      double nextDistance = Distance::compute(metric, vec.begin(), vec.end(), vec.begin() + i, vec.end());
-      plot.push_back(nextDistance);
-    }
-    
-    for (int i = 0; i < plot.size(); i++) {
-      // plot2.push_back(smooth(plot, 2, i));
-      plot2.push_back(plot[i]);
-    }
-    
-    auto maxElem = std::max_element(plot2.begin(), plot2.end());
-    long plotAvg = 0;
-    for(auto i : plot2) {
-      plotAvg += i;
-    }
-    plotAvg /= plot2.size();
-
-    // std::cout << "max elem = " << *maxElem << std::endl;
-    // std::cout << "plotAvg = " << plotAvg << std::endl;
-    std::vector<int> indexes;
-    int width = 2;
-
-    std::string s;
-    
-    for (int i = width; plot2.size() > 1 && i < plot2.size() - width; i++) {
-      // if(plot2[i] > *maxElem * 0.3 && isPeak(plot2, 1, i)) {
-      if(plot2[i] > plotAvg * 5 && isPeak(plot2, 1, i)) {
-	indexes.push_back(i);
-	if(indexes.size() < 10)
-	  s += std::to_string(i) + "-";
-      }
-    }
-
-    std::vector<double> tmp(plot.size(), plotAvg * 5);
-    
-    // plotHistograms("autocorrelation" + std::to_string(n++), "auto correlation", s, plot2, tmp);
-    // std::vector<int> v(vec.begin(), vec.end());
-    // plotHistograms("autocorrelation" + std::to_string(n++), "auto correlation", s, fft(v), fft(v));
+    // plotPeaks(plot, peaks, n++);
 
     //TODO : s'il n'y a qu'un pic il s'agit surement de la fréquence.
-    if(indexes.size() == 0) {
+    if(peaks.size() == 0) {
       qs.push_back(0);
       continue; 
-    } else if (indexes.size() <= 2) {
-      qs.push_back(indexes[0]);
+    } else if (peaks.size() <= 2) {
+      qs.push_back(peaks[0]);
       continue;
     }
-
-    indexes.resize(fmin(10, indexes.size()));
-
-    for (int i = indexes.size() - 1; i > 0; i--) {
-      indexes[i] = indexes[i] - indexes[i - 1];
-    }
-    indexes[0] = indexes[1];
-
-    double vecStdDev = tools::standardDeviation(indexes);
     
-    int sum = 0;
-    int t = 0;
-
-    for(auto i : indexes) {
-      if(i > vecStdDev) {
-	sum += i;
-	t++;
-      }
-    }
-
-    if(indexes.size() > 1) {
-      qs.push_back(sum / t);
+    if(peaks.size() > 1) {
+      qs.push_back(periodFromPeaks(peaks));
     }
   }
 
-  // for(auto i : qs) {
-  //   std::cout << i << ", ";
-  // }
-  // std::cout << std::endl;
+  return qFromPeriods(qs);
 
-  int index = 0;
-  int minValue = std::numeric_limits<int>::max();
-  // qs[0] *= 100;
-  
-  for (int i = 1; i < 100; i++) {
-    std::vector<double> tabledouble(tables[i].begin(), tables[i].end());
-    std::vector<double> qsdouble;
-
-    for (int i = 0; i < qs.size(); i++) {
-      // if(qs[zigzag[i]] <= 1) qsdouble.push_back(tabledouble[zigzag[i]]);
-      // else qsdouble.push_back(qs[zigzag[i]]);
-      if(qs[i] <= 1) qsdouble.push_back(tabledouble[i]);
-      else qsdouble.push_back(qs[i]);
-
-    }
-
-    // if(abs(qsdouble[0] - tabledouble[0]) < 10) {
-      
-      double d = Distance::compute(Distance::euclid, qsdouble, tabledouble);
-      // double d = Distance::compute(Distance::euclid, qsdouble.begin(), qsdouble.begin() + 3, tabledouble.begin(), tabledouble.begin() + 3);
-
-      // std::cout << i << " = " << d << std::endl;
-      if(d < minValue) {
-	minValue = d;
-	index = i;
-	// std::cout << "index = " << index << std::endl;
-      }
-    // }
-  }
-
-  return index;
 }
 
 Node *buildTreeFromMatrix(std::vector<std::vector<bool> > matrix) {
+
   struct ref {
     int index;
     int sum;
