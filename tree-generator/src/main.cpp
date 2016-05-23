@@ -119,6 +119,7 @@ int main(int argc, char **argv){
   std::srand(std::time(NULL));
   InitializeMagick(*argv);
 
+  system("rm -rf /media/ramdisk/data && mkdir /media/ramdisk/data");
   Node *root = createPhylogeny(std::string(argv[1]) + "/", argv[2], atoi(argv[3]), atoi(argv[4]));
   // std::cout << "phylogeny created" << std::endl;
   std::string treePath = std::string(argv[1]) + "/tree.tex";

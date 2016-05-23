@@ -84,7 +84,8 @@ void plotHistograms(std::string outFile, std::string name1, std::string name2, s
 int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
   int peakFactor = 5;
   int peakCount = 3;
-  int dctCount = 40; //les 4 premiers coefficients dans l'ordre zigzag sont ceux qui permettent d'avoir la plus grande précision.
+  int dctCount = 35; //limiter les coefficients dans l'ordre zigzag permet d'avoir une meilleur précision
+  // int dctCount = 9;
   
   auto isPeak = [](std::vector<double> vec, int width, int index) {
     for (int i = index - width; i < index; i++) {
@@ -159,24 +160,26 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
       // std::vector<double> tabledouble(tables[i].begin(), tables[i].end());
       std::vector<double> tabledouble;
       for (int j = 0; j < tables[i].size(); j++) {
-	tabledouble.push_back(tables[i][zigzag[j]]);
+	tabledouble.push_back(tables[i][zigzag[j]] /* / (j + 1)*/);
       }
 
       std::vector<double> qsdouble;
 
       for (int i = 0; i < periods.size(); i++) {
 	if(periods[i] == -1) qsdouble.push_back(1);
-	else if(periods[i] <= 1) qsdouble.push_back(tabledouble[i]);
-	else qsdouble.push_back(periods[i]);
+	else if(periods[i] <= 1) qsdouble.push_back(tabledouble[i]/* / (i + 1)*/);
+	else qsdouble.push_back(periods[i]/* / (i + 1)*/);
       }
+
+      // std::cout << qsdouble[0] << " " << tabledouble[0] << std::endl;
       
       double d = Distance::compute(Distance::euclid, qsdouble, tabledouble);
       if(d < minValue) {
 	minValue = d;
 	index = i;
       }
-    }
-
+    }      
+      
     return index;
   };
 
@@ -211,7 +214,7 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
       // qs.push_back(-1);
       continue; 
     } else if (peaks.size() == 1) {
-      qs.push_back(peaks[0]);
+      qs.push_back(peaks[0] + 1);
 
       continue;
     }
@@ -219,7 +222,14 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
     qs.push_back(periodFromPeaks(peaks));
   }
 
-  return qFromPeriods(qs);
+  int p = qFromPeriods(qs);
+
+  // for (int i = 0; i < qs.size(); i++) {
+  //   std::cout << i << " : " << qs[i] << " " << tables[p][zigzag[i]] << std::endl;
+  // }
+
+  
+  return p;
 }
 
 Node *buildTreeFromMatrix(std::vector<std::vector<bool> > matrix) {
@@ -409,15 +419,43 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
     return pathes;
   };
 
-  auto distancesOk = [&](std::vector<double> d1, std::vector<double> d2) {
-    auto metric = Distance::kb;
+  // auto distancesOk = [&](std::vector<double> d1, std::vector<double> d2) {
+  //   auto metric = Distance::kb;
 
-    double d = Distance::compute(metric, d1, d2);
-    double dd = Distance::compute(metric, d2, d1);
+  //   double d = Distance::compute(metric, d1, d2);
+  //   double dd = Distance::compute(metric, d2, d1);
+
+  //   //les deux distances sont égales => les images sont identiques
+  //   // std::cout << std::endl;
+  //   std::cout << "d = " << d;
+  //   std::cout << "   dd = " << dd << "  ";
+  //   std::cout << "abs(d - dd) = " << abs(d * dd) << "   ";
+  //   // std::cout << "abs(d - dd) = " << abs(d - dd) << std::endl;
+  //   // return d == dd;
+  //   return d < 0.07 && dd < 0.07 && abs(d - dd) < 0.00001;
+  // };
+
+  auto distancesOk = [&](std::vector<std::vector<int> > d1, std::vector<std::vector<int> > d2) {
+    auto metric = Distance::kb;
+    double sumd = 0;
+    double sumdd = 0;
+
+    for (int i = 0; i < d1.size(); i++) {
+      double d = Distance::compute(metric, makeDistrib(makeHisto(d1[i])), makeDistrib(makeHisto(d2[i])));
+      double dd = Distance::compute(metric, makeDistrib(makeHisto(d2[i])), makeDistrib(makeHisto(d1[i])));
+
+      sumd += d;
+      sumdd += dd;
+    }
 
     //les deux distances sont égales => les images sont identiques
-    return d == dd;
+    // std::cout << std::endl;
+    std::cout << "d = " << sumd;
+    std::cout << "   dd = " << sumdd << "  ";
+    std::cout << "abs(d - dd) = " << fabs(sumd - sumdd) << "   ";
+    return sumd == sumdd;
   };
+
 
   auto areaUnderTheCurveOk = [&](std::vector<double> d1, std::vector<double> d2) {
     return !(areaUnderTheCurve(d1) > areaUnderTheCurve(d2));
@@ -489,11 +527,28 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
 
   };
 
+  auto estimateImagesQ = [](std::vector<std::string> paths) {
+    Image image;
+    std::vector<int> qs;
+    for(auto i : paths) {
+      image.read(i);
+      image.quality(100);
+      image.write("/media/ramdisk/i.jpg");
+      q_dct dct = getQAndDct("/media/ramdisk/i.jpg");
+      int estimated = estimateQ(dct.dct);
+      qs.push_back(estimated);
+    }
+    return qs;
+  };
+
 
   std::vector<std::string> pathes = getImagePathes(directory);
   
   int cpti = 0;
   int error = 0;
+
+  std::vector<int> estimatedQs = estimateImagesQ(pathes);
+    
   for(auto image_i : pathes) {
     std::vector<bool> vec;
     Image image2, imagepng;
@@ -521,9 +576,10 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
     //   plotHistograms("fft", "fft", "histo", fft(toDoubleVector(makeHisto(i.dct[0]), 1)), toDoubleVector(makeHisto(i.dct[0]), 1));
     // }
 
-    // if(cpti == 19) {
+    // if(cpti == 24) {
     std::cout << cpti  << " : " << std::endl;
-    int estimated = estimateQ(i.dct);
+    // int estimated = estimateQ(i.dct);
+    int estimated = estimatedQs[cpti];
     std::cout << "estimated = " << estimated << std::endl;
     std::cout << "real      = " << quality << std::endl;
     error += (abs(estimated - quality));
@@ -550,7 +606,7 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
     // }
 
     //********************************//
-    /*
+    //*
     int cptj = 0;
     for(auto image_j : pathes) {
       Image image;
@@ -558,47 +614,59 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
 
       if(cpti == cptj) {
     	vec.push_back(false);
-      // } else if(i.q >= getQAndDct(image_j).q) {
-      // } else if(image2.quality() < image.quality()) {
-      } else if (1) {
-    	image.quality(quality);
-    	image.write("/media/ramdisk/out.jpg");
-    	Image image3;
-    	image3.read("/media/ramdisk/out.jpg");
-    	image3.quality(100);
-    	image3.write("/media/ramdisk/j.jpg");
-    	// q_dct j = getQAndDct("out.jpg");
-    	q_dct j = getQAndDct("/media/ramdisk/j.jpg");
-    	q_dct jUncompressed = getQAndDct(image_j);
+      } else {
+	bool b = false;
+	int k = 0;
+	int step = 0;
+	while(!b && k <= 8) {
+	  step = step + ((k % 2 == 0)? -1 : 1) * k++;
 
-    	// q_dct j = getQAndDct(image_j);
+	  if(estimated + step > estimatedQs[cptj]) {
+	    continue;
+	  }
+
+	  image.quality(estimated + step);
+	  image.write("/media/ramdisk/out.jpg");
+	  Image image3;
+	  image3.read("/media/ramdisk/out.jpg");
+	  image3.quality(100);
+	  image3.write("/media/ramdisk/j.jpg");
+	  // q_dct j = getQAndDct("out.jpg");
+	  q_dct j = getQAndDct("/media/ramdisk/j.jpg");
+	  q_dct jUncompressed = getQAndDct(image_j);
+
+	  // q_dct j = getQAndDct(image_j);
 	
-    	auto dj = makeDistrib(makeHisto(j.dct[0]));
-    	// auto dj = toDoubleVector(j.dctDiffZero, j.numberOfBlocks);
+	  auto dj = makeDistrib(makeHisto(j.dct[0]));
+	  // auto dj = toDoubleVector(j.dctDiffZero, j.numberOfBlocks);
 
-    	// if(cpti == 8) {
-    	// plotHistograms(std::to_string(cpti) + " - " + std::to_string(cptj), std::to_string(cpti), std::to_string(cptj), fft(makeHisto(i.dct[2])), fft(makeHisto(j.dct[2])));
+	  // if(cpti == 8) {
+	  // plotHistograms(std::to_string(cpti) + " - " + std::to_string(cptj), std::to_string(cpti), std::to_string(cptj), fft(makeHisto(i.dct[2])), fft(makeHisto(j.dct[2])));
     	  // plotHistograms(std::to_string(cptj), std::to_string(cpti), std::to_string(cptj), toDoubleVector(makeHisto(base.dct[0]), 1), toDoubleVector(makeHisto(i.dct[0]), 1));
     	  // plotHistograms(std::to_string(cptj), std::to_string(cpti), std::to_string(cptj), reajust(i.dct[0], base.q), reajust(j.dct[0], base.q));
     	  // plotHistograms(std::to_string(cptj), std::to_string(cpti), std::to_string(cptj), toDoubleVector(base.dctDiffZero, i.numberOfBlocks), toDoubleVector(jUncompressed.dctDiffZero, j.numberOfBlocks));
     	  // plotHistograms(std::to_string(cptj), toDoubleVector(i.dctDiffZero, i.numberOfBlocks), toDoubleVector(jUncompressed.dctDiffZero, jUncompressed.numberOfBlocks));
-    	// }
+	  // }
 	
-    	std::cout << cpti << " and " << cptj << " = ";
-    	bool b1 = distancesOk(di, dj);
-    	bool b2 = areaUnderTheCurveOk(toDoubleVector(base.dctDiffZero, i.numberOfBlocks), toDoubleVector(jUncompressed.dctDiffZero, j.numberOfBlocks));
-    	bool b3 = missingValuesOk(reajust(i.dct[0], base.q), reajust(j.dct[0], base.q));
-    	bool b4 = distancesOk(fft(makeHisto(i.dct[0])), fft(makeHisto(j.dct[0])));
-    	bool b5 = missingValuesOk(fft(makeHisto(i.dct[1])), fft(makeHisto(j.dct[1])));
+	  std::cout << cpti << " and " << cptj << " = ";
+	  // bool b1 = distancesOk(di, dj);
+	  bool b1 = distancesOk(i.dct, j.dct);
+	  bool b2 = areaUnderTheCurveOk(toDoubleVector(base.dctDiffZero, i.numberOfBlocks), toDoubleVector(jUncompressed.dctDiffZero, j.numberOfBlocks));
+	  bool b3 = missingValuesOk(reajust(i.dct[0], base.q), reajust(j.dct[0], base.q));
+	  // bool b4 = distancesOk(fft(makeHisto(i.dct[0])), fft(makeHisto(j.dct[0])));
+	  bool b4 = false;
+	  bool b5 = missingValuesOk(fft(makeHisto(i.dct[1])), fft(makeHisto(j.dct[1])));
 
-    	vec.push_back(b1 || (b2 && b3 && b4 && b5));
-    	// vec.push_back(b1);
-    	std::cout << b2 << " " << b3 << " " << b4 << " " << b5 << std::endl;
-    	// std::cout << cpti << " and " << cptj << " = ";
-    	// canBeChild(toDoubleVector(i.dctDiffZero, i.numberOfBlocks), toDoubleVector(j.dctDiffZero, j.numberOfBlocks), i.q);
-    	// vec.push_back(!canBeChild(toDoubleVector(i.dctDiffZero, i.numberOfBlocks), toDoubleVector(j.dctDiffZero, j.numberOfBlocks), i.q));
-      } else {
-    	vec.push_back(false);
+	  b = b || (b1 || (b2 && b3 && b4 && b5));
+
+	  // vec.push_back(b1 || (b2 && b3 && b4 && b5));
+	  // vec.push_back(b1);
+	  std::cout << b2 << " " << b3 << " " << b4 << " " << b5 << std::endl;
+	  // std::cout << cpti << " and " << cptj << " = ";
+	  // canBeChild(toDoubleVector(i.dctDiffZero, i.numberOfBlocks), toDoubleVector(j.dctDiffZero, j.numberOfBlocks), i.q);
+	  // vec.push_back(!canBeChild(toDoubleVector(i.dctDiffZero, i.numberOfBlocks), toDoubleVector(j.dctDiffZero, j.numberOfBlocks), i.q));
+	}
+	vec.push_back(b);
       }
       cptj++;
     }

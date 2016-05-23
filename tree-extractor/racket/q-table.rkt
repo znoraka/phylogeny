@@ -162,18 +162,12 @@
    (* (round (/ u q1))
       (/ q1 q2))))
 
-(define (dummy u q1 q2)
-  (define (op f)
-    (define o (if (equal? f ceiling) - +))
-    (* q1
-       (o
-        (f
-         (* (/ q2 q1)
-            (o u 0.5)))
-        0.5)))
-
-  (displayln (~a (op ceiling) " ≤ u < " (op floor) ", number of bins = " (- (op floor) (op ceiling)))))
-
+(define (dummy r)
+  (define n 0)
+  (for ([i (in-range r)])
+    (displayln n)
+    (set! n (+ n (* (if (odd? i) -1 1) i)))))
+  
 (define (period q1 q2)
   (/ q1 (gcd q1 q2)))
 
