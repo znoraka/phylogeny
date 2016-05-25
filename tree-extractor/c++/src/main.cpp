@@ -56,14 +56,13 @@ void plotHistograms(std::string outFile, std::string name1, std::string name2, s
 std::vector<int> makeHisto (std::vector<int> v);
 
 void plotHistograms(std::string outFile, std::string name1, std::string name2, std::vector<double> d1, std::vector<double> d2) {
-    Gnuplot g1("hello");
+    Gnuplot g1("plot");
 
     g1.cmd("set xrange [0:" + std::to_string(fmax(d1.size(), d2.size())) + "]");
     g1.cmd("set style data histogram");
     g1.cmd("set style data lines");
     g1.cmd("set style histogram clustered");
     g1.cmd("set style fill solid border");
-    // g1.cmd("set term png");
     g1.cmd("set terminal pngcairo size 960,720");
     g1.set_style("boxes");
       
@@ -81,12 +80,14 @@ void plotHistograms(std::string outFile, std::string name1, std::string name2, s
     g1.cmd("plot '/media/ramdisk/out.txt' using 1 title \"" + name1 + "\", '/media/ramdisk/out.txt' using 2 title \"" + name2 + "\"");
 }
 
+/**
+ * Estimation du facteur de qualité d'une image JPEG à partir de ses coefficents DCT
+ */
 int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
   int peakFactor = 5;
   int peakCount = 3;
   int dctCount = 35; //limiter les coefficients dans l'ordre zigzag permet d'avoir une meilleur précision
-  // int dctCount = 9;
-  
+
   auto isPeak = [](std::vector<double> vec, int width, int index) {
     for (int i = index - width; i < index; i++) {
       if(vec[i] >= vec[i + 1]) return false;
@@ -157,22 +158,19 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
     int minValue = std::numeric_limits<int>::max();
   
     for (int i = 1; i < 100; i++) {
-      // std::vector<double> tabledouble(tables[i].begin(), tables[i].end());
       std::vector<double> tabledouble;
       for (int j = 0; j < tables[i].size(); j++) {
-	tabledouble.push_back(tables[i][zigzag[j]] /* / (j + 1)*/);
+	tabledouble.push_back(tables[i][zigzag[j]];
       }
 
       std::vector<double> qsdouble;
 
       for (int i = 0; i < periods.size(); i++) {
 	if(periods[i] == -1) qsdouble.push_back(1);
-	else if(periods[i] <= 1) qsdouble.push_back(tabledouble[i]/* / (i + 1)*/);
-	else qsdouble.push_back(periods[i]/* / (i + 1)*/);
+	else if(periods[i] <= 1) qsdouble.push_back(tabledouble[i]);
+	else qsdouble.push_back(periods[i]);
       }
 
-      // std::cout << qsdouble[0] << " " << tabledouble[0] << std::endl;
-      
       double d = Distance::compute(Distance::euclid, qsdouble, tabledouble);
       if(d < minValue) {
 	minValue = d;
@@ -199,7 +197,6 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
   std::vector<int> qs;
   int n = 0;
   for (int k = 0; k < dctCount; k++) {
-  // for (int k = 0; k < dctCoeffs.size(); k++) {
     auto dct = dctCoeffs[k];
     auto histo = makeHisto(dct);
     std::vector<double> vec(histo.begin(), histo.end());
@@ -211,7 +208,6 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
 
     if(peaks.size() == 0) {
       qs.push_back(1);
-      // qs.push_back(-1);
       continue; 
     } else if (peaks.size() == 1) {
       qs.push_back(peaks[0] + 1);
@@ -224,11 +220,6 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
 
   int p = qFromPeriods(qs);
 
-  // for (int i = 0; i < qs.size(); i++) {
-  //   std::cout << i << " : " << qs[i] << " " << tables[p][zigzag[i]] << std::endl;
-  // }
-
-  
   return p;
 }
 
@@ -299,6 +290,9 @@ Node *buildTreeFromMatrix(std::vector<std::vector<bool> > matrix) {
   return root;
 }
 
+/**
+ * Transforme un vecteur d'int en histogramme de ces valeurs
+ */
 std::vector<int> makeHisto (std::vector<int> v) {
   int maxElem = *std::max_element(v.begin(), v.end());
   maxElem = fmax(maxElem, abs(*std::min_element(v.begin(), v.end())));
@@ -312,6 +306,9 @@ std::vector<int> makeHisto (std::vector<int> v) {
   return out;
 }
 
+/**
+ * Exporte l'arbre de phylogénie au format latex
+ */
 void exportPhylogeny(std::ostream& stream, Node *root) {
   std::function<void(Node *n)> f;
   f = [&](Node *n) {
@@ -340,6 +337,9 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
   std::vector<std::vector<bool> > matrix;
   
 
+  /**
+   * Limite les valeurs des bins entre 0 et 1
+   */
   auto makeDistrib = [](std::vector<int> v) {
     std::vector<double> out;
     long sum = 0;
@@ -356,6 +356,9 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
     return out;
   };
 
+  /**
+   * Passe en vecteur de double après avoir quantifié
+   */
   auto toDoubleVector = [](std::vector<int> v, int n) {
     std::vector<double> out;
     for(auto i : v) {
@@ -364,6 +367,9 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
     return out;
   };
 
+  /**
+   * Recale les valeurs du vecteur sur les multiples de q
+   */
   auto reajust = [](std::vector<int> v, int q) {
     std::vector<double> out;
     int maxElem = *std::max_element(v.begin(), v.end());
@@ -377,6 +383,9 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
     return out;
   };
 
+  /**
+   * Calcule l'air sous la courbe à chaque bin de l'histogramme
+   */
   auto makeArea = [](std::vector<double> v) {
     std::vector<double> out;
     double sum = 0;
@@ -387,6 +396,9 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
     return out;
   };
 
+  /**
+   * Calcule l'aire sous la courbe
+   */
   auto areaUnderTheCurve = [](std::vector<double> v) {
     double d = 0;
 
@@ -396,17 +408,26 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
    
     return d;
   };
-  
+
+  /**
+   * Vérifie qu'un fichier existes
+   */
   auto exists = [](std::string path) {
     struct stat buffer;   
     return (stat (path.c_str(), &buffer) == 0); 
   };
 
+  /**
+   * concatene proprement
+   */
   auto createPath = [](std::string directory, int imageIndex) {
     std::string s = directory + std::to_string(imageIndex) + ".jpg";
     return s;
   };
 
+  /**
+   * Retourne les fichiers de 0 à n sous la forme {0..1}.ext
+   */
   auto getImagePathes = [&](std::string directory) {
     int imageIndex = 0;
     std::string path = createPath(directory, imageIndex);
@@ -435,6 +456,9 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
   //   return d < 0.07 && dd < 0.07 && abs(d - dd) < 0.00001;
   // };
 
+  /**
+   * Retourne vrai si les distances entre les deux images sont égales, et donc qu'elles sont identiques
+   */
   auto distancesOk = [&](std::vector<std::vector<int> > d1, std::vector<std::vector<int> > d2) {
     auto metric = Distance::kb;
     double sumd = 0;
@@ -527,6 +551,9 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
 
   };
 
+  /**
+   * Retourne le facteur de qualité estimé pour toutes les images
+   */
   auto estimateImagesQ = [](std::vector<std::string> paths) {
     Image image;
     std::vector<int> qs;
@@ -654,7 +681,7 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
 	  bool b2 = areaUnderTheCurveOk(toDoubleVector(base.dctDiffZero, i.numberOfBlocks), toDoubleVector(jUncompressed.dctDiffZero, j.numberOfBlocks));
 	  bool b3 = missingValuesOk(reajust(i.dct[0], base.q), reajust(j.dct[0], base.q));
 	  // bool b4 = distancesOk(fft(makeHisto(i.dct[0])), fft(makeHisto(j.dct[0])));
-	  bool b4 = false;
+	  bool b4 = true;
 	  bool b5 = missingValuesOk(fft(makeHisto(i.dct[1])), fft(makeHisto(j.dct[1])));
 
 	  b = b || (b1 || (b2 && b3 && b4 && b5));
@@ -694,11 +721,8 @@ int main(int argc, char **argv) {
     tables.push_back(table(i));
   }
 
-
   auto matrix = estimateParents(argv[1]);
   Node *root = buildTreeFromMatrix(matrix);
-
-  // std::vector<int> v = {600, 470, 170, 300, 430};
   
   std::string treePath = "tree.tex";
   std::ofstream stream(treePath);

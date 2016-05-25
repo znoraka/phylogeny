@@ -9,6 +9,8 @@
 #include <Magick++/STL.h>
 #include <magick/MagickCore.h>
 #include <map>
+#include <algorithm>
+#include <random>
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/opencv.hpp>
@@ -22,7 +24,7 @@ struct Node {
   std::vector<Node*> children;
 };
 
-void createChild(std::string path, int imageCount, std::vector<Node*> &nodes, bool randomQ);
+void createChild(std::string path, int imageCount, std::vector<Node*> &nodes, bool randomQ, std::vector<int> randomNames);
 Node *createPhylogeny(std::string path, std::string rootImage, int imageCount, bool randomQ);
 void applyTransform(Image &image, Node *node);
 void exportPhylogeny(std::ostream& stream, Node *root);
@@ -35,7 +37,7 @@ void recompress(Image &image, Node *node, int parentQ, bool randomQ = false) {
       q = 40 + std::rand() % 50;
     } while(q == parentQ);
   } else {
-    q = fmax(30, parentQ - (1 + std::rand() % 25));
+    q = fmax(30, parentQ - (1 + std::rand() % 15));
   }
   // int q = fmax(30, parentQ - (1 + std::rand() % 3) * 5);
   // int q;
@@ -46,30 +48,38 @@ void recompress(Image &image, Node *node, int parentQ, bool randomQ = false) {
 
 
 Node *createPhylogeny(std::string path, std::string rootImage, int imageCount, bool randomQ) {
+  std::vector<int> randomNames;
+  for (int i = 0; i < imageCount; i++) {
+    randomNames.push_back(i);
+  }
+  auto engine = std::default_random_engine(std::time(NULL));
+  std::shuffle(randomNames.begin(), randomNames.end(), engine);
+
   Image image;
   int count = 0;
   std::vector<Node*> nodes;
+  nodes.resize(imageCount);
 
-  std::string rootPath = std::to_string(count);
+  std::string rootPath = std::to_string(randomNames[count]);
   Node *root = new Node();
   root->name = rootPath + ".jpg";
-  nodes.push_back(root);
+  nodes[randomNames[count]] = root;
   
   rootPath = path + rootPath + ".jpg";
   image.read(rootImage);
   recompress(image, root, 100, randomQ);
   image.write(rootPath);
   
-  while (count < imageCount) {
-    createChild(path, count++, nodes, randomQ);
+  while (count < imageCount - 1) {
+    createChild(path, count++, nodes, randomQ, randomNames);
   }
 
   return root;
 }
 
-void createChild(std::string path, int imageCount, std::vector<Node*> &nodes, bool randomQ) {
+void createChild(std::string path, int imageCount, std::vector<Node*> &nodes, bool randomQ, std::vector<int> randomNames) {
   Image image, parent;
-  int parentIndex = (imageCount > 0) ? (std::rand() % imageCount) : 0;
+  int parentIndex = randomNames[(imageCount > 0) ? (std::rand() % imageCount) : 0];
   Node *n = new Node();
   Node *parentNode = nodes[parentIndex];
 
@@ -81,13 +91,13 @@ void createChild(std::string path, int imageCount, std::vector<Node*> &nodes, bo
 
   recompress(image, n, parentNode->compression, randomQ);
 
-  std::string childPath = std::to_string(imageCount + 1);
+  std::string childPath = std::to_string(randomNames[imageCount + 1]);
   n->name = childPath + ".jpg";
   childPath = path + childPath + ".jpg";
 
   image.write(childPath);
   
-  nodes.push_back(n);
+  nodes[randomNames[imageCount + 1]] = n;
   parentNode->children.push_back(n);
 }
 
@@ -121,7 +131,6 @@ int main(int argc, char **argv){
 
   system("rm -rf /media/ramdisk/data && mkdir /media/ramdisk/data");
   Node *root = createPhylogeny(std::string(argv[1]) + "/", argv[2], atoi(argv[3]), atoi(argv[4]));
-  // std::cout << "phylogeny created" << std::endl;
   std::string treePath = std::string(argv[1]) + "/tree.tex";
   std::ofstream stream(treePath);
   exportPhylogeny(stream, root);
