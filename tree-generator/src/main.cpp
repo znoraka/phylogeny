@@ -21,13 +21,16 @@ using namespace cv;
 struct Node {
   std::string name;
   int compression;
+  int n;
   std::vector<Node*> children;
 };
 
 void createChild(std::string path, int imageCount, std::vector<Node*> &nodes, bool randomQ, std::vector<int> randomNames);
 Node *createPhylogeny(std::string path, std::string rootImage, int imageCount, bool randomQ);
 void applyTransform(Image &image, Node *node);
+std::vector<std::vector<bool> > matrixFromTree(Node *root);
 void exportPhylogeny(std::ostream& stream, Node *root);
+void exportMatrix(std::ostream& stream, std::vector<std::vector<bool> > matrix);
 void recompress(Image &parent, Node *node, int parentQ);
 
 void recompress(Image &image, Node *node, int parentQ, bool randomQ = false) {
@@ -62,6 +65,7 @@ Node *createPhylogeny(std::string path, std::string rootImage, int imageCount, b
 
   std::string rootPath = std::to_string(randomNames[count]);
   Node *root = new Node();
+  root->n = randomNames[count];
   root->name = rootPath + ".jpg";
   nodes[randomNames[count]] = root;
   
@@ -93,6 +97,7 @@ void createChild(std::string path, int imageCount, std::vector<Node*> &nodes, bo
 
   std::string childPath = std::to_string(randomNames[imageCount + 1]);
   n->name = childPath + ".jpg";
+  n->n = randomNames[imageCount + 1];
   childPath = path + childPath + ".jpg";
 
   image.write(childPath);
@@ -100,6 +105,44 @@ void createChild(std::string path, int imageCount, std::vector<Node*> &nodes, bo
   nodes[randomNames[imageCount + 1]] = n;
   parentNode->children.push_back(n);
 }
+
+std::vector<std::vector<bool> > matrixFromTree(Node *root) {
+  int n = 0;
+  std::function<void(Node *root)> f;
+  f = [&](Node *root) {
+    n++;
+    for(auto i : root->children) {
+      f(i);
+    }
+  };
+  f(root);
+
+  std::vector<std::vector<bool> > matrix;
+
+  for (int i = 0; i < n; i++) {
+    std::vector<bool> b(n, false);
+    matrix.push_back(b);
+  }
+
+  std::function<void(Node *root, std::vector<int> parents)> f1;
+  f1 = [&](Node *root, std::vector<int> parents) {
+    for(auto i : parents) {
+      matrix[root->n][i] = true;
+    }
+    
+    parents.push_back(root->n);
+
+    for(auto i : root->children) {
+      f1(i, parents);
+    }
+  };
+
+  std::vector<int> v;
+  f1(root, v);
+
+  return matrix;
+}
+
 
 void exportPhylogeny(std::ostream& stream, Node *root) {
   std::function<void(Node *n)> f;
@@ -125,6 +168,15 @@ void exportPhylogeny(std::ostream& stream, Node *root) {
   stream << "\\end{document}" << std::endl;
 }
 
+void exportMatrix(std::ostream& stream, std::vector<std::vector<bool> > matrix) {
+  for(auto i : matrix) {
+    for(auto j : i) {
+      stream << j << " ";
+    }
+    stream << std::endl;
+  }
+}
+
 int main(int argc, char **argv){
   std::srand(std::time(NULL));
   InitializeMagick(*argv);
@@ -133,6 +185,11 @@ int main(int argc, char **argv){
   Node *root = createPhylogeny(std::string(argv[1]) + "/", argv[2], atoi(argv[3]), atoi(argv[4]));
   std::string treePath = std::string(argv[1]) + "/tree.tex";
   std::ofstream stream(treePath);
+
+  std::string matrixPath = std::string(argv[5]) + "/truth.txt";
+  std::ofstream stream1(matrixPath);
+  
   exportPhylogeny(stream, root);
+  exportMatrix(stream1, matrixFromTree(root));
   return 0; 
 }
