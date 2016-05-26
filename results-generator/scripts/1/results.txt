@@ -1,0 +1,4 @@
+roots = 0
+edges = 0.666667
+leaves = 0.571429
+ancestry = 0.5

@@ -1,0 +1,173 @@
+#lang racket
+
+(define block #( #(88 84 83 84 85 86 83 82)
+                 #(86 82 82 83 82 83 83 81)
+                 #(82 82 84 87 87 87 81 84)
+                 #(81 86 87 89 82 82 84 87)
+                 #(81 84 83 87 85 89 80 81)
+                 #(81 85 85 86 81 89 81 85)
+                 #(82 81 86 83 86 89 81 84)
+                 #(88 88 90 84 85 88 88 81)))
+
+(define block1 #(#(88 84 0 84 85 86 83 82)
+                 #(86 0 82 83 82 83 83 81)
+                 #(82 82 84 87 87 87 81 84)
+                 #(81 86 87 0 82 82 84 87)
+                 #(81 0 83 87 85 89 0 81)
+                 #(81 85 0 86 81 89 0 85)
+                 #(82 81 86 83 86 89 0 84)
+                 #(88 88 90 84 85 88 0 81)))
+
+(define (random-block)
+  (let ([block (build-vector 8 (λ (i) (build-vector 8 (λ (i) (random 256)))))])
+    (displayln "block")
+    (pretty-print block)
+    (newline)
+    block))
+                 
+(define (q u v)
+  (define table #( #(16 11 10 16 24 40 51 61)
+                   #(12 12 14 19 26 58 60 55)
+                   #(14 13 16 24 40 57 69 56)
+                   #(14 17 22 29 51 87 80 62)
+                   #(18 22 37 56 68 109 103 77)
+                   #(24 35 55 64 81 104 113 92)
+                   #(49 64 78 87 103 121 120 101)
+                   #(72 92 95 98 112 100 103 99)))
+  (vector-ref (vector-ref table v) u))
+
+(define (q-table quality)
+  (for*/list ([u (in-range 8)]
+         [v (in-range 8)])  
+    (qf quality u v)))
+
+(define (qf val u v)
+  (define qs (if (< val 50)
+                 (/ 5000 val)
+                 (- 200 (* 2 val))))
+
+  (truncate (min 255 (max 1 (/ (+ 50 (* (q u v) qs)) 100)))))
+
+(define (quantize val q)
+  (truncate (/ val q)))
+    ;; (truncate (/ (+ val (/ q 2)) q)))
+
+(define (invert-quantize val q)
+  (* val q))
+
+(define (quantize-i value quality u v)
+  (define quality-factor (qf quality u v))
+  
+  (invert-quantize (quantize value quality-factor) quality-factor))
+
+(define (proxy block quality f)
+  (define out (build-vector 8 (λ (i) (make-vector 8))))
+
+  (define (at vec u v)
+    (vector-ref (vector-ref vec u) v))
+  
+  (for* ([u (in-range 8)]
+         [v (in-range 8)])  
+    (vector-set! (vector-ref out u) v (f (at block u v) (qf quality u v))))
+  out)
+
+(define (quantize-block block quality)
+  (define out (proxy block quality quantize))
+  (displayln "quantification")
+  (pretty-print out)
+  (newline)
+  out)
+  
+(define (invert-quantize-block block quality)
+  (define out (proxy block quality invert-quantize))
+  (displayln "quantification inverse")
+  (pretty-print out)
+  (newline)
+  out)
+
+
+(define (test-values quality u v)
+  (for/list ([i (in-range 255)])
+    (quantize-i (add1 i) quality u v)))
+
+(define (test-q-list q-list value u v)
+  (foldl (λ (i l)
+           (let ([v (quantize-i value i u v)])
+             v))
+         value q-list))
+
+(define (quantize-list l quality u v)
+  (remove-duplicates
+   (map (λ (i)
+          (quantize-i i quality u v)) l)))
+
+(define (dct v-table)
+  (define out (build-vector 8 (λ (i) (make-vector 8))))
+
+  (define (compute-dct u v)
+    (define (alpha a)
+      (if (= 0 a)
+          (/ 1 (sqrt 2))
+          1))
+
+    (define (f u v)      
+      (apply + (for*/list ([i (in-range 8)]
+                           [j (in-range 8)])
+                 (* (cos (/ (* u pi (+ (* 2 i) 1)) 16))
+                    (cos (/ (* v pi (+ (* 2 j) 1)) 16))
+                    (vector-ref (vector-ref v-table i) j)))))
+
+    (* (/ (* (alpha u) (alpha v)) 4)
+       (f u v)))
+  
+  (for* ([u (in-range 8)]
+         [v (in-range 8)])    
+    (vector-set! (vector-ref out u) v (round (compute-dct u v))))
+  (displayln "dct")
+  (pretty-print out)
+  (newline)
+  out)
+
+(define (i-dct v-table)
+  (define out (build-vector 8 (λ (i) (make-vector 8))))
+
+  (define (compute-idct i j)
+    (define (alpha a)
+      (if (= 0 a)
+          (/ 1 (sqrt 2))
+          1))
+
+    (define (f i j)
+      (apply + (for*/list ([u (in-range 8)]
+                           [v (in-range 8)])
+                 (* (cos (/ (* u pi (+ (* 2 i) 1)) 16))
+                    (cos (/ (* v pi (+ (* 2 j) 1)) 16))
+                    (alpha u)
+                    (alpha v)
+                    (vector-ref (vector-ref v-table u) v)))))
+
+    (/ (f i j)
+    4))
+  
+  (for* ([i (in-range 8)]
+         [j (in-range 8)])
+    (vector-set! (vector-ref out i) j (round (compute-idct i j))))
+  (displayln "dct inverse")
+  (pretty-print out)
+  (newline)
+  out)
+
+(define (dq-effect u q1 q2)
+  (round
+   (* (round (/ u q1))
+      (/ q1 q2))))
+
+(define (dummy r)
+  (define n 0)
+  (for ([i (in-range r)])
+    (displayln n)
+    (set! n (+ n (* (if (odd? i) -1 1) i)))))
+  
+(define (period q1 q2)
+  (/ q1 (gcd q1 q2)))
+
