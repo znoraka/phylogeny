@@ -51,6 +51,7 @@ struct Node {
 std::vector<std::vector<bool> > estimateParents(std::string directory);
 int estimateQ(std::vector<int> vec);
 void exportPhylogeny(std::ostream& stream, Node *root);
+void exportMatrix(std::ostream& stream, std::vector<std::vector<bool> > matrix);
 Node *buildTreeFromMatrix(std::vector<std::vector<bool> > matrix);
 void plotHistograms(std::string outFile, std::string name1, std::string name2, std::vector<double> d1, std::vector<double> d2);
 std::vector<int> makeHisto (std::vector<int> v);
@@ -153,30 +154,52 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
     return (int) (sum / t);
   };
 
-  auto qFromPeriods = [](std::vector<int> periods) {
+  auto roughQFromPeriods = [](std::vector<int> periods) {
     int index = 0;
     int minValue = std::numeric_limits<int>::max();
   
     for (int i = 1; i < 100; i++) {
       std::vector<double> tabledouble;
       for (int j = 0; j < tables[i].size(); j++) {
-	tabledouble.push_back(tables[i][zigzag[j]];
+  	tabledouble.push_back(tables[i][zigzag[j]]);
       }
 
       std::vector<double> qsdouble;
 
       for (int i = 0; i < periods.size(); i++) {
-	if(periods[i] == -1) qsdouble.push_back(1);
-	else if(periods[i] <= 1) qsdouble.push_back(tabledouble[i]);
-	else qsdouble.push_back(periods[i]);
+  	if(periods[i] == -1) qsdouble.push_back(1);
+  	else if(periods[i] <= 1) qsdouble.push_back(tabledouble[i]);
+  	else qsdouble.push_back(periods[i]);
       }
 
       double d = Distance::compute(Distance::euclid, qsdouble, tabledouble);
       if(d < minValue) {
-	minValue = d;
-	index = i;
+  	minValue = d;
+  	index = i;
       }
     }      
+      
+    return index;
+  };
+
+  auto qFromPeriods = [&](std::vector<int> periods) {
+    int index = roughQFromPeriods(periods);
+    if(index < 50)
+      return index;
+
+    auto qFromPeriod = [&](double period, int i) {
+      double q = (100.0 * period - 50.0) / (double)baseTable[i];
+      if(index >= 50)
+	return (200.0 - q) / 2.0;
+    };
+
+    std::vector<double> estimatedQs;
+
+    for (int i = 0; i < periods.size(); i++) {
+      estimatedQs.push_back(qFromPeriod(periods[i], zigzag[i]));
+    }
+
+    index = tools::mean(estimatedQs);
       
     return index;
   };
@@ -331,6 +354,15 @@ void exportPhylogeny(std::ostream& stream, Node *root) {
   stream << "\\end{forest}" << std::endl;
 
   stream << "\\end{document}" << std::endl;
+}
+
+void exportMatrix(std::ostream& stream, std::vector<std::vector<bool> > matrix) {
+  for(auto i : matrix) {
+    for(auto j : i) {
+      stream << j << " ";
+    }
+    stream << std::endl;
+  }
 }
 
 std::vector<std::vector<bool> > estimateParents(std::string directory) {
@@ -645,7 +677,8 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
 	bool b = false;
 	int k = 0;
 	int step = 0;
-	while(!b && k <= 8) {
+	int range = (estimated < 50)?8:4;
+	while(!b && k <= range) {
 	  step = step + ((k % 2 == 0)? -1 : 1) * k++;
 
 	  if(estimated + step > estimatedQs[cptj]) {
@@ -702,13 +735,7 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
     cpti++;
   }
 
-  for(auto i : matrix) {
-    for(auto j : i) {
-      std::cout << j << " ";
-    }
-    std::cout << std::endl;
-  }
-
+  exportMatrix(std::cout, matrix);
   std::cout << "mean error = " << (double)error / (double)cpti << std::endl;
 
   return matrix;
@@ -726,8 +753,13 @@ int main(int argc, char **argv) {
   
   std::string treePath = "tree.tex";
   std::ofstream stream(treePath);
+
+  std::string matrixPath = std::string(argv[2]) + "/computed.txt";
+  std::ofstream stream1(matrixPath);
+    
   std::cout << "exporting" << std::endl;
   exportPhylogeny(stream, root);
+  exportMatrix(stream1, matrix);
   
   return 0;
 }
