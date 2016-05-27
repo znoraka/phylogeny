@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/noe/Documents/dev/phylogeny/tree-extractor/c++
+CMAKE_SOURCE_DIR = /home/noe/Documents/dev/phylogeny/results-generator/c++
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/noe/Documents/dev/phylogeny/tree-extractor/c++
+CMAKE_BINARY_DIR = /home/noe/Documents/dev/phylogeny/results-generator/c++
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/noe/Documents/dev/phylogeny/tree-extractor/c++/CMakeFiles /home/noe/Documents/dev/phylogeny/tree-extractor/c++/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/noe/Documents/dev/phylogeny/results-generator/c++/CMakeFiles /home/noe/Documents/dev/phylogeny/results-generator/c++/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/noe/Documents/dev/phylogeny/tree-extractor/c++/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/noe/Documents/dev/phylogeny/results-generator/c++/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named tree-extractor
+# Target rules for targets named results-generator
 
 # Build rule for target.
-tree-extractor: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tree-extractor
-.PHONY : tree-extractor
+results-generator: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 results-generator
+.PHONY : results-generator
 
 # fast build rule for target.
-tree-extractor/fast:
-	$(MAKE) -f CMakeFiles/tree-extractor.dir/build.make CMakeFiles/tree-extractor.dir/build
-.PHONY : tree-extractor/fast
+results-generator/fast:
+	$(MAKE) -f CMakeFiles/results-generator.dir/build.make CMakeFiles/results-generator.dir/build
+.PHONY : results-generator/fast
 
 src/main.o: src/main.cpp.o
 
@@ -129,7 +129,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) -f CMakeFiles/tree-extractor.dir/build.make CMakeFiles/tree-extractor.dir/src/main.cpp.o
+	$(MAKE) -f CMakeFiles/results-generator.dir/build.make CMakeFiles/results-generator.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -138,7 +138,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) -f CMakeFiles/tree-extractor.dir/build.make CMakeFiles/tree-extractor.dir/src/main.cpp.i
+	$(MAKE) -f CMakeFiles/results-generator.dir/build.make CMakeFiles/results-generator.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -147,7 +147,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) -f CMakeFiles/tree-extractor.dir/build.make CMakeFiles/tree-extractor.dir/src/main.cpp.s
+	$(MAKE) -f CMakeFiles/results-generator.dir/build.make CMakeFiles/results-generator.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 # Help Target
@@ -158,7 +158,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... tree-extractor"
+	@echo "... results-generator"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

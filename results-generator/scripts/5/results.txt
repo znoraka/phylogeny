@@ -1,4 +1,0 @@
-roots = 1
-edges = 1
-leaves = 1
-ancestry = 1
