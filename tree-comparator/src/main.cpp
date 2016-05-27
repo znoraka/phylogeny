@@ -105,29 +105,41 @@ std::vector<Node *> buildTreeFromMatrix(std::vector<std::vector<bool> > matrix) 
 }
 
 bool metric_root(std::vector<Node *> tree1, std::vector<Node *> tree2) {
-  int root1 = -1;
-  int root2 = -2;
+  // int root1 = -1;
+  // int root2 = -2;
 
-  int n = 0;
+  // int n = 0;
+  // for(auto i : tree1) {
+  //   if(i->parent == nullptr) {
+  //     if(root1 != -1) {
+  // 	return false;	
+  //     }
+  //     root1 = i->n;
+  //   }
+
+  //   n++;
+  // }
+
+  // for(auto i : tree2) {
+  //   if(i->parent == nullptr) {
+  //     if(root2 != -2) return false;
+  //     root2 = i->n;
+  //   }
+  // }
+
+  // return root1 == root2;
+
   for(auto i : tree1) {
-    if(i->parent == nullptr) {
-      if(root1 != -1) {
-	return false;	
+    for(auto j : tree2) {
+      if(i->parent == nullptr &&
+	 j->parent == nullptr) {
+	if(i->n == j->n) return true;
+  	break;
       }
-      root1 = i->n;
-    }
-
-    n++;
-  }
-
-  for(auto i : tree2) {
-    if(i->parent == nullptr) {
-      if(root2 != -2) return false;
-      root2 = i->n;
     }
   }
-
-  return root1 == root2;
+  
+  return false;
 }
 		    
 double metric_edges(std::vector<Node *> tree1, std::vector<Node *> tree2) {
