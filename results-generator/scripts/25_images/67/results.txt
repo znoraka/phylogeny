@@ -1,0 +1,7 @@
+mean_error = 1.28
+overestimate = 4
+underestimate = -1
+roots = 1
+edges = 0.833333
+leaves = 0.846154
+ancestry = 0.116279
