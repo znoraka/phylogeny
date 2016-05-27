@@ -25,7 +25,7 @@ struct Node {
   std::vector<Node*> children;
 };
 
-void createChild(std::string path, int imageCount, std::vector<Node*> &nodes, bool randomQ, std::vector<int> randomNames);
+bool createChild(std::string path, int imageCount, std::vector<Node*> &nodes, bool randomQ, std::vector<int> randomNames);
 Node *createPhylogeny(std::string path, std::string rootImage, int imageCount, bool randomQ);
 void applyTransform(Image &image, Node *node);
 std::vector<std::vector<bool> > matrixFromTree(Node *root);
@@ -75,13 +75,13 @@ Node *createPhylogeny(std::string path, std::string rootImage, int imageCount, b
   image.write(rootPath);
   
   while (count < imageCount - 1) {
-    createChild(path, count++, nodes, randomQ, randomNames);
+    count += createChild(path, count, nodes, randomQ, randomNames);
   }
 
   return root;
 }
 
-void createChild(std::string path, int imageCount, std::vector<Node*> &nodes, bool randomQ, std::vector<int> randomNames) {
+bool createChild(std::string path, int imageCount, std::vector<Node*> &nodes, bool randomQ, std::vector<int> randomNames) {
   Image image, parent;
   int parentIndex = randomNames[(imageCount > 0) ? (std::rand() % imageCount) : 0];
   Node *n = new Node();
@@ -95,6 +95,13 @@ void createChild(std::string path, int imageCount, std::vector<Node*> &nodes, bo
 
   recompress(image, n, parentNode->compression, randomQ);
 
+  //filtrer les images soeurs avec le même q
+  if(n->compression != 30) {
+    for(auto i : parentNode->children) {
+      if(i->compression == n->compression) return false;
+    }
+  }
+
   std::string childPath = std::to_string(randomNames[imageCount + 1]);
   n->name = childPath + ".jpg";
   n->n = randomNames[imageCount + 1];
@@ -104,6 +111,8 @@ void createChild(std::string path, int imageCount, std::vector<Node*> &nodes, bo
   
   nodes[randomNames[imageCount + 1]] = n;
   parentNode->children.push_back(n);
+  
+  return true;
 }
 
 std::vector<std::vector<bool> > matrixFromTree(Node *root) {
@@ -183,7 +192,7 @@ int main(int argc, char **argv){
 
   system("rm -rf /media/ramdisk/data && mkdir /media/ramdisk/data");
   Node *root = createPhylogeny(std::string(argv[1]) + "/", argv[2], atoi(argv[3]), atoi(argv[4]));
-  std::string treePath = std::string(argv[1]) + "/tree.tex";
+  std::string treePath = std::string(argv[5]) + "/truth.tex";
   std::ofstream stream(treePath);
 
   std::string matrixPath = std::string(argv[5]) + "/truth.txt";

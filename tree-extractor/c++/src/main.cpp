@@ -22,6 +22,9 @@ using namespace tools;
 static std::vector<int> baseTable = {16,12,14,14,18,24,49,72,11,12,13,17,22,35,64,92,10,14,16,22,37,55,78,95,16,19,24,29,56,64,87,98,24,26,40,51,68,81,103,112,40,58,57,87,109,104,121,100,51,60,69,80,103,113,120,103,61,55,56,62,77,92,101,99};
 
 static std::vector<std::vector<int> > tables;
+double meanError;
+int overestimate;
+int underestimate;
 
 std::vector<int> table(int quality) {
   auto getQ = [&](int val) -> int {
@@ -184,6 +187,7 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
 
   auto qFromPeriods = [&](std::vector<int> periods) {
     int index = roughQFromPeriods(periods);
+    std::cout << "rough = " << index << std::endl;
     if(index < 50)
       return index;
 
@@ -199,9 +203,11 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
       estimatedQs.push_back(qFromPeriod(periods[i], zigzag[i]));
     }
 
-    index = tools::mean(estimatedQs);
+    int estimated = tools::mean(estimatedQs);
+
+    if(index < 92 && abs(index - estimated) >= 3) return index;
       
-    return index;
+    return estimated;
   };
 
   auto plotPeaks = [&](std::vector<double> plot, std::vector<int> peaks, int n) {
@@ -642,6 +648,13 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
     std::cout << "estimated = " << estimated << std::endl;
     std::cout << "real      = " << quality << std::endl;
     error += (abs(estimated - quality));
+    
+    if(estimated < quality) {
+      overestimate = fmax(overestimate, quality - estimated);
+    } else {
+      underestimate = fmin(underestimate, quality - estimated);
+    }
+
     std::cout << std::endl;
     // }
       // int n = 0;
@@ -711,17 +724,19 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
 	  std::cout << cpti << " and " << cptj << " = ";
 	  // bool b1 = distancesOk(di, dj);
 	  bool b1 = distancesOk(i.dct, j.dct);
-	  bool b2 = areaUnderTheCurveOk(toDoubleVector(base.dctDiffZero, i.numberOfBlocks), toDoubleVector(jUncompressed.dctDiffZero, j.numberOfBlocks));
-	  bool b3 = missingValuesOk(reajust(i.dct[0], base.q), reajust(j.dct[0], base.q));
-	  // bool b4 = distancesOk(fft(makeHisto(i.dct[0])), fft(makeHisto(j.dct[0])));
-	  bool b4 = true;
-	  bool b5 = missingValuesOk(fft(makeHisto(i.dct[1])), fft(makeHisto(j.dct[1])));
+	  // bool b2 = areaUnderTheCurveOk(toDoubleVector(base.dctDiffZero, i.numberOfBlocks), toDoubleVector(jUncompressed.dctDiffZero, j.numberOfBlocks));
+	  // bool b3 = missingValuesOk(reajust(i.dct[0], base.q), reajust(j.dct[0], base.q));
+	  // // bool b4 = distancesOk(fft(makeHisto(i.dct[0])), fft(makeHisto(j.dct[0])));
+	  // bool b4 = true;
+	  // bool b5 = missingValuesOk(fft(makeHisto(i.dct[1])), fft(makeHisto(j.dct[1])));
 
-	  b = b || (b1 || (b2 && b3 && b4 && b5));
+	  // b = b || (b1 || (b2 && b3 && b4 && b5));
+	  b = b || b1;
+	  std::cout << std::endl;
 
 	  // vec.push_back(b1 || (b2 && b3 && b4 && b5));
 	  // vec.push_back(b1);
-	  std::cout << b2 << " " << b3 << " " << b4 << " " << b5 << std::endl;
+	  // std::cout << b2 << " " << b3 << " " << b4 << " " << b5 << std::endl;
 	  // std::cout << cpti << " and " << cptj << " = ";
 	  // canBeChild(toDoubleVector(i.dctDiffZero, i.numberOfBlocks), toDoubleVector(j.dctDiffZero, j.numberOfBlocks), i.q);
 	  // vec.push_back(!canBeChild(toDoubleVector(i.dctDiffZero, i.numberOfBlocks), toDoubleVector(j.dctDiffZero, j.numberOfBlocks), i.q));
@@ -736,8 +751,13 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
   }
 
   exportMatrix(std::cout, matrix);
-  std::cout << "mean error = " << (double)error / (double)cpti << std::endl;
 
+  meanError = (double)error / (double)cpti;
+  
+  std::cout << "mean error = " << (double)error / (double)cpti << std::endl;
+  std::cout << "overestimate = " << overestimate << std::endl;
+  std::cout << "underestimate = " << underestimate << std::endl;
+  
   return matrix;
 }
 
@@ -751,15 +771,22 @@ int main(int argc, char **argv) {
   auto matrix = estimateParents(argv[1]);
   Node *root = buildTreeFromMatrix(matrix);
   
-  std::string treePath = "tree.tex";
+  std::string treePath = std::string(argv[2]) + "/estimated.tex";
   std::ofstream stream(treePath);
 
   std::string matrixPath = std::string(argv[2]) + "/computed.txt";
   std::ofstream stream1(matrixPath);
+
+  std::string resultsPath = std::string(argv[2]) + "/results.txt";
+  std::ofstream stream2(resultsPath);
     
   std::cout << "exporting" << std::endl;
   exportPhylogeny(stream, root);
   exportMatrix(stream1, matrix);
+
+  stream2 << "mean_error = " << meanError << std::endl;
+  stream2 << "overestimate = " << overestimate << std::endl;
+  stream2 << "underestimate = " << underestimate << std::endl;
   
   return 0;
 }
