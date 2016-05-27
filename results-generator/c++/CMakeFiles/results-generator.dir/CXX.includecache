@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/noe/Documents/dev/phylogeny/results-generator/c++/src/main.cpp
+/home/noe/dev/phylogeny/results-generator/c++/src/main.cpp
 iostream
 -
 cstring
