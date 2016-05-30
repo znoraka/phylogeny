@@ -67,6 +67,22 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.2}L'algorithme de reconstruction}{17}{section.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {4}Conclusion}{19}{chapter.4}
+\contentsline {chapter}{\chapternumberline {4}La m\IeC {\'e}thode propos\IeC {\'e}e}{19}{chapter.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliographie}{20}{section*.32}
+\contentsline {section}{\numberline {4.1}Estimation du facteur de qualit\IeC {\'e} d'une image JPEG}{19}{section.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Estimation de la table de quantification}{19}{section*.31}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{L'autocorr\IeC {\'e}lation et la d\IeC {\'e}tection de pics}{20}{section*.32}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Calcul de $Q_f$ \IeC {\`a} partir de $\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle q$}\mathaccent "0362{q}(u,v)$}{22}{section*.37}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}Estimation du parent}{22}{section.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {5}R\IeC {\'e}sultats}{23}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.1}G\IeC {\'e}n\IeC {\'e}ration des donn\IeC {\'e}es}{23}{section.5.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {6}Conclusion}{24}{chapter.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliographie}{25}{section*.39}

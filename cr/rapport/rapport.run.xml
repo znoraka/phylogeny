@@ -82,7 +82,7 @@
       <file>rapport-blx.bib</file>
     </requires>
     <requires type="editable">
-      <file>../../articles/biblio.bib</file>
+      <file>biblio.bib</file>
     </requires>
     <requires type="static">
       <file>biblatex.bst</file>

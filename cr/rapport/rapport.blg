@@ -14,48 +14,48 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: rapport-blx.bib
-Database file #2: ../../articles/biblio.bib
-Biblatex version: 3.0
+Database file #2: biblio.bib
+Biblatex version: 3.3
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
-You've used 19 entries,
+You've used 20 entries,
             6047 wiz_defined-function locations,
-            1233 strings with 11239 characters,
-and the built_in function-call counts, 57328 in all, are:
-= -- 2259
+            1236 strings with 11276 characters,
+and the built_in function-call counts, 58840 in all, are:
+= -- 2298
 > -- 1838
-< -- 572
-+ -- 597
-- -- 639
-* -- 4246
-:= -- 3411
+< -- 586
++ -- 598
+- -- 641
+* -- 4295
+:= -- 3439
 add.period$ -- 0
-call.type$ -- 19
-change.case$ -- 300
+call.type$ -- 20
+change.case$ -- 304
 chr.to.int$ -- 40
-cite$ -- 36
-duplicate$ -- 6487
-empty$ -- 6171
+cite$ -- 38
+duplicate$ -- 6698
+empty$ -- 6422
 format.name$ -- 1134
-if$ -- 13052
+if$ -- 13423
 int.to.chr$ -- 0
-int.to.str$ -- 55
+int.to.str$ -- 56
 missing$ -- 0
-newline$ -- 493
+newline$ -- 501
 num.names$ -- 843
-pop$ -- 5852
+pop$ -- 6175
 preamble$ -- 1
-purify$ -- 343
+purify$ -- 346
 quote$ -- 0
-skip$ -- 3308
+skip$ -- 3384
 stack$ -- 0
-substring$ -- 1383
-swap$ -- 2197
-text.length$ -- 481
-text.prefix$ -- 18
+substring$ -- 1393
+swap$ -- 2253
+text.length$ -- 494
+text.prefix$ -- 19
 top$ -- 1
-type$ -- 710
+type$ -- 748
 warning$ -- 0
-while$ -- 369
+while$ -- 372
 width$ -- 0
-write$ -- 473
+write$ -- 480

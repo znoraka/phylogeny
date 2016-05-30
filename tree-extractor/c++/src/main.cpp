@@ -627,12 +627,12 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
     imagepng.write("/media/ramdisk/i.jpg");
     //*/
     
-    image2.quality(100);
-    image2.write("/media/ramdisk/i.jpg");
+    // image2.quality(100);
+    // image2.write("/media/ramdisk/i.jpg");
     //*/
     
-    // q_dct i = getQAndDct(image_i);
-    q_dct i = getQAndDct("/media/ramdisk/i.jpg");
+    q_dct i = getQAndDct(image_i);
+    // q_dct i = getQAndDct("/media/ramdisk/i.jpg");
     auto di = makeDistrib(makeHisto(i.dct[0]));
     // auto di = toDoubleVector(i.dctDiffZero, i.numberOfBlocks);
 
@@ -700,12 +700,12 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
 
 	  image.quality(estimated + step);
 	  image.write("/media/ramdisk/out.jpg");
-	  Image image3;
-	  image3.read("/media/ramdisk/out.jpg");
-	  image3.quality(100);
-	  image3.write("/media/ramdisk/j.jpg");
-	  // q_dct j = getQAndDct("out.jpg");
-	  q_dct j = getQAndDct("/media/ramdisk/j.jpg");
+	  // Image image3;
+	  // image3.read("/media/ramdisk/out.jpg");
+	  // image3.quality(100);
+	  // image3.write("/media/ramdisk/j.jpg");
+	  q_dct j = getQAndDct("/media/ramdisk/out.jpg");
+	  // q_dct j = getQAndDct("/media/ramdisk/j.jpg");
 	  q_dct jUncompressed = getQAndDct(image_j);
 
 	  // q_dct j = getQAndDct(image_j);

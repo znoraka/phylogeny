@@ -19,6 +19,7 @@
 \usepackage{tikz-qtree}
 \usepackage{csquotes}
 \usepackage{indentfirst}
+\usepackage{upgreek}
 \usetikzlibrary{trees}
 \usetikzlibrary{babel}
 \usetikzlibrary{arrows,automata,positioning}
@@ -57,7 +58,7 @@
 
 
 
-\bibliography{../../articles/biblio.bib}
+\bibliography{biblio.bib}
 
 % \newcommand*{\addheight}[2][.5ex]{%
 %   \raisebox{0pt}[\dimexpr\height+(#1)\relax]{#2}%
@@ -403,7 +404,7 @@ C'est surtout l'étape de quantification qui va réduire la quantité d'informat
 
 
 \subsection{Estimation de la matrice de compression primaire dans les images JPEG doublement compressées}
-
+\label{estimation_matrice_compression}
 
 % \subsection{Estimation of primary quantization matrix in double compressed JPEG images}
 
@@ -707,7 +708,110 @@ Il nous a semblé important, même dans le cadre de l'étude bibliographique, d'
 
 Cette approche a pour avantage de réduire l'évaluation d'un arbre de phylogénie à partir d'un ensemble d'images à l'évaluation binaire de parenté entre deux images.
 
-%%%% faire une trace de l'algo %%%%%
+\chapter{La méthode proposée}
+\section{Estimation du facteur de qualité d'une image JPEG}
+Nous travaillons sur des images ayant subi une compression JPEG. Ces images, au fil de leurs voyages sur les réseaux sociaux, on pu changer de format et avoir été convertie au format PNG par exemple. L'information du facteur de qualité utilisé pour compresser l'image, indispensable à nos calculs, a été perdue. Nous proposons donc d'estimer le facteur de qualité d'une bitmap n'ayant pas subi d'autre compression avec perte que le JPEG.
+
+% \section{Estimation du pas de quantification}
+\subsection{Estimation de la table de quantification}
+Nous avons besoin des coefficients DCT de l'image pour pouvoir estimer la table de quantification. Deux choix s'offrent à nous : calculer une DCT à partir d'une bitmap, ou compresser une bitmap au format JPEG avec $Q_f = 100$ et lire directement les coefficients DCT. Le deuxième choix s'avère être le plus simple à mettre en place et c'est celui que nous avons utilisé.
+
+Comme expliqué section \ref{estimation_matrice_compression}, les valeurs des coefficients DCT vont se rassembler autour des multiples de $q$, qui est le nombre utilisé pour la quantification. Chaque coefficient DCT forme donc un signal periodique, de periode $q$. C'est cette période que nous allons tenter d'estimer. L'autocorrélation est la technique traditionnelement utilisée pour extraire une période.
+
+% \subsection{Calcul de la table de quantification}
+Chaque implémentation de la compression JPEG possède sa propre table de quantification, un exemple de table de quantification est donnée figure \ref{fig:quantization_table}. La table de quantification $base(.,.)$ est donnée pour $Q_f = 50$, pour obtenir les tables de quantification pour les différents $Q_f$, les formules \ref{eqn:jpeg_1} et \ref{eqn:jpeg_2} sont utilisées. Cela permet, si c'est une table standard qui est utilisée, de ne pas avoir à stocker la table dans l'en-tête du fichier JPEG et de pouvoir la calculer à partir de $Q_f$.
+
+\begin{equation}
+  si\ Q_f < 50\ \ \ \ \ \  Q_s = 5000 / Q_f\ \ \ \ \  sinon\ \ \ \ \ Q_s = 200 - (Q_f \times 2)
+  \label{eqn:jpeg_1}
+\end{equation}
+
+\begin{equation}
+  q(u,v) = \frac{(base(u,v) \times Q_s) - 50}{100}\ \ \ \ \ en\ bornant\ q(u,v)\ par\ 1\ et\ 255
+  \label{eqn:jpeg_2}
+\end{equation}
+
+\subsection{L'autocorrélation et la détection de pics}
+L'autocorrélation est la multiplication du signal avec lui-même à différents points du temps. Ainsi, l'autocorrélation d'un signal périodique aura des valeurs maximales (des pics) lorsque le décalage temporel $\uptau$ est un multiple de la période, et donc que le signal est le plus similaire avec lui-même.
+
+Nous savons que les valeurs du pas de quantification sont bornées par 1 et 255, nous allons donc calculer l'autocorrélation entre ces deux bornes. Un exemple de signal et son autocorrélation est disponible figures \ref{fig:signal} et \ref{fig:autocorrel}.
+
+\begin{figure}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{images/signal}
+    \caption{Histogramme du coefficient DC d'une image}
+    \label{fig:signal}
+  \end{subfigure}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{images/autocorrelation}
+    \caption{Autocorrélation de ce signal}
+    \label{fig:autocorrel}
+  \end{subfigure}
+  \caption{Exemple de signal et son autocorrélation}
+\end{figure}
+
+\begin{figure}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{images/signal_noise}
+    \caption{Exemple de bruit entre les pics}
+  \end{subfigure}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{images/signal_noise_zoom}
+    \caption{Zoom sur le bruit}
+  \end{subfigure}
+  \caption{Présence de bruit entre les pics}
+  \label{fig:signal_noise}
+\end{figure}
+
+La période va ensuite être le delta entre deux pics consécutifs. La détection d'un pic est triviale lorsque le signal est propre et ne comporte aucun bruit, une valeur est un pic si la valeur précédente et la valeur suivante sont strictement inférieures. Nous ne sommes hélas pas dans le cas idéal, comme illustré figure \ref{fig:signal_noise}, où de faux pics peuvent être détectés si on prend le signal en l'état.
+
+La méthode la plus simple, efficace,  peu couteuse en temps de calcul et facile à mettre en place est de ne garder que les valeurs supérieures à un seuil. Notre seuil est calculé comme cinq fois la valeur moyenne de l'autocorrélation. Un exemple est disponible figure \ref{fig:signal_filtered}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/autocorrelation_filtered}
+    \caption{Exemple d'autocorrélation avec un seuil (en vert)}
+    \label{fig:signal_filtered}
+\end{figure}
+
+Seuls les quelques premiers pics sont conservés, nous sommes en effet certains qu'ils seront au dessus du seuil, et donc qu'il n'y aura pas de pic manquant (comme les pics de la droite de la figure \ref{fig:signal_filtered} qui alternent entre au dessus et en dessous du seuil) qui viendrait fausser le calcul de la période.
+
+Il est important de noter que cette technique donne de très bons résultats, mais seulement dans notre cas d'étude, c'est à dire que le $Q_f$ d'une image est strictement inférieur à celui de son parent. Dans le cas où le $Q_f$ peut être supérieur, comme expliqué section \ref{estimation_matrice_compression}, des doubles pics peuvent apparaitre et rendre compliqué le calcul de la période. Un exemple est disponible figure \ref{fig:double_peaks}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/autocorrelation_double}
+    \caption{Exemple d'autocorrélation avec des doubles pics}
+    \label{fig:double_peaks}
+\end{figure}
+
+Cette opération est donc répétée pour les 35 premiers coefficients DCT de l'image pour obtenir $\widehat{q}(u,v)$ la table de quantification estimée. Nous n'estimons que les 35 premiers coefficients DCT de l'image, la quantification des derniers coefficients est trop importante et il y a trop de valeurs à zéro, et donc pas assez d'informations pour estimer de manière précise la période.
+
+\subsection{Calcul de $Q_f$ à partir de $\widehat{q}(u,v)$}
+Il va maintenant falloir calculer $Q_f$ à partir de $\widehat{q}(u,v)$, la table de quantification précédemment estimée. Deux choix s'offrent à nous : regarder parmi toutes les tables $q_n(u,v),\ n\in\{1..100\}$ laquelle est la plus similaire (avec un calcul de distance par exemple), ou utiliser les équations \ref{eqn:jpeg_1} et \ref{eqn:jpeg_2}. 
+
+L'avantage de la première méthode est qu'elle nous donne directement $Q_f$, c'est la table pour laquelle la distance entre $q_n(u,v)$ et $\widehat{q}(u,v),\ n\in \{1..100\}$ est la plus faible. Le principal désavantage de cette technique est qu'elle est couteuse en temps de calcul, en plus de manquer de précision.
+
+L'autre méthode, même si elle ne demande presque aucun calcul, a un défaut majeur, elle ne permet pas d'obtenir $Q_f$. On peut en effet obtenir $Q_s$ à partir de l'équation \ref{eqn:jpeg_2}, mais il n'est pas possible d'obtenir $Q_f$ à partir de $Q_s$ sans savoir si $Q_f$ est supérieur à 50.
+
+Nous avons choisi de conjuguer les deux méthodes. Premièrement nous obtenons une estimation grossière de $Q_f$ en regardant parmi toutes les tables laquelle est la plus similaire, puis avec cette estimation de $Q_f$ nous calculons, manière plus précise le vrai $Q_f$ à l'aide des équations \ref{eqn:jpeg_1} et \ref{eqn:jpeg_2}. Le $Q_f$ final est donc la moyenne des $Q_f$ obtenus pour chaque coefficient DCT.
+
+\section{Estimation du parent}
+
+\chapter{Résultats}
+\section{Génération des données}
+Nous avons choisi de créer trois datasets différents, un avec des arbres de 15 images, un autre avec des arbres de 25 images et un dernier avec des arbres de 50 images. Cela nous permettra d'observer les différences éventuelles que peuvent amener des choses telles que la distance à la racine et le nombre de recompression dans la précision de l'estimation du parent.
+
+La génération se fait comme suit : à partir d'une image graine, une première image est compressée avec $85 < Q_f < 99$, c'est l'image racine. Cette image racine est ajoutée à $p$ notre pool d'images. Tant que le nombre désiré d'images n'a pas été atteint, une image est prise aléatoirement dans la pool, est compressée avec $Q_{f_{parent}} - 15 < Q_{f_{enfant}} < Q_{f_{parent}} - 1$ et est ajoutée à la pool d'image. On fixe cependant $Q_f = 30$ comme limite basse du facteur de qualité, au delà de cette limite, l'image est trop déteriorée, et en plus de ne pas être un cas d'utilisation réaliste dans les réseaux sociaux, ne contient plus assez d'informations pour être correctement utilisée.
+
+La génération des datasets en eux même s'est fait à partir des six images d'origine de \textit{BOWS 2}\cite{bows} où chaque image à servi à générer douze arbres pour chaque dataset, pour un total de 72 arbres, soit 6480 images tout dataset confondu.
+
+\section{Résultats expérimentaux}
+
 \chapter{Conclusion}
 \label{chap4}
 Au terme de cette étude, nous avons pu voir que le problème de la reconstruction d'arbre phylogénétique d'images dans les réseaux sociaux n'est pas trivial et peut se diviser en deux sous-parties : l'identification de la racine et l'estimation des relations parent-enfant. Nous avons également pu voir dans l'état de l'art les différentes approches de reconstruction d'arbre de phylogénie. Nous avons choisi de nous concentrer uniquement sur l'étude des recompressions JPEG pour le calcul de l'arbre. Cette décision est motivée par le fait que nous sommes intéressés par le domaine du forensics et que l'étude des recompressions un sujet suffisamment vaste et complexe. Cela nous a amené à étudier la détection des compressions multiples.
