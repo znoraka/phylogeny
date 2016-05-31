@@ -249,6 +249,8 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
 
   int p = qFromPeriods(qs);
 
+  if(p < 5) p = 97;
+
   return p;
 }
 

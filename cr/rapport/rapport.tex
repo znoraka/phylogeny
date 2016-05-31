@@ -20,6 +20,7 @@
 \usepackage{csquotes}
 \usepackage{indentfirst}
 \usepackage{upgreek}
+\usepackage{slashbox}
 \usetikzlibrary{trees}
 \usetikzlibrary{babel}
 \usetikzlibrary{arrows,automata,positioning}
@@ -716,7 +717,7 @@ Nous travaillons sur des images ayant subi une compression JPEG. Ces images, au 
 \subsection{Estimation de la table de quantification}
 Nous avons besoin des coefficients DCT de l'image pour pouvoir estimer la table de quantification. Deux choix s'offrent à nous : calculer une DCT à partir d'une bitmap, ou compresser une bitmap au format JPEG avec $Q_f = 100$ et lire directement les coefficients DCT. Le deuxième choix s'avère être le plus simple à mettre en place et c'est celui que nous avons utilisé.
 
-Comme expliqué section \ref{estimation_matrice_compression}, les valeurs des coefficients DCT vont se rassembler autour des multiples de $q$, qui est le nombre utilisé pour la quantification. Chaque coefficient DCT forme donc un signal periodique, de periode $q$. C'est cette période que nous allons tenter d'estimer. L'autocorrélation est la technique traditionnelement utilisée pour extraire une période.
+Comme expliqué section \ref{estimation_matrice_compression}, les valeurs des coefficients DCT vont se rassembler autour des multiples de $q$, qui est le nombre utilisé pour la quantification. Chaque coefficient DCT forme donc un signal périodique, de période $q$. C'est cette période que nous allons tenter d'estimer. L'autocorrélation est la technique traditionnellement utilisée pour extraire une période.
 
 % \subsection{Calcul de la table de quantification}
 Chaque implémentation de la compression JPEG possède sa propre table de quantification, un exemple de table de quantification est donnée figure \ref{fig:quantization_table}. La table de quantification $base(.,.)$ est donnée pour $Q_f = 50$, pour obtenir les tables de quantification pour les différents $Q_f$, les formules \ref{eqn:jpeg_1} et \ref{eqn:jpeg_2} sont utilisées. Cela permet, si c'est une table standard qui est utilisée, de ne pas avoir à stocker la table dans l'en-tête du fichier JPEG et de pouvoir la calculer à partir de $Q_f$.
@@ -769,7 +770,7 @@ Nous savons que les valeurs du pas de quantification sont bornées par 1 et 255,
 
 La période va ensuite être le delta entre deux pics consécutifs. La détection d'un pic est triviale lorsque le signal est propre et ne comporte aucun bruit, une valeur est un pic si la valeur précédente et la valeur suivante sont strictement inférieures. Nous ne sommes hélas pas dans le cas idéal, comme illustré figure \ref{fig:signal_noise}, où de faux pics peuvent être détectés si on prend le signal en l'état.
 
-La méthode la plus simple, efficace,  peu couteuse en temps de calcul et facile à mettre en place est de ne garder que les valeurs supérieures à un seuil. Notre seuil est calculé comme cinq fois la valeur moyenne de l'autocorrélation. Un exemple est disponible figure \ref{fig:signal_filtered}
+La méthode la plus simple, efficace,  peu coûteuse en temps de calcul et facile à mettre en place est de ne garder que les valeurs supérieures à un seuil. Notre seuil est calculé comme cinq fois la valeur moyenne de l'autocorrélation. Un exemple est disponible figure \ref{fig:signal_filtered}
 
 \begin{figure}[H]
     \centering
@@ -780,7 +781,7 @@ La méthode la plus simple, efficace,  peu couteuse en temps de calcul et facile
 
 Seuls les quelques premiers pics sont conservés, nous sommes en effet certains qu'ils seront au dessus du seuil, et donc qu'il n'y aura pas de pic manquant (comme les pics de la droite de la figure \ref{fig:signal_filtered} qui alternent entre au dessus et en dessous du seuil) qui viendrait fausser le calcul de la période.
 
-Il est important de noter que cette technique donne de très bons résultats, mais seulement dans notre cas d'étude, c'est à dire que le $Q_f$ d'une image est strictement inférieur à celui de son parent. Dans le cas où le $Q_f$ peut être supérieur, comme expliqué section \ref{estimation_matrice_compression}, des doubles pics peuvent apparaitre et rendre compliqué le calcul de la période. Un exemple est disponible figure \ref{fig:double_peaks}.
+Il est important de noter que cette technique donne de très bons résultats, mais seulement dans notre cas d'étude, c'est à dire que le $Q_f$ d'une image est strictement inférieur à celui de son parent. Dans le cas où le $Q_f$ peut être supérieur, comme expliqué section \ref{estimation_matrice_compression}, des doubles pics peuvent apparaître et rendre compliqué le calcul de la période. Un exemple est disponible figure \ref{fig:double_peaks}.
 
 \begin{figure}[H]
     \centering
@@ -794,24 +795,73 @@ Cette opération est donc répétée pour les 35 premiers coefficients DCT de l'
 \subsection{Calcul de $Q_f$ à partir de $\widehat{q}(u,v)$}
 Il va maintenant falloir calculer $Q_f$ à partir de $\widehat{q}(u,v)$, la table de quantification précédemment estimée. Deux choix s'offrent à nous : regarder parmi toutes les tables $q_n(u,v),\ n\in\{1..100\}$ laquelle est la plus similaire (avec un calcul de distance par exemple), ou utiliser les équations \ref{eqn:jpeg_1} et \ref{eqn:jpeg_2}. 
 
-L'avantage de la première méthode est qu'elle nous donne directement $Q_f$, c'est la table pour laquelle la distance entre $q_n(u,v)$ et $\widehat{q}(u,v),\ n\in \{1..100\}$ est la plus faible. Le principal désavantage de cette technique est qu'elle est couteuse en temps de calcul, en plus de manquer de précision.
+L'avantage de la première méthode est qu'elle nous donne directement $Q_f$, c'est la table pour laquelle la distance entre $q_n(u,v)$ et $\widehat{q}(u,v),\ n\in \{1..100\}$ est la plus faible. Le principal désavantage de cette technique est qu'elle est coûteuse en temps de calcul, en plus de manquer de précision.
 
 L'autre méthode, même si elle ne demande presque aucun calcul, a un défaut majeur, elle ne permet pas d'obtenir $Q_f$. On peut en effet obtenir $Q_s$ à partir de l'équation \ref{eqn:jpeg_2}, mais il n'est pas possible d'obtenir $Q_f$ à partir de $Q_s$ sans savoir si $Q_f$ est supérieur à 50.
 
 Nous avons choisi de conjuguer les deux méthodes. Premièrement nous obtenons une estimation grossière de $Q_f$ en regardant parmi toutes les tables laquelle est la plus similaire, puis avec cette estimation de $Q_f$ nous calculons, manière plus précise le vrai $Q_f$ à l'aide des équations \ref{eqn:jpeg_1} et \ref{eqn:jpeg_2}. Le $Q_f$ final est donc la moyenne des $Q_f$ obtenus pour chaque coefficient DCT.
 
 \section{Estimation du parent}
+Le facteur de qualité utilisé pour compresser l'image nous est indispensable pour estimer le parent. En plus d'être un marqueur très efficace pour filtrer les images ne pouvant pas être le parent, le facteur de qualité nous sert à normaliser les images pour pouvoir les comparer.
+
+Nous partons du principe que la compression JPEG est une opération déterministe, elle donnera, pour une même implémentation, toujours le même résultat. Cela implique que toutes les compressions d'une certaine image avec le même facteur de qualité seront strictement identiques, et ce quelque soit le nombre de compressions qu'à pu subir l'image au préalable.
+
+Nous nous sommes limités aux compressions JPEG comme expliqué précédemment, nous savons donc que pour passer d'une image parent à son image enfant, l'image parent aura été recompressée. L'image parent est donc à une compression de l'image enfant.
+
+Nous allons utiliser ces précédents principes pour identifier avec précision le parent : 
+\paragraph{}
+
+Soit $I_m$ et $I_n$ deux images et $Q_{f_{m}}$ et $Q_{f_{n}}$ leurs facteurs de qualité respectifs, et $C(I,Q)$ l'opérateur de compression, avec $I$ l'image et $Q$ le facteur de qualité.
+\\
+Si $I_m = C(I_n, Q_{f_{m}})$, alors $I_n$ est le parent direct de $I_m$.
+\paragraph{}
+
+C'est en pratique presque aussi simple qu'en théorie, on voit bien que tout dépend du facteur de qualité, or nous estimons ce facteur de qualité, et il peut arriver qu'il ne soit pas exact, mais un peu trop grand ou un peu trop petit. Nous n'allons donc pas nous contenter de comparer les images compressées avec le $Q_f$ estimé, nous allons également regarder les $Q_f$ alentours (de $Q_f - 2$ à $Q_f + 2$ par exemple). La précision de l'estimation du parent est donc directement corrélée avec l'exactitude de l'estimation du facteur de qualité.
+
+\paragraph{}
+Cette méthode, même si elle donne d'excellents résultats pour trouver le parent direct, ne permet pas de trouver les grands parents ou les ancêtres plus éloignés. Nous tentons en effet de prendre une décision binaire : ``Cette image est-elle le parent de cette autre image ?''. Une décision binaire est difficile lorsque l'on travaille sur des valeurs dont les bornes dépendent de l'input. Il est alors difficile d'utiliser des seuils pour correctement filtrer les valeurs. L'alternative logique est de ne pas utiliser de seuil, et comparer les valeurs entre elles. 
+
+On peut raisonnablement penser que l'ancêtre le plus probable est l'image ayant la plus petite valeur (issue d'une métrique quelconque) parmi toutes les autres valeurs. Le problème est que l'on perd alors le principe de décision binaire.
+
+%%parler des marqueurs qui ont été un échec
+
 
 \chapter{Résultats}
 \section{Génération des données}
 Nous avons choisi de créer trois datasets différents, un avec des arbres de 15 images, un autre avec des arbres de 25 images et un dernier avec des arbres de 50 images. Cela nous permettra d'observer les différences éventuelles que peuvent amener des choses telles que la distance à la racine et le nombre de recompression dans la précision de l'estimation du parent.
 
-La génération se fait comme suit : à partir d'une image graine, une première image est compressée avec $85 < Q_f < 99$, c'est l'image racine. Cette image racine est ajoutée à $p$ notre pool d'images. Tant que le nombre désiré d'images n'a pas été atteint, une image est prise aléatoirement dans la pool, est compressée avec $Q_{f_{parent}} - 15 < Q_{f_{enfant}} < Q_{f_{parent}} - 1$ et est ajoutée à la pool d'image. On fixe cependant $Q_f = 30$ comme limite basse du facteur de qualité, au delà de cette limite, l'image est trop déteriorée, et en plus de ne pas être un cas d'utilisation réaliste dans les réseaux sociaux, ne contient plus assez d'informations pour être correctement utilisée.
+La génération se fait comme suit : à partir d'une image graine, une première image est compressée avec $85 < Q_f < 99$, c'est l'image racine. Cette image racine est ajoutée à $p$ notre pool d'images. Tant que le nombre désiré d'images n'a pas été atteint, une image est prise aléatoirement dans la pool, est compressée avec $Q_{f_{parent}} - 15 < Q_{f_{enfant}} < Q_{f_{parent}} - 1$ et est ajoutée à la pool d'image. On fixe cependant $Q_f = 30$ comme limite basse du facteur de qualité, au delà de cette limite, l'image est trop détériorée, et en plus de ne pas être un cas d'utilisation réaliste dans les réseaux sociaux, ne contient plus assez d'informations pour être correctement utilisée.
 
 La génération des datasets en eux même s'est fait à partir des six images d'origine de \textit{BOWS 2}\cite{bows} où chaque image à servi à générer douze arbres pour chaque dataset, pour un total de 72 arbres, soit 6480 images tout dataset confondu.
 
 \section{Résultats expérimentaux}
 
+Nous avons fait tourner notre collection l'algorithmes sur les trois dataset, et avons obtenu des résultats très satisfaisants. Nous mesurons la qualité nos résultats grâce à sept métriques, trois servant à mesurer la précision de l'estimation du facteur de qualité et les quatre autres servant à mesurer la qualité du calcul de l'arbre sont celles introduites par \citeauthornsc{dias2012image} \cite{dias2012image}.
+
+Les trois métriques servant à mesurer la précision de l'estimation du $Q_f$ sont l'erreur moyenne d'estimation, qui servira à savoir si l'estimation est juste la plupart du temps, la sur-estimation moyenne et la sous-estimation moyenne, qui, si tout va bien, seront symétriques, qui serviront à savoir si notre algorithme a plutôt tendance à sur-estimer ou sous-estimer le $Q_f$, et dans quel cas.
+
+\begin{figure}
+  \centering
+  \begin{tabular}{|r||c|c|c|c|c|}
+    \hline
+     \backslashbox{Métrique}{Dataset}             & \textbf{15 images} & \textbf{25 images} & \textbf{50 images} \\ \hhline{|=::=|=|=|}
+    \textbf{mean error}    & 0.559259 & 0.597222 & 0.996667 \\ \hline
+    \textbf{overestimate}  & 1.27778  & 1.51389  & 2.09722  \\ \hline
+    \textbf{underestimate} & -1.29167 & -1.63889 & -8.95833 \\ \hhline{|=::=|=|=|}
+    \textbf{roots}         & 0.958333 & 0.805556 & 0.555556 \\ \hline
+    \textbf{edges}         & 0.984127 & 0.965278 & 0.947846 \\ \hline
+    \textbf{leaves}        & 0.987213 & 0.974608 & 0.945167 \\ \hline
+    \textbf{ancestry}      & 0.96142  & 0.916048 & 0.836348 \\ \hline
+  \end{tabular} 
+\caption{Table de résultats, les trois premières métriques sont des moyennes d'entiers et les quatres dernières sont des pourcentages}
+\label{results}
+\end{figure}
+
+La table \ref{results} montre les résultats obtenus par nos algorithmes. On peut directement remarquer que les résultats sont strictement meilleur lorsque l'on réduit le nombre d'images dans le set. À noter que le meilleur résultat possible pour les trois premières métriques est zéro, c'est à dire que tout les $Q_f$ ont été estimés parfaitement, et que le meilleur résultat pour les quatre dernières est un, lorsque la vérité terrain et l'arbre reconstruit sont identiques.
+\paragraph{}
+
+Il semble important de préciser que l'estimation de $Q_f$ rencontre des difficultés lorsque $Q_f$ est proche de 100. En effet un grand nombre des valeurs de la table de quantification est à 1, ce qui ne quantifie pas le coefficient DCT, nous ne disposons donc pas de suffisamment d'information pour discriminer une image 
+% L'erreur moyenne reste inférieure à un, l'estimation du $Q_f$ est donc très performante. Le score moins bon pour le dataset de 50 images s'explique par le fait que l'estimation du facteur de qualité rencontre des difficultés lorsque $Q_f > 95$, où un grand nombre des valeurs de la table de quantification sont à 1, le signal a donc une période de 1, et donc est continu, ne permettant de pas de détecter les pics. Des images peuvent alors être jugées, à tort, plus compressées que d'autres, et donc être marquées comme ne pouvant pas être le parent.
 \chapter{Conclusion}
 \label{chap4}
 Au terme de cette étude, nous avons pu voir que le problème de la reconstruction d'arbre phylogénétique d'images dans les réseaux sociaux n'est pas trivial et peut se diviser en deux sous-parties : l'identification de la racine et l'estimation des relations parent-enfant. Nous avons également pu voir dans l'état de l'art les différentes approches de reconstruction d'arbre de phylogénie. Nous avons choisi de nous concentrer uniquement sur l'étude des recompressions JPEG pour le calcul de l'arbre. Cette décision est motivée par le fait que nous sommes intéressés par le domaine du forensics et que l'étude des recompressions un sujet suffisamment vaste et complexe. Cela nous a amené à étudier la détection des compressions multiples.
