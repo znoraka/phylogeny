@@ -692,7 +692,7 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
 	bool b = false;
 	int k = 0;
 	int step = 0;
-	int range = (estimated < 50)?8:4;
+	int range = (estimated < 50 || estimated > 92)?8:4;
 	while(!b && k <= range) {
 	  step = step + ((k % 2 == 0)? -1 : 1) * k++;
 
