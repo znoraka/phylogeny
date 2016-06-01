@@ -424,7 +424,7 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
   };
 
   /**
-   * Calcule l'air sous la courbe à chaque bin de l'histogramme
+   * Calcule l'aire sous la courbe à chaque bin de l'histogramme
    */
   auto makeArea = [](std::vector<double> v) {
     std::vector<double> out;
