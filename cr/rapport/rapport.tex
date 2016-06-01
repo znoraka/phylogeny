@@ -192,19 +192,6 @@ Dans le cadre du stage, nous proposons de réduire l'espace des transformations 
       % \begin{tikzpicture}[auto, distance=2in,sibling distance=.25in]
       \scalebox{0.85}{%
       \begin{tikzpicture}[auto,node distance=2.8cm]
-        % \tikzset{edge from parent/.style= 
-        % {thick, draw
-        % },every tree node/.style={draw,minimum width=1.3in,text width=1.3in, align=center,fill=blue!30},grow'=right}
-        %   \Tree 
-        %   [. {image originale}
-        %   [. {Première compression JPEG avec $Q_{1}$}
-        %   \node(equal){$Q_{n+1} = Q_{n}$};
-        %   \node(neq){$Q_{n+1} < Q_{n}$};
-        %   \node(all){$Q_{n+1}\ \{<,>,=\}\ Q_{n}$};
-        %   ]]
-        %   \draw[thick,->] (equal.east)..controls +(north east:2) and +(south east:2)..(equal.east);
-        %   \draw[thick,->] (neq.east)..controls +(north east:2) and +(south east:2)..(neq.east);
-        %   \draw[thick,->] (all.east)..controls +(north east:2) and +(south east:2)..(all.east);
 
         \tikzstyle{every state}=[shape=rectangle,minimum width=1.3in,text width=1.3in, align=center,fill=blue!30]
 
@@ -597,31 +584,6 @@ Ce chapitre est consacré à présenter notre approche, nous y détaillons notre
 Pour tout couple d'images de notre ensemble, nous allons tenter de nier qu'il existe une relation de parenté, cela va permettre d'extraire une matrice binaire, appelée \textit{matrice de parenté}, de la taille de l'ensemble d'images, où une valeur à 1 indiquera une relation de parenté et une valeur à 0 en indiquera l'absence. À noter une fois de plus que ce n'est pas forcément un parent direct mais plutôt un ancêtre. \\ \indent
 Nous pouvons noter plusieurs choses intéressantes de l'exemple illustré figure \ref{parentage_tree}. Toutes les valeurs de la colonne de l'image $I_{2}$ sont à 1 , c'est à dire que c'est un parent commun à toutes les autres images, et sa ligne n'a que des 0, elle n'a donc aucun parent. Nous nous servons de ce principe pour la reconstruction de l'arbre à partir de la matrice : une image qui n'a pas de parent est la racine. Nous pouvons également remarquer les colonnes où toutes les cases sont à 0, cela veut dire que ces images ne sont les parents de personne, et donc sont des feuilles.
 
-\begin{figure}
-  \begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[width=.5\linewidth]{images/algo_tree.png}
-    \caption{Arbre de phylogénie}
-    \label{algo_tree}
-  \end{subfigure}%
-  \begin{subfigure}{.5\textwidth}
-    \centering
-    \begin{tabular}{|r||c|c|c|c|c|}
-      \hline
-      - & $I_{0}$ & $I_{1}$ & $I_{2}$ & $I_{3}$ & $I_{4}$ \\ \hhline{|=::=|=|=|=|=|}
-      $I_{0}$ & - & 0 & 0 & 0 & 0 \\ \hline
-      $I_{1}$ & 0 & - & 0 & 1 & 1 \\ \hline
-      $I_{2}$ & 1 & 1 & - & 1 & 1 \\ \hline
-      $I_{3}$ & 0 & 0 & 0 & - & 0 \\ \hline
-      $I_{4}$ & 0 & 0 & 0 & 0 & - \\ \hline
-    \end{tabular} 
-    \caption{Matrice de parenté}
-    \label{parentage_matrix}
-  \end{subfigure}
-  \caption{Une arbre de phylogénie et sa matrice de parenté.}
-  \label{parentage_tree}
-\end{figure}
-
 Nous avons formalisé ce principe en un théorème présenté ci-dessous: 
 \newtheorem*{marqueur}{Définition}
 \begin{marqueur}
@@ -647,69 +609,60 @@ Par exemple une image en noir et blanc ne peut pas être le parent d'une image c
 \end{proof}
 
 
-\section{L'algorithme de reconstruction}
-De ces quelques principes nous avons extrait l'algorithme \ref{algo_}. \vspace{5mm}
+% \section{L'algorithme de reconstruction}
+% De ces quelques principes nous avons extrait l'algorithme \ref{algo_}. \vspace{5mm}
 
-\begin{algorithm}[H]
-  % \SetAlgorithmName{MegaAlgorithm}{salut}
-  \LinesNumbered
-  \KwData{M a n$\times$n parentage matrix}
-  \KwResult{the root of the tree}
-  \BlankLine
 
-  % \ForAll{rows row of M}{
-  %   $cost\ of\ row \leftarrow sum\ of\ elements\ of\ row$
-  % }
-  % \BlankLine
+% L'algorithme \ref{algo_} prend en entrée la matrice de parenté détaillée précédemment et retourne la racine de l'arbre. L'idée de cet algorithme est qu'une image n'ayant aucun parent est la racine, et ce de manière récursive grâce à la structure d'arbre.
 
-  % $nextRoot \leftarrow$ row with min cost\;
-  $nextRoot \leftarrow$ row with min sum of elements\;
-  $treeRoot \leftarrow nextRoot$\;
-  \BlankLine
+% % La ligne 1 marque $nextRoot$ comme la ligne avec la plus petite somme des éléments, étant une matrice binaire, où les valeurs sont 0 et 1, c'est donc l'image qui a le moins de parent, autrement dit la racine.
 
-  \ForAll{rows row of M}{
-    $root \leftarrow nextRoot$\;
-    mark $root$ as done\;
-    \BlankLine
-    \For{$i\leftarrow 0$ \KwTo n}{
-      % $cost\ of\ row\ \leftarrow cost\ of\ row\ - row[i]$\;
-      % $minCost \leftarrow n+1$\;
-      $row[i] \leftarrow 0$\;
-      \If{sum of elements of row == 0} {
-        add $i$ as child of $root$\;
-      }
-      \If{row has the smallest sum of elements and is not marked as done} {
-      % \If{cost of row < minCost and is not marked as done} {
-        % $minCost \leftarrow cost\ of\ row$\;
-        $nextRoot \leftarrow i$\;
-      }
-    }
-  }
-  \KwRet treeRoot
-\caption{Construction de l'arbre}
-\label{algo_}
-\end{algorithm}
-\vspace{5mm}
+% % La ligne 5 marque $root$ comme terminée, c'est pour ne la traiter qu'une fois, en effet, dans un arbre, il n'y a pas de cycle, on ne peut donc pas 
+% % La condition lignes 8-10 ajoute l'image à l'indice $i$ comme enfant de $root$. La condition d'avoir tous les éléments de la ligne à 0, c'est à dire de n'avoir plus aucun parent
 
-L'algorithme \ref{algo_} prend en entrée la matrice de parenté détaillée précédemment et retourne la racine de l'arbre. L'idée de cet algorithme est qu'une image n'ayant aucun parent est la racine, et ce de manière récursive grâce à la structure d'arbre.
+% À chaque itération, une image est sélectionnée comme la racine (lignes 1 et 11) et nommée $root$, elle est retirée (ligne 7) des ancêtres des autres images si c'est un ancêtre. Si ces autres images n'ont plus d'ancêtre (ligne 8), c'est que $root$ était le parent direct de l'image en train d'être traitée, cette image est donc ajoutée comme enfant de $root$ (ligne 9). La ligne 5 permet de ne traiter qu'une fois chaque image comme racine potentielle.
 
-% La ligne 1 marque $nextRoot$ comme la ligne avec la plus petite somme des éléments, étant une matrice binaire, où les valeurs sont 0 et 1, c'est donc l'image qui a le moins de parent, autrement dit la racine.
+% Cet algorithme a une complexité de $O(n^{2})$. Il y a deux boucles imbriquées, et si les sommes sont calculées une seule fois au début et mises à jour à chaque fois qu'un parent est enlevé, il n'y a pas de boucle supplémentaire augmentant la complexité.
 
-% La ligne 5 marque $root$ comme terminée, c'est pour ne la traiter qu'une fois, en effet, dans un arbre, il n'y a pas de cycle, on ne peut donc pas 
-% La condition lignes 8-10 ajoute l'image à l'indice $i$ comme enfant de $root$. La condition d'avoir tous les éléments de la ligne à 0, c'est à dire de n'avoir plus aucun parent
+% Le but est donc de trouver une fonction $f(I_{m}, I_{n})$ permettant de détecter le marqueur prouvant qu'il n'y a pas de parenté. 
+% % Et même si cette fonction n'est pas parfaite, et qu'elle se trompe dans ses prédictions, l'algorithme est robuste et premet tout de même d'obtenir des résultats cohérents si on s'appuie sur les métriques introduites pas \autocite{dias2010first} pour évaluer l'arbre (voir Fig. \ref{algo-robuste}).
 
-À chaque itération, une image est sélectionnée comme la racine (lignes 1 et 11) et nommée $root$, elle est retirée (ligne 7) des ancêtres des autres images si c'est un ancêtre. Si ces autres images n'ont plus d'ancêtre (ligne 8), c'est que $root$ était le parent direct de l'image en train d'être traitée, cette image est donc ajoutée comme enfant de $root$ (ligne 9). La ligne 5 permet de ne traiter qu'une fois chaque image comme racine potentielle.
+% Il nous a semblé important, même dans le cadre de l'étude bibliographique, d'élaborer cet algorithme et de poser ce théorème. Ils sont en effet assez simples mais néanmoins indispensables à notre méthode, et auraient pu orienter différemment nos recherches et notre méthode s'ils n'avaient pas été imaginés. Le reste du stage sera consacré à élaborer la fonction énoncée précédemment, en plus d'appliquer cet algorithme à plusieurs centaines d'exemples avec des configurations différentes pour pouvoir en tirer une analyse et une synthèse.
 
-Cet algorithme a une complexité de $O(n^{2})$. Il y a deux boucles imbriquées, et si les sommes sont calculées une seule fois au début et mises à jour à chaque fois qu'un parent est enlevé, il n'y a pas de boucle supplémentaire augmentant la complexité.
-
-Le but est donc de trouver une fonction $f(I_{m}, I_{n})$ permettant de détecter le marqueur prouvant qu'il n'y a pas de parenté. 
-% Et même si cette fonction n'est pas parfaite, et qu'elle se trompe dans ses prédictions, l'algorithme est robuste et premet tout de même d'obtenir des résultats cohérents si on s'appuie sur les métriques introduites pas \autocite{dias2010first} pour évaluer l'arbre (voir Fig. \ref{algo-robuste}).
-
-Il nous a semblé important, même dans le cadre de l'étude bibliographique, d'élaborer cet algorithme et de poser ce théorème. Ils sont en effet assez simples mais néanmoins indispensables à notre méthode, et auraient pu orienter différemment nos recherches et notre méthode s'ils n'avaient pas été imaginés. Le reste du stage sera consacré à élaborer la fonction énoncée précédemment, en plus d'appliquer cet algorithme à plusieurs centaines d'exemples avec des configurations différentes pour pouvoir en tirer une analyse et une synthèse.
-
-Cette approche a pour avantage de réduire l'évaluation d'un arbre de phylogénie à partir d'un ensemble d'images à l'évaluation binaire de parenté entre deux images.
+% Cette approche a pour avantage de réduire l'évaluation d'un arbre de phylogénie à partir d'un ensemble d'images à l'évaluation binaire de parenté entre deux images.
 
 \chapter{La méthode proposée}
+
+Nous tentons donc de reconstruire l'arbre de phylogénie d'un ensemble de near-duplicates. Contrairement aux approches de l'état de l'art qui utilisent des algorithmes de construction d'arbre complexes pour reconstruire l'arbre à partir d'une dissimilarity matrix, nous allons prendre une décision binaire entre deux image, à savoir ``Cette image est-elle le parent de cette autre image ?''. Cela nous permet de nous concentrer sur les images et leurs caractéristiques et avoir un algorithme de construction d'arbre simple. La figure \ref{fig:method_schema} présente notre méthode.
+
+\begin{figure}[H]
+  \begin{center}
+    % \begin{tikzpicture}[auto, distance=2in,sibling distance=.25in]
+    \scalebox{0.85}{
+      \begin{tikzpicture}[auto,node distance=2.8cm]
+
+        \tikzstyle{every state}=[shape=rectangle,minimum width=1.3in,text width=1.3in, align=center,fill=blue!30]
+
+        \node[state] (A) {Ensemble de near-duplicates};
+        \node[state] (B) [right=0.7cm of A] {DCT sur chaque image};
+        \node[state] (C) [right=0.7cm of B] {Extraction de la période de chaque composant DCT};
+        \node[state] (D) [right=0.7cm of C] {Estimation du facteur de qualité};
+        \node[state] (E) [below=0.7cm of D] {Estimation du parent};
+        \node[state] (F) [left=0.7cm of E] {Construction de l'arbre};
+        \node[state] (G) [left=0.7cm of F] {Arbre de phylogénie};
+
+        \path [->] (A) edge node[left] {} (B);
+        \path [->] (B) edge node[left] {} (C);      
+        \path [->] (C) edge node[left] {} (D);      
+        \path [->] (D) edge node[] {} (E);      
+        \path [->] (E) edge node[right] {} (F);      
+        \path [->] (F) edge node[right] {} (G);      
+      \end{tikzpicture}}
+    \caption{Schéma de notre méthode}
+    \label{fig:method_schema}
+  \end{center}
+\end{figure}
+
 \section{Estimation du facteur de qualité d'une image JPEG}
 Nous travaillons sur des images ayant subi une compression JPEG. Ces images, au fil de leurs voyages sur les réseaux sociaux, on pu changer de format et avoir été convertie au format PNG par exemple. L'information du facteur de qualité utilisé pour compresser l'image, indispensable à nos calculs, a été perdue. Nous proposons donc d'estimer le facteur de qualité d'une bitmap n'ayant pas subi d'autre compression avec perte que le JPEG.
 
@@ -823,6 +776,84 @@ Cette méthode, même si elle donne d'excellents résultats pour trouver le pare
 
 On peut raisonnablement penser que l'ancêtre le plus probable est l'image ayant la plus petite valeur (issue d'une métrique quelconque) parmi toutes les autres valeurs. Le problème est que l'on perd alors le principe de décision binaire.
 
+\subsection{Reconstruction de l'arbre}
+La phase d'estimation des parent nous a permis de créer une matrice binaire de taille $n\times n$, $n$ étant le nombre d'images dans le set. Cette matrice est appelée \textit{matrice de parenté}. Une valeur à 1 à l'indice $(i,\ j)$ de cette matrice indiquera que l'image $I_i$ est un des ancêtres de $I_j$. Une valeur à 0 indiquera l'absence de parenté. Un exemple d'arbre et de matrice de parenté est disponible figure \ref{parentage_tree}. On peut noter plusieurs choses intéressantes de cet exemple. Une colonne où toutes les valeurs sont à 0 indiquera que l'image n'a aucun parent, il s'agit donc de la racine, qui par définition n'a pas de parent. Une ligne où toutes les valeurs sont à 0 signifie que l'image n'est le parent de personne, c'est à dire qu'il s'agit d'une feuille. On peut ainsi généraliser et dire que plus une colonne contient de valeurs à 0, moins cette images a d'ancêtres, et donc qu'elle est proche de la racine.
+
+\begin{figure}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=.5\linewidth]{images/algo_tree.png}
+    \caption{Arbre de phylogénie}
+    \label{algo_tree}
+  \end{subfigure}%
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \begin{tabular}{|r||c|c|c|c|c|}
+      \hline
+      - & $I_{0}$ & $I_{1}$ & $I_{2}$ & $I_{3}$ & $I_{4}$ \\ \hhline{|=::=|=|=|=|=|}
+      $I_{0}$ & - & 0 & 0 & 0 & 0 \\ \hline
+      $I_{1}$ & 0 & - & 0 & 1 & 1 \\ \hline
+      $I_{2}$ & 1 & 1 & - & 1 & 1 \\ \hline
+      $I_{3}$ & 0 & 0 & 0 & - & 0 \\ \hline
+      $I_{4}$ & 0 & 0 & 0 & 0 & - \\ \hline
+    \end{tabular} 
+    \caption{Matrice de parenté}
+    \label{parentage_matrix}
+  \end{subfigure}
+  \caption{Une arbre de phylogénie et sa matrice de parenté.}
+  \label{parentage_tree}
+\end{figure}
+
+Nous donnons l'algorithme de reconstruction d'arbre à titre indicatif algorithme \ref{algo_}.
+
+\begin{algorithm}[]
+  % \SetAlgorithmName{MegaAlgorithm}{salut}
+  \LinesNumbered
+  \KwData{M a n$\times$n parentage matrix}
+  \KwResult{the root of the tree}
+  \BlankLine
+
+  % \ForAll{rows row of M}{
+  %   $cost\ of\ row \leftarrow sum\ of\ elements\ of\ row$
+  % }
+  % \BlankLine
+
+  % $nextRoot \leftarrow$ row with min cost\;
+  $nextRoot \leftarrow$ row with min sum of elements\;
+  $treeRoot \leftarrow nextRoot$\;
+  \BlankLine
+
+  \ForAll{rows row of M}{
+    $root \leftarrow nextRoot$\;
+    mark $root$ as done\;
+    \BlankLine
+    \For{$i\leftarrow 0$ \KwTo n}{
+      % $cost\ of\ row\ \leftarrow cost\ of\ row\ - row[i]$\;
+      % $minCost \leftarrow n+1$\;
+      $row[i] \leftarrow 0$\;
+      \If{sum of elements of row == 0} {
+        add $i$ as child of $root$\;
+      }
+      \If{row has the smallest sum of elements and is not marked as done} {
+      % \If{cost of row < minCost and is not marked as done} {
+        % $minCost \leftarrow cost\ of\ row$\;
+        $nextRoot \leftarrow i$\;
+      }
+    }
+  }
+  \KwRet treeRoot
+\caption{Construction de l'arbre}
+\label{algo_}
+\end{algorithm}
+\vspace{5mm}
+
+À chaque itération, une image est sélectionnée comme la racine (lignes 1 et 11) et nommée $root$, elle est retirée (ligne 7) des ancêtres des autres images si c'est un ancêtre. Si ces autres images n'ont plus d'ancêtre (ligne 8), c'est que $root$ était le parent direct de l'image en train d'être traitée, cette image est donc ajoutée comme enfant de $root$ (ligne 9). La ligne 5 permet de ne traiter qu'une fois chaque image comme racine potentielle.
+
+Cet algorithme a une complexité de $O(n^{2})$. Il y a deux boucles imbriquées, et si les sommes sont calculées une seule fois au début et mises à jour à chaque fois qu'un parent est enlevé, il n'y a pas de boucle supplémentaire augmentant la complexité.
+
+% Et même si cette fonction n'est pas parfaite, et qu'elle se trompe dans ses prédictions, l'algorithme est robuste et premet tout de même d'obtenir des résultats cohérents si on s'appuie sur les métriques introduites pas \autocite{dias2010first} pour évaluer l'arbre (voir Fig. \ref{algo-robuste}).
+Cette approche a pour avantage de réduire l'évaluation d'un arbre de phylogénie à partir d'un ensemble d'images à l'évaluation binaire de parenté entre deux images.
+
 %%parler des marqueurs qui ont été un échec
 
 
@@ -830,38 +861,53 @@ On peut raisonnablement penser que l'ancêtre le plus probable est l'image ayant
 \section{Génération des données}
 Nous avons choisi de créer trois datasets différents, un avec des arbres de 15 images, un autre avec des arbres de 25 images et un dernier avec des arbres de 50 images. Cela nous permettra d'observer les différences éventuelles que peuvent amener des choses telles que la distance à la racine et le nombre de recompression dans la précision de l'estimation du parent.
 
-La génération se fait comme suit : à partir d'une image graine, une première image est compressée avec $85 < Q_f < 99$, c'est l'image racine. Cette image racine est ajoutée à $p$ notre pool d'images. Tant que le nombre désiré d'images n'a pas été atteint, une image est prise aléatoirement dans la pool, est compressée avec $Q_{f_{parent}} - 15 < Q_{f_{enfant}} < Q_{f_{parent}} - 1$ et est ajoutée à la pool d'image. On fixe cependant $Q_f = 30$ comme limite basse du facteur de qualité, au delà de cette limite, l'image est trop détériorée, et en plus de ne pas être un cas d'utilisation réaliste dans les réseaux sociaux, ne contient plus assez d'informations pour être correctement utilisée.
+La génération se fait comme suit : à partir d'une image graine, une première image est compressée avec $85 < Q_f < 99$, c'est l'image racine. Cette image racine est ajoutée à notre pool d'images. Tant que le nombre désiré d'images n'a pas été atteint, une image est prise aléatoirement dans la pool, est compressée avec $Q_{f_{parent}} - 15 < Q_{f_{enfant}} < Q_{f_{parent}} - 1$ et est ajoutée à la pool d'image. On fixe cependant $Q_f = 30$ comme limite basse du facteur de qualité, au delà de cette limite, l'image est trop détériorée, et en plus de ne pas être un cas d'utilisation réaliste dans les réseaux sociaux, ne contient plus assez d'informations pour être correctement utilisée.
 
 La génération des datasets en eux même s'est fait à partir des six images d'origine de \textit{BOWS 2}\cite{bows} où chaque image à servi à générer douze arbres pour chaque dataset, pour un total de 72 arbres, soit 6480 images tout dataset confondu.
 
+Précisons cependant que les images identiques sont filtrées. Deux images sont identiques si elles ont exactement le même historique de compression, comme illustré figure \ref{fig:identique}. Il semble en effet absurde lors de l'évaluation des résultats de constater qu'une image n'a pas le bon parent, et donc est marquée comme mal estimée, alors que son vrai parent est strictement identique à son parent actuel.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.9\linewidth]{images/fusion_1}
+% \includegraphics[width=0.9\linewidth]{images/fusion_2}
+\caption{Fusion des images identiques dans l'arbre}
+\label{fig:identique}
+\end{figure}
+
 \section{Résultats expérimentaux}
 
-Nous avons fait tourner notre collection l'algorithmes sur les trois dataset, et avons obtenu des résultats très satisfaisants. Nous mesurons la qualité nos résultats grâce à sept métriques, trois servant à mesurer la précision de l'estimation du facteur de qualité et les quatre autres servant à mesurer la qualité du calcul de l'arbre sont celles introduites par \citeauthornsc{dias2012image} \cite{dias2012image}.
+Nous avons fait tourner notre collection d'algorithmes sur les trois datasets, et avons obtenu des résultats très satisfaisants. Nous mesurons la qualité nos résultats grâce à sept métriques, trois servant à mesurer la précision de l'estimation du facteur de qualité et les quatre autres servant à mesurer la qualité du calcul de l'arbre sont celles introduites par \citeauthornsc{dias2012image} \cite{dias2012image}.
 
-Les trois métriques servant à mesurer la précision de l'estimation du $Q_f$ sont l'erreur moyenne d'estimation, qui servira à savoir si l'estimation est juste la plupart du temps, la sur-estimation moyenne et la sous-estimation moyenne, qui, si tout va bien, seront symétriques, qui serviront à savoir si notre algorithme a plutôt tendance à sur-estimer ou sous-estimer le $Q_f$, et dans quel cas.
+Les trois métriques servant à mesurer la précision de l'estimation du $Q_f$ sont l'erreur moyenne d'estimation, qui servira à savoir si l'estimation est juste la plupart du temps, la sur-estimation moyenne et la sous-estimation moyenne, qui, si tout va bien, seront symétriques, qui serviront à savoir si notre algorithme a plutôt tendance à sur-estimer ou sous-estimer $Q_f$, et dans quel cas.
 
 \begin{figure}
   \centering
   \begin{tabular}{|r||c|c|c|c|c|}
     \hline
      \backslashbox{Métrique}{Dataset}             & \textbf{15 images} & \textbf{25 images} & \textbf{50 images} \\ \hhline{|=::=|=|=|}
-    \textbf{mean error}    & 0.559259 & 0.597222 & 0.996667 \\ \hline
-    \textbf{overestimate}  & 1.27778  & 1.51389  & 2.09722  \\ \hline
-    \textbf{underestimate} & -1.29167 & -1.63889 & -8.95833 \\ \hhline{|=::=|=|=|}
-    \textbf{roots}         & 0.958333 & 0.805556 & 0.555556 \\ \hline
-    \textbf{edges}         & 0.984127 & 0.965278 & 0.947846 \\ \hline
-    \textbf{leaves}        & 0.987213 & 0.974608 & 0.945167 \\ \hline
-    \textbf{ancestry}      & 0.96142  & 0.916048 & 0.836348 \\ \hline
+    \textbf{mean error}         & 0.546296 & 0.626667 & 0.962778 \\ \hline
+    \textbf{mean underestimate} & 0.916667 & 1.44444  & 2.13889  \\ \hline
+    \textbf{mean overestimate}  & 1.375    & 2.625    & 10.3194  \\ \hhline{|=::=|=|=|}
+    \textbf{roots}              & 0.916667 & 0.833333 & 0.583333 \\ \hline
+    \textbf{edges}              & 0.989087 & 0.978588 & 0.954649 \\ \hline
+    \textbf{leaves}             & 0.978086 & 0.973989 & 0.945842 \\ \hline
+    \textbf{ancestry}           & 0.974033 & 0.954109 & 0.859429 \\ \hline
   \end{tabular} 
 \caption{Table de résultats, les trois premières métriques sont des moyennes d'entiers et les quatres dernières sont des pourcentages}
 \label{results}
 \end{figure}
 
-La table \ref{results} montre les résultats obtenus par nos algorithmes. On peut directement remarquer que les résultats sont strictement meilleur lorsque l'on réduit le nombre d'images dans le set. À noter que le meilleur résultat possible pour les trois premières métriques est zéro, c'est à dire que tout les $Q_f$ ont été estimés parfaitement, et que le meilleur résultat pour les quatre dernières est un, lorsque la vérité terrain et l'arbre reconstruit sont identiques.
+La table \ref{results} montre les résultats obtenus par nos algorithmes. On peut directement remarquer que les résultats sont strictement meilleurs lorsque l'on réduit le nombre d'images dans le set. À noter que le meilleur résultat possible pour les trois premières métriques est zéro, c'est à dire que tout les $Q_f$ ont été estimés parfaitement, et que le meilleur résultat pour les quatre dernières est un, lorsque la vérité terrain et l'arbre reconstruit sont identiques.
 \paragraph{}
 
-Il semble important de préciser que l'estimation de $Q_f$ rencontre des difficultés lorsque $Q_f$ est proche de 100. En effet un grand nombre des valeurs de la table de quantification est à 1, ce qui ne quantifie pas le coefficient DCT, nous ne disposons donc pas de suffisamment d'information pour discriminer une image 
-% L'erreur moyenne reste inférieure à un, l'estimation du $Q_f$ est donc très performante. Le score moins bon pour le dataset de 50 images s'explique par le fait que l'estimation du facteur de qualité rencontre des difficultés lorsque $Q_f > 95$, où un grand nombre des valeurs de la table de quantification sont à 1, le signal a donc une période de 1, et donc est continu, ne permettant de pas de détecter les pics. Des images peuvent alors être jugées, à tort, plus compressées que d'autres, et donc être marquées comme ne pouvant pas être le parent.
+Il semble important de préciser que l'estimation du $Q_f$ rencontre des difficultés lorsque $Q_f$ est proche de 100. En effet un grand nombre des valeurs de la table de quantification est à 1 ou 2, ce qui ne quantifie pas ou pas suffisamment le coefficient DCT pour que nous puissions extraire suffisamment d'information pour discriminer une image compressée avec $Q_f = 97$ d'une image compressée avec $Q_f = 99$ par exemple. C'est en partie une des causes du manque de précision d'identification de la racine. En effet, dans notre cas d'étude, la racine est l'image avec le $Q_f$ le plus proche de 100, il est difficile de l'identifier avec certitude lorsque l'estimation du $Q_f$ n'est pas certaine.
+
+\paragraph{}
+On voit que les erreurs moyennes, même si elles restent inférieures à 1 pour les trois datasets, et sont donc tout à fait correctes, sont de moins en moins bonnes lorsque le nombre d'images augmente, avec notamment la sur-estimation moyenne qui est très importante pour le dataset de 50 images.
+
+Une telle sur-estimation s'explique par le fait que les coefficients DCT deviennent trop bruités pour pouvoir correctement estimer la période lorsqu'ils ont été compressés un trop grand nombre de fois, le signal n'est plus périodique et l'autocorrélation ne parvient donc pas à détecter de pics. Lorsqu'aucun pic n'est détecté, notre algorithme estime que l'image a un $Q_f$ élevé, ce qui fausse la reconstruction de l'arbre, car une image ayant subi un grand nombre de recompressions a forcément un $Q_f$ petit. C'est une autre source d'erreurs dans l'estimation de la racine. Plus l'arbre est grand, plus les images ont été compressées un nombre important de fois, et donc plus elles ont de chance de pouvoir fausser les résultats. Le problème vient de notre algorithme de recontruction d'arbre. Une image est marquée comme la racine si elle n'a aucun parent. La racine n'a effectivement aucun parent, mais une image ayant eu son $Q_f$ mal estimé n'aura aucun parent \textbf{détecté}. Il devient dans ce cas difficile de savoir la quelle des deux est la vraie racine.
+
 \chapter{Conclusion}
 \label{chap4}
 Au terme de cette étude, nous avons pu voir que le problème de la reconstruction d'arbre phylogénétique d'images dans les réseaux sociaux n'est pas trivial et peut se diviser en deux sous-parties : l'identification de la racine et l'estimation des relations parent-enfant. Nous avons également pu voir dans l'état de l'art les différentes approches de reconstruction d'arbre de phylogénie. Nous avons choisi de nous concentrer uniquement sur l'étude des recompressions JPEG pour le calcul de l'arbre. Cette décision est motivée par le fait que nous sommes intéressés par le domaine du forensics et que l'étude des recompressions un sujet suffisamment vaste et complexe. Cela nous a amené à étudier la détection des compressions multiples.
