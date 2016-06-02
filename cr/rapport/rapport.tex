@@ -322,7 +322,7 @@ Ces quatre étapes servent à rendre les images comparables, en mappant l'une da
 % \vspace{3mm}
 \paragraph{}
 
-La distance $d(.,.)$ est donc appliquée à tous les couples d'images de l'ensemble, pour créer une matrice de dissimilarité, ou \textit{dissimilarity matrix}, une matrice de taille $n\times n$ qui sera ensuite donnée comme entrée à leur algorithme de reconstruction d'arbre, Oriented Kruskal. Cet algorithme est expliqué de manière exhaustive dans \autocite{dias2012image}. Dans le chapitre \ref{chap:notre_approche}, nous proposons une approche différente, notre reconstruction sera donc également différente.
+La distance $d(.,.)$ est donc appliquée à tous les couples d'images de l'ensemble, pour créer une matrice de dissimilarité, ou \textit{dissimilarity matrix}, une matrice de taille $n\times n$ qui sera ensuite donnée comme entrée à leur algorithme de reconstruction d'arbre, Oriented Kruskal. Cet algorithme est expliqué de manière exhaustive dans \autocite{dias2012image}. Dans le chapitre \ref{chap3}, nous proposons une approche différente, notre reconstruction sera donc également différente. 
  % et ayant une approche différente (chapitre \ref{chap:notre_approche}), la reconstruction sera également différente.
 % \vspace{3mm}
 \paragraph{}                    
@@ -877,27 +877,113 @@ La génération des datasets en eux même s'est fait à partir des six images d'
 
 Précisons cependant que les images identiques sont filtrées. Deux images sont identiques si elles ont exactement le même historique de compression, comme illustré figure \ref{fig:identique}. Il semble en effet absurde lors de l'évaluation des résultats de constater qu'une image n'a pas le bon parent, et donc est marquée comme mal estimée, alors que son vrai parent est strictement identique à son parent actuel.
 
-\begin{figure}
-\centering
-\includegraphics[width=0.9\linewidth]{images/fusion_1}
-% \includegraphics[width=0.9\linewidth]{images/fusion_2}
-\caption{Fusion des images identiques dans l'arbre}
-\label{fig:identique}
-\end{figure}
+
+% \begin{figure}
+% \centering
+% \includegraphics[width=0.9\linewidth]{images/fusion_1}
+% % \includegraphics[width=0.9\linewidth]{images/fusion_2}
+% \caption{Fusion des images identiques dans l'arbre}
+% \label{fig:identique}
+% \end{figure}
 
 \section{Résultats expérimentaux}
 
 Nous allons commencer par donner le résultat de nos algorithme sur un arbre choisis aléatoirement dans notre dataset, pour bien détailler la sortie de chaque étape, puis nous allons donner des résultats plus significatifs obtenus en lançant notre programme sur l'ensemble des données.
 
 \subsection{Détail sur un arbre}
-Nous choisissons un arbre de 15 images, les résultats ne sont pas significativement différent avec les autres tailles d'arbre, et il est plus simple de tout montrer avec un nombre restreint d'images. 
+Nous choisissons un arbre de 15 images, les résultats ne sont pas significativement différent avec les autres tailles d'arbre, et il est plus simple de tout montrer avec un nombre restreint d'images. Notons que les résultats pour cet arbre sont donnés à titre d'exemple, et ne représentent pas forcément les résultats que l'on peu obtenir sur un grand nombre d'arbre.
 \paragraph{}
-Commençons par la détection de pics et l'autocorrélation. Nous utilisons les 35 premiers coefficients DCT, les coefficients suivant sont trop quantifiés, et souvent à 0, et ne contiennent pas suffisamment d'informations pour être intéressants, ils peuvent même fausser les résultats. Nous allons donc donner l'histogramme du coefficient DC ainsi que son autocorrélation figure \ref{}, puis le coefficient 18 dans l'ordre zigzag figure \ref{} et enfin le coefficent 35 figure \ref{}. Ces exemples sont donnés à titre indicatif, l'apparence des histogrammes et autocorrélations peut grandement varier selon le facteur de qualité de l'image. 
+Commençons par la détection de pics et l'autocorrélation. Nous utilisons les 35 premiers coefficients DCT, les coefficients suivant sont trop quantifiés, et souvent à 0, et ne contiennent pas suffisamment d'informations pour être intéressants, ils peuvent même fausser les résultats. Nous donnons l'histogramme du coefficient DC ainsi que son autocorrélation figure \ref{fig:histo0}, puis le coefficient 18 dans l'ordre zigzag figure \ref{fig:histo18} et enfin le coefficent 31 figure \ref{fig:histo31} pour permettre au lecteur de visualiser les données avec lesquels nous travaillons. Ces exemples sont donnés à titre indicatif, l'apparence des histogrammes et autocorrélations peut grandement varier selon le facteur de qualité de l'image. L'image dont sont tirées les figures est compressées avec comme historique de compression $H_{Q_{f}} = \{86, 85, 73\}$. C'est la période, ou l'écart entre deux pics de l'autocorrélation qui nous cherchons à obtenir pour ensuite pouvoir les comparer avec les différentes tables de quantification.
 
-%%%mettre les figures
+\begin{figure}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{images/histos/histo0}
+    \caption{Histogramme}
+  \end{subfigure}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{images/histos/autocorrelation0}
+    \caption{Autocorrélation}
+    \label{fig:histo0_auto}
+  \end{subfigure}
+  \caption{Histogramme et autocorrélation du coefficient DC avec figure \ref{fig:histo0_auto}, en vert le seuil et en haut à droite les pics détectés}
+  \label{fig:histo0}
+\end{figure}
+
+\begin{figure}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{images/histos/histo18}
+    \caption{Histogramme}
+  \end{subfigure}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{images/histos/autocorrelation18}
+    \caption{Autocorrélation}
+    \label{fig:histo18_auto}
+  \end{subfigure}
+  \caption{Histogramme et autocorrélation du 18ème coefficient AC avec figure \ref{fig:histo18_auto}, en vert le seuil et en haut à droite les pics détectés}
+  \label{fig:histo18}
+\end{figure}
+
+\begin{figure}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{images/histos/histo31}
+    \caption{Histogramme}
+  \end{subfigure}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{images/histos/autocorrelation31}
+    \caption{Autocorrélation}
+    \label{fig:histo31_auto}
+  \end{subfigure}
+  \caption{Histogramme et autocorrélation du 31ème coefficient AC avec figure \ref{fig:histo31_auto}, en vert le seuil et en haut à droite les pics détectés}
+  \label{fig:histo31}
+\end{figure}
+
+On voit très nettement que la quantité d'information disponible baisse très fortement lorsque l'on s'éloigne du coefficient DC. C'est pour cette raison que nous restons sur 35 coefficients.
 
 \paragraph{}
+Les 35 périodes calculées sont données table \ref{periods}, avec pour comparaison la table de quantification d'une images compressée avec $Q_f = 71$ (table estimée), comme l'a été estimée l'image après la première estimation grossière, et la table de quantification de $Q_f = 73$ (table réelle), le vrai $Q_f$ de l'image. Les valeurs à 1 indiquent qu'aucune valeur de période n'a pu être calculée, et est donc ignorée.
 
+\begin{figure}
+  \centering
+  \begin{tabular}{|l||c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    \textbf{table calculée}  & 9 & 6 & 6 & 8 & 6 & 5 & 9 & 8 & 7 & 8 & 10 & 9 & 9 & 10 & 13 & 22 & 14 \\ \hline
+    \textbf{table estimée} & 9 & 7 & 6 & 6 & 7 & 8 & 8 & 8 & 8 & 9 & 14 & 11 & 9 & 10 & 10 & 14 & 13 \\ \hline
+    \textbf{table réelle} & 9 & 6 & 6 & 5 & 6 & 8 & 8 & 7 & 8 & 9 & 13 & 10 & 9 & 9 & 10 & 13 & 12 \\ \hline
+  \end{tabular}
+  \caption{Premières valeurs des tables de quantification}
+  \begin{tabular}{|l||c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    \textbf{table calculée}  & 13 & 12 & 12 & 13 & 1 & 19 & 20 & 16 & 22 & 31 & 28 & 1 & 1 & 31 & 28 \\ \hline
+    \textbf{table estimée} & 13 & 14 & 15 & 23 & 30 & 34 & 23 & 17 & 21 & 20 & 28 & 42 & 37 & 32 & 32 \\ \hline
+    \textbf{table réelle} & 12 & 13 & 14 & 22 & 28 & 31 & 22 & 16 & 20 & 19 & 26 & 39 & 35 & 30 & 30 \\ \hline
+  \end{tabular}
+
+  \caption{Dernières valeurs des tables de quantification}
+  \label{periods}
+\end{figure}
+
+\paragraph{}
+Toutes les images de l'arbre auront leur $Q_f$ grossièrement estimé de la même manière, puis une estimation plus précise grâce aux formules \ref{eqn:jpeg_1} et \ref{eqn:jpeg_2} affinera les résultats. La table \ref{rough_fine} montre comment ont été estimés les images de l'arbre de manière grossière, de manière précise, en donnant également leur véritable $Q_f$ comme comparaison.
+
+\begin{figure}
+  \begin{tabular}{|l||c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+      Image & $I_{0}$ & $I_{1}$ & $I_{2}$ & $I_{3}$ & $I_{4}$ & $I_{5}$ & $I_{6}$ & $I_{7}$ & $I_{8}$ & $I_{9}$ & $I_{10}$ & $I_{11}$ & $I_{12}$ & $I_{13}$ & $I_{14}$ \\ \hhline{|=::=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|}
+   
+    \textbf{Estimation grossière}  & 71 & 81 & 71 & 58 & 78 & 46 & 61 & 85 & 81 & 79 & 65 & 74 & 84 & 71 & 74 \\ \hline
+    \textbf{Estimation fine} & 71 & 81 & 71 & 58 & 78 & 46 & 61 & 87 & 82 & 80 & 65 & 74 & 85 & 71 & 75 \\ \hline
+    \textbf{Valeurs réelles} & 73 & 81 & 71 & 57 & 79 & 44 & 62 & 86 & 82 & 80 & 65 & 74 & 85 & 71 & 75 \\ \hline
+  \end{tabular}
+
+  \caption{Estimations grossières et fines des $Q_f$ des images de l'arbre}
+  \label{rough_fine}
+\end{figure}
 
 \subsection{Résultats sur les datasets}
 Nous avons fait tourner notre collection d'algorithmes sur les trois datasets, et avons obtenu des résultats très satisfaisants. Nous mesurons la qualité nos résultats grâce à sept métriques, trois servant à mesurer la précision de l'estimation du facteur de qualité et les quatre autres servant à mesurer la qualité du calcul de l'arbre sont celles introduites par \citeauthornsc{dias2012image} \cite{dias2012image}.
@@ -924,14 +1010,18 @@ Les trois métriques servant à mesurer la précision de l'estimation du $Q_f$ s
 La table \ref{results} montre les résultats obtenus par nos algorithmes. On peut directement remarquer que l'estimation du $Q_f$ est strictement meilleure lorsque l'on réduit le nombre d'images dans le set. À noter que le meilleur résultat possible pour les trois premières métriques est zéro, c'est à dire que tout les $Q_f$ ont été estimés parfaitement, et que le meilleur résultat pour les quatre dernières est un, lorsque la vérité terrain et l'arbre reconstruit sont identiques.
 \paragraph{}
 
+
+
 Il semble important de préciser que l'estimation du $Q_f$ rencontre des difficultés lorsque $Q_f$ est proche de 100. En effet un grand nombre des valeurs de la table de quantification est à 1 ou 2, ce qui ne quantifie pas ou pas suffisamment le coefficient DCT pour que nous puissions extraire suffisamment d'information pour discriminer une image compressée avec $Q_f = 97$ d'une image compressée avec $Q_f = 99$ par exemple. C'est en partie une des causes du manque de précision d'identification de la racine. En effet, dans notre cas d'étude, la racine est l'image avec le $Q_f$ le plus proche de 100, il est difficile de l'identifier avec certitude lorsque l'estimation du $Q_f$ n'est pas certaine.
 
 \paragraph{}
 On voit que les erreurs moyennes, même si elles restent inférieures à 1 pour les trois datasets, et sont donc tout à fait correctes, sont de moins en moins bonnes lorsque le nombre d'images augmente, avec notamment la sur-estimation moyenne qui est très importante pour le dataset de 50 images.
 
 Une telle sur-estimation s'explique par le fait que les coefficients DCT deviennent trop bruités pour pouvoir correctement estimer la période lorsqu'ils ont été compressés un trop grand nombre de fois, le signal n'est plus périodique et l'autocorrélation ne parvient donc pas à détecter de pics. Lorsqu'aucun pic n'est détecté, notre algorithme estime que l'image a un $Q_f$ élevé, ce qui fausse la reconstruction de l'arbre, car une image ayant subi un grand nombre de recompressions a forcément un $Q_f$ petit. C'est une autre source d'erreurs dans l'estimation de la racine. Plus l'arbre est grand, plus les images ont été compressées un nombre important de fois, et donc plus elles ont de chance de pouvoir fausser les résultats. Le problème vient de notre algorithme de recontruction d'arbre. Une image est marquée comme la racine si elle n'a aucun parent. La racine n'a effectivement aucun parent, mais une image ayant eu son $Q_f$ mal estimé n'aura aucun parent \textbf{détecté}. Il devient dans ce cas difficile de savoir la quelle des deux est la vraie racine.
+\paragraph{}
 
-Nous avions considéré que deux images avec le même historique de compressions étaient identiques, il semble cependant que les images ayant un petit $Q_f$ (inférieur à 35 environ) échappent parfois à ce phénomène, et une image parent compressée avec le $Q_f$ de son enfant et son enfant sont différentes.
+Nous avions considéré que deux images avec le même historique de compression étaient identiques, il semble cependant que les images ayant un petit $Q_f$ (inférieur à 35 environ) échappent parfois à ce phénomène, une image parent compressée avec le $Q_f$ de son enfant et son enfant sont parfois différentes.
+\paragraph{}
 
 Un autre problème, qui lui n'affecte pas la racine, mais plutôt le reste de l'arbre, est la convergence des blocs, comme expliqué chapitre \ref{chap2} section \ref{convergence}. Nous avons fixé comme limite basse pour la génération de l'arbre $Q_f = 30$, si une image avec $Q_f = 30$ a un enfant, cet enfant aura également $Q_f = 30$, et ce de manière récursive. On peut donc arriver dans le cas où les enfants sont identiques à leurs parents, ce qui rend impossible leur différenciation, ce phénomène est fort heureusement assez rare.
 

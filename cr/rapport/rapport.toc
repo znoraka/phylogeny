@@ -87,18 +87,24 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.2}R\IeC {\'e}sultats exp\IeC {\'e}rimentaux}{23}{section.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{D\IeC {\'e}tail sur un arbre}{24}{section*.44}
+\contentsline {subsection}{D\IeC {\'e}tail sur un arbre}{24}{section*.43}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{24}{section*.45}
+\contentsline {paragraph}{}{24}{section*.44}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{24}{section*.46}
+\contentsline {paragraph}{}{24}{section*.48}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{R\IeC {\'e}sultats sur les datasets}{24}{section*.47}
+\contentsline {paragraph}{}{26}{section*.50}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{25}{section*.49}
+\contentsline {subsection}{R\IeC {\'e}sultats sur les datasets}{26}{section*.52}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{25}{section*.50}
+\contentsline {paragraph}{}{26}{section*.54}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {5}Conclusion}{27}{chapter.5}
+\contentsline {paragraph}{}{27}{section*.55}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliographie}{28}{section*.52}
+\contentsline {paragraph}{}{27}{section*.56}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{}{27}{section*.57}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {5}Conclusion}{28}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliographie}{29}{section*.59}
