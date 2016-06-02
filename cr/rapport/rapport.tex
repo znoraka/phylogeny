@@ -21,6 +21,8 @@
 \usepackage{indentfirst}
 \usepackage{upgreek}
 \usepackage{slashbox}
+\usepackage{forest}
+\usepackage{hyperref}
 \usetikzlibrary{trees}
 \usetikzlibrary{babel}
 \usetikzlibrary{arrows,automata,positioning}
@@ -895,7 +897,7 @@ Nous choisissons un arbre de 15 images, les résultats ne sont pas significative
 \paragraph{}
 Commençons par la détection de pics et l'autocorrélation. Nous utilisons les 35 premiers coefficients DCT, les coefficients suivant sont trop quantifiés, et souvent à 0, et ne contiennent pas suffisamment d'informations pour être intéressants, ils peuvent même fausser les résultats. Nous donnons l'histogramme du coefficient DC ainsi que son autocorrélation figure \ref{fig:histo0}, puis le coefficient 18 dans l'ordre zigzag figure \ref{fig:histo18} et enfin le coefficent 31 figure \ref{fig:histo31} pour permettre au lecteur de visualiser les données avec lesquels nous travaillons. Ces exemples sont donnés à titre indicatif, l'apparence des histogrammes et autocorrélations peut grandement varier selon le facteur de qualité de l'image. L'image dont sont tirées les figures est compressées avec comme historique de compression $H_{Q_{f}} = \{86, 85, 73\}$. C'est la période, ou l'écart entre deux pics de l'autocorrélation qui nous cherchons à obtenir pour ensuite pouvoir les comparer avec les différentes tables de quantification.
 
-\begin{figure}
+\begin{figure}[H]
   \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\linewidth]{images/histos/histo0}
@@ -911,7 +913,7 @@ Commençons par la détection de pics et l'autocorrélation. Nous utilisons les 
   \label{fig:histo0}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
   \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\linewidth]{images/histos/histo18}
@@ -927,7 +929,7 @@ Commençons par la détection de pics et l'autocorrélation. Nous utilisons les 
   \label{fig:histo18}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
   \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\linewidth]{images/histos/histo31}
@@ -969,9 +971,9 @@ Les 35 périodes calculées sont données table \ref{periods}, avec pour compara
 \end{figure}
 
 \paragraph{}
-Toutes les images de l'arbre auront leur $Q_f$ grossièrement estimé de la même manière, puis une estimation plus précise grâce aux formules \ref{eqn:jpeg_1} et \ref{eqn:jpeg_2} affinera les résultats. La table \ref{rough_fine} montre comment ont été estimés les images de l'arbre de manière grossière, de manière précise, en donnant également leur véritable $Q_f$ comme comparaison.
+Toutes les images de l'arbre auront leur $Q_f$ grossièrement estimé de la même manière, puis une estimation plus précise grâce aux formules \ref{eqn:jpeg_1} et \ref{eqn:jpeg_2} affinera les résultats. La table \ref{rough_fine} montre comment ont été estimés les images de l'arbre de manière grossière puis de manière précise, en donnant également leur véritable $Q_f$ comme comparaison. L'erreur moyenne d'estimation de la table \ref{rough_fine} est de $0.533333$.
 
-\begin{figure}
+\begin{figure}[H]
   \begin{tabular}{|l||c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
     \hline
       Image & $I_{0}$ & $I_{1}$ & $I_{2}$ & $I_{3}$ & $I_{4}$ & $I_{5}$ & $I_{6}$ & $I_{7}$ & $I_{8}$ & $I_{9}$ & $I_{10}$ & $I_{11}$ & $I_{12}$ & $I_{13}$ & $I_{14}$ \\ \hhline{|=::=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|}
@@ -985,12 +987,63 @@ Toutes les images de l'arbre auront leur $Q_f$ grossièrement estimé de la mêm
   \label{rough_fine}
 \end{figure}
 
+\paragraph{}
+Ces $Q_f$ vont ensuite servir à compresser les images pour pouvoir les comparer deux à deux, il semble peu intéressant de détailler les calculs qui sont effectués, aussi nous nous contenterons de donner la matrice de parenté (figure \ref{parentage_matrix_example}) produite en sortie. L'arbre calculé à partir de cette matrice (figure \ref{tree_example}) est exactement identique à l'arbre original.
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    - & $I_{0}$ & $I_{1}$ & $I_{2}$ & $I_{3}$ & $I_{4}$ & $I_{5}$ & $I_{6}$ & $I_{7}$ & $I_{8}$ & $I_{9}$ & $I_{10}$ & $I_{11}$ & $I_{12}$ & $I_{13}$ & $I_{14}$ \\ \hhline{|=::=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|}
+    $I_{0}$ & - & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\ \hline 
+    $I_{1}$ & 0 & - & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline 
+    $I_{2}$ & 0 & 0 & - & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\ \hline 
+    $I_{3}$ & 0 & 0 & 0 & - & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\ \hline 
+    $I_{4}$ & 0 & 0 & 0 & 0 & - & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\ \hline 
+    $I_{5}$ & 0 & 0 & 0 & 1 & 0 & - & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline 
+    $I_{6}$ & 0 & 0 & 0 & 0 & 0 & 0 & - & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\ \hline 
+    $I_{7}$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 & - & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline 
+    $I_{8}$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & - & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline 
+    $I_{9}$ & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & - & 0 & 0 & 0 & 0 & 0 \\ \hline 
+    $I_{10}$& 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & - & 0 & 0 & 1 & 0 \\ \hline 
+    $I_{11}$& 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & - & 0 & 0 & 0 \\ \hline 
+    $I_{12}$& 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & - & 0 & 0 \\ \hline 
+    $I_{13}$& 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & - & 0 \\ \hline 
+    $I_{14}$& 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & - \\ \hline 
+
+  \end{tabular}
+  \caption{Matrice de parenté}
+  \label{parentage_matrix_example}
+\end{figure}
+
+\begin{figure}[H]
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \scalebox{0.85}{
+      \begin{forest}
+        [\href{run:7.jpg}{7.jpg}[\href{run:8.jpg}{8.jpg}[\href{run:13.jpg}{13.jpg}[\href{run:3.jpg}{3.jpg}[\href{run:5.jpg}{5.jpg}]][\href{run:10.jpg}{10.jpg}[\href{run:6.jpg}{6.jpg}]]][\href{run:1.jpg}{1.jpg}[\href{run:9.jpg}{9.jpg}[\href{run:14.jpg}{14.jpg}]]]][\href{run:12.jpg}{12.jpg}[\href{run:2.jpg}{2.jpg}][\href{run:4.jpg}{4.jpg}][\href{run:0.jpg}{0.jpg}]][\href{run:11.jpg}{11.jpg}]]
+      \end{forest}}
+    \caption{Arbre phylogénétique original}
+    % \label{tree_base_example}
+  \end{subfigure}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \scalebox{0.85}{
+      \begin{forest}
+        [\href{run:7}{7.jpg}[\href{run:8}{8.jpg}[\href{run:1}{1.jpg}[\href{run:9}{9.jpg}[\href{run:14}{14.jpg}]]][\href{run:13}{13.jpg}[\href{run:3}{3.jpg}[\href{run:5}{5.jpg}]][\href{run:10}{10.jpg}[\href{run:6}{6.jpg}]]]][\href{run:11}{11.jpg}][\href{run:12}{12.jpg}[\href{run:0}{0.jpg}][\href{run:2}{2.jpg}][\href{run:4}{4.jpg}]]]
+      \end{forest}}
+    \caption{Arbre phylogénétique reconstruit}
+    % \label{tree_example}
+  \end{subfigure}
+  \caption{Exemple d'arbre original et d'arbre reconstruit}
+  \label{tree_example}
+\end{figure}
 \subsection{Résultats sur les datasets}
 Nous avons fait tourner notre collection d'algorithmes sur les trois datasets, et avons obtenu des résultats très satisfaisants. Nous mesurons la qualité nos résultats grâce à sept métriques, trois servant à mesurer la précision de l'estimation du facteur de qualité et les quatre autres servant à mesurer la qualité du calcul de l'arbre sont celles introduites par \citeauthornsc{dias2012image} \cite{dias2012image}.
 
 Les trois métriques servant à mesurer la précision de l'estimation du $Q_f$ sont l'erreur moyenne d'estimation, qui servira à savoir si l'estimation est juste la plupart du temps, la sur-estimation moyenne et la sous-estimation moyenne, qui, si tout va bien, seront symétriques, et serviront à savoir si notre algorithme a plutôt tendance à sur-estimer ou sous-estimer $Q_f$, et dans quel cas.
 
-\begin{figure}
+\begin{figure}[H]
   \centering
   \begin{tabular}{|r||c|c|c|c|c|}
     \hline
