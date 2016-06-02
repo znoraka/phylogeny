@@ -85,7 +85,8 @@
 \version{1}
 %% Résumé en francais
 \abstractfr{
-  Il est aujourd'hui extrêmement facile de manipuler des images et de les partager à l'aide des réseaux sociaux. Il est important d'identifier l'historique des transformations appliquées aux images afin de leur accorder un minimum crédibilité. Dans le cadre de ce stage, l'objectif principal de nos recherches consiste à calculer l'arbre de phylogénie d'un ensemble d'images où les images sont issues de différentes compressions JPEG successives. À chaque étape, une image enfant est donc créée à partir de la compression d'une image parent. Dans ce rapport nous présentons dans l'état de l'art les différentes méthodes de reconstruction d'un arbre phylogénétique et traiterons de la détection et de l'identification des compressions JPEG multiples. Nous présentons également dans notre approche un théorème permettant de réduire le calcul de l'arbre à une décision binaire entre deux images et un algorithme de reconstruction d'arbre.
+  Il est aujourd'hui extrêmement facile de manipuler des images et de les partager à l'aide des réseaux sociaux. Il est important d'identifier l'historique des transformations appliquées aux images afin de leur accorder un minimum crédibilité. Dans le cadre de ce stage, l'objectif principal de nos recherches consiste à calculer l'arbre de phylogénie d'un ensemble d'images où les images sont issues de différentes compressions JPEG successives. À chaque étape, une image enfant est donc créée à partir de la compression d'une image parent. Dans ce rapport nous présentons dans l'état de l'art les différentes méthodes de reconstruction d'un arbre phylogénétique et traitons de la détection et de l'identification des compressions JPEG multiples. Nous présentons également notre méthode qui s'articule autour d'un point central : la décision binaire entre deux images et nous détaillons les résultats obtenus grâce à cette méthode. 
+% approche un théorème permettant de réduire le calcul de l'arbre à une décision binaire entre deux images et un algorithme de reconstruction d'arbre.
 
 \vspace{5mm}
 \textbf{Mots clés.} Phylogénie des images, JPEG, Compressions multiples, Arbre de phylogénie
@@ -93,7 +94,8 @@
 }
 %% Résumé en anglais
 \abstracteng{
-  Nowadays it is extremely easy to tamper images and share them thanks to social media. Identifying the tamper history is mandatory to be able to trust any of those images. During this internship, our main goal is to compute the image phylogeny tree of an image set, where images are created from successive JPEG compressions. Every step, a child image is created from the compression of a parent image. In this master's thesis we present in a state of the art several methods for computing the image phylogeny tree and take an overview of the different methods for detecting and identifying multiple JPEG compressions. We also introduce our approach with a theorem that allows us to reduce the image phylogeny tree estimation to a binary decision between two images and we describe a tree building algorithm.
+  Nowadays it is extremely easy to tamper images and share them thanks to social media. Identifying the tamper history is mandatory to be able to trust any of those images. During this internship, our main goal is to compute the image phylogeny tree of an image set, where images are created from successive JPEG compressions. Every step, a child image is created from the compression of a parent image. In this master's thesis we present in a state of the art several methods for computing the image phylogeny tree and take an overview of the different methods for detecting and identifying multiple JPEG compressions. We also introduce our method based on a binary decision between two images and explain the results obtained with this method.
+% approach with a theorem that allows us to reduce the image phylogeny tree estimation to a binary decision between two images and we describe a tree building algorithm.
 
 \vspace{5mm}
 \textbf{Mots clés.} Image phylogeny, JPEG, Multiple compressions, Phylogeny tree
@@ -118,9 +120,11 @@
 
 \chapter{Introduction}
 La phylogénie, en sciences naturelles, est définie comme l'étude des relations de parenté entre êtres vivants. Et c'est exactement de cela qu'il s'agit dans le cas des images, l'étude des relations de parenté entre images. \autocite{phylogeny} \\
-À l'ère du numérique et des réseaux sociaux, il n'a jamais été aussi simple de partager des idées et du contenu. À chaque partage cependant, l'information peut être modifiée plus ou moins fortement. Les images, puisque c'est là notre sujet d'étude, peuvent avoir subi un certain nombre de transformations et de modifications avant d'être publiées sur les réseaux sociaux. C'est dans ce contexte que nous allons intervenir afin de tenter de reconstituer la phylogénie d'une image. Il peut être difficile de différentier une image modifiée de l'originale, et de savoir laquelle est l'originale. Alors que cette détection est cruciale, surtout dans un monde où l'information peut être facilement falsifiée par tout un chacun. Les applications sont multiples et variées, et ne se cantonnent pas à la détection et la discrimination d'images altérées. Il est également possible de se servir de la phylogénie des images pour optimiser l'espace de stockage en ne gardant que l'image originale et l'historique des modifications ou encore suivre la diffusion et l'évolution des idées sur les réseaux sociaux. 
+À l'ère du numérique et des réseaux sociaux, il n'a jamais été aussi simple de partager des idées et du contenu. À chaque partage cependant, l'information peut être modifiée plus ou moins fortement. Les images, puisque c'est là notre sujet d'étude, peuvent avoir subi un certain nombre de transformations et de modifications avant d'être publiées sur les réseaux sociaux. C'est dans ce contexte que nous allons intervenir afin de tenter de reconstituer la phylogénie d'une image. Il peut être difficile de différentier une image modifiée de l'originale, et de savoir laquelle est l'originale alors que cette détection est cruciale, surtout dans un monde où l'information peut être facilement falsifiée par tout un chacun. Les applications sont multiples et variées, et ne se cantonnent pas à la détection et la discrimination d'images altérées. Il est également possible de se servir de la phylogénie des images pour optimiser l'espace de stockage en ne gardant que l'image originale et l'historique des modifications ou encore suivre la diffusion et l'évolution des idées sur les réseaux sociaux. 
 
-Dans ce chapitre nous commencerons par définir ce que sont les near-duplicate images, puis nous détaillerons la notion d'arbre phylogénétique et enfin nous expliquerons pourquoi nous nous sommes restreints à la compression JPEG dans le cadre de cette étude. Nous ferons un état de l'art dans le chapitre \ref{chap2} où nous présenterons les différentes approches pour calculer l'arbre de phylogénie. Nous aborderons également la problématique de la détection des recompressions et l'estimation du nombre de recompressions. Nous présentons ensuite notre approche dans le chapitre \ref{chap3}, où un algorithme de reconstruction d'arbre sera détaillé, en plus du théorème qui sera la base de la suite du stage. Nous finirons par conclure dans le chapitre \ref{chap4}.
+Dans ce chapitre nous commencerons par définir ce que sont les near-duplicate images, puis nous détaillerons la notion d'arbre phylogénétique et enfin nous expliquerons pourquoi nous nous sommes restreints à la compression JPEG dans le cadre de cette étude. Nous ferons un état de l'art dans le chapitre \ref{chap2} où nous présenterons les différentes approches pour calculer l'arbre de phylogénie. Nous aborderons également la problématique de la détection des recompressions et l'estimation du nombre de recompressions. Nous présentons ensuite notre méthode dans le chapitre \ref{chap3}, où détaillerons en quoi consiste, et comment est prise une décision binaire entre deux images, et comment l'arbre est ensuite reconstruit. Les résultats obtenus grâce à cette méthode seront ensuite présentés et expliqués chapitre \ref{chap4} puis nous finirons par conclure chapitre \ref{chap5}.
+
+ % un algorithme de reconstruction d'arbre sera détaillé, en plus du théorème qui sera la base de la suite du stage. Nous finirons par conclure dans le chapitre \ref{chap4}.
 \newpage
 
 \section{Near-duplicate images (NDI)}
@@ -241,6 +245,7 @@ Dans le cadre du stage, nous proposons de réduire l'espace des transformations 
     \end{center}
   \end{figure}
 
+Nous avons choisi de nous concentrer particulièrement sur le deuxième cas, lorsque le facteur de qualité du parent est strictement supérieur à celui de l'enfant.
 
 \chapter{État de l'art}
 \label{chap2}
@@ -500,7 +505,7 @@ Les auteurs proposent deux approches pour les blocs cycliques. La première cons
 
 Cette méthode nécessite de prendre un certain nombre de précautions et requiert une protection (padding) autour des blocs insérés. L'algorithme de sur-échantillonage est en effet parfois amené à utiliser les valeurs des pixels des blocs adjacents pour un meilleur rendu et provoquer un effet de débordement (spill over) des valeurs \autocite{carnein2015forensics}, ce qui modifie le bloc artificiellement créé (dans le vide) et donc modifie son cycle, rendant nulle son information.
 
-\begin{figure}
+\begin{figure}[H]
   \begin{center}
     \includegraphics[width=80mm]{images/insertion_blocs}
     \caption{Exemple d'insertion de blocs, issu de \autocite{CarneinSB2016TelltaleWatermarks}.}
@@ -576,37 +581,36 @@ La K divergence :
 \vspace{8mm}
 Au travers de cet état de l'art, nous avons pu voir différentes méthodes de calcul de l'arbre phylogénétique et avons vu que la difficulté se trouve dans l'estimation des relations de parenté entre les images. Ce que nous avons tenté de résoudre en nous intéressant à l'analyse des compressions multiples, analyse qui est loin d'être triviale et qui souvent se limite aux premières recompressions. Nous avons également vu plusieurs calculs de distances qui serviront eux aussi à estimer les relations de parenté entre images.
 
-\chapter{Notre approche}
-Ce chapitre est consacré à présenter notre approche, nous y détaillons notre approche, formalisée par un théorème, puis nous présentons un algorithme permettant de reconstruire l'arbre de phylogénie.
-\label{chap3}
-\label{chap:notre_approche}
-\section{Principe et théorème}
-Pour tout couple d'images de notre ensemble, nous allons tenter de nier qu'il existe une relation de parenté, cela va permettre d'extraire une matrice binaire, appelée \textit{matrice de parenté}, de la taille de l'ensemble d'images, où une valeur à 1 indiquera une relation de parenté et une valeur à 0 en indiquera l'absence. À noter une fois de plus que ce n'est pas forcément un parent direct mais plutôt un ancêtre. \\ \indent
-Nous pouvons noter plusieurs choses intéressantes de l'exemple illustré figure \ref{parentage_tree}. Toutes les valeurs de la colonne de l'image $I_{2}$ sont à 1 , c'est à dire que c'est un parent commun à toutes les autres images, et sa ligne n'a que des 0, elle n'a donc aucun parent. Nous nous servons de ce principe pour la reconstruction de l'arbre à partir de la matrice : une image qui n'a pas de parent est la racine. Nous pouvons également remarquer les colonnes où toutes les cases sont à 0, cela veut dire que ces images ne sont les parents de personne, et donc sont des feuilles.
+% \chapter{Notre approche}
+% Ce chapitre est consacré à présenter notre approche, nous y détaillons notre approche, formalisée par un théorème, puis nous présentons un algorithme permettant de reconstruire l'arbre de phylogénie.
+% \label{chap:notre_approche}
+% \section{Principe et théorème}
+% Pour tout couple d'images de notre ensemble, nous allons tenter de nier qu'il existe une relation de parenté, cela va permettre d'extraire une matrice binaire, appelée \textit{matrice de parenté}, de la taille de l'ensemble d'images, où une valeur à 1 indiquera une relation de parenté et une valeur à 0 en indiquera l'absence. À noter une fois de plus que ce n'est pas forcément un parent direct mais plutôt un ancêtre. \\ \indent
+% Nous pouvons noter plusieurs choses intéressantes de l'exemple illustré figure \ref{parentage_tree}. Toutes les valeurs de la colonne de l'image $I_{2}$ sont à 1 , c'est à dire que c'est un parent commun à toutes les autres images, et sa ligne n'a que des 0, elle n'a donc aucun parent. Nous nous servons de ce principe pour la reconstruction de l'arbre à partir de la matrice : une image qui n'a pas de parent est la racine. Nous pouvons également remarquer les colonnes où toutes les cases sont à 0, cela veut dire que ces images ne sont les parents de personne, et donc sont des feuilles.
 
-Nous avons formalisé ce principe en un théorème présenté ci-dessous: 
-\newtheorem*{marqueur}{Définition}
-\begin{marqueur}
-  Un \textbf{marqueur} est une caractéristique locale ou globale extraite de l'image qui indique qu'une certaine opération a été effectuée. Ce marqueur va se transmettre aux enfants de l'image, et serviront potentiellement à prouver qu'une image n'est pas le parent d'une autre.
+% Nous avons formalisé ce principe en un théorème présenté ci-dessous: 
+% \newtheorem*{marqueur}{Définition}
+% \begin{marqueur}
+%   Un \textbf{marqueur} est une caractéristique locale ou globale extraite de l'image qui indique qu'une certaine opération a été effectuée. Ce marqueur va se transmettre aux enfants de l'image, et serviront potentiellement à prouver qu'une image n'est pas le parent d'une autre.
 
-Par exemple une image en noir et blanc ne peut pas être le parent d'une image couleur car le marqueur ``couleur'' est absent de l'image en noir et blanc.
-\end{marqueur}
+% Par exemple une image en noir et blanc ne peut pas être le parent d'une image couleur car le marqueur ``couleur'' est absent de l'image en noir et blanc.
+% \end{marqueur}
 
-\newtheorem*{fonction}{Définition}
-\begin{fonction}
-  Soit $f(I_{m},I_{n})$ une fonction qui pour tout couple d'images $(I_{m}, I_{n})$ détecte à chaque fois qu'il est présent un marqueur indiquant qu'il n'y a pas de relation de parenté entre $I_{m}$ et $I_{n}$. Cette fonction est appelée fonction de négation. Notons que ce type de fonction est plus ou moins abstrait et qu'un des objectifs du stage sera d'essayer d'en proposer au moins une.
- % est nous devrons la trouver dans la suite du stage.
-\end{fonction}
+% \newtheorem*{fonction}{Définition}
+% \begin{fonction}
+%   Soit $f(I_{m},I_{n})$ une fonction qui pour tout couple d'images $(I_{m}, I_{n})$ détecte à chaque fois qu'il est présent un marqueur indiquant qu'il n'y a pas de relation de parenté entre $I_{m}$ et $I_{n}$. Cette fonction est appelée fonction de négation. Notons que ce type de fonction est plus ou moins abstrait et qu'un des objectifs du stage sera d'essayer d'en proposer au moins une.
+%  % est nous devrons la trouver dans la suite du stage.
+% \end{fonction}
 
-\newtheorem*{parentage}{Théorème}
-\begin{parentage}
-  % Supposons qu'il existe une fonction $f(.,.)$ qui pour tout couple d'image passé en paramètre détecte à chaque fois qu'il est présent un marqueur prouvant qu'il n'y a pas de relation de parenté entre ces deux images.
-  Pour tout couple d'images ($I_{m}$, $I_{n}$) d'un ensemble de near-duplicates, s'il n'existe pas de marqueur prouvant que $I_{m}$ n'est pas le parent de $I_{n}$, alors il y a une relation parent-enfant entre $I_{m}$ et $I_{n}$, $I_{m}$ $\to$ $I_{n}$.
-\end{parentage}
+% \newtheorem*{parentage}{Théorème}
+% \begin{parentage}
+%   % Supposons qu'il existe une fonction $f(.,.)$ qui pour tout couple d'image passé en paramètre détecte à chaque fois qu'il est présent un marqueur prouvant qu'il n'y a pas de relation de parenté entre ces deux images.
+%   Pour tout couple d'images ($I_{m}$, $I_{n}$) d'un ensemble de near-duplicates, s'il n'existe pas de marqueur prouvant que $I_{m}$ n'est pas le parent de $I_{n}$, alors il y a une relation parent-enfant entre $I_{m}$ et $I_{n}$, $I_{m}$ $\to$ $I_{n}$.
+% \end{parentage}
 
-\begin{proof}
-  Si $f(I_{m},I_{n})$ ne parvient pas à trouver de marqueur prouvant que $I_{m}$ n'est pas de parent de $I_{n}$ alors c'est que ce marqueur n'existe pas et donc que $I_{m}$ est le parent de $I_{n}$, avec $m < n$.
-\end{proof}
+% \begin{proof}
+%   Si $f(I_{m},I_{n})$ ne parvient pas à trouver de marqueur prouvant que $I_{m}$ n'est pas de parent de $I_{n}$ alors c'est que ce marqueur n'existe pas et donc que $I_{m}$ est le parent de $I_{n}$, avec $m < n$.
+% \end{proof}
 
 
 % \section{L'algorithme de reconstruction}
@@ -631,7 +635,8 @@ Par exemple une image en noir et blanc ne peut pas être le parent d'une image c
 
 % Cette approche a pour avantage de réduire l'évaluation d'un arbre de phylogénie à partir d'un ensemble d'images à l'évaluation binaire de parenté entre deux images.
 
-\chapter{La méthode proposée}
+\chapter{Méthode de calcul de phylogénie à l'aide des caractéristiques des coefficients DCT d'une bitmap}
+\label{chap3}
 
 Nous tentons donc de reconstruire l'arbre de phylogénie d'un ensemble de near-duplicates. Contrairement aux approches de l'état de l'art qui utilisent des algorithmes de construction d'arbre complexes pour reconstruire l'arbre à partir d'une dissimilarity matrix, nous allons prendre une décision binaire entre deux image, à savoir ``Cette image est-elle le parent de cette autre image ?''. Cela nous permet de nous concentrer sur les images et leurs caractéristiques et avoir un algorithme de construction d'arbre simple. La figure \ref{fig:method_schema} présente notre méthode.
 
@@ -769,14 +774,16 @@ Soit $I_m$ et $I_n$ deux images et $Q_{f_{m}}$ et $Q_{f_{n}}$ leurs facteurs de 
 Si $I_m = C(I_n, Q_{f_{m}})$, alors $I_n$ est le parent direct de $I_m$.
 \paragraph{}
 
-C'est en pratique presque aussi simple qu'en théorie, on voit bien que tout dépend du facteur de qualité, or nous estimons ce facteur de qualité, et il peut arriver qu'il ne soit pas exact, mais un peu trop grand ou un peu trop petit. Nous n'allons donc pas nous contenter de comparer les images compressées avec le $Q_f$ estimé, nous allons également regarder les $Q_f$ alentours (de $Q_f - 2$ à $Q_f + 2$ par exemple). La précision de l'estimation du parent est donc directement corrélée avec l'exactitude de l'estimation du facteur de qualité.
+C'est en pratique presque aussi simple qu'en théorie, on voit bien que tout dépend du facteur de qualité, or nous estimons ce facteur de qualité, et il peut arriver qu'il ne soit pas exact, mais un peu trop grand ou un peu trop petit. Nous n'allons donc pas nous contenter de comparer les images compressées avec le $Q_f$ estimé, nous allons également regarder les $Q_f$ alentours jusqu'à ce qu'un parent soit détecté. La précision de l'estimation du parent est donc directement corrélée avec le temps de calcul de notre algorithme. 
+
+ % regarder les $Q_f$ alentours (de $Q_f - 2$ à $Q_f + 2$ par exemple). La précision de l'estimation du parent est donc directement corrélée avec l'exactitude de l'estimation du facteur de qualité.
 
 \paragraph{}
 Cette méthode, même si elle donne d'excellents résultats pour trouver le parent direct, ne permet pas de trouver les grands parents ou les ancêtres plus éloignés. Nous tentons en effet de prendre une décision binaire : ``Cette image est-elle le parent de cette autre image ?''. Une décision binaire est difficile lorsque l'on travaille sur des valeurs dont les bornes dépendent de l'input. Il est alors difficile d'utiliser des seuils pour correctement filtrer les valeurs. L'alternative logique est de ne pas utiliser de seuil, et comparer les valeurs entre elles. 
 
 On peut raisonnablement penser que l'ancêtre le plus probable est l'image ayant la plus petite valeur (issue d'une métrique quelconque) parmi toutes les autres valeurs. Le problème est que l'on perd alors le principe de décision binaire.
 
-\subsection{Reconstruction de l'arbre}
+\section{Reconstruction de l'arbre}
 La phase d'estimation des parent nous a permis de créer une matrice binaire de taille $n\times n$, $n$ étant le nombre d'images dans le set. Cette matrice est appelée \textit{matrice de parenté}. Une valeur à 1 à l'indice $(i,\ j)$ de cette matrice indiquera que l'image $I_i$ est un des ancêtres de $I_j$. Une valeur à 0 indiquera l'absence de parenté. Un exemple d'arbre et de matrice de parenté est disponible figure \ref{parentage_tree}. On peut noter plusieurs choses intéressantes de cet exemple. Une colonne où toutes les valeurs sont à 0 indiquera que l'image n'a aucun parent, il s'agit donc de la racine, qui par définition n'a pas de parent. Une ligne où toutes les valeurs sont à 0 signifie que l'image n'est le parent de personne, c'est à dire qu'il s'agit d'une feuille. On peut ainsi généraliser et dire que plus une colonne contient de valeurs à 0, moins cette images a d'ancêtres, et donc qu'elle est proche de la racine.
 
 \begin{figure}
@@ -851,19 +858,22 @@ Nous donnons l'algorithme de reconstruction d'arbre à titre indicatif algorithm
 
 Cet algorithme a une complexité de $O(n^{2})$. Il y a deux boucles imbriquées, et si les sommes sont calculées une seule fois au début et mises à jour à chaque fois qu'un parent est enlevé, il n'y a pas de boucle supplémentaire augmentant la complexité.
 
+
 % Et même si cette fonction n'est pas parfaite, et qu'elle se trompe dans ses prédictions, l'algorithme est robuste et premet tout de même d'obtenir des résultats cohérents si on s'appuie sur les métriques introduites pas \autocite{dias2010first} pour évaluer l'arbre (voir Fig. \ref{algo-robuste}).
-Cette approche a pour avantage de réduire l'évaluation d'un arbre de phylogénie à partir d'un ensemble d'images à l'évaluation binaire de parenté entre deux images.
+% Cette approche a pour avantage de réduire l'évaluation d'un arbre de phylogénie à partir d'un ensemble d'images à l'évaluation binaire de parenté entre deux images.
 
 %%parler des marqueurs qui ont été un échec
 
 
 \chapter{Résultats}
+\label{chap4}
+
 \section{Génération des données}
 Nous avons choisi de créer trois datasets différents, un avec des arbres de 15 images, un autre avec des arbres de 25 images et un dernier avec des arbres de 50 images. Cela nous permettra d'observer les différences éventuelles que peuvent amener des choses telles que la distance à la racine et le nombre de recompression dans la précision de l'estimation du parent.
 
 La génération se fait comme suit : à partir d'une image graine, une première image est compressée avec $85 < Q_f < 99$, c'est l'image racine. Cette image racine est ajoutée à notre pool d'images. Tant que le nombre désiré d'images n'a pas été atteint, une image est prise aléatoirement dans la pool, est compressée avec $Q_{f_{parent}} - 15 < Q_{f_{enfant}} < Q_{f_{parent}} - 1$ et est ajoutée à la pool d'image. On fixe cependant $Q_f = 30$ comme limite basse du facteur de qualité, au delà de cette limite, l'image est trop détériorée, et en plus de ne pas être un cas d'utilisation réaliste dans les réseaux sociaux, ne contient plus assez d'informations pour être correctement utilisée.
 
-La génération des datasets en eux même s'est fait à partir des six images d'origine de \textit{BOWS 2}\cite{bows} où chaque image à servi à générer douze arbres pour chaque dataset, pour un total de 72 arbres, soit 6480 images tout dataset confondu.
+La génération des datasets en eux même s'est fait à partir des six images d'origine de \textit{BOWS 2}\autocite{bows} où chaque image à servi à générer douze arbres pour chaque dataset, pour un total de 72 arbres, soit 6480 images tout dataset confondu.
 
 Précisons cependant que les images identiques sont filtrées. Deux images sont identiques si elles ont exactement le même historique de compression, comme illustré figure \ref{fig:identique}. Il semble en effet absurde lors de l'évaluation des résultats de constater qu'une image n'a pas le bon parent, et donc est marquée comme mal estimée, alors que son vrai parent est strictement identique à son parent actuel.
 
@@ -877,28 +887,41 @@ Précisons cependant que les images identiques sont filtrées. Deux images sont 
 
 \section{Résultats expérimentaux}
 
+Nous allons commencer par donner le résultat de nos algorithme sur un arbre choisis aléatoirement dans notre dataset, pour bien détailler la sortie de chaque étape, puis nous allons donner des résultats plus significatifs obtenus en lançant notre programme sur l'ensemble des données.
+
+\subsection{Détail sur un arbre}
+Nous choisissons un arbre de 15 images, les résultats ne sont pas significativement différent avec les autres tailles d'arbre, et il est plus simple de tout montrer avec un nombre restreint d'images. 
+\paragraph{}
+Commençons par la détection de pics et l'autocorrélation. Nous utilisons les 35 premiers coefficients DCT, les coefficients suivant sont trop quantifiés, et souvent à 0, et ne contiennent pas suffisamment d'informations pour être intéressants, ils peuvent même fausser les résultats. Nous allons donc donner l'histogramme du coefficient DC ainsi que son autocorrélation figure \ref{}, puis le coefficient 18 dans l'ordre zigzag figure \ref{} et enfin le coefficent 35 figure \ref{}. Ces exemples sont donnés à titre indicatif, l'apparence des histogrammes et autocorrélations peut grandement varier selon le facteur de qualité de l'image. 
+
+%%%mettre les figures
+
+\paragraph{}
+
+
+\subsection{Résultats sur les datasets}
 Nous avons fait tourner notre collection d'algorithmes sur les trois datasets, et avons obtenu des résultats très satisfaisants. Nous mesurons la qualité nos résultats grâce à sept métriques, trois servant à mesurer la précision de l'estimation du facteur de qualité et les quatre autres servant à mesurer la qualité du calcul de l'arbre sont celles introduites par \citeauthornsc{dias2012image} \cite{dias2012image}.
 
-Les trois métriques servant à mesurer la précision de l'estimation du $Q_f$ sont l'erreur moyenne d'estimation, qui servira à savoir si l'estimation est juste la plupart du temps, la sur-estimation moyenne et la sous-estimation moyenne, qui, si tout va bien, seront symétriques, qui serviront à savoir si notre algorithme a plutôt tendance à sur-estimer ou sous-estimer $Q_f$, et dans quel cas.
+Les trois métriques servant à mesurer la précision de l'estimation du $Q_f$ sont l'erreur moyenne d'estimation, qui servira à savoir si l'estimation est juste la plupart du temps, la sur-estimation moyenne et la sous-estimation moyenne, qui, si tout va bien, seront symétriques, et serviront à savoir si notre algorithme a plutôt tendance à sur-estimer ou sous-estimer $Q_f$, et dans quel cas.
 
 \begin{figure}
   \centering
   \begin{tabular}{|r||c|c|c|c|c|}
     \hline
      \backslashbox{Métrique}{Dataset}             & \textbf{15 images} & \textbf{25 images} & \textbf{50 images} \\ \hhline{|=::=|=|=|}
-    \textbf{mean error}         & 0.546296 & 0.626667 & 0.962778 \\ \hline
-    \textbf{mean underestimate} & 0.916667 & 1.44444  & 2.13889  \\ \hline
-    \textbf{mean overestimate}  & 1.375    & 2.625    & 10.3194  \\ \hhline{|=::=|=|=|}
-    \textbf{roots}              & 0.916667 & 0.833333 & 0.583333 \\ \hline
-    \textbf{edges}              & 0.989087 & 0.978588 & 0.954649 \\ \hline
-    \textbf{leaves}             & 0.978086 & 0.973989 & 0.945842 \\ \hline
-    \textbf{ancestry}           & 0.974033 & 0.954109 & 0.859429 \\ \hline
+    \textbf{mean error}         & 0.555555 & 0.645556 & 0.774722 \\ \hline
+    \textbf{mean underestimate} & 1.23611  & 1.54167  & 1.76389  \\ \hline
+    \textbf{mean overestimate}  & 1.47222  & 2.26389  & 6.01389  \\ \hhline{|=::=|=|=|}
+    \textbf{roots}              & 0.944444 & 0.930556 & 0.916667 \\ \hline
+    \textbf{edges}              & 0.989087 & 0.99537  & 0.996315 \\ \hline
+    \textbf{leaves}             & 0.99537  & 0.995459 & 0.996761 \\ \hline
+    \textbf{ancestry}           & 0.977399 & 0.982393 & 0.981018 \\ \hline
   \end{tabular} 
 \caption{Table de résultats, les trois premières métriques sont des moyennes d'entiers et les quatres dernières sont des pourcentages}
 \label{results}
 \end{figure}
 
-La table \ref{results} montre les résultats obtenus par nos algorithmes. On peut directement remarquer que les résultats sont strictement meilleurs lorsque l'on réduit le nombre d'images dans le set. À noter que le meilleur résultat possible pour les trois premières métriques est zéro, c'est à dire que tout les $Q_f$ ont été estimés parfaitement, et que le meilleur résultat pour les quatre dernières est un, lorsque la vérité terrain et l'arbre reconstruit sont identiques.
+La table \ref{results} montre les résultats obtenus par nos algorithmes. On peut directement remarquer que l'estimation du $Q_f$ est strictement meilleure lorsque l'on réduit le nombre d'images dans le set. À noter que le meilleur résultat possible pour les trois premières métriques est zéro, c'est à dire que tout les $Q_f$ ont été estimés parfaitement, et que le meilleur résultat pour les quatre dernières est un, lorsque la vérité terrain et l'arbre reconstruit sont identiques.
 \paragraph{}
 
 Il semble important de préciser que l'estimation du $Q_f$ rencontre des difficultés lorsque $Q_f$ est proche de 100. En effet un grand nombre des valeurs de la table de quantification est à 1 ou 2, ce qui ne quantifie pas ou pas suffisamment le coefficient DCT pour que nous puissions extraire suffisamment d'information pour discriminer une image compressée avec $Q_f = 97$ d'une image compressée avec $Q_f = 99$ par exemple. C'est en partie une des causes du manque de précision d'identification de la racine. En effet, dans notre cas d'étude, la racine est l'image avec le $Q_f$ le plus proche de 100, il est difficile de l'identifier avec certitude lorsque l'estimation du $Q_f$ n'est pas certaine.
@@ -908,8 +931,12 @@ On voit que les erreurs moyennes, même si elles restent inférieures à 1 pour 
 
 Une telle sur-estimation s'explique par le fait que les coefficients DCT deviennent trop bruités pour pouvoir correctement estimer la période lorsqu'ils ont été compressés un trop grand nombre de fois, le signal n'est plus périodique et l'autocorrélation ne parvient donc pas à détecter de pics. Lorsqu'aucun pic n'est détecté, notre algorithme estime que l'image a un $Q_f$ élevé, ce qui fausse la reconstruction de l'arbre, car une image ayant subi un grand nombre de recompressions a forcément un $Q_f$ petit. C'est une autre source d'erreurs dans l'estimation de la racine. Plus l'arbre est grand, plus les images ont été compressées un nombre important de fois, et donc plus elles ont de chance de pouvoir fausser les résultats. Le problème vient de notre algorithme de recontruction d'arbre. Une image est marquée comme la racine si elle n'a aucun parent. La racine n'a effectivement aucun parent, mais une image ayant eu son $Q_f$ mal estimé n'aura aucun parent \textbf{détecté}. Il devient dans ce cas difficile de savoir la quelle des deux est la vraie racine.
 
+Nous avions considéré que deux images avec le même historique de compressions étaient identiques, il semble cependant que les images ayant un petit $Q_f$ (inférieur à 35 environ) échappent parfois à ce phénomène, et une image parent compressée avec le $Q_f$ de son enfant et son enfant sont différentes.
+
+Un autre problème, qui lui n'affecte pas la racine, mais plutôt le reste de l'arbre, est la convergence des blocs, comme expliqué chapitre \ref{chap2} section \ref{convergence}. Nous avons fixé comme limite basse pour la génération de l'arbre $Q_f = 30$, si une image avec $Q_f = 30$ a un enfant, cet enfant aura également $Q_f = 30$, et ce de manière récursive. On peut donc arriver dans le cas où les enfants sont identiques à leurs parents, ce qui rend impossible leur différenciation, ce phénomène est fort heureusement assez rare.
+
 \chapter{Conclusion}
-\label{chap4}
+\label{chap5}
 Au terme de cette étude, nous avons pu voir que le problème de la reconstruction d'arbre phylogénétique d'images dans les réseaux sociaux n'est pas trivial et peut se diviser en deux sous-parties : l'identification de la racine et l'estimation des relations parent-enfant. Nous avons également pu voir dans l'état de l'art les différentes approches de reconstruction d'arbre de phylogénie. Nous avons choisi de nous concentrer uniquement sur l'étude des recompressions JPEG pour le calcul de l'arbre. Cette décision est motivée par le fait que nous sommes intéressés par le domaine du forensics et que l'étude des recompressions un sujet suffisamment vaste et complexe. Cela nous a amené à étudier la détection des compressions multiples.
 
 De cette étude nous avons formalisé un théorème et réduit la reconstruction de l'arbre à une décision binaire entre deux images. Nous avons également précisément identifié les buts à atteindre dans la suite de ce stage : identifier une fonction qui trouve, s'il est présent, un marqueur qui prouve qu'il n'y a pas de relation parent-enfant entre deux images.

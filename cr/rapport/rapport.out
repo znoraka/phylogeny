@@ -7,13 +7,12 @@
 \BOOKMARK [1][-]{section.2.1}{\311tude de l'arbre phylog\351n\351tique}{chapter.2}% 7
 \BOOKMARK [1][-]{section.2.2}{Analyse des recompressions JPEG}{chapter.2}% 8
 \BOOKMARK [1][-]{section.2.3}{Distances entre distributions}{chapter.2}% 9
-\BOOKMARK [0][-]{chapter.3}{Notre approche}{}% 10
-\BOOKMARK [1][-]{section.3.1}{Principe et th\351or\350me}{chapter.3}% 11
-\BOOKMARK [0][-]{chapter.4}{La m\351thode propos\351e}{}% 12
-\BOOKMARK [1][-]{section.4.1}{Estimation du facteur de qualit\351 d'une image JPEG}{chapter.4}% 13
-\BOOKMARK [1][-]{section.4.2}{Estimation du parent}{chapter.4}% 14
-\BOOKMARK [0][-]{chapter.5}{R\351sultats}{}% 15
-\BOOKMARK [1][-]{section.5.1}{G\351n\351ration des donn\351es}{chapter.5}% 16
-\BOOKMARK [1][-]{section.5.2}{R\351sultats exp\351rimentaux}{chapter.5}% 17
-\BOOKMARK [0][-]{chapter.6}{Conclusion}{}% 18
-\BOOKMARK [0][-]{section*.49}{Bibliographie}{}% 19
+\BOOKMARK [0][-]{chapter.3}{M\351thode de calcul de phylog\351nie \340 l'aide des caract\351ristiques des coefficients DCT d'une bitmap}{}% 10
+\BOOKMARK [1][-]{section.3.1}{Estimation du facteur de qualit\351 d'une image JPEG}{chapter.3}% 11
+\BOOKMARK [1][-]{section.3.2}{Estimation du parent}{chapter.3}% 12
+\BOOKMARK [1][-]{section.3.3}{Reconstruction de l'arbre}{chapter.3}% 13
+\BOOKMARK [0][-]{chapter.4}{R\351sultats}{}% 14
+\BOOKMARK [1][-]{section.4.1}{G\351n\351ration des donn\351es}{chapter.4}% 15
+\BOOKMARK [1][-]{section.4.2}{R\351sultats exp\351rimentaux}{chapter.4}% 16
+\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 17
+\BOOKMARK [0][-]{section*.52}{Bibliographie}{}% 18
