@@ -180,8 +180,8 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
   	minValue = d;
   	index = i;
       }
-    }      
-      
+    }
+
     return index;
   };
 
@@ -193,8 +193,7 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
 
     auto qFromPeriod = [&](double period, int i) {
       double q = (100.0 * period - 50.0) / (double)baseTable[i];
-      if(index >= 50)
-	return (200.0 - q) / 2.0;
+      return floor((200.0 - q) / 2.0);
     };
 
     std::vector<double> estimatedQs;
@@ -222,6 +221,10 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
     plotHistograms("autocorrelation" + std::to_string(n), "auto correlation", s, plot, tmp);
   };
 
+  auto plotHistogram = [&](std::vector<double> histo, int n) {
+    plotHistograms("histo" + std::to_string(n), "histo", "", histo, histo);
+  };
+
   
   std::vector<int> qs;
   int n = 0;
@@ -233,6 +236,7 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
     std::vector<double> plot = computeAutocorrelation(vec);
     std::vector<int> peaks = findPeaks(2, plot);
 
+    // plotHistogram(vec, n);
     // plotPeaks(plot, peaks, n++);
 
     if(peaks.size() == 0) {
