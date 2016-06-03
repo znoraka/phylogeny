@@ -159,7 +159,7 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
 
   auto roughQFromPeriods = [](std::vector<int> periods) {
     int index = 0;
-    int minValue = std::numeric_limits<int>::max();
+    double minValue = std::numeric_limits<double>::max();
   
     for (int i = 1; i < 100; i++) {
       std::vector<double> tabledouble;
@@ -744,6 +744,15 @@ int main(int argc, char **argv) {
 
   for (int i = 1; i < 101; i++) {
     tables.push_back(table(i));
+  }
+
+  int a = 0;
+  for(auto i : table(73)) {
+      std::cout << i << " & ";
+    if(++a == 8) {
+      std::cout << "\\\\ \\hline" << std::endl;
+      a = 0;
+    }
   }
 
   auto matrix = estimateParents(argv[1]);

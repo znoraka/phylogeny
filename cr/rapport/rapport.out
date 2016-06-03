@@ -8,11 +8,13 @@
 \BOOKMARK [1][-]{section.2.2}{Analyse des recompressions JPEG}{chapter.2}% 8
 \BOOKMARK [1][-]{section.2.3}{Distances entre distributions}{chapter.2}% 9
 \BOOKMARK [0][-]{chapter.3}{M\351thode de calcul de phylog\351nie \340 l'aide des caract\351ristiques des coefficients DCT d'une bitmap}{}% 10
-\BOOKMARK [1][-]{section.3.1}{Estimation du facteur de qualit\351 d'une image JPEG}{chapter.3}% 11
-\BOOKMARK [1][-]{section.3.2}{Estimation du parent}{chapter.3}% 12
-\BOOKMARK [1][-]{section.3.3}{Reconstruction de l'arbre}{chapter.3}% 13
-\BOOKMARK [0][-]{chapter.4}{R\351sultats}{}% 14
-\BOOKMARK [1][-]{section.4.1}{G\351n\351ration des donn\351es}{chapter.4}% 15
-\BOOKMARK [1][-]{section.4.2}{R\351sultats exp\351rimentaux}{chapter.4}% 16
-\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 17
-\BOOKMARK [0][-]{section*.62}{Bibliographie}{}% 18
+\BOOKMARK [1][-]{section.3.1}{Principe et th\351or\350me}{chapter.3}% 11
+\BOOKMARK [1][-]{section.3.2}{Estimation du facteur de qualit\351 d'une image JPEG}{chapter.3}% 12
+\BOOKMARK [1][-]{section.3.3}{Estimation du parent}{chapter.3}% 13
+\BOOKMARK [1][-]{section.3.4}{Reconstruction de l'arbre}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.5}{Filtrage des doublons}{chapter.3}% 15
+\BOOKMARK [0][-]{chapter.4}{R\351sultats}{}% 16
+\BOOKMARK [1][-]{section.4.1}{G\351n\351ration des donn\351es}{chapter.4}% 17
+\BOOKMARK [1][-]{section.4.2}{R\351sultats exp\351rimentaux}{chapter.4}% 18
+\BOOKMARK [0][-]{chapter.5}{Perspectives et conclusion}{}% 19
+\BOOKMARK [0][-]{section*.64}{Bibliographie}{}% 20
