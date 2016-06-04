@@ -22,7 +22,20 @@ rough = 85
 rough = 71
 rough = 75
 0 : 
-estimated = 76
+estimated = 75
 real      = 73
 0
 1
+-1
+2
+-2
+parent found : 12
+1 : 
+estimated = 81
+real      = 81
+0
+parent found : 8
+2 : 
+estimated = 71
+real      = 71
+0

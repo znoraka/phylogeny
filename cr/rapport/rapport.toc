@@ -99,11 +99,11 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{}{26}{section*.52}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{28}{section*.54}
+\contentsline {paragraph}{}{29}{section*.54}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{R\IeC {\'e}sultats sur les datasets}{29}{section*.57}
+\contentsline {subsection}{R\IeC {\'e}sultats sur les datasets}{30}{section*.57}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{30}{section*.59}
+\contentsline {paragraph}{}{31}{section*.59}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{}{31}{section*.60}
 \defcounter {refsection}{0}\relax 
@@ -111,6 +111,8 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{}{31}{section*.62}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {5}Perspectives et conclusion}{32}{chapter.5}
+\contentsline {paragraph}{}{31}{section*.63}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliographie}{33}{section*.64}
+\contentsline {chapter}{\chapternumberline {5}Perspectives et conclusion}{33}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliographie}{34}{section*.66}

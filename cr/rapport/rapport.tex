@@ -23,6 +23,7 @@
 \usepackage{slashbox}
 \usepackage{forest}
 \usepackage{hyperref}
+\usepackage{pbox}
 \usetikzlibrary{trees}
 \usetikzlibrary{babel}
 \usetikzlibrary{arrows,automata,positioning}
@@ -786,7 +787,8 @@ L'avantage de la première méthode est qu'elle nous donne directement $Q_f$, c'
 
 L'autre méthode, même si elle ne demande presque aucun calcul, a un défaut majeur, elle ne permet pas d'obtenir $Q_f$. On peut en effet obtenir $Q_s$ à partir de l'équation \ref{eqn:jpeg_2}, mais il n'est pas possible d'obtenir $Q_f$ à partir de $Q_s$ sans savoir si $Q_f$ est supérieur à 50.
 
-Nous avons choisi de conjuguer les deux méthodes. Premièrement nous obtenons une estimation grossière de $Q_f$ en regardant parmi toutes les tables laquelle est la plus similaire, puis avec cette estimation de $Q_f$ nous calculons, manière plus précise le vrai $Q_f$ à l'aide des équations \ref{eqn:jpeg_1} et \ref{eqn:jpeg_2}. Le $Q_f$ final est donc la moyenne des $Q_f$ obtenus pour chaque coefficient DCT.
+Nous avons choisi de conjuguer les deux méthodes. Nous obtenons une première estimaton de $Q_f$ en regardant parmi toutes les tables laquelle est la plus similaire à l'aide d'un calcul de distance, nous appelons cette étape l'estimation primaire. Avec cette estimation primaire de $Q_f$, nous affinons la précision du calcul en utilisant les équations \ref{eqn:jpeg_1} et \ref{eqn:jpeg_2}. Ainsi, un $Q_f*$ va être calculé pour chaque coefficient de la table de quantification $\widehat{q}(u,v)$, le $Q_f$ final est la moyenne de l'ensemble de tous les $Q_f*$. Cette étape est appelée estimation secondaire.
+% Premièrement nous obtenons une estimation grossière de $Q_f$ en regardant parmi toutes les tables laquelle est la plus similaire, puis avec cette estimation de $Q_f$ nous calculons, manière plus précise le vrai $Q_f$ à l'aide des équations \ref{eqn:jpeg_1} et \ref{eqn:jpeg_2}. Le $Q_f$ final est donc la moyenne des $Q_f$ obtenus pour chaque coefficient DCT.
 
 \section{Estimation du parent}
 Le facteur de qualité utilisé pour compresser l'image nous est indispensable pour estimer le parent. En plus d'être un marqueur très efficace pour filtrer les images ne pouvant pas être le parent, le facteur de qualité nous sert à normaliser les images pour pouvoir les comparer.
@@ -813,7 +815,7 @@ Cette méthode, même si elle donne d'excellents résultats pour trouver le pare
 On peut raisonnablement penser que l'ancêtre le plus probable est l'image ayant la plus petite valeur (issue d'une métrique quelconque) parmi toutes les autres valeurs. Le problème est que l'on perd alors le principe de décision binaire entre deux images.
 
 \section{Reconstruction de l'arbre}
-La phase d'estimation des parent nous a permis de créer une matrice binaire de taille $n\times n$, $n$ étant le nombre d'images dans le set. Cette matrice est appelée \textit{matrice de parenté}. Une valeur à 1 à l'indice $(i,\ j)$ de cette matrice indiquera que l'image $I_i$ est un des ancêtres de $I_j$. Une valeur à 0 indiquera l'absence de parenté. Un exemple d'arbre et de matrice de parenté est disponible figure \ref{parentage_tree}. On peut noter plusieurs choses intéressantes de cet exemple. Une colonne où toutes les valeurs sont à 0 indiquera que l'image n'a aucun parent, il s'agit donc de la racine, qui par définition n'a pas de parent. Une ligne où toutes les valeurs sont à 0 signifie que l'image n'est le parent de personne, c'est à dire qu'il s'agit d'une feuille. On peut ainsi généraliser et dire que plus une colonne contient de valeurs à 0, moins cette images a d'ancêtres, et donc qu'elle est proche de la racine.
+La phase d'estimation des parent nous a permis de créer une matrice binaire de taille $n\times n$, $n$ étant le nombre d'images dans le set. Cette matrice est appelée \textit{matrice de parenté}. Une valeur à 1 à l'indice $(i,\ j)$ de cette matrice indiquera que l'image $I_i$ est un des ancêtres de $I_j$. Une valeur à 0 indiquera l'absence de parenté. Un exemple d'arbre et de matrice de parenté est disponible figure \ref{parentage_tree}. On peut noter plusieurs choses intéressantes de cet exemple. Une colonne où toutes les valeurs sont à 0 indiquera que l'image n'a aucun parent, il s'agit donc de la racine, qui par définition n'a pas de parent. Une ligne où toutes les valeurs sont à 0 signifie que l'image n'est le parent de personne, c'est à dire qu'il s'agit d'une feuille. On peut ainsi généraliser et dire que plus une colonne contient de valeurs à 0, moins cette images a d'ancêtres, et donc plus elle  est proche de la racine.
 
 \begin{figure}
   \begin{subfigure}{.5\textwidth}
@@ -876,7 +878,7 @@ Nous donnons l'algorithme de reconstruction d'arbre à titre indicatif algorithm
 Cet algorithme a une complexité de $O(n^{2})$. Il y a deux boucles imbriquées, et si les sommes sont calculées une seule fois au début et mises à jour à chaque fois qu'un parent est enlevé, il n'y a pas de boucle supplémentaire augmentant la complexité.
 
 \section{Filtrage des doublons}
-Nous avons expliqué précédemment que des images avec le même historique de compression étaient identiques. Le fait qu'elles soientt identiques peut fausser les métriques introduites par \citeauthornsc{dias2010first}. En effet, prenons le cas de trois images $I_m$, $I_n$ et $I_k$, où $I_m$ et $I_n$ sont identiques, et $I_k$ est l'enfant de $I_m$. Ces deux images étant identiques, $I_k$ peut aussi bien être l'enfant de $I_m$ que de $I_n$, sans que cela ne change rien aux caractéristiques de $I_k$. Mais lors de la reconstruction de l'arbre, si $I_k$ est marquée comme enfant de $I_n$, les métriques de \citeauthornsc{dias2010first} marqueront $I_k$ comme ayant le mauvais parent, et donc donneront un mauvais score à la reconstruction, alors qu'elle est fondamentalement juste. Le processus de filtrage des doublons est illustré figure \ref{fig:identique}. 
+Nous avons expliqué précédemment que des images avec le même historique de compression étaient identiques. Le fait qu'elles soient identiques peut fausser les métriques introduites par \citeauthornsc{dias2010first}. En effet, prenons le cas de trois images $I_m$, $I_n$ et $I_k$, où $I_m$ et $I_n$ sont identiques, et $I_k$ est l'enfant de $I_m$. Ces deux images étant identiques, $I_k$ peut aussi bien être l'enfant de $I_m$ que de $I_n$, sans que cela ne change rien aux caractéristiques de $I_k$. Mais lors de la reconstruction de l'arbre, si $I_k$ est marquée comme enfant de $I_n$, les métriques de \citeauthornsc{dias2010first} marqueront $I_k$ comme ayant le mauvais parent, et donc donneront un mauvais score à la reconstruction, alors qu'elle est fondamentalement juste. Le processus de filtrage des doublons est illustré figure \ref{fig:identique}. 
 
 Ce filtrage est appliqué aussi bien à l'arbre original qu'à l'arbre reconstruit, pour qu'ils soient comparables.
 
@@ -899,7 +901,7 @@ Nous avons choisi de créer trois datasets différents, un avec des arbres de 15
 
 La génération se fait comme suit : à partir d'une image graine (non compressée), une première image est compressée avec $85 < Q_f < 99$, c'est l'image racine. Cette image racine est ajoutée à notre pool d'images. Tant que le nombre désiré d'images n'a pas été atteint, une image est prise aléatoirement dans la pool, est compressée avec $Q_{f_{parent}} - 15 < Q_{f_{enfant}} < Q_{f_{parent}} - 1$ et est ajoutée à la pool d'image. On fixe cependant $Q_f = 30$ comme limite basse du facteur de qualité, au delà de cette limite, l'image est trop détériorée, et en plus de ne pas être un cas d'utilisation réaliste dans les réseaux sociaux, ne contient plus assez d'informations pour être correctement utilisée.
 
-La génération des datasets en eux même s'est fait à partir des six images d'origine de \textit{BOWS 2}\autocite{bows} où chaque image à servi à générer douze arbres pour chaque dataset, pour un total de 72 arbres par dataset, soit 6480 images tout dataset confondu.
+La génération des datasets en eux même est faite à partir des six images d'origine de \textit{BOWS 2}\autocite{bows} où chaque image à servi à générer 15 arbres pour chaque image pour chaque dataset, pour un total de 90 arbres par dataset, soit 8100 images tout dataset confondu.
 
 \section{Résultats expérimentaux}
 
@@ -961,7 +963,7 @@ Commençons par la détection de pics et l'autocorrélation. Nous utilisons les 
 On voit très nettement que la quantité d'information disponible baisse très fortement lorsque l'on s'éloigne du coefficient DC. C'est pour cette raison que nous restons sur 35 coefficients.
 
 \paragraph{}
-Nous allons ensuite calculer la distance entre la table de quantification issues des periodes $\widehat{q}(u,v)$ et toutes les tables de quantification de $Q_f = 1$ à $Q_f = 100$. La figure \ref{fig:distances} illustre ce calcul. Le point le plus bas de la courbe, là où la distance entre les deux tables est la plus faible est le $Q_f$ le plus probable avec lequel l'image a été compressée. Il s'agit ici de $Q_f = 71$. La table de quantification $\widehat{q}(u,v)$ est donnée table \ref{periods1}, avec pour comparaison la table de quantification d'une images compressée avec $Q_f = 71$ table \ref{periods2}, comme l'a été estimée l'image après la première estimation grossière, et la table de quantification de $Q_f = 73$ (table \ref{periods3}), le vrai $Q_f$ de l'image. Les valeurs à -1 indiquent qu'aucune valeur de période n'a pu être calculée, et sont donc ignorées et les valeurs à 0 sont celles pour lesquelles l'indice est supérieur à 35.
+Nous allons ensuite calculer la distance entre la table de quantification $\widehat{q}(u,v)$ issues des periodes et toutes les tables de quantification de $Q_f = 1$ à $Q_f = 100$. La figure \ref{fig:distances} illustre ce calcul. Le point le plus bas de la courbe, là où la distance entre les deux tables est la plus faible est le $Q_f$ le plus probable avec lequel l'image a été compressée. Il s'agit ici de $Q_f = 71$. La table de quantification $\widehat{q}(u,v)$ est donnée table \ref{periods1}, avec pour comparaison la table de quantification d'une images compressée avec $Q_f = 71$ table \ref{periods2}, comme l'a été estimée l'image après la première estimation grossière, et la table de quantification de $Q_f = 73$ (table \ref{periods3}), le vrai $Q_f$ de l'image. Les valeurs à -1 indiquent qu'aucune valeur de période n'a pu être calculée, et sont donc ignorées, les valeurs à 0 sont celles pour lesquelles l'indice est supérieur à 35.
 
 \begin{figure}
   \centering
@@ -972,60 +974,70 @@ Nous allons ensuite calculer la distance entre la table de quantification issues
 \end{figure}
 
 \begin{figure}
-  \centering
-  \begin{tabular}{|c|c|c|c|c|c|c|c|}
-    \hline
-    9 & 6 & 5 & 9 & 13 & 22 & 22 & 31 \\ \hline    
-    6 & 6 & 8 & 10 & 14 & 16 & 28 & 0 \\ \hline
-    8 & 7 & 9 & 13 & 20 & -1 & 0 & 0 \\ \hline
-    8 & 9 & 12 & 19 & -1 & -1 & 0 & 0 \\ \hline
-    10 & 12 & -1 & 31 & 30 & 0 & 0 & 0 \\ \hline
-    12 & 13 & 28 & 30 & 0 & 0 & 0 & 0 \\ \hline
-  \end{tabular}
-  \caption{Table de quantification calculée, $\widehat{q}(u,v)$}
-  \label{periods1}
-  
-  \centering
-  \begin{tabular}{|c|c|c|c|c|c|c|c|}
-    \hline
-    9 & 7 & 8 & 8 & 10 & 14 & 28 & 42 \\ \hline
-    6 & 7 & 8 & 10 & 13 & 20 & 37 & 53 \\ \hline
-    6 & 8 & 9 & 13 & 21 & 32 & 45 & 55 \\ \hline
-    9 & 11 & 14 & 17 & 32 & 37 & 50 & 57 \\ \hline
-    14 & 15 & 23 & 30 & 39 & 47 & 60 & 65 \\ \hline
-    23 & 34 & 33 & 50 & 63 & 60 & 70 & 58 \\ \hline
-  \end{tabular}
-  \caption{Table de quantification estimée, distance entre $\widehat{q}(u,v)$ et table(i) la plus faible, $i = 71$}
-  \label{periods2}
-  
-  \centering
-  \begin{tabular}{|c|c|c|c|c|c|c|c|}
-    \hline
-    9 & 6 & 8 & 8 & 10 & 13 & 26 & 39  \\ \hline
-    6 & 6 & 7 & 9 & 12 & 19 & 35 & 50  \\ \hline
-    5 & 8 & 9 & 12 & 20 & 30 & 42 & 51  \\ \hline
-    9 & 10 & 13 & 16 & 30 & 35 & 47 & 53  \\ \hline
-    13 & 14 & 22 & 28 & 37 & 44 & 56 & 60  \\ \hline
-    22 & 31 & 31 & 47 & 59 & 56 & 65 & 54  \\ \hline
-  \end{tabular}
-  \caption{Table de quantification réelle, $i = 73$}
-  \label{periods3}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+      \hline
+      9 & 6 & 5 & 9 & 13 & 22 & 22 & 31 \\ \hline    
+      6 & 6 & 8 & 10 & 14 & 16 & 28 & 0 \\ \hline
+      8 & 7 & 9 & 13 & 20 & -1 & 0 & 0 \\ \hline
+      8 & 9 & 12 & 19 & -1 & -1 & 0 & 0 \\ \hline
+      10 & 12 & -1 & 31 & 30 & 0 & 0 & 0 \\ \hline
+      12 & 13 & 28 & 30 & 0 & 0 & 0 & 0 \\ \hline
+    \end{tabular}
+    \caption{Table de quantification calculée, $\widehat{q}(u,v)$}
+    \label{periods1}
+  \end{subfigure}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+      \hline
+      9 & 6 & 8 & 8 & 10 & 13 & 26 & 39  \\ \hline
+      6 & 6 & 7 & 9 & 12 & 19 & 35 & 50  \\ \hline
+      5 & 8 & 9 & 12 & 20 & 30 & 42 & 51  \\ \hline
+      9 & 10 & 13 & 16 & 30 & 35 & 47 & 53  \\ \hline
+      13 & 14 & 22 & 28 & 37 & 44 & 56 & 60  \\ \hline
+      22 & 31 & 31 & 47 & 59 & 56 & 65 & 54  \\ \hline
+    \end{tabular}
+    \caption{Table de quantification réelle, $i = 73$}
+    \label{periods3}
+  \end{subfigure}
+\vspace{5mm}
+
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+      \hline
+      9 & 7 & 8 & 8 & 10 & 14 & 28 & 42 \\ \hline
+      6 & 7 & 8 & 10 & 13 & 20 & 37 & 53 \\ \hline
+      6 & 8 & 9 & 13 & 21 & 32 & 45 & 55 \\ \hline
+      9 & 11 & 14 & 17 & 32 & 37 & 50 & 57 \\ \hline
+      14 & 15 & 23 & 30 & 39 & 47 & 60 & 65 \\ \hline
+      23 & 34 & 33 & 50 & 63 & 60 & 70 & 58 \\ \hline
+    \end{tabular}
+    \caption{Table de quantification estimée, distance entre $\widehat{q}(u,v)$ et table(i) la plus faible, $i = 71$}
+    \label{periods2}
+  \end{subfigure}
+
+% \caption{Tables de quantifications }
 \end{figure}
 
 \paragraph{}
-Toutes les images de l'arbre auront leur $Q_f$ grossièrement estimé de la même manière, puis une estimation plus précise grâce aux formules \ref{eqn:jpeg_1} et \ref{eqn:jpeg_2} affinera les résultats. La table \ref{rough_fine} montre comment ont été estimés les images de l'arbre de manière grossière puis de manière précise, en donnant également leur véritable $Q_f$ comme comparaison. L'erreur moyenne d'estimation de la table \ref{rough_fine} est de $0.533333$.
+Toutes les images de l'arbre subiront l'estimation primaire de la même manière pour obtenir $Q_f$, puis l'estimation secondaire grâce aux formules \ref{eqn:jpeg_1} et \ref{eqn:jpeg_2} affinera les résultats. La table \ref{rough_fine} montre les résultats de l'estimation primaire puis de l'estimation secondaire en donnant également leur véritable $Q_f$ comme comparaison et la différence entre l'estimation primaire et les valeurs réelles et la différence entre l'estimation secondaire et les valeurs réelles pour pouvoir les comparer. On peut voir que l'estimation secondaire est strictement meilleure que l'estimation primaire, ce qui ne se limite pas à ce cas précis, mais s'est vérifié de manière expérimentale sur toutes les estimations. L'erreur moyenne d'estimation de la table \ref{rough_fine} est de $0.533333$.
 
 \begin{figure}
   \begin{tabular}{|l||c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
     \hline
-      Image & $I_{0}$ & $I_{1}$ & $I_{2}$ & $I_{3}$ & $I_{4}$ & $I_{5}$ & $I_{6}$ & $I_{7}$ & $I_{8}$ & $I_{9}$ & $I_{10}$ & $I_{11}$ & $I_{12}$ & $I_{13}$ & $I_{14}$ \\ \hhline{|=::=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|}
+    Image & $I_{0}$ & $I_{1}$ & $I_{2}$ & $I_{3}$ & $I_{4}$ & $I_{5}$ & $I_{6}$ & $I_{7}$ & $I_{8}$ & $I_{9}$ & $I_{10}$ & $I_{11}$ & $I_{12}$ & $I_{13}$ & $I_{14}$ \\ \hhline{|=::=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|}
    
-    \textbf{Estimation grossière}  & 71 & 81 & 71 & 58 & 78 & 46 & 61 & 85 & 81 & 79 & 65 & 74 & 84 & 71 & 74 \\ \hline
-    \textbf{Estimation fine} & 71 & 81 & 71 & 58 & 78 & 46 & 61 & 87 & 82 & 80 & 65 & 74 & 85 & 71 & 75 \\ \hline
-    \textbf{Valeurs réelles} & 73 & 81 & 71 & 57 & 79 & 44 & 62 & 86 & 82 & 80 & 65 & 74 & 85 & 71 & 75 \\ \hline
+    \textbf{Primaire}  & 71 & 81 & 71 & 58 & 78 & 46 & 61 & 85 & 81 & 79 & 65 & 74 & 84 & 71 & 74 \\ \hline
+    \textbf{Secondaire} & 71 & 81 & 71 & 58 & 78 & 46 & 61 & 87 & 82 & 80 & 65 & 74 & 85 & 71 & 75 \\ \hline
+    \textbf{Valeurs réelles} & 73 & 81 & 71 & 57 & 79 & 44 & 62 & 86 & 82 & 80 & 65 & 74 & 85 & 71 & 75 \\ \hhline{|=::=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|}
+    \textbf{Delta primaire} & -2 & 0 & 0 & 1 & -1 & 2 & -1 & -1 & -1 & -1 & -1 & 0 & -1 & 0 & -1 \\ \hline
+    \textbf{Delta secondaire} & -2 & 0 & 0 & 1 & -1 & 2 & -1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
   \end{tabular}
 
-  \caption{Estimations grossières et fines des $Q_f$ des images de l'arbre}
+  \caption{Estimations primaires et secondaires des $Q_f$ des images de l'arbre}
   \label{rough_fine}
 \end{figure}
 
@@ -1089,18 +1101,18 @@ Les trois métriques servant à mesurer la précision de l'estimation du $Q_f$ s
 
 \begin{figure}[H]
   \centering
-  \begin{tabular}{|r||c|c|c|c|c|}
+  \begin{tabular}{|l||c|c|c|c|c|}
     \hline
      \backslashbox{Métrique}{Dataset}             & \textbf{15 images} & \textbf{25 images} & \textbf{50 images} \\ \hhline{|=::=|=|=|}
-    \textbf{mean error}         & 0.516667 & 0.639444 & 0.833333 \\ \hline
-    \textbf{mean underestimate} & 1.61111  & 1.86111  & 1.94444  \\ \hline
-    \textbf{mean overestimate}  & 1.06944  & 2.125    & 6.68056  \\ \hhline{|=::=|=|=|}
+    \textbf{\pbox{3.6cm}{Erreur moyenne d'estimation de $Q_f$}}         & 0.516667 & 0.639444 & 0.833333 \\ \hline
+    \textbf{\pbox{3.6cm}{Sur-estimation moyenne de $Q_f$}} & 1.61111  & 1.86111  & 1.94444  \\ \hline
+    \textbf{\pbox{3.6cm}{Sous-estimation moyenne de $Q_f$}}  & 1.06944  & 2.125    & 6.68056  \\ \hhline{|=::=|=|=|}
     \textbf{roots}              & 0.958333 & 0.888889 & 0.847222 \\ \hline
     \textbf{edges}              & 0.997024 & 0.992477 & 0.989796 \\ \hline
     \textbf{leaves}             & 0.995949 & 0.991517 & 0.987451 \\ \hline
     \textbf{ancestry}           & 0.994444 & 0.968889 & 0.969699 \\ \hline
   \end{tabular} 
-\caption{Table de résultats, les trois premières métriques sont des moyennes d'entiers et les quatres dernières sont des pourcentages}
+\caption{Table de résultats, les trois premières lignes mesurent la précision de l'estimation de $Q_f$, les autres lignes mesure la qualité de la reconstruction de l'arbre et sont données en pourcentage}
 \label{results}
 \end{figure}
 
@@ -1120,6 +1132,53 @@ Nous avions considéré que deux images avec le même historique de compression 
 
 Un autre problème, qui lui n'affecte pas la racine, mais plutôt le reste de l'arbre, est la convergence des blocs, comme expliqué chapitre \ref{chap2} section \ref{convergence}. Nous avons fixé comme limite basse pour la génération de l'arbre $Q_f = 30$, si une image avec $Q_f = 30$ a un enfant, cet enfant aura également $Q_f = 30$, et ce de manière récursive. On peut donc arriver dans le cas où les enfants sont identiques à leurs parents, ce qui rend impossible leur différenciation, ce phénomène est fort heureusement assez rare.
 
+\paragraph{}
+
+Les résultats donnés précédemment sont obtenus en ayant la totalité de l'arbre. Notre méthode étant très efficace pour reconstruire l'arbre lorsque toutes les images sont présentes, et donc lorsqu'il y a à chaque fois un parent direct, il nous a semblé important de tester le cas où l'arbre est incomplet. Aussi, la table \ref{results_missing} montre les résultats obtenus en ayant enlevé au hasard une des images du set. Notre méthode n'étant pas en mesure d'estimer les grands-parents, nous nous retrouvons dans le cas illustré figure \ref{fig:missing}, où nous avons des arbres correctement reconstruits, sans que nous sachions comment les relier entre eux. C'est là la limite de notre méthode de reconstruction d'arbre, une fois que la matrice de parenté a été reconstruite, si elle est incomplete, c'est une des racine des sous arbre qui va être choisie comme racine de l'arbre reconstruit, comme on peut le voir figure \ref{fig:missing1} où c'est l'image 1 qui a été choisie comme racine.
+
+\begin{figure}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \node[anchor=south west,inner sep=2] at (0,0) { 
+        \begin{forest}
+          [\href{run:7}{7.jpg}[\href{run:8}{8.jpg}[\href{run:1}{1.jpg}[\href{run:9}{9.jpg}[\href{run:14}{14.jpg}]]][\href{run:13}{13.jpg}[\href{run:3}{3.jpg}[\href{run:5}{5.jpg}]][\href{run:10}{10.jpg}[\href{run:6}{6.jpg}]]]][\href{run:11}{11.jpg}][\href{run:12}{12.jpg}[\href{run:0}{0.jpg}][\href{run:2}{2.jpg}][\href{run:4}{4.jpg}]]]
+        \end{forest}};
+      % \draw[red,ultra thick,rounded corners] (7.5,5.3) rectangle (9.4,6.2);
+      \draw[red, ultra thick](1,2.7) -- (2.2,3.3);
+      \draw[red, ultra thick](1,3.3) -- (2.2,2.7);
+    \end{tikzpicture}
+    \caption{Arbre original avec le noeud 8 retiré}
+  \end{subfigure}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \node[anchor=south west,inner sep=2] at (0,0) { 
+        \begin{forest}
+          [\href{run:7}{7.jpg}[\href{run:11}{11.jpg}][\href{run:12}{12.jpg}[\href{run:0}{0.jpg}][\href{run:2}{2.jpg}][\href{run:4}{4.jpg}]]]
+        \end{forest}
+        \begin{forest}
+          [\href{run:1}{1.jpg}[\href{run:9}{9.jpg}[\href{run:14}{14.jpg}]]]
+        \end{forest}
+        \begin{forest}
+          [\href{run:13}{13.jpg}[\href{run:3}{3.jpg}[\href{run:5}{5.jpg}]][\href{run:10}{10.jpg}[\href{run:6}{6.jpg}]]]
+        \end{forest}};
+    \end{tikzpicture}
+    \caption{Trois sous arbre que l'on se sait pas comment relier}
+  \end{subfigure}
+
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \begin{forest}
+      [\href{run:1}{1.jpg}[\href{run:7}{7.jpg}[\href{run:11}{11.jpg}][\href{run:12}{12.jpg}[\href{run:0}{0.jpg}][\href{run:2}{2.jpg}][\href{run:4}{4.jpg}]]][\href{run:9}{9.jpg}[\href{run:14}{14.jpg}]][\href{run:13}{13.jpg}[\href{run:3}{3.jpg}[\href{run:5}{5.jpg}]][\href{run:10}{10.jpg}[\href{run:6}{6.jpg}]]]]
+    \end{forest}
+    \caption{Arbre reconstruit avec l'image 8 manquante}
+    \label{fig:missing1}
+  \end{subfigure}
+
+  \caption{Exemple de cas où un noeud est enlevé et où l'on ne sait pas comment reconstruire}
+  \label{fig:missing}
+\end{figure}
 \chapter{Perspectives et conclusion}
 \label{chap5}
 Au terme de cette étude, nous avons pu voir que le problème de la reconstruction d'arbre phylogénétique d'images dans les réseaux sociaux n'est pas trivial et peut se diviser en deux sous-parties : l'identification de la racine et l'estimation des relations parent-enfant. Nous avons également pu voir dans l'état de l'art les différentes approches de reconstruction d'arbre de phylogénie. Nous avons choisi de nous concentrer uniquement sur l'étude des recompressions JPEG pour le calcul de l'arbre. Cette décision est motivée par le fait que nous sommes intéressés par le domaine du forensics et que l'étude des recompressions un sujet suffisamment vaste et complexe. Cela nous a amené à étudier la détection des compressions multiples.

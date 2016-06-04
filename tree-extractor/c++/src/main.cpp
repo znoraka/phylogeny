@@ -258,8 +258,7 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
   return p;
 }
 
-Node *buildTreeFromMatrix(std::vector<std::vector<bool> > matrix) {
-
+Node *buildTreeFromMatrix(std::vector<std::vector<bool> > matrix) {  
   struct ref {
     int index;
     int sum;

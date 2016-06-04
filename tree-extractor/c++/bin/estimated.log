@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  2 JUN 2016 11:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  4 JUN 2016 13:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -815,27 +815,27 @@ LaTeX Info: Redefining \nameref on input line 4.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 112.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 112.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 8.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 8.
  (./estimated.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 112.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 112.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 8.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 8.
 Package rerunfilecheck Info: File `estimated.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 36498 strings out of 493029
- 870788 string characters out of 6136234
- 769823 words of memory out of 5000000
- 39708 multiletter control sequences out of 15000+600000
+ 32454 strings out of 493029
+ 736370 string characters out of 6136234
+ 731037 words of memory out of 5000000
+ 35664 multiletter control sequences out of 15000+600000
  3640 words of font info for 14 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 161i,8n,179p,10382b,6002s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 131i,8n,158p,10382b,2487s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-Output written on estimated.pdf (1 page, 15801 bytes).
+Output written on estimated.pdf (1 page, 14102 bytes).
 PDF statistics:
- 55 PDF objects out of 1000 (max. 8388607)
- 50 compressed objects within 1 object stream
+ 34 PDF objects out of 1000 (max. 8388607)
+ 29 compressed objects within 1 object stream
  2 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
