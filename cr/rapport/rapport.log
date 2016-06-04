@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  4 JUN 2016 13:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  4 JUN 2016 18:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2343,187 +2343,192 @@ Overfull \hbox (20.26593pt too wide) in paragraph at lines 666--667
 Class memoir Warning: The material used in the headers is too large
 (29.90372pt) for the given head height (13.6pt), it is recommended to
 either increase the head height or redesign the header
-(in both cases you will find help in the memoir manual). on input line 725.
+(in both cases you will find help in the memoir manual). on input line 715.
 
 
 Overfull \vbox (16.30371pt too high) has occurred while \output is active []
 
 
-[18] <images/signal.png, id=390, 963.6pt x 722.7pt>
+[18] <images/signal.png, id=398, 963.6pt x 722.7pt>
 File: images/signal.png Graphic file (type png)
  <use images/signal.png>
-Package pdftex.def Info: images/signal.png used on input line 731.
+Package pdftex.def Info: images/signal.png used on input line 733.
 (pdftex.def)             Requested size: 229.0pt x 171.74228pt.
 
-<images/autocorrelation.png, id=391, 963.6pt x 722.7pt>
+<images/autocorrelation.png, id=399, 963.6pt x 722.7pt>
 File: images/autocorrelation.png Graphic file (type png)
 
 <use images/autocorrelation.png>
-Package pdftex.def Info: images/autocorrelation.png used on input line 737.
+Package pdftex.def Info: images/autocorrelation.png used on input line 739.
 (pdftex.def)             Requested size: 229.0pt x 171.74228pt.
 
-Overfull \hbox (2.43333pt too wide) in paragraph at lines 729--741
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 731--743
 []$[]$ $[]$ 
  []
 
-<images/signal_noise.png, id=392, 963.6pt x 722.7pt>
+<images/signal_noise.png, id=400, 963.6pt x 722.7pt>
 File: images/signal_noise.png Graphic file (type png)
 
 <use images/signal_noise.png>
-Package pdftex.def Info: images/signal_noise.png used on input line 747.
+Package pdftex.def Info: images/signal_noise.png used on input line 749.
 (pdftex.def)             Requested size: 229.0pt x 171.74228pt.
 
-<images/signal_noise_zoom.png, id=393, 315.1775pt x 235.88126pt>
+<images/signal_noise_zoom.png, id=401, 315.1775pt x 235.88126pt>
 File: images/signal_noise_zoom.png Graphic file (type png)
 
 <use images/signal_noise_zoom.png>
-Package pdftex.def Info: images/signal_noise_zoom.png used on input line 752.
+Package pdftex.def Info: images/signal_noise_zoom.png used on input line 754.
 (pdftex.def)             Requested size: 229.0pt x 171.38565pt.
 
-Overfull \hbox (2.43333pt too wide) in paragraph at lines 745--755
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 747--757
 []$[]$ $[]$ 
  []
 
-
-Overfull \vbox (16.30371pt too high) has occurred while \output is active []
-
-
-[19 <./images/signal.png (PNG copy)> <./images/autocorrelation.png (PNG copy)> 
-<./images/signal_noise.png (PNG copy)> <./images/signal_noise_zoom.png (PNG cop
-y)>] <images/autocorrelation_filtered.png, id=404, 963.6pt x 722.7pt>
+<images/autocorrelation_filtered.png, id=404, 963.6pt x 722.7pt>
 File: images/autocorrelation_filtered.png Graphic file (type png)
 
 <use images/autocorrelation_filtered.png>
 Package pdftex.def Info: images/autocorrelation_filtered.png used on input line
- 765.
+ 767.
 (pdftex.def)             Requested size: 229.0pt x 171.74228pt.
 
-<images/autocorrelation_double.png, id=408, 963.6pt x 722.7pt>
+Overfull \vbox (16.30371pt too high) has occurred while \output is active []
+
+
+[19 <./images/signal.png (PNG copy)> <./images/autocorrelation.png (PNG copy)>]
+<images/autocorrelation_double.png, id=417, 963.6pt x 722.7pt>
 File: images/autocorrelation_double.png Graphic file (type png)
 
 <use images/autocorrelation_double.png>
 Package pdftex.def Info: images/autocorrelation_double.png used on input line 7
-76.
+78.
 (pdftex.def)             Requested size: 229.0pt x 171.74228pt.
 
 Overfull \vbox (16.30371pt too high) has occurred while \output is active []
 
 
-[20 <./images/autocorrelation_filtered.png (PNG copy)> <./images/autocorrelatio
-n_double.png (PNG copy)>]
+[20 <./images/signal_noise.png (PNG copy)> <./images/signal_noise_zoom.png (PNG
+ copy)> <./images/autocorrelation_filtered.png (PNG copy)>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 783.
+(Font)              <12> on input line 785.
 
 Overfull \vbox (16.30371pt too high) has occurred while \output is active []
 
 
-[21] <images/algo_tree.png, id=429, 655.44875pt x 570.13pt>
+[21 <./images/autocorrelation_double.png (PNG copy)>]
+<images/algo_tree.png, id=434, 655.44875pt x 570.13pt>
 File: images/algo_tree.png Graphic file (type png)
 
 <use images/algo_tree.png>
-Package pdftex.def Info: images/algo_tree.png used on input line 823.
+Package pdftex.def Info: images/algo_tree.png used on input line 828.
 (pdftex.def)             Requested size: 114.5pt x 99.59155pt.
 
 
 Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
 ne argument
-(hhline)                 on input line 831.
+(hhline)                 on input line 836.
 
 
 Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
 ne argument
-(hhline)                 on input line 831.
+(hhline)                 on input line 836.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `htbp') on input line 847.
+               Default added (so using `htbp') on input line 852.
 
 
 Overfull \vbox (16.30371pt too high) has occurred while \output is active []
 
 
-[22 <./images/algo_tree.png (PNG copy)>]
-<images/fusion_1.png, id=441, 1032.85875pt x 368.1253pt>
+[22]
+Overfull \vbox (16.30371pt too high) has occurred while \output is active []
+
+
+[23 <./images/algo_tree.png (PNG copy)>]
+<images/fusion_1.png, id=471, 1032.85875pt x 368.1253pt>
 File: images/fusion_1.png Graphic file (type png)
 
 <use images/fusion_1.png>
-Package pdftex.def Info: images/fusion_1.png used on input line 888.
+Package pdftex.def Info: images/fusion_1.png used on input line 894.
 (pdftex.def)             Requested size: 412.1972pt x 146.91048pt.
 
 Overfull \vbox (16.30371pt too high) has occurred while \output is active []
 
 
-[23]
-Overfull \vbox (16.30371pt too high) has occurred while \output is active []
+[24 <./images/fusion_1.png>] <images/casimir.jpg, id=480, 513.92pt x 513.92pt>
+File: images/casimir.jpg Graphic file (type jpg)
 
-
-[24 <./images/fusion_1.png>] [25
+<use images/casimir.jpg>
+Package pdftex.def Info: images/casimir.jpg used on input line 921.
+(pdftex.def)             Requested size: 229.0pt x 229.00342pt.
+ [25
 
 ]
-<images/histos/histo0.png, id=481, 963.6pt x 722.7pt>
+<images/histos/histo0.png, id=491, 963.6pt x 722.7pt>
 File: images/histos/histo0.png Graphic file (type png)
 
 <use images/histos/histo0.png>
-Package pdftex.def Info: images/histos/histo0.png used on input line 918.
+Package pdftex.def Info: images/histos/histo0.png used on input line 932.
 (pdftex.def)             Requested size: 229.0pt x 171.74228pt.
 
-<images/histos/autocorrelation0.png, id=482, 963.6pt x 722.7pt>
+<images/histos/autocorrelation0.png, id=492, 963.6pt x 722.7pt>
 File: images/histos/autocorrelation0.png Graphic file (type png)
 
 <use images/histos/autocorrelation0.png>
 Package pdftex.def Info: images/histos/autocorrelation0.png used on input line 
-923.
+937.
 (pdftex.def)             Requested size: 229.0pt x 171.74228pt.
 
-Overfull \hbox (2.43333pt too wide) in paragraph at lines 916--927
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 930--941
 []$[]$ $[]$ 
  []
 
-<images/histos/histo18.png, id=485, 963.6pt x 722.7pt>
+<images/histos/histo18.png, id=495, 963.6pt x 722.7pt>
 File: images/histos/histo18.png Graphic file (type png)
 
 <use images/histos/histo18.png>
-Package pdftex.def Info: images/histos/histo18.png used on input line 934.
+Package pdftex.def Info: images/histos/histo18.png used on input line 948.
 (pdftex.def)             Requested size: 229.0pt x 171.74228pt.
 
-<images/histos/autocorrelation18.png, id=486, 963.6pt x 722.7pt>
+<images/histos/autocorrelation18.png, id=496, 963.6pt x 722.7pt>
 File: images/histos/autocorrelation18.png Graphic file (type png)
 
 <use images/histos/autocorrelation18.png>
 Package pdftex.def Info: images/histos/autocorrelation18.png used on input line
- 939.
+ 953.
 (pdftex.def)             Requested size: 229.0pt x 171.74228pt.
 
-Overfull \hbox (2.43333pt too wide) in paragraph at lines 932--943
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 946--957
 []$[]$ $[]$ 
  []
 
-<images/histos/histo31.png, id=489, 963.6pt x 722.7pt>
+<images/histos/histo31.png, id=499, 963.6pt x 722.7pt>
 File: images/histos/histo31.png Graphic file (type png)
 
 <use images/histos/histo31.png>
-Package pdftex.def Info: images/histos/histo31.png used on input line 950.
+Package pdftex.def Info: images/histos/histo31.png used on input line 964.
 (pdftex.def)             Requested size: 229.0pt x 171.74228pt.
 
-<images/histos/autocorrelation31.png, id=490, 963.6pt x 722.7pt>
+<images/histos/autocorrelation31.png, id=500, 963.6pt x 722.7pt>
 File: images/histos/autocorrelation31.png Graphic file (type png)
 
 <use images/histos/autocorrelation31.png>
 Package pdftex.def Info: images/histos/autocorrelation31.png used on input line
- 955.
+ 969.
 (pdftex.def)             Requested size: 229.0pt x 171.74228pt.
 
-Overfull \hbox (2.43333pt too wide) in paragraph at lines 948--959
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 962--973
 []$[]$ $[]$ 
  []
 
-<images/distances.png, id=497, 481.8pt x 361.35pt>
+<images/distances.png, id=507, 481.8pt x 361.35pt>
 File: images/distances.png Graphic file (type png)
  <use images/distances.png>
-Package pdftex.def Info: images/distances.png used on input line 970.
+Package pdftex.def Info: images/distances.png used on input line 984.
 (pdftex.def)             Requested size: 320.5986pt x 240.45464pt.
 
-Overfull \hbox (2.43333pt too wide) in paragraph at lines 977--1006
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 991--1020
 []$[]$ $[]$
  []
 
@@ -2531,53 +2536,54 @@ Overfull \hbox (2.43333pt too wide) in paragraph at lines 977--1006
 Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 
 
-[26 <./images/histos/histo0.png> <./images/histos/autocorrelation0.png>]
+[26 <./images/casimir.jpg>]
 Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 
 
-[27 <./images/histos/histo18.png> <./images/histos/autocorrelation18.png> <./im
-ages/histos/histo31.png> <./images/histos/autocorrelation31.png>]
+[27 <./images/histos/histo0.png> <./images/histos/autocorrelation0.png> <./imag
+es/histos/histo18.png> <./images/histos/autocorrelation18.png>]
 Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 
 
-[28 <./images/distances.png (PNG copy)>]
+[28 <./images/histos/histo31.png> <./images/histos/autocorrelation31.png> <./im
+ages/distances.png (PNG copy)>]
 
 Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
 ne argument
-(hhline)                 on input line 1031.
-
-
-Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
-ne argument
-(hhline)                 on input line 1031.
+(hhline)                 on input line 1045.
 
 
 Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
 ne argument
-(hhline)                 on input line 1035.
+(hhline)                 on input line 1045.
 
 
 Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
 ne argument
-(hhline)                 on input line 1035.
+(hhline)                 on input line 1049.
 
 
-Overfull \hbox (13.10876pt too wide) in paragraph at lines 1029--1039
+Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
+ne argument
+(hhline)                 on input line 1049.
+
+
+Overfull \hbox (13.10876pt too wide) in paragraph at lines 1043--1053
 [][] 
  []
 
 
 Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
 ne argument
-(hhline)                 on input line 1051.
+(hhline)                 on input line 1065.
 
 
 Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
 ne argument
-(hhline)                 on input line 1051.
+(hhline)                 on input line 1065.
 
 
-Overfull \hbox (2.43333pt too wide) in paragraph at lines 1074--1092
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 1088--1106
 []$[]$ $[]$ 
  []
 
@@ -2585,95 +2591,201 @@ Overfull \hbox (2.43333pt too wide) in paragraph at lines 1074--1092
 Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 
 
-[29]
+[29] <images/tree/7.png, id=573, 32.12pt x 32.12pt>
+File: images/tree/7.png Graphic file (type png)
+ <use images/tree/7.png>
+Package pdftex.def Info: images/tree/7.png used on input line 1117.
+(pdftex.def)             Requested size: 32.1199pt x 32.1199pt.
 
-Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
-ne argument
-(hhline)                 on input line 1106.
+<images/tree/8.png, id=574, 32.12pt x 32.12pt>
+File: images/tree/8.png Graphic file (type png)
+ <use images/tree/8.png>
+Package pdftex.def Info: images/tree/8.png used on input line 1117.
+(pdftex.def)             Requested size: 32.1199pt x 32.1199pt.
 
+<images/tree/13.png, id=575, 32.12pt x 32.12pt>
+File: images/tree/13.png Graphic file (type png)
+ <use images/tree/13.png>
+Package pdftex.def Info: images/tree/13.png used on input line 1117.
+(pdftex.def)             Requested size: 32.1199pt x 32.1199pt.
 
-Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
-ne argument
-(hhline)                 on input line 1106.
+<images/tree/3.png, id=576, 32.12pt x 32.12pt>
+File: images/tree/3.png Graphic file (type png)
+ <use images/tree/3.png>
+Package pdftex.def Info: images/tree/3.png used on input line 1117.
+(pdftex.def)             Requested size: 32.1199pt x 32.1199pt.
 
+<images/tree/5.png, id=577, 32.12pt x 32.12pt>
+File: images/tree/5.png Graphic file (type png)
+ <use images/tree/5.png>
+Package pdftex.def Info: images/tree/5.png used on input line 1117.
+(pdftex.def)             Requested size: 32.1199pt x 32.1199pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1107--1107
-[]\OT1/lmr/bx/n/10.95 Erreur moyenne
- []
+<images/tree/10.png, id=578, 32.12pt x 32.12pt>
+File: images/tree/10.png Graphic file (type png)
+ <use images/tree/10.png>
+Package pdftex.def Info: images/tree/10.png used on input line 1117.
+(pdftex.def)             Requested size: 32.1199pt x 32.1199pt.
 
+<images/tree/6.png, id=579, 32.12pt x 32.12pt>
+File: images/tree/6.png Graphic file (type png)
+ <use images/tree/6.png>
+Package pdftex.def Info: images/tree/6.png used on input line 1117.
+(pdftex.def)             Requested size: 32.1199pt x 32.1199pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1108--1108
-[]\OT1/lmr/bx/n/10.95 Sur-estimation
- []
+<images/tree/1.png, id=580, 32.12pt x 32.12pt>
+File: images/tree/1.png Graphic file (type png)
+ <use images/tree/1.png>
+Package pdftex.def Info: images/tree/1.png used on input line 1117.
+(pdftex.def)             Requested size: 32.1199pt x 32.1199pt.
 
+<images/tree/9.png, id=581, 32.12pt x 32.12pt>
+File: images/tree/9.png Graphic file (type png)
+ <use images/tree/9.png>
+Package pdftex.def Info: images/tree/9.png used on input line 1117.
+(pdftex.def)             Requested size: 32.1199pt x 32.1199pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1109--1109
-[]\OT1/lmr/bx/n/10.95 Sous-estimation
- []
+<images/tree/14.png, id=582, 32.12pt x 32.12pt>
+File: images/tree/14.png Graphic file (type png)
+ <use images/tree/14.png>
+Package pdftex.def Info: images/tree/14.png used on input line 1117.
+(pdftex.def)             Requested size: 32.1199pt x 32.1199pt.
 
+<images/tree/12.png, id=583, 32.12pt x 32.12pt>
+File: images/tree/12.png Graphic file (type png)
+ <use images/tree/12.png>
+Package pdftex.def Info: images/tree/12.png used on input line 1117.
+(pdftex.def)             Requested size: 32.1199pt x 32.1199pt.
 
-Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
-ne argument
-(hhline)                 on input line 1109.
+<images/tree/2.png, id=584, 32.12pt x 32.12pt>
+File: images/tree/2.png Graphic file (type png)
+ <use images/tree/2.png>
+Package pdftex.def Info: images/tree/2.png used on input line 1117.
+(pdftex.def)             Requested size: 32.1199pt x 32.1199pt.
 
+<images/tree/4.png, id=585, 32.12pt x 32.12pt>
+File: images/tree/4.png Graphic file (type png)
+ <use images/tree/4.png>
+Package pdftex.def Info: images/tree/4.png used on input line 1117.
+(pdftex.def)             Requested size: 32.1199pt x 32.1199pt.
 
-Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
-ne argument
-(hhline)                 on input line 1109.
+<images/tree/0.png, id=586, 32.12pt x 32.12pt>
+File: images/tree/0.png Graphic file (type png)
+ <use images/tree/0.png>
+Package pdftex.def Info: images/tree/0.png used on input line 1117.
+(pdftex.def)             Requested size: 32.1199pt x 32.1199pt.
 
+<images/tree/11.png, id=587, 32.12pt x 32.12pt>
+File: images/tree/11.png Graphic file (type png)
+ <use images/tree/11.png>
+Package pdftex.def Info: images/tree/11.png used on input line 1117.
+(pdftex.def)             Requested size: 32.1199pt x 32.1199pt.
 
 Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 
 
 [30]
 
-LaTeX Warning: Reference `results_missing' on page 31 undefined on input line 1
-137.
+Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
+ne argument
+(hhline)                 on input line 1132.
+
+
+Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
+ne argument
+(hhline)                 on input line 1132.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1133--1133
+[]\OT1/lmr/bx/n/10.95 Erreur moyenne
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1134--1134
+[]\OT1/lmr/bx/n/10.95 Sur-estimation
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1135--1135
+[]\OT1/lmr/bx/n/10.95 Sous-estimation
+ []
+
+
+Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
+ne argument
+(hhline)                 on input line 1135.
+
+
+Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
+ne argument
+(hhline)                 on input line 1135.
 
 
 Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 
 
-[31]
-Overfull \hbox (2.43333pt too wide) in paragraph at lines 1140--1169
+[31 <./images/tree/7.png> <./images/tree/8.png> <./images/tree/13.png> <./image
+s/tree/3.png> <./images/tree/5.png> <./images/tree/10.png> <./images/tree/6.png
+> <./images/tree/1.png> <./images/tree/9.png> <./images/tree/14.png> <./images/
+tree/12.png> <./images/tree/2.png> <./images/tree/4.png> <./images/tree/0.png> 
+<./images/tree/11.png>]
+Overfull \vbox (0.85185pt too high) has occurred while \output is active []
+
+
+[32]
+Overfull \hbox (2.43333pt too wide) in paragraph at lines 1166--1195
 []$[]$ $[]$ 
  []
 
 
+Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
+ne argument
+(hhline)                 on input line 1213.
+
+
+Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
+ne argument
+(hhline)                 on input line 1213.
+
+
 Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 
 
-[32] [33
+[33]
+Overfull \vbox (0.85185pt too high) has occurred while \output is active []
 
-] [34
+
+[34] [35
+
+] [36
 
 ]
 
 Class memoir Warning: The material used in the headers is too large
 (29.90372pt) for the given head height (13.6pt), it is recommended to
 either increase the head height or redesign the header
-(in both cases you will find help in the memoir manual). on input line 1190.
+(in both cases you will find help in the memoir manual). on input line 1233.
 
-[35]
+[37]
 \tf@toc=\write7
 \openout7 = `rapport.toc'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1190.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1190.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1233.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1233.
  (./rapport.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1190.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1190.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1233.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1233.
 
 Package rerunfilecheck Info: File `rapport.out' has not changed.
-(rerunfilecheck)             Checksum: 0CC55B1FCE6D1C6DEA0108C26621E20C;1520.
+(rerunfilecheck)             Checksum: 81499D2E1CBCB39F3AB1FF52692DAEFB;1520.
 
 
-LaTeX Warning: There were undefined references.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package logreq Info: Writing requests to 'rapport.run.xml'.
 \openout1 = `rapport.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1190.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1233.
  )
 (\end occurred inside a group at level 1)
 
@@ -2682,13 +2794,13 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1190.
 (\end occurred when \iffalse on line 115 was incomplete)
 (\end occurred when \iftrue on line 110 was incomplete) 
 Here is how much of TeX's memory you used:
- 49165 strings out of 493029
- 1046714 string characters out of 6136234
- 1171618 words of memory out of 5000000
- 51864 multiletter control sequences out of 15000+600000
+ 49832 strings out of 493029
+ 1074636 string characters out of 6136234
+ 1187128 words of memory out of 5000000
+ 52509 multiletter control sequences out of 15000+600000
  94301 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 142i,19n,168p,10366b,26490s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 143i,19n,168p,10366b,26489s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/
 enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr
 /share/texmf/fonts/enc/dvips/lm/lm-rmtt.enc}{/usr/share/texmf/fonts/enc/dvips/l
@@ -2713,10 +2825,10 @@ ic/lm/lmss10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share
 /lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/
 fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
 lic/amsfonts/symbols/msam10.pfb>
-Output written on rapport.pdf (38 pages, 4595754 bytes).
+Output written on rapport.pdf (40 pages, 4672637 bytes).
 PDF statistics:
- 789 PDF objects out of 1000 (max. 8388607)
- 663 compressed objects within 7 object streams
- 175 named destinations out of 1000 (max. 500000)
- 338 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 829 PDF objects out of 1000 (max. 8388607)
+ 684 compressed objects within 7 object streams
+ 180 named destinations out of 1000 (max. 500000)
+ 418 words of extra memory for PDF output out of 10000 (max. 10000000)
 

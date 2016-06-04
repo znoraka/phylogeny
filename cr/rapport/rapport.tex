@@ -618,7 +618,7 @@ Au travers de cet état de l'art, nous avons pu voir différentes méthodes de c
 \chapter{Méthode de calcul de phylogénie à l'aide des caractéristiques des coefficients DCT d'une bitmap}
 \label{chap3}
 
-Nous tentons de reconstruire l'arbre de phylogénie d'un ensemble de near-duplicates. Contrairement aux approches de l'état de l'art qui utilisent des algorithmes de construction d'arbre complexes pour reconstruire l'arbre à partir d'une dissimilarity matrix, nous allons prendre une décision binaire entre deux image, à savoir ``Cette image est-elle le parent de cette autre image ?''. Cela nous permet de nous concentrer sur les images et leurs caractéristiques et avoir un algorithme de construction d'arbre simple. La figure \ref{fig:method_schema} présente notre méthode.
+Nous tentons de reconstruire l'arbre de phylogénie d'un ensemble de near-duplicates. Contrairement aux approches de l'état de l'art qui utilisent des algorithmes de construction d'arbre complexes pour reconstruire l'arbre à partir d'une dissimilarity matrix, nous allons prendre une décision binaire entre deux image, à savoir ``Cette image est-elle le parent de cette autre image ?''. Cela nous permet de nous concentrer sur les images et leurs caractéristiques et avoir un algorithme de construction d'arbre simple. La figure \ref{fig:method_schema} présente notre méthode. Dans ce chapitre, nous commencerons pas présenter les principes et théorème sur lesquels s'appuient notre méthode section \ref{sec:method} puis nous détaillerons directement le calcul de la période de chaque coefficient DCT section \ref{sec:extraction} sans expliquer comment ils ont été obtenus, c'est en effet largement traité dans \autocite{wallace1992jpeg}, nous expliquerons comment est estimé le facteur de qualité en \ref{sec:estimation} pour ensuite détailler l'estimation du parent et la construction de l'arbre sections \ref{sec:parent} et \ref{sec:reconstruction} et nous terminerons par le filtrage des doublons section \ref{sec:filtrage}.
 
 \begin{figure}[H]
   \begin{center}
@@ -670,6 +670,7 @@ Nous tentons de reconstruire l'arbre de phylogénie d'un ensemble de near-duplic
 \end{figure}
 
 \section{Principe et théorème}
+\label{sec:method}
 Pour tout couple d'images de notre ensemble, nous tentons donc de prendre une décision binaire, qui vas nous permettre d'extraire une \textit{matrice de parenté}. Rappelons la que nous tentons de savoir si une image est l'ancêtre d'une autre, et pas seulement son parent direct. Nous mettons en place un framework pour tenter de résoudre ce problème : 
 % nous allons tenter de nier qu'il existe une relation de parenté, cela va permettre d'extraire une matrice binaire, appelée \textit{matrice de parenté}, de la taille de l'ensemble d'images, où une valeur à 1 indiquera une relation de parenté et une valeur à 0 en indiquera l'absence. À noter une fois de plus que ce n'est pas forcément un parent direct mais plutôt un ancêtre. \\ \indent
 
@@ -703,6 +704,7 @@ Nous travaillons sur des images ayant subi une compression JPEG. Ces images, au 
 
 % \section{Estimation du pas de quantification}
 \subsection{Estimation de la table de quantification}
+\label{sec:extraction}
 Nous avons besoin des coefficients DCT de l'image pour pouvoir estimer la table de quantification. Deux choix s'offrent à nous : calculer une DCT à partir d'une bitmap, ou compresser une bitmap au format JPEG avec $Q_f = 100$ et lire directement les coefficients DCT. Le deuxième choix s'avère être le plus simple à mettre en place et c'est celui que nous avons utilisé.
 
 Comme expliqué section \ref{estimation_matrice_compression}, les valeurs des coefficients DCT vont se rassembler autour des multiples de $q$, qui est le nombre utilisé pour la quantification. Chaque coefficient DCT forme donc un signal périodique, de période $q$. C'est cette période que nous allons tenter d'estimer. L'autocorrélation est la technique traditionnellement utilisée pour extraire une période.
@@ -781,6 +783,7 @@ Il est important de noter que cette technique donne de très bons résultats, ma
 Cette opération est donc répétée pour les 35 premiers coefficients DCT de l'image pour obtenir $\widehat{q}(u,v)$ la table de quantification estimée. Nous n'estimons que les 35 premiers coefficients DCT de l'image, la quantification des derniers coefficients est trop importante et il y a trop de valeurs à zéro, et donc pas assez d'informations pour estimer de manière précise la période.
 
 \subsection{Calcul de $Q_f$ à partir de $\widehat{q}(u,v)$}
+\label{sec:estimation}
 Il va maintenant falloir calculer $Q_f$ à partir de $\widehat{q}(u,v)$, la table de quantification précédemment estimée. Deux choix s'offrent à nous : regarder parmi toutes les tables $q_n(u,v),\ n\in\{1..100\}$ laquelle est la plus similaire (avec un calcul de distance par exemple), ou utiliser les équations \ref{eqn:jpeg_1} et \ref{eqn:jpeg_2}. 
 
 L'avantage de la première méthode est qu'elle nous donne directement $Q_f$, c'est la table pour laquelle la distance entre $q_n(u,v)$ et $\widehat{q}(u,v),\ n\in \{1..100\}$ est la plus faible. Le principal désavantage de cette technique est qu'elle est coûteuse en temps de calcul, en plus de manquer de précision.
@@ -791,6 +794,7 @@ Nous avons choisi de conjuguer les deux méthodes. Nous obtenons une première e
 % Premièrement nous obtenons une estimation grossière de $Q_f$ en regardant parmi toutes les tables laquelle est la plus similaire, puis avec cette estimation de $Q_f$ nous calculons, manière plus précise le vrai $Q_f$ à l'aide des équations \ref{eqn:jpeg_1} et \ref{eqn:jpeg_2}. Le $Q_f$ final est donc la moyenne des $Q_f$ obtenus pour chaque coefficient DCT.
 
 \section{Estimation du parent}
+\label{sec:parent}
 Le facteur de qualité utilisé pour compresser l'image nous est indispensable pour estimer le parent. En plus d'être un marqueur très efficace pour filtrer les images ne pouvant pas être le parent, le facteur de qualité nous sert à normaliser les images pour pouvoir les comparer.
 
 Nous partons du principe que la compression JPEG est une opération déterministe, elle donnera, pour une même implémentation, toujours le même résultat. Cela implique que toutes les compressions d'une certaine image avec le même facteur de qualité seront strictement identiques, et ce quelque soit le nombre de compressions qu'à pu subir l'image au préalable.
@@ -815,6 +819,7 @@ Cette méthode, même si elle donne d'excellents résultats pour trouver le pare
 On peut raisonnablement penser que l'ancêtre le plus probable est l'image ayant la plus petite valeur (issue d'une métrique quelconque) parmi toutes les autres valeurs. Le problème est que l'on perd alors le principe de décision binaire entre deux images.
 
 \section{Reconstruction de l'arbre}
+\label{sec:reconstruction}
 La phase d'estimation des parent nous a permis de créer une matrice binaire de taille $n\times n$, $n$ étant le nombre d'images dans le set. Cette matrice est appelée \textit{matrice de parenté}. Une valeur à 1 à l'indice $(i,\ j)$ de cette matrice indiquera que l'image $I_i$ est un des ancêtres de $I_j$. Une valeur à 0 indiquera l'absence de parenté. Un exemple d'arbre et de matrice de parenté est disponible figure \ref{parentage_tree}. On peut noter plusieurs choses intéressantes de cet exemple. Une colonne où toutes les valeurs sont à 0 indiquera que l'image n'a aucun parent, il s'agit donc de la racine, qui par définition n'a pas de parent. Une ligne où toutes les valeurs sont à 0 signifie que l'image n'est le parent de personne, c'est à dire qu'il s'agit d'une feuille. On peut ainsi généraliser et dire que plus une colonne contient de valeurs à 0, moins cette images a d'ancêtres, et donc plus elle  est proche de la racine.
 
 \begin{figure}
@@ -878,6 +883,7 @@ Nous donnons l'algorithme de reconstruction d'arbre à titre indicatif algorithm
 Cet algorithme a une complexité de $O(n^{2})$. Il y a deux boucles imbriquées, et si les sommes sont calculées une seule fois au début et mises à jour à chaque fois qu'un parent est enlevé, il n'y a pas de boucle supplémentaire augmentant la complexité.
 
 \section{Filtrage des doublons}
+\label{sec:filtrage}
 Nous avons expliqué précédemment que des images avec le même historique de compression étaient identiques. Le fait qu'elles soient identiques peut fausser les métriques introduites par \citeauthornsc{dias2010first}. En effet, prenons le cas de trois images $I_m$, $I_n$ et $I_k$, où $I_m$ et $I_n$ sont identiques, et $I_k$ est l'enfant de $I_m$. Ces deux images étant identiques, $I_k$ peut aussi bien être l'enfant de $I_m$ que de $I_n$, sans que cela ne change rien aux caractéristiques de $I_k$. Mais lors de la reconstruction de l'arbre, si $I_k$ est marquée comme enfant de $I_n$, les métriques de \citeauthornsc{dias2010first} marqueront $I_k$ comme ayant le mauvais parent, et donc donneront un mauvais score à la reconstruction, alors qu'elle est fondamentalement juste. Le processus de filtrage des doublons est illustré figure \ref{fig:identique}. 
 
 Ce filtrage est appliqué aussi bien à l'arbre original qu'à l'arbre reconstruit, pour qu'ils soient comparables.
@@ -908,9 +914,17 @@ La génération des datasets en eux même est faite à partir des six images d'o
 Nous allons commencer par donner le résultat de nos algorithme sur un arbre choisis aléatoirement dans notre dataset, pour bien détailler la sortie de chaque étape, puis nous allons donner des résultats plus significatifs obtenus en lançant notre programme sur l'ensemble des données.
 
 \subsection{Détail sur un arbre}
-Nous choisissons un arbre de 15 images, les résultats ne sont pas significativement différent avec les autres tailles d'arbre, et il est plus simple de tout montrer avec un nombre restreint d'images. Notons que les résultats pour cet arbre sont donnés à titre d'exemple, et ne représentent pas forcément les résultats que l'on peut obtenir sur un grand nombre d'arbre.
+Nous choisissons un arbre de 15 images, les résultats ne sont pas significativement différent avec les autres tailles d'arbre, et il est plus simple de tout montrer avec un nombre restreint d'images. Notons que les résultats pour cet arbre sont donnés à titre d'exemple, et ne représentent pas forcément les résultats que l'on peut obtenir sur un grand nombre d'arbre. L'image utilisée pour générer l'arbre est disponible figure \ref{casimir}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\linewidth]{images/casimir}
+\caption{Image utilisée pour générer l'arbre}
+\label{casimir}
+\end{figure}
+
 \paragraph{}
-Commençons par la détection de pics et l'autocorrélation. Nous utilisons les 35 premiers coefficients DCT, les coefficients suivant sont trop quantifiés, et souvent à 0, et ne contiennent pas suffisamment d'informations pour être intéressants, ils peuvent même fausser les résultats. Nous donnons l'histogramme du coefficient DC ainsi que son autocorrélation figure \ref{fig:histo0}, puis le coefficient 18 dans l'ordre zigzag figure \ref{fig:histo18} et enfin le coefficent 31 figure \ref{fig:histo31} pour permettre au lecteur de visualiser les données avec lesquels nous travaillons. Ces exemples sont donnés à titre indicatif, l'apparence des histogrammes et autocorrélations peut grandement varier selon le facteur de qualité de l'image. L'image dont sont tirées les figures est compressées avec comme historique de compression $H_{Q_{f}} = \{86, 85, 73\}$. C'est la période, ou l'écart entre deux pics de l'autocorrélation de chaque coefficient DCT qui nous cherchons à obtenir pour ensuite pouvoir les comparer avec les différentes tables de quantification.
+Commençons par la détection de pics et l'autocorrélation. Nous utilisons les 35 premiers coefficients DCT, les coefficients suivant sont trop quantifiés, et souvent à 0, et ne contiennent pas suffisamment d'informations pour être intéressants, ils peuvent même fausser les résultats. Nous donnons l'histogramme du coefficient DC ainsi que son autocorrélation figure \ref{fig:histo0}, puis le coefficient 18 dans l'ordre zigzag figure \ref{fig:histo18} et enfin le coefficent 31 figure \ref{fig:histo31} pour permettre au lecteur de visualiser les données avec lesquels nous travaillons. Ces exemples sont donnés à titre indicatif, l'apparence des histogrammes et autocorrélations peut grandement varier selon le facteur de qualité de l'image. L'image dont sont tirées les figures est compressées avec comme historique de compression $H_{Q_{f}} = \{86, 85, 73\}$. C'est la période, ou l'écart entre deux pics de l'autocorrélation de chaque coefficient DCT que nous cherchons à obtenir pour ensuite pouvoir les comparer avec les valeurs des différentes tables de quantification.
 
 \begin{figure}
   \begin{subfigure}{.5\textwidth}
@@ -963,7 +977,7 @@ Commençons par la détection de pics et l'autocorrélation. Nous utilisons les 
 On voit très nettement que la quantité d'information disponible baisse très fortement lorsque l'on s'éloigne du coefficient DC. C'est pour cette raison que nous restons sur 35 coefficients.
 
 \paragraph{}
-Nous allons ensuite calculer la distance entre la table de quantification $\widehat{q}(u,v)$ issues des periodes et toutes les tables de quantification de $Q_f = 1$ à $Q_f = 100$. La figure \ref{fig:distances} illustre ce calcul. Le point le plus bas de la courbe, là où la distance entre les deux tables est la plus faible est le $Q_f$ le plus probable avec lequel l'image a été compressée. Il s'agit ici de $Q_f = 71$. La table de quantification $\widehat{q}(u,v)$ est donnée table \ref{periods1}, avec pour comparaison la table de quantification d'une images compressée avec $Q_f = 71$ table \ref{periods2}, comme l'a été estimée l'image après la première estimation grossière, et la table de quantification de $Q_f = 73$ (table \ref{periods3}), le vrai $Q_f$ de l'image. Les valeurs à -1 indiquent qu'aucune valeur de période n'a pu être calculée, et sont donc ignorées, les valeurs à 0 sont celles pour lesquelles l'indice est supérieur à 35.
+Nous allons ensuite calculer la distance entre la table de quantification $\widehat{q}(u,v)$ issues des periodes et toutes les tables de quantification de $Q_f = 1$ à $Q_f = 100$. La figure \ref{fig:distances} illustre ce calcul. Le point le plus bas de la courbe, là où la distance entre les deux tables est la plus faible est le $Q_f$ le plus probable avec lequel l'image a été compressée. Il s'agit ici de $Q_f = 71$. La table de quantification $\widehat{q}(u,v)$ est donnée table \ref{periods1}, avec pour comparaison la table de quantification d'une images compressée avec $Q_f = 71$ table \ref{periods2}, comme l'a été estimée l'image après l'estimation primaire, et la table de quantification de $Q_f = 73$ (table \ref{periods3}), le vrai $Q_f$ de l'image. Les valeurs à -1 indiquent qu'aucune valeur de période n'a pu être calculée, et sont donc ignorées, les valeurs à 0 sont celles pour lesquelles l'indice est supérieur à 35.
 
 \begin{figure}
   \centering
@@ -1078,7 +1092,7 @@ Ces $Q_f$ vont ensuite servir à compresser les images pour pouvoir les comparer
         [\href{run:7.jpg}{7.jpg}[\href{run:8.jpg}{8.jpg}[\href{run:13.jpg}{13.jpg}[\href{run:3.jpg}{3.jpg}[\href{run:5.jpg}{5.jpg}]][\href{run:10.jpg}{10.jpg}[\href{run:6.jpg}{6.jpg}]]][\href{run:1.jpg}{1.jpg}[\href{run:9.jpg}{9.jpg}[\href{run:14.jpg}{14.jpg}]]]][\href{run:12.jpg}{12.jpg}[\href{run:2.jpg}{2.jpg}][\href{run:4.jpg}{4.jpg}][\href{run:0.jpg}{0.jpg}]][\href{run:11.jpg}{11.jpg}]]
       \end{forest}}
     \caption{Arbre phylogénétique original}
-    % \label{tree_base_example}
+    \label{tree_base_example}
   \end{subfigure}
   \begin{subfigure}{.5\textwidth}
     \centering
@@ -1093,7 +1107,19 @@ Ces $Q_f$ vont ensuite servir à compresser les images pour pouvoir les comparer
   \label{tree_example}
 \end{figure}
 
-On voit qu'il y a au maximum un seul 1 par ligne dans la matrice de parenté. En effet, seuls les parents directs sont détectés, et pas les ancêtres plus éloignés.
+\begin{figure}
+  \scalebox{1.8}{
+    \begin{tikzpicture}
+      \node[anchor=south west,inner sep=1] at (0,0) { 
+        \begin{forest}
+          [\includegraphics{images/tree/7.png}[\includegraphics{images/tree/8.png}[\includegraphics{images/tree/13.png}[\includegraphics{images/tree/3.png}[\includegraphics{images/tree/5.png}]][\includegraphics{images/tree/10.png}[\includegraphics{images/tree/6.png}]]][\includegraphics{images/tree/1.png}[\includegraphics{images/tree/9.png}[\includegraphics{images/tree/14.png}]]]][\includegraphics{images/tree/12.png}[\includegraphics{images/tree/2.png}][\includegraphics{images/tree/4.png}][\includegraphics{images/tree/0.png}]][\includegraphics{images/tree/11.png}]]
+        \end{forest}};
+    \end{tikzpicture}}
+  \caption{Arbre original (figure \ref{tree_base_example}) où les noms des images ont été remplacés par leurs images, zoom sur l'oeil de Casimir}
+  \label{tree_casimir}
+\end{figure}
+
+On voit qu'il y a au maximum un seul 1 par ligne dans la matrice de parenté. En effet, seuls les parents directs sont détectés, et pas les ancêtres plus éloignés. La figure \ref{tree_casimir} permet de voir la différence de qualité entre les images de l'arbre. Des imagettes de $32\times32$ représentent les images originale (de $512\times512$) pour que les artefacts JPEG soient visibles.
 \subsection{Résultats sur les datasets}
 Nous avons fait tourner notre collection d'algorithmes sur les trois datasets, et avons obtenu des résultats très satisfaisants. Nous mesurons la qualité de nos résultats grâce à sept métriques, trois servant à mesurer la précision de l'estimation du facteur de qualité et les quatre autres servant à mesurer la qualité du calcul de l'arbre sont celles introduites par \citeauthornsc{dias2012image} \cite{dias2012image}.
 
@@ -1134,7 +1160,7 @@ Un autre problème, qui lui n'affecte pas la racine, mais plutôt le reste de l'
 
 \paragraph{}
 
-Les résultats donnés précédemment sont obtenus en ayant la totalité de l'arbre. Notre méthode étant très efficace pour reconstruire l'arbre lorsque toutes les images sont présentes, et donc lorsqu'il y a à chaque fois un parent direct, il nous a semblé important de tester le cas où l'arbre est incomplet. Aussi, la table \ref{results_missing} montre les résultats obtenus en ayant enlevé au hasard une des images du set. Notre méthode n'étant pas en mesure d'estimer les grands-parents, nous nous retrouvons dans le cas illustré figure \ref{fig:missing}, où nous avons des arbres correctement reconstruits, sans que nous sachions comment les relier entre eux. C'est là la limite de notre méthode de reconstruction d'arbre, une fois que la matrice de parenté a été reconstruite, si elle est incomplete, c'est une des racine des sous arbre qui va être choisie comme racine de l'arbre reconstruit, comme on peut le voir figure \ref{fig:missing1} où c'est l'image 1 qui a été choisie comme racine.
+Les résultats donnés précédemment sont obtenus en ayant la totalité de l'arbre. Notre méthode étant très efficace pour reconstruire l'arbre lorsque toutes les images sont présentes, et donc lorsqu'il y a à chaque fois un parent direct, il nous a semblé important de tester le cas où l'arbre est incomplet. Aussi, la table \ref{results_missing} montre les résultats obtenus en ayant enlevé au hasard une des images du set. Notre méthode n'étant pas en mesure d'estimer les grands-parents, nous nous retrouvons dans le cas illustré figure \ref{fig:missing}, où nous avons des arbres correctement reconstruits, sans que nous sachions comment les relier entre eux. C'est là la limite de notre méthode de reconstruction d'arbre, une fois que la matrice de parenté a été calculée, si elle est incomplete, c'est la racine des sous arbres avec le plus petit indice qui va être choisie comme racine de l'arbre reconstruit, comme on peut le voir figure \ref{fig:missing1} où c'est l'image 1 qui a été choisie comme racine. Les résultats table \ref{results_missing} montrent clairement le phénomène expliqué précédemment, le score de détection de la racine chute drastiquement, alors que les autres métriques, bien que logiquement moins bonnes, restent tout à fait correctes.
 
 \begin{figure}
   \begin{subfigure}{.5\textwidth}
@@ -1179,11 +1205,28 @@ Les résultats donnés précédemment sont obtenus en ayant la totalité de l'ar
   \caption{Exemple de cas où un noeud est enlevé et où l'on ne sait pas comment reconstruire}
   \label{fig:missing}
 \end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{|l||c|c|c|c|c|}
+    \hline
+     \backslashbox{Métrique}{Dataset}             & \textbf{15 images} & \textbf{25 images} & \textbf{50 images} \\ \hhline{|=::=|=|=|}
+    \textbf{roots}                                                      & 0.696078 & 0.333333 & 0.490196 \\ \hline
+    \textbf{edges}                                                      & 0.888655 & 0.924019 & 0.95078  \\ \hline
+    \textbf{leaves}                                                     & 0.913087 & 0.930065 & 0.947263 \\ \hline
+    \textbf{ancestry}                                                   & 0.780631 & 0.822239 & 0.882112 \\ \hline
+  \end{tabular} 
+\caption{Table de résultats des datasets avec une image manquante}
+\label{results_missing}
+\end{figure}
+
 \chapter{Perspectives et conclusion}
 \label{chap5}
 Au terme de cette étude, nous avons pu voir que le problème de la reconstruction d'arbre phylogénétique d'images dans les réseaux sociaux n'est pas trivial et peut se diviser en deux sous-parties : l'identification de la racine et l'estimation des relations parent-enfant. Nous avons également pu voir dans l'état de l'art les différentes approches de reconstruction d'arbre de phylogénie. Nous avons choisi de nous concentrer uniquement sur l'étude des recompressions JPEG pour le calcul de l'arbre. Cette décision est motivée par le fait que nous sommes intéressés par le domaine du forensics et que l'étude des recompressions un sujet suffisamment vaste et complexe. Cela nous a amené à étudier la détection des compressions multiples.
 
 De cette étude nous avons formalisé un théorème et réduit la reconstruction de l'arbre à une décision binaire entre deux images. Nous avons également précisément identifié les buts à atteindre dans la suite de ce stage : identifier une fonction qui trouve, s'il est présent, un marqueur qui prouve qu'il n'y a pas de relation parent-enfant entre deux images.
+
+
 % \nocite{*}
 \printbibliography
 

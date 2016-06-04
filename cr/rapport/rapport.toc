@@ -75,15 +75,15 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.3}Estimation du parent}{21}{section.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{21}{section*.38}
+\contentsline {paragraph}{}{22}{section*.38}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{21}{section*.39}
+\contentsline {paragraph}{}{22}{section*.39}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{}{22}{section*.40}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.4}Reconstruction de l'arbre}{22}{section.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.5}Filtrage des doublons}{23}{section.3.5}
+\contentsline {section}{\numberline {3.5}Filtrage des doublons}{24}{section.3.5}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\chapternumberline {4}R\IeC {\'e}sultats}{25}{chapter.4}
 \defcounter {refsection}{0}\relax 
@@ -93,26 +93,26 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{D\IeC {\'e}tail sur un arbre}{25}{section*.44}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{26}{section*.45}
+\contentsline {paragraph}{}{26}{section*.46}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{26}{section*.49}
+\contentsline {paragraph}{}{26}{section*.50}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{26}{section*.52}
+\contentsline {paragraph}{}{29}{section*.53}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{29}{section*.54}
+\contentsline {paragraph}{}{29}{section*.55}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{R\IeC {\'e}sultats sur les datasets}{30}{section*.57}
+\contentsline {subsection}{R\IeC {\'e}sultats sur les datasets}{30}{section*.59}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{31}{section*.59}
+\contentsline {paragraph}{}{32}{section*.61}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{31}{section*.60}
+\contentsline {paragraph}{}{32}{section*.62}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{31}{section*.61}
+\contentsline {paragraph}{}{33}{section*.63}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{31}{section*.62}
+\contentsline {paragraph}{}{33}{section*.64}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{31}{section*.63}
+\contentsline {paragraph}{}{33}{section*.65}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {5}Perspectives et conclusion}{33}{chapter.5}
+\contentsline {chapter}{\chapternumberline {5}Perspectives et conclusion}{35}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliographie}{34}{section*.66}
+\contentsline {chapter}{Bibliographie}{36}{section*.69}
