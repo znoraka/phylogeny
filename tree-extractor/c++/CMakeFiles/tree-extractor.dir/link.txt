@@ -1,1 +1,1 @@
-/usr/bin/c++      CMakeFiles/tree-extractor.dir/src/main.cpp.o  -o bin/tree-extractor -rdynamic -lMagick++-6.Q16 -lMagickCore-6.Q16 -lMagickWand-6.Q16 -ljpeg -lpthread -lX11 
+/usr/bin/c++       CMakeFiles/tree-extractor.dir/src/main.cpp.o  -o bin/tree-extractor -rdynamic -lMagick++ -lMagickCore -lMagickWand -ljpeg -lpthread -lX11 

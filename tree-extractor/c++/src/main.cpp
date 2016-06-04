@@ -755,6 +755,17 @@ int main(int argc, char **argv) {
   }
 
   auto matrix = estimateParents(argv[1]);
+
+  int k = std::rand() % matrix.size();
+
+  for (int i = 0; i < matrix.size(); i++) {
+    matrix[i][k] = false;
+  }
+
+  for (int i = 0; i < matrix.size(); i++) {
+    matrix[k][i] = false;
+  }
+
   Node *root = buildTreeFromMatrix(matrix);
   
   std::string treePath = std::string(argv[2]) + "/estimated.tex";

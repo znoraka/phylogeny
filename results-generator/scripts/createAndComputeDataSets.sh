@@ -9,8 +9,10 @@ do
     do
 	echo "file = " $f
 	mkdir $2/$COUNTER
-	
 	../../tree-generator/bin/tree-generator "/media/ramdisk/data" $f $3 0 $2$COUNTER
+
+#	cd /media/ramdisk/data/ && rm $(ls | sort -t . -k 1 -g -r | head -n 1) && cd - 
+
 	../../tree-extractor/c++/bin/tree-extractor "/media/ramdisk/data/" $2$COUNTER
 	../../tree-comparator/bin/tree-comparator $2$COUNTER/truth.txt $2$COUNTER/computed.txt >> $2$COUNTER/results.txt
 	
