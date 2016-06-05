@@ -745,26 +745,7 @@ int main(int argc, char **argv) {
     tables.push_back(table(i));
   }
 
-  int a = 0;
-  for(auto i : table(73)) {
-      std::cout << i << " & ";
-    if(++a == 8) {
-      std::cout << "\\\\ \\hline" << std::endl;
-      a = 0;
-    }
-  }
-
   auto matrix = estimateParents(argv[1]);
-
-  int k = std::rand() % matrix.size();
-
-  for (int i = 0; i < matrix.size(); i++) {
-    matrix[i][k] = false;
-  }
-
-  for (int i = 0; i < matrix.size(); i++) {
-    matrix[k][i] = false;
-  }
 
   Node *root = buildTreeFromMatrix(matrix);
   
