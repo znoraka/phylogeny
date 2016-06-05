@@ -91,7 +91,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.2}R\IeC {\'e}sultats exp\IeC {\'e}rimentaux}{25}{section.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{D\IeC {\'e}tail sur un arbre}{25}{section*.44}
+\contentsline {subsection}{D\IeC {\'e}tail sur un arbre}{26}{section*.44}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{}{26}{section*.46}
 \defcounter {refsection}{0}\relax 
