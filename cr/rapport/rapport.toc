@@ -45,74 +45,80 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{D\IeC {\'e}tection des doubles compressions JPEG avec la m\IeC {\^e}me matrice de quantification}{11}{section*.20}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Convergence des blocs lors de compressions successives}{12}{section*.22}
+\contentsline {subsection}{DQ effect ou les marques d'une double quantification}{12}{section*.22}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{}{13}{section*.23}
 \defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Convergence des blocs lors de compressions successives}{14}{section*.24}
+\defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{}{14}{section*.25}
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.3}Distances entre distributions}{14}{section.2.3}
-\defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{14}{section*.26}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{}{15}{section*.27}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Les distances}{15}{section*.28}
+\contentsline {section}{\numberline {2.3}Distances entre distributions}{15}{section.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Les divergences}{15}{section*.29}
+\contentsline {paragraph}{}{15}{section*.28}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {3}M\IeC {\'e}thode de calcul de phylog\IeC {\'e}nie \IeC {\`a} l'aide des caract\IeC {\'e}ristiques des coefficients DCT d'une bitmap}{17}{chapter.3}
+\contentsline {paragraph}{}{16}{section*.29}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Principe et th\IeC {\'e}or\IeC {\`e}me}{17}{section.3.1}
+\contentsline {subsection}{Les distances}{16}{section*.30}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Estimation du facteur de qualit\IeC {\'e} d'une image JPEG}{18}{section.3.2}
+\contentsline {subsection}{Les divergences}{16}{section*.31}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Estimation de la table de quantification}{18}{section*.31}
+\contentsline {chapter}{\chapternumberline {3}M\IeC {\'e}thode de calcul de phylog\IeC {\'e}nie \IeC {\`a} l'aide des caract\IeC {\'e}ristiques des coefficients DCT d'une bitmap}{18}{chapter.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{L'autocorr\IeC {\'e}lation et la d\IeC {\'e}tection de pics}{19}{section*.32}
+\contentsline {section}{\numberline {3.1}Principe et th\IeC {\'e}or\IeC {\`e}me}{18}{section.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Calcul de $Q_f$ \IeC {\`a} partir de $\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle q$}\mathaccent "0362{q}(u,v)$}{21}{section*.37}
+\contentsline {section}{\numberline {3.2}Estimation du facteur de qualit\IeC {\'e} d'une image JPEG}{19}{section.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Estimation du parent}{21}{section.3.3}
+\contentsline {subsection}{Estimation de la table de quantification}{19}{section*.33}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{22}{section*.38}
+\contentsline {subsection}{L'autocorr\IeC {\'e}lation et la d\IeC {\'e}tection de pics}{20}{section*.34}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{22}{section*.39}
+\contentsline {subsection}{Calcul de $Q_f$ \IeC {\`a} partir de $\setbox \z@ \hbox {\frozen@everymath \@emptytoks \mathsurround \z@ $\textstyle q$}\mathaccent "0362{q}(u,v)$}{22}{section*.39}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{22}{section*.40}
+\contentsline {section}{\numberline {3.3}Estimation du parent}{22}{section.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Reconstruction de l'arbre}{22}{section.3.4}
+\contentsline {paragraph}{}{23}{section*.40}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.5}Filtrage des doublons}{24}{section.3.5}
+\contentsline {paragraph}{}{23}{section*.41}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {4}R\IeC {\'e}sultats}{25}{chapter.4}
+\contentsline {paragraph}{}{23}{section*.42}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}G\IeC {\'e}n\IeC {\'e}ration des donn\IeC {\'e}es}{25}{section.4.1}
+\contentsline {section}{\numberline {3.4}Reconstruction de l'arbre}{23}{section.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}R\IeC {\'e}sultats exp\IeC {\'e}rimentaux}{25}{section.4.2}
+\contentsline {section}{\numberline {3.5}Filtrage des doublons}{25}{section.3.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{D\IeC {\'e}tail sur un arbre}{26}{section*.44}
+\contentsline {chapter}{\chapternumberline {4}R\IeC {\'e}sultats}{26}{chapter.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{26}{section*.46}
+\contentsline {section}{\numberline {4.1}G\IeC {\'e}n\IeC {\'e}ration des donn\IeC {\'e}es}{26}{section.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{26}{section*.50}
+\contentsline {section}{\numberline {4.2}R\IeC {\'e}sultats exp\IeC {\'e}rimentaux}{26}{section.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{29}{section*.53}
+\contentsline {subsection}{D\IeC {\'e}tail sur un arbre}{27}{section*.46}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{29}{section*.55}
+\contentsline {paragraph}{}{27}{section*.48}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{R\IeC {\'e}sultats sur les datasets}{30}{section*.59}
+\contentsline {paragraph}{}{27}{section*.52}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{32}{section*.61}
+\contentsline {paragraph}{}{30}{section*.55}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{32}{section*.62}
+\contentsline {paragraph}{}{30}{section*.57}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{R\IeC {\'e}sultats sur les datasets}{31}{section*.61}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{}{33}{section*.63}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{}{33}{section*.64}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{33}{section*.65}
+\contentsline {paragraph}{}{34}{section*.65}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {5}Perspectives et conclusion}{35}{chapter.5}
+\contentsline {paragraph}{}{34}{section*.66}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliographie}{36}{section*.69}
+\contentsline {paragraph}{}{34}{section*.67}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {5}Perspectives et conclusion}{36}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{}{36}{section*.71}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliographie}{37}{section*.73}

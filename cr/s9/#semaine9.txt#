@@ -15,8 +15,8 @@ Nous allons ensuite tenter d'estimer la periode du signal (chaque coefficient), 
 
 La moyenne de la différence entre les valeurs consécutives des pics va nous donner la valeur avec laquelle le signal a été quantifié.
 Le facteur de qualité le plus probable est alors celui pour laquelle la distance entre la table (en prenant toutes les tables de quantification de 1 à 100) et l'ensemble des valeurs estimées est la plus faible. 
-Bien qu'en théorie il soit mieux d'utiliser tous les coefficients, je n'utilise que les 4 premiers (dans l'ordre zigzag), la détection des pics de l'autocorrélation est grossière et sensible au bruit, et l'utilisation des autres coefficients va faire baisser la précision de l'estimation.
 
+Bien qu'en théorie il soit mieux d'utiliser tous les coefficients, je n'utilise que les 4 premiers (dans l'ordre zigzag), la détection des pics de l'autocorrélation est grossière et sensible au bruit, et l'utilisation des autres coefficients va faire baisser la précision de l'estimation.
 
 J'ai testé cette méthode sur l'arbre de phylogénie généré aléatoirement où les Q_{f} des enfants sont plus petits que ceux de leurs parents, et pour toutes les images avec un Q_{f} < 95, l'erreur moyenne de prédiction se situe entre 0.5 et 2 selon l'image choisie comme base de l'arbre.
 Le manque de précision pour les images avec un Q_{f} >= 95 s'explique par le fait que le signal n'est pas suffisamment quantifié pour que des pics apparaissent dans l'histogramme des coefficients DCT et donc se répercutent dans l'autocorrélation (voir figure [[fig:autocorrelation_bad]]).
@@ -30,6 +30,7 @@ Cette méthode a été testée dans le cas où les Q_{f} d'une image sont toujou
 #+attr_html: :width 600px
 #+NAME:   fig:double_pics
 [[./autocorrelation_double.png]]
+
 
 * DQ effect
 

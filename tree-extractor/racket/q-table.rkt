@@ -171,3 +171,9 @@
 (define (period q1 q2)
   (/ q1 (gcd q1 q2)))
 
+(define (dummy-1 n q1 q2)
+  (- (floor (* (/ q2 q1) (+ n 0.5)))
+     (ceiling (* (/ q2 q1) (- n 0.5)))))
+
+(for ([i (in-range 100)])
+  (displayln (~a i " " (dummy-1 i 2 5))))

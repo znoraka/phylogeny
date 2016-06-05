@@ -262,18 +262,6 @@ L'article de \citeauthornsc{kennedy2008internet} est à notre connaissance le pr
 \\ \indent
 Un graphe est ensuite construit à partir des couples d'images pour lesquels une relation parent-enfant a été détectée. À noter qu'une relation parent-enfant ne veut pas forcément dire que c'est le parent direct mais plutôt un ancêtre. Ainsi, un noeud du graphe (une image) peut avoir plusieurs noeuds parents, pour finalement obtenir l'arbre désiré, seuls les chemins les plus longs sont conservés, comme on peut le voir figure \ref{vmm-tree}.
 
-%%%%% parler de comment sont calculées les directions des transformations.
-%%%%% parler des résultats ?
-%%%%% parler de ce qui est bien dans cette méthode et de ce que l'on va utiliser.
-
-% \begin{wrapfigure}{R}{0.5\textwidth}
-%   \begin{center}
-%     \includegraphics[width=0.48\textwidth]{images/vmm.png}
-%   \end{center}
-%     \label{vmm}
-%     \caption{Exemple de VMM, tiré de \autocite{internet}}
-% \end{wrapfigure}
-
 \begin{figure}
   \begin{center}
     \includegraphics[width=70mm]{images/vmm.png}
@@ -321,13 +309,9 @@ Nous voyons donc bien que la problématique principale de cette méthode est de 
 La dissimilarité entre les deux images est enfin obtenue en utilisant la \textit{minimum mean squared error} (MMSE) entre les deux images dans le domaine spatial. (\textit{comparison method} de l'équation \ref{dissimilarity-function})
 
 Ces quatre étapes servent à rendre les images comparables, en mappant l'une dans le domaine de l'autre, pour avoir des résultats pertinents.
-%%%% Analyser leur méthode et ne pas simplement la décrire ?
-% \vspace{3mm}
 \paragraph{}
 
 La distance $d(.,.)$ est donc appliquée à tous les couples d'images de l'ensemble, pour créer une matrice de dissimilarité, ou \textit{dissimilarity matrix}, une matrice de taille $n\times n$ qui sera ensuite donnée comme entrée à leur algorithme de reconstruction d'arbre, Oriented Kruskal. Cet algorithme est expliqué de manière exhaustive dans \autocite{dias2012image}. Dans le chapitre \ref{chap3}, nous proposons une approche différente, notre reconstruction sera donc également différente. 
- % et ayant une approche différente (chapitre \ref{chap:notre_approche}), la reconstruction sera également différente.
-% \vspace{3mm}
 \paragraph{}                    
 
 En plus de proposer une approche pour reconstituer l'arbre de phylogénie, \citeauthornsc{dias2012image} proposent une approche pour comparer deux arbres, et donc évaluer notre arbre reconstruit s'il est comparé avec la vérité terrain. Il consiste en quatre métriques : \\
@@ -401,11 +385,6 @@ C'est surtout l'étape de quantification qui va réduire la quantité d'informat
 
 \subsection{Estimation de la matrice de compression primaire dans les images JPEG doublement compressées}
 \label{estimation_matrice_compression}
-
-% \subsection{Estimation of primary quantization matrix in double compressed JPEG images}
-
-% \subsection{Détection des recompressions JPEG}
-% \citeauthornsc{feng2010jpeg} \autocite{feng2010jpeg}
 \citeauthornsc{lukavs2003estimation} \autocite{lukavs2003estimation} proposent dans leur approche non seulement de détecter si une image est doublement compressée, mais également d'estimer les paramètres de la première compression. Pour bien comprendre la suite de leurs travaux, il convient d'expliquer plus en détail l'étape de quantification de JPEG.
 
 La quantification se fait de la manière suivante :
@@ -493,8 +472,52 @@ Ce ratio est calculé de manière experimentale, c'est à dire que grâce à une
 Un ratio mal choisi perturbera trop l'image et la modifiera plus que sa première recompression ou alors ne la perturbera pas suffisamment et l'image serait alors détectée à tort comme simplement compressée.
 
 Cette méthode offre un moyen de détecter la présence de double compressions avec la même matrice de quantification, un cas probable dans le cadre des réseaux sociaux. Même si elle a été pensée pour la détection dans le cas de la première compression, cette méthode pourrait être étendue à la détection de la la $n^{ieme}$ et la $n+1^{ieme}$ compression. Contrairement aux auteurs, qui travaillent sur une image dans le vide, nous travaillons sur un ensemble d'images, et avons donc plus d'informations à notre disposition.
-% nous ne travaillons pas sur une seule image, qui est la totalité de l'information disponible aux auteurs, nous travaillons sur un ensemble d'image. Nous disposons donc de bien plus d'informations, en plus des informations contenues dans les images, nous pouvons calculer des informations sur les images les unes par rapport aux autres. On pourrait donc très bien adapter cette méthode à la $n^{ieme}$ et la $n+1^{ieme}$ compression de deux images.
 
+\subsection{DQ effect ou les marques d'une double quantification}
+ % \citeauthornsc{lukavs2003estimation}
+Dans cette partie, nous nous proposons de formaliser les effets qu'une double compression peut engendrer sur le signal d'une image en nous appuyant sur les travaux de \autocite{lin2009fast}. La compression JPEG comporte une phase de quantification, c'est cette quantification des coefficients DCT qui va engendrer des marques telles qu'on peut les voir figure \ref{fig:histo}. Nous proposons ici d'expliquer ce phénomène et de donner les différentes formules qui permettent de calculer et mesurer cet effet.
+
+Nous aurons donc deux histogrammes $h_1$ et $h_2$. $h_1$ est l'histogramme des coefficients DCT avant la première quantification, et $h_2$ est l'histogramme après la seconde. Nous allons tenter de borner la valeur que peut avoir $u_1$, un coefficient DCT de l'histogramme $h_1$, une des valeurs qui se retrouve dans le bin $u_2$ de $h_2$ après double compression. Il s'agit bien d'une borne, en effet, à cause des arrondis, toutes les valeurs vont se trouver dans un intervalle. Précisons que nous sommes en possession de $u_2$, et que nous connaissons $q_1$ le premier pas de quantification et $q_2$ le second pas de quantification. Rappelons qu'une quantification est l'arrondi d'une valeur divisée par un entier.
+
+
+Nous avons donc $u_2 = \left [ \left [ \frac{u1}{q1} \right ] \frac{q1}{q2}\right ]$, qui a été obtenu de la manière suivante : 
+
+La valeur après la première quantification est donc : $\left [ \frac{u_1}{q_1} \right ]$
+
+La quantification inverse donne $\left [ \frac{u_1}{q_1} \right ] \times  q_1$
+
+Puis la deuxième quantification donne $\left [ \frac{\left (  \left [ \frac{u_1}{q_1} \right ]\ \times\  q_1 \right )}{q_2} \right ]$, ou encore $u_2 = \left [ \left [ \frac{u1}{q1} \right ] \frac{q1}{q2}\right ]$ de manière simplifiée
+
+ Nous allons donc partir de cette équation pour borner $u_1$ et tenter de savoir d'où vient $u_2$.
+
+En enlevant l'opérateur d'arrondi de cette équation, nous obtenons : 
+
+$$ u_2 - \frac{1}{2} \leq \left [ \frac{u_1}{q_1} \right ] \times \frac{q1}{q2} < u_2 + \frac{1}{2} $$
+
+Puis en continuant à développer : 
+
+$$\frac{q_2}{q_1} \left (  u_2 - \frac{1}{2}\right ) \leq \left [ \frac{u_1}{q_1} \right ] < \frac{q_2}{q_1}  \left (u_2 + \frac{1}{2} \right)$$
+
+Deux possibilités s'offrent alors à nous : 
+\begin{itemize}
+  \item $q_1$ est pair et on peut continuer à développer
+     $$q_1\left(\left \lceil \frac{q_2}{q_1} \left (  u_2 - \frac{1}{2}\right ) \right \rceil - \frac{1}{2} \right) \leq u_1 < q_1\left(\left \lfloor \frac{q_2}{q_1} \left (  u_2 + \frac{1}{2}\right ) \right \rfloor + \frac{1}{2} \right)$$
+
+   \item $q_2$ est impair, et il faut ajouter ou retirer $\frac{1}{2}$ pour que la valeur de $u_1$ soit entière
+       $$q_1\left(\left \lceil \frac{q_2}{q_1} \left (  u_2 - \frac{1}{2}\right ) \right \rceil - \frac{1}{2} \right) + \frac{1}{2} \leq u_1 < q_1\left(\left \lfloor \frac{q_2}{q_1} \left (  u_2 + \frac{1}{2}\right ) \right \rfloor + \frac{1}{2} \right) - \frac{1}{2}$$
+
+\end{itemize}
+
+Les valeurs $u_1$ qui composent $u_2$ sont donc bornées par $q_1\left(\left \lceil \frac{q_2}{q_1} \left (  u_2 - \frac{1}{2}\right ) \right \rceil - \frac{1}{2} \right)$ et $q_1\left(\left \lfloor \frac{q_2}{q_1} \left (  u_2 + \frac{1}{2}\right ) \right \rfloor + \frac{1}{2} \right)$. 
+\paragraph{}
+
+Cela nous permet de calculer le nombre de bin de l'histogramme original qui constituent $u_2$.
+
+$$n(u_2) = q_1 \left(\left \lfloor \frac{q_2}{q_1} \left (u_2 + \frac{1}{2}\right) \right \rfloor - \left \lceil \frac{q_2}{q_1} \left (u_2 - \frac{1}{2}\right) \right \rceil + 1 \right)$$
+
+Notons que $n(u_2)$ est périodique, de période $p = \frac{q_1}{gcd(q_1, q_2)}$.
+
+Par exemple, lorsque $q_1 > q_2$, il peut y avoir des bins vide, c'est à dire $n(u_2) = 0$ si $\left \lfloor \frac{q_2}{q_1} \left (u_2 + \frac{1}{2}\right) \right \rfloor - \left \lceil \frac{q_2}{q_1} \left (u_2 - \frac{1}{2}\right) \right \rceil = -1$.
 \subsection{Convergence des blocs lors de compressions successives}
 \label{convergence}
 L'intérêt de la méthode proposée par \citeauthornsc{CarneinSB2016TelltaleWatermarks} \autocite{CarneinSB2016TelltaleWatermarks} est l'estimation du nombre de compressions JPEG qu'a pu subir l'image, une estimation qui va au-delà de deux ou trois compression successives \autocite{huang2010detecting}\autocite{lukavs2003estimation}, il est en effet possible d'aller jusqu'à plusieurs centaines de compressions. Cette approche se base sur la notion de blocs cycliques.
@@ -926,7 +949,7 @@ Nous choisissons un arbre de 15 images, les résultats ne sont pas significative
 \end{figure}
 
 \paragraph{}
-Commençons par la détection de pics et l'autocorrélation. Nous utilisons les 35 premiers coefficients DCT, les coefficients suivant sont trop quantifiés, et souvent à 0, et ne contiennent pas suffisamment d'informations pour être intéressants, ils peuvent même fausser les résultats. Nous donnons l'histogramme du coefficient DC ainsi que son autocorrélation figure \ref{fig:histo0}, puis le coefficient 18 dans l'ordre zigzag figure \ref{fig:histo18} et enfin le coefficent 31 figure \ref{fig:histo31} pour permettre au lecteur de visualiser les données avec lesquels nous travaillons. Ces exemples sont donnés à titre indicatif, l'apparence des histogrammes et autocorrélations peut grandement varier selon le facteur de qualité de l'image. L'image dont sont tirées les figures est compressées avec comme historique de compression $H_{Q_{f}} = \{86, 85, 73\}$. C'est la période, ou l'écart entre deux pics de l'autocorrélation de chaque coefficient DCT que nous cherchons à obtenir pour ensuite pouvoir les comparer avec les valeurs des différentes tables de quantification.
+Commençons par la détection de pics et l'autocorrélation. Nous utilisons les 35 premiers coefficients DCT, les coefficients suivant sont trop quantifiés, et souvent à 0, et ne contiennent pas suffisamment d'informations pour être intéressants, ils peuvent même fausser les résultats. Nous donnons l'histogramme du coefficient DC ainsi que son autocorrélation figure \ref{fig:histo0}, puis le coefficient 18 dans l'ordre zigzag figure \ref{fig:histo18} et enfin le coefficient 31 figure \ref{fig:histo31} pour permettre au lecteur de visualiser les données avec lesquels nous travaillons. Ces exemples sont donnés à titre indicatif, l'apparence des histogrammes et autocorrélations peut grandement varier selon le facteur de qualité de l'image. L'image dont sont tirées les figures est compressées avec comme historique de compression $H_{Q_{f}} = \{86, 85, 73\}$. C'est la période, ou l'écart entre deux pics de l'autocorrélation de chaque coefficient DCT que nous cherchons à obtenir pour ensuite pouvoir les comparer avec les valeurs des différentes tables de quantification.
 
 \begin{figure}
   \begin{subfigure}{.5\textwidth}
@@ -1222,14 +1245,39 @@ Les résultats donnés précédemment sont obtenus en ayant la totalité de l'ar
 \label{results_missing}
 \end{figure}
 
+Notre méthode a été imaginée pour des images en noir et blanc, qui n'ont donc qu'un canal de couleur qui contient toutes les informations. Il nous a cepandant semblé intéressant de la tester sur des images couleurs. Sans changer quoi que ce soit à notre implémentation, plutôt que de donner des images en noir et blanc en entrée, nous avons donné des images en couleur. Les résultats obtenus sont disponibles table \ref{results_color}. On peut voir que les résultats sont très similaires à ceux d'une image en noir et blanc. L'estimation du $Q_f$ est moins bonne, mais pas de manière significative, tout comme les autres métriques qui donnent de très bons résultats. Le canal de luminance contient donc suffisamment d'informations pour pouvoir utiliser notre méthode. À noter que nous n'utilisons pas les canaux de chrominance, puisque notre méthode a été pensée pour des images en niveux de gris.
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{|l||c|c|c|c|c|}
+    \hline
+     \backslashbox{Métrique}{Dataset}             & \textbf{15 images} & \textbf{25 images} & \textbf{50 images} \\ \hhline{|=::=|=|=|}
+    \textbf{\pbox{3.6cm}{Erreur moyenne d'estimation de $Q_f$}}         & 1.14545  & 1.2897   & 1.42     \\ \hline
+    \textbf{\pbox{3.6cm}{Sur-estimation moyenne de $Q_f$}}              & 1.84848  & 2.69697  & 2.63636  \\ \hline
+    \textbf{\pbox{3.6cm}{Sous-estimation moyenne de $Q_f$}}             & 2.9697   & 3.78788  & 4.93939  \\ \hhline{|=::=|=|=|}
+    \textbf{roots}                                                      & 0.939394 & 0.818182 & 0.878788 \\ \hline
+    \textbf{edges}                                                      & 0.993506 & 0.986111 & 0.993816 \\ \hline
+    \textbf{leaves}                                                     & 0.996212 & 0.98663  & 0.997795 \\ \hline
+    \textbf{ancestry}                                                   & 0.987879 & 0.941259 & 0.988206 \\ \hline
+  \end{tabular} 
+\caption{Table de résultats sur avec des images en couleur, les trois premières lignes mesurent la précision de l'estimation de $Q_f$, les autres lignes mesure la qualité de la reconstruction de l'arbre et sont données en pourcentage}
+\label{results_color}
+\end{figure}
+
+
+
 \chapter{Perspectives et conclusion}
 \label{chap5}
-Au terme de cette étude, nous avons pu voir que le problème de la reconstruction d'arbre phylogénétique d'images dans les réseaux sociaux n'est pas trivial et peut se diviser en deux sous-parties : l'identification de la racine et l'estimation des relations parent-enfant. Nous avons également pu voir dans l'état de l'art les différentes approches de reconstruction d'arbre de phylogénie. Nous avons choisi de nous concentrer uniquement sur l'étude des recompressions JPEG pour le calcul de l'arbre. Cette décision est motivée par le fait que nous sommes intéressés par le domaine du forensics et que l'étude des recompressions un sujet suffisamment vaste et complexe. Cela nous a amené à étudier la détection des compressions multiples.
 
-De cette étude nous avons formalisé un théorème et réduit la reconstruction de l'arbre à une décision binaire entre deux images. Nous avons également précisément identifié les buts à atteindre dans la suite de ce stage : identifier une fonction qui trouve, s'il est présent, un marqueur qui prouve qu'il n'y a pas de relation parent-enfant entre deux images.
+Au terme de ce stage, nous avons su créer une méthode qui donne de très bon résultats dans un environnement contrôlé. Nous sommes en mesure de retrouver l'arbre de phylogénie d'un ensemble de near-duplicates où toutes les images sont présentes de manière très fidèle. Nous nous sommes cependant limités au cas où une image enfant est forcément plus compressée que son parent, et même dans ce cas là, il nous est difficile d'estimer correctement les grands parents. 
 
+Les perspectives d'amélioration sont donc multiples. Il serait intéressant de continuer à étudier les caractéristiques des coefficients DCT de l'image pour en extraire de meilleurs marqueurs. Cette technique des marqueurs, même si elle n'a pas été très poussée dans le cadre de ce stage, nous semble prometteuse et mériterait que l'on s'attarde. Trouver de meilleurs marqueurs permettrait de plus de ne pas se limiter à la détection de parents directs mais également de pouvoir estimer des ancêtres plus lointains. Cela va de pair avec l'amélioration de la reconstruction lorsque certaines images de l'ensemble sont absentes, un cas qu'il est très probable de rencontrer dans les réseaux sociaux. 
 
-% \nocite{*}
+La découverte de nouveaux marqueurs semble donc être une solution qui permettrait de grandement améliorer la méthode. On peut même imaginer ne pas se restreindre à la compression JPEG, mais également intégrer d'autres transformations, comme le crop ou le resampling par exemple.
+\paragraph{}
+
+Nous avons pu voir dans ce rapport que le problème de la reconstruction d'arbre phylogénétique d'images dans les réseaux sociaux n'est pas trivial et peut se diviser en deux sous-parties : l'identefication de la racine et l'estimation des relatios parent-enfant. Nous avons également pu voir dans l'état de l'art les différentes approches de reconstruction d'arbre de phylogénie. Nous avons choisi de nous concentrer uniquement sur l'étude des recompressions JPEG pour le calcul de l'arbre. Cette décision est motivée par le fait que nous sommes intéressés par le domaine du forensics et que l'étude des recompressions est un sujet suffisamment vaste et complexe. Cela nous a amené à étudier la détection des compressions multiples. Nous avons donc imaginé une méthode qui réduit la reconstruction de l'arbre de phylogénie d'un ensemble d'image à une décicision binaire entre deux images. Nous avons également présenté nos résultats, qui sont tout a fait raisonnables et avons présenté les points forts et les points faibles de notre méthode. Nous pensons donc avoir rempli le contrat de ce stage qui était d'étudier les relations de parenté entre les images, et si possible créer des algorithmes qui permettrait de reconstruire l'arbre de phylogénie d'un ensemble d'images.
+
 \printbibliography
 
 \end{document}

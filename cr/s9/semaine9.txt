@@ -31,6 +31,7 @@ Cette méthode a été testée dans le cas où les Q_{f} d'une image sont toujou
 #+NAME:   fig:double_pics
 [[./autocorrelation_double.png]]
 
+
 * DQ effect
 
 Ces calculs sont issus de [fn:phylogeny-tree1].
