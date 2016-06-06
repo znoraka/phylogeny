@@ -119,6 +119,4 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\chapternumberline {5}Perspectives et conclusion}{36}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{}{36}{section*.71}
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliographie}{37}{section*.73}
+\contentsline {chapter}{Bibliographie}{37}{section*.72}
