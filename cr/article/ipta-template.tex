@@ -1,0 +1,417 @@
+\documentclass[conference,a4paper]{ieeetran}
+
+\usepackage[latin1]{inputenc}
+\usepackage{subeqnarray}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usepackage{csquotes}
+\usepackage{indentfirst}
+\usepackage{upgreek}
+\usepackage{forest}
+\usepackage{hyperref}
+\usepackage{pbox}
+\usepackage{hhline}
+\usepackage{datetime}
+\usepackage{subcaption}
+\usepackage{slashbox}
+\usepackage[]{algorithm2e}
+\usetikzlibrary{trees}
+\usetikzlibrary{babel}
+\usetikzlibrary{arrows,automata,positioning}
+
+\usepackage[
+    maxbibnames=9,
+    maxnames=2,
+    % style=nature,
+    % citestyle=mla,
+    backend=bibtex]
+{biblatex}
+
+\DeclareCiteCommand{\citeauthornsc}
+  {\renewcommand*{\mkbibnamelast}[1]{####1}%
+   \boolfalse{citetracker}%
+   \boolfalse{pagetracker}%
+   \usebibmacro{prenote}}
+  {\ifciteindex
+     {\indexnames{labelname}}
+     {}%
+   \printnames{labelname}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand*{\citeauthornsc}
+  {\renewcommand*{\mkbibnamelast}[1]{####1}%
+   \boolfalse{citetracker}%
+   \boolfalse{pagetracker}%
+   \usebibmacro{prenote}}
+  {\ifciteindex
+     {\indexnames{labelname}}
+     {}%
+   \printnames[][1-1]{labelname}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+
+
+\bibliography{biblio.bib}
+
+\parskip 1mm
+\arraycolsep 0.5mm
+\newtheorem{theorem}{Theorem}
+\newcommand{\sign}{\mathrm{sign}}
+\newcommand{\sat}{\mathrm{sat}}
+
+\title{International Conference on Image Processing Theory, Tools and Applications}
+
+\author{\authorblockN{Author\authorrefmark{1}, Author\authorrefmark{1} and Author\authorrefmark{2} }
+\authorblockA{\authorrefmark{1} Affiliation 1\\
+e-mail: author-1@ieee.org, author-2@ieee.org}
+\authorblockA{\authorrefmark{2} Affiliation 2\\
+e-mail: author-3@ieee.org}}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+  Nowadays it is extremely easy to tamper images and share them thanks to social media. Identifying the tamper history is mandatory to be able to trust any of those images. During this internship, our main goal is to compute the image phylogeny tree of an image set, where images are created from successive JPEG compressions. Every step, a child image is created from the compression of a parent image. In this paper we present our method based on a binary decision between two images and explain the results obtained with this method.
+\end{abstract}
+
+\begin{keywords}
+    Image processing theory, Image processing tools, Image processing applications, Template, Typesetting.
+\end{keywords}
+
+\section{Introduction}
+
+\section{Method}
+In this section, we present a new approach to build an image phylogeny tree from a set of near-duplicate images. Unlike state of the art methods \cite{} that mainly focus on complex algorithm that try their best to approximate the tree from a dissimilarity matrix, we try to take a binary decision between two images : ``Can this image be an ancestor of that other one?''. It allows us to focus more on the images themselves and their characteristics and have a simple tree building algorithm. Figure \ref{fig:schema} shows the diagram of our method.
+
+\begin{figure}[!ht]
+  \centering
+  \scalebox{0.58}{
+    \begin{tikzpicture}[auto,node distance=2.1cm]
+
+      \tikzstyle{every state}=[shape=rectangle,minimum width=1.1in,text width=1.1in, align=center,fill=blue!30]
+      % \tikzstyle{every data}=[shape=circle,minimum width=1.3in,text width=1.3in, align=center,fill=blue!30]
+
+      \node[draw=none,fill=none,minimum width=0.8in,text width=0.8in, align=center] (A) {Set de near-duplicates};
+      \node[state] (B) [right=0.4cm of A] {DCT on each image};
+
+      \node[draw=none,fill=none,minimum width=0.8in,text width=0.8in, align=center, right=0.4cm of B] (C) {DCT coefficients of each image};
+      \node[state] (D) [right=0.4cm of C] {Extraction of the period of each DCT coefficient};
+
+      \node[draw=none,fill=none,minimum width=0.8in,text width=0.8in, align=center, right=0.4cm of D] (E) {Extracted quantization table};
+      \node[state] (F) [below=0.4cm of E] {Quality factor estimation};
+
+      \node[draw=none,fill=none,minimum width=0.8in,text width=0.8in, align=center, left=0.4cm of F] (G) {$Q_f$ of each images};
+      \node[draw=none,fill=none,minimum width=0.8in,text width=0.8in, align=center, below=0.3cm of G] (H) {Images};
+      \node[state] (I) [left=0.4cm of G] {Ancestors estimation};
+
+      \node[draw=none,fill=none,minimum width=0.8in,text width=0.8in, align=center, left=0.4cm of I] (J) {Parentage matrix};
+      \node[state] (K) [left=0.4cm of J] {Tree building};
+
+      \node[draw=none,fill=none,minimum width=0.8in,text width=0.8in, align=center, below=0.6cm of K] (L) {Unprocessed tree};
+      \node[state] (M) [right=0.4cm of L] {Duplicates filtering};
+      
+      \node[draw=none,fill=none,minimum width=0.8in,text width=0.8in, align=center, right=0.4 of M] (N) {Image phylogeny tree};
+
+      \path [->] (A) edge node[left] {} (B);
+      \path [->] (B) edge node[left] {} (C);      
+      \path [->] (C) edge node[left] {} (D);      
+      \path [->] (D) edge node[] {} (E);      
+      \path [->] (E) edge node[right] {} (F);      
+      \path [->] (F) edge node[right] {} (G);      
+      \path [->] (G) edge node[left] {} (I); 
+      \path [->] (H) edge node[left] {} (I);
+      \path [->] (I) edge node[left] {} (J);
+      \path [->] (J) edge node[left] {} (K);
+      \path [->] (K) edge node[left] {} (L);
+      \path [->] (L) edge node[left] {} (M);
+      \path [->] (M) edge node[left] {} (N);
+    \end{tikzpicture}}
+  \caption{Diagram of our method}
+  \label{fig:schema}
+\end{figure}
+
+In this section, we will first present the theorems we based designed and based our method on, then we explain how we extract the period of each DCT coefficient to extract a quantization table. We also explain how we compute the quality factor of an image and estimate the ancestors. We then present our tree building algorithm that will eventually output an image phylogeny tree.
+
+\subsection{Theorems}
+
+\subsection{Quality factor estimation}
+We work with images that underwent at least one JPEG compression. These images, traveling through social networks, may have had their format changed, and converted to PNG for instance. The quality factor of the last JPEG compression, mandatory for our method, is then lost. We propose to estimate the quality factor of images that did not undergo any lossless compression other than JPEG.
+
+\subsubsection{Quantization table extraction}
+When a signal is quantized, its values gather around multiples of the quantization step. The gap between these values, the period, is what we are going to compute for the first 35 DCT coefficients of the image (in zigzag order). We only use the first 35 because further coefficient are often too quantized and have null values. Not only are they useless, but we also may badly estimate their period, and hinder the table extraction process. To get these periods, we compute the autocorrelation of a signal, as shown Fig. \ref{fig:autocorrelation}. We only keep the first few peaks above a threshold. It allows us to filter out the noise and not have missing peaks because of the threshold, as we would have Fig. \ref{fig:autocorrelation} with peaks alternating above and below the threshold. We repeat this process for every DCT coefficient selected, it outputs a partial quantization table, named $\widehat{q}(u,v)$. Next we compute $Q_f$ from $\widehat{q}(u,v)$.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=7cm]{autocorrelation_filtered}
+\caption{Autocorrelation of the DC coefficient and the threshold in green}
+\label{fig:autocorrelation}
+\end{figure}P
+
+\subsubsection{Quality factor estimation}
+We have two choices to compute the quality factor from $\widehat{q}(u,v)$. We can either check against every single quantization table from $Q_f = 1$ to $Q_f = 100$ which one is closest or use equations \ref{eqn:jpeg_1} and \ref{eqn:jpeg_2} from the JPEG standard.
+
+
+\begin{equation}
+\begin{split}
+ if\ \ \  Q_f < 50\ \ \ \  Q_s = 5000 / Q_f \\
+ \ \ \ Q_s = 200 - (Q_f \times 2)\ \  otherwise
+\end{split}
+\label{eqn:jpeg_1}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+  q(u,v) = \frac{(base(u,v) \times Q_s) - 50}{100} \\ 
+  with \ 1 \leq q(u,v) \leq 255
+\end{split}
+  \label{eqn:jpeg_2}
+\end{equation}
+
+The main advantage of checking against every table is that it outputs a $Q_f$, it is the $n$ the index of the minimal distance between $q_n(u,v)$ and $\widehat{q}(u,v),\ n\in \{1..100\}$. It however is computation heavy and lacks accuracy. 
+
+Using equations \ref{eqn:jpeg_1} and \ref{eqn:jpeg_2}, even if it is light and fast, has one main issue : it cannot compute $Q_f$. It is possible to get $Q_s$ from equation \ref{eqn:jpeg_2}, but it is not possible to get $Q_f$ from $Q_s$ in equation \ref{eqn:jpeg_1} without knowing whether $Q_s$ is greater than 50. 
+
+We chose to use both methods. We get a first estimation of $Q_f$ by finding which table from $q_n(u,v)$ is most similar to $\widehat{q}(u,v)$, we call this step primary estimation. With this primary estimation of $Q_f$, we refine our estimation by using equations \ref{eqn:jpeg_1} and \ref{eqn:jpeg_2}. Thus, a $Q_f*$ is computed for each coefficient in the partial quantization table $\widehat{q}(u,v)$. The actual $Q_f$ is the mean of all $Q_f*$. This step is called secondary estimation. We should add that even if after the primary estimation, $Q_f$ is incorrectly estimated above 50, the difference between both cases in equation \ref{eqn:jpeg_1} is small for values of $Q_f$ close to 50. The estimatied $Q_f$ is not always exactly the real $Q_f$ anyway, we address this problem in the parent estimation.
+
+\subsection{Ancestors estimation}
+The quality factor used to compress the image is mandatory to estimate the ancestors. Not only is it a very effective marker to filter out images that cannot be ancestors, the quality factor also allows us to normalize images to better compare them. 
+
+We assume that JPEG compression is a deterministic operation. That is, for the same implementation the same input will always output the same result. This implies that all compressions of the same image will be identical, for any number of compression the image underwent beforehand. As exlained before, we limit ourselves to JPEG compression, it means that to obtain a child image from its parent, the parent was JPEG compressed. The parent is one compression away from its child.
+
+From this, we can accurately estimate the parent : 
+
+Let $I_m$ and $I_n$ be two images and $Q_{f_{m}}$ and $Q_{f_{n}}$ their quality factors, and $C(I,Q)$ a compression operator, with $I$ an image and $Q$ a quality factor.
+\\
+
+if $I_m = C(I_n, Q_{f_{m}})$, then $I_n$ is a direct ansestor of $I_m$.
+
+As we stated above, our $Q_f$ is not always the right $Q_f$, but can be too big or too small. We solve that testing $Q_f$ and its neighbors as compression candidates until a ancestor is found. The running time of our algorithm is closely related with the accuracy of the estimation of our $Q_f$'s.
+
+This method, even if it yields excellent results, can only find the direct parent and not further ancestors. It is indeed not easy to take a binary decision when the bounds of the values changes so much with the input data.
+
+\subsection{Tree building}
+The ancestors estimation process output a binary matrix of size $n\times n,\ n$ being the number of images in the set. This matrix is called a parentage matrix. A 1 value at index $(i, j)$ in this matrix means that image $I_i$ is an ancestor of image $I_j$. A 0 value tells us they are not related. Figure \ref{fig:tree} shows an example of a tree with its parentage matrix.
+
+\begin{figure}[htbp]
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=.5\linewidth]{algo_tree}
+    \caption{Phylogeny tree}
+    \label{algo_tree}
+  \end{subfigure}%
+\\
+
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \begin{tabular}{|r||c|c|c|c|c|}
+      \hline
+      - & $I_{0}$ & $I_{1}$ & $I_{2}$ & $I_{3}$ & $I_{4}$ \\ \hhline{|=::=|=|=|=|=|}
+      $I_{0}$ & - & 0 & 0 & 0 & 0 \\ \hline
+      $I_{1}$ & 0 & - & 0 & 1 & 1 \\ \hline
+      $I_{2}$ & 1 & 1 & - & 1 & 1 \\ \hline
+      $I_{3}$ & 0 & 0 & 0 & - & 0 \\ \hline
+      $I_{4}$ & 0 & 0 & 0 & 0 & - \\ \hline
+    \end{tabular} 
+    \caption{Parentage matrix}
+    \label{parentage_matrix}
+  \end{subfigure}
+  \caption{A phylogeny tree and its parentage matrix.}
+  \label{fig:tree}
+\end{figure}
+
+From this example, we can notice several things. A column with only 0 values does not have any ancestor, it is the root of the tree, which, by definition, does not have ancestors. A line with only 0 values is the parent of noone : it is a leaf. We can generalize and say that the less a column has 0 values, the less ancestors it has, the closest it is to the root.
+
+Algorithm \ref{algo_} presents our tree building algorithm.
+
+\begin{algorithm}[]
+  \LinesNumbered
+  \KwData{M a n$\times$n parentage matrix}
+  \KwResult{the root of the tree}
+  \BlankLine
+  $nextRoot \leftarrow$ row with min sum of elements\;
+  $treeRoot \leftarrow nextRoot$\;
+  \BlankLine
+
+  \ForAll{rows row of M}{
+    $root \leftarrow nextRoot$\;
+    mark $root$ as done\;
+    \BlankLine
+    \For{$i\leftarrow 0$ \KwTo n}{
+      $row[i] \leftarrow 0$\;
+      \If{sum of elements of row == 0} {
+        add $i$ as child of $root$\;
+      }
+      \If{row has the smallest sum of elements and is not marked as done} {
+        $nextRoot \leftarrow i$\;
+      }
+    }
+  }
+  \KwRet treeRoot
+\caption{Tree building algorithm.}
+\label{algo_}
+\end{algorithm}
+
+Each iteration, an image is selected as the root (lines 1 and 11) and named $root$. $root$ is removed (line 7) from the ancestors of the other images. If these other images do not have any ancestor (line 8), it means that $root$ was the direct parent of the image being processed. This image is added as a child of $root$ (line 9). Line 5 prevents images from being a potential root twice.
+
+This algorithm runs in $O(n^2)$. It has two nested loops and if the sums are computed once at the beginning and updated every time a parent is removed, there is no extra loop increasing complexity.
+
+\section{Experiments and results}
+In this section, we presents the results we obtained with our method. We start by describing how we generated our datasets and then explain our results and how and why they were obtained.
+
+\subsection{Datasets generation}
+We created three datasets, one with trees with 15 images, another one with 25 images and a last one with 50 images. It will allows us to see how things like the distance to the root or the number of compressions affect our tree estimation method.
+
+From a seed images (never lossy compressed), a first image is compressed with $85 < Q_f < 99$, it is the root image. This image is added to the images pool. While the number of images in the pool is smaller than the desired number, an image is randomly chosen in the pool, compressed with $Q_{f_{parent}} - 15 < Q_{f_{child}} < Q_{f_{parent}} - 1$ and added to the pool. The quality factor cannot be smaller than 30, further than that, the image is both too deteriorated and does not contain meaningful information and not a realistic use case on social networks.
+
+We used the six base images of BOWS 2 \autocite{bows}, where each image was used to create 15 trees for each tree size, a total of 90 trees per dataset, or 8100 images.
+
+\subsection{Experimental results}
+We use seven metrics to measure our results, three metrics measuring the accuracy of the estimation of the quality factor, the four other are given by \citeauthornsc{dias2010first} \autocite{dias2010first} and available table \ref{fig:metrics}.
+
+% \begin{figure}
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{ll}
+  \textbf{Root} & $
+                  R(IPT_{1}, IPT_{2}) = $
+                  \scalebox{0.65}{%
+                  $
+                  \begin{cases}
+                    1 & if\ \texttt{Root(IPT}_{1}) = \texttt{Root(IPT}_{2}) \\
+                    0 & Otherwise
+                  \end{cases}
+                        $} \\
+  \textbf{Edges} & $E(IPT_{1}, IPT_{2}) = \frac{|E_{1} \cap E_{2}|} {n - 1}$ \\
+  \textbf{Leaves} & $L(IPT_{1}, IPT_{2}) = \frac{|L_{1} \cap L_{2}|} {|L_{1} \cup L_{2}|}$ \\
+  \textbf{Ancestry} & $A(IPT_{1}, IPT_{2}) = \frac{|A_{1} \cap A_{2}|} {|A_{1} \cup A_{2}|}$
+% \caption{Metrics for tree reconstruction evaluation.}
+\label{fig:metrics}
+\end{tabular}
+\renewcommand{\arraystretch}{1.}
+% \end{figure}
+
+$Root$ is trivial and returns 1 if the roots of both trees are identical, $Edge$ measures the ratio of nodes which have the correct direct parent, $Leaves$ is the ratio of correct leaves and $Ancestry$ is the ratio of correct ancestors up to the root.
+
+The three metrics used to measure the accuracy of the estimation of the quality factor is the estimation mean error, the mean error on all the $Q_f$'s on every image of the dataset. The mean overestimation and mean underestimation, which should be symetrical, will tell us whether our algorithm overestimates the $Q_f$'s, and when.
+
+Table \ref{results} shows the results we got using our methods on the three datasets.
+
+\begin{figure}[htbp]
+  \centering
+  \scalebox{0.90}{
+  \begin{tabular}{|l||c|c|c|c|c|}
+    \hline
+     \backslashbox{Metric}{Dataset}             & \textbf{15 images} & \textbf{25 images} & \textbf{50 images} \\ \hhline{|=::=|=|=|}
+    \textbf{\pbox{2.6cm}{Mean estimation error of $Q_f$}} & 0.52 & 0.64 & 0.83 \\ \hline
+    \textbf{\pbox{2.7cm}{Mean overestimation of $Q_f$}}      & 1.61  & 1.86  & 1.94  \\ \hline
+    \textbf{\pbox{2.6cm}{Mean underestimation of  $Q_f$}}     & 1.07  & 2.12    & 6.68  \\ \hhline{|=::=|=|=|}
+    \textbf{roots}                                              & 95.83 & 88.88 & 84.72 \\ \hline
+    \textbf{edges}                                              & 99.70 & 99.24 & 98.97 \\ \hline
+    \textbf{leaves}                                             & 99.59 & 99.15 & 98.74 \\ \hline
+    \textbf{ancestry}                                           & 99.44 & 96.88 & 96.96 \\ \hline
+  \end{tabular}} 
+\caption{Results table, the first three metrics measure the accuracy of the estimation of $Q_f$, the other which measure the quality of the tree reconstruction are given in percentage.}
+\label{results}
+\end{figure}
+
+We can see that the smaller the dataset, the better the results. We should add that the best score for the three first metrics is 0, when all $Q_f$ were correctly estimated, and the best score for the other is 100, when the two trees are identical.
+
+The mean errors, even if they are below 1 for the three datasets, and are very good, get worse when the number of images increases, in particular the overestimation is pretty high for 50 images. 
+
+So high an overestimation is due to too much noise on the DCT coefficients for images compressed a lot of times. We cannot properly estimated the period of such coefficients and therefore cannot properly estimate $Q_f$. When no peak is detected, our algorithm actually assumes that the image was not quantized, or compressed with a $Q_f$ very close to 100, since a signal not quantized will not show any peaks. A high number of compression is most likely to happen for 50 images, hence the worse results.
+
+We assumed that JPEG compression was a deterministic operation. However, it appears not to be the case for small $Q_f$'s (< 35) with a high number of compressions. It means that for some images, no parent can be found. We wanted to have a simple tree reconstruction algorithm, with only binary data, no other information is available during the reconstruction process, thus, our algorithm cannot distinguish the root, which has no parent, and a problematic image, with no parents detected. The root is then chosen as the image with the smallest index. Again, this is most likely to occur on big datasets.
+
+An other problems, which does not affect the root, but rather the rest of the tree, is block convergence, and image convergence, as shown by \citeauthornsc{lai2013block} \autocite{lai2013block}. After a given number of compressions, an image can become identical to its parent, it then becomes impossible to tell which is which. This is caused by images with $Q_f = 30$, the lower bound of $Q_f$ during our generation. If an image with $Q_f = 30$ has a child, this child will also have $Q_f = 30$, and so recursively.
+
+The results given above are obtained on the whole dataset, where all images are available. Our method is very effective to estimate the phylogeny tree when all images are present, when there is always a direct parent. Since we cannot estimate other ancestors, we wanted to try our methods on the same datatets, with one image missing to see if the results were still good. Table \ref{results_missing} shows the results.
+
+\begin{figure}
+  \centering
+  \scalebox{0.90}{
+  \begin{tabular}{|l||c|c|c|c|c|}
+    \hline
+     \backslashbox{Metric}{Dataset}             & \textbf{15 images} & \textbf{25 images} & \textbf{50 images} \\ \hhline{|=::=|=|=|}
+    \textbf{roots}                                                      & 69.60 & 33.33 & 49.01 \\ \hline
+    \textbf{edges}                                                      & 88.86 & 92.40 & 95.07 \\ \hline
+    \textbf{leaves}                                                     & 91.30 & 93.00 & 94.72 \\ \hline
+    \textbf{ancestry}                                                   & 78.06 & 82.22 & 88.21 \\ \hline
+  \end{tabular}}
+\caption{Results with one image missing in every tree.}
+\label{results_missing}
+\end{figure}
+
+We can see that the root metric suffers the most from the image missing. As explained above, our tree reconstruction algorithm cannot differentiate an image with no parents (the root) and an image with no parents detected. The root of the tree is in this case almost randomly chosen. Figure \ref{fig:missing} shows how a tree with a missing node results in an incorrect tree estimation. We actually have correct subtrees, with the right parents, but we do not have the information on how to links those tree together.
+
+\begin{figure}[htbp]
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \node[anchor=south west,inner sep=2] at (0,0) { 
+        \begin{forest}
+          [\href{run:7}{7.jpg}[\href{run:8}{8.jpg}[\href{run:1}{1.jpg}[\href{run:9}{9.jpg}[\href{run:14}{14.jpg}]]][\href{run:13}{13.jpg}[\href{run:3}{3.jpg}[\href{run:5}{5.jpg}]][\href{run:10}{10.jpg}[\href{run:6}{6.jpg}]]]][\href{run:11}{11.jpg}][\href{run:12}{12.jpg}[\href{run:0}{0.jpg}][\href{run:2}{2.jpg}][\href{run:4}{4.jpg}]]]
+        \end{forest}};
+      % \draw[red,ultra thick,rounded corners] (7.5,5.3) rectangle (9.4,6.2);
+      \draw[red, ultra thick](0.8,2.5) -- (2.05,3.1);
+      \draw[red, ultra thick](0.8,3.1) -- (2.05,2.5);
+    \end{tikzpicture}
+    \caption{Original tree with node 8 removed.}
+  \end{subfigure}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \node[anchor=south west,inner sep=2] at (0,0) { 
+        \begin{forest}
+          [\href{run:7}{7.jpg}[\href{run:11}{11.jpg}][\href{run:12}{12.jpg}[\href{run:0}{0.jpg}][\href{run:2}{2.jpg}][\href{run:4}{4.jpg}]]]
+        \end{forest}
+        \begin{forest}
+          [\href{run:1}{1.jpg}[\href{run:9}{9.jpg}[\href{run:14}{14.jpg}]]]
+        \end{forest}
+        \begin{forest}
+          [\href{run:13}{13.jpg}[\href{run:3}{3.jpg}[\href{run:5}{5.jpg}]][\href{run:10}{10.jpg}[\href{run:6}{6.jpg}]]]
+        \end{forest}};
+    \end{tikzpicture}
+    \caption{Three subtrees that we do not know how to link.}
+  \end{subfigure}
+
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \begin{forest}
+      [\href{run:1}{1.jpg}[\href{run:7}{7.jpg}[\href{run:11}{11.jpg}][\href{run:12}{12.jpg}[\href{run:0}{0.jpg}][\href{run:2}{2.jpg}][\href{run:4}{4.jpg}]]][\href{run:9}{9.jpg}[\href{run:14}{14.jpg}]][\href{run:13}{13.jpg}[\href{run:3}{3.jpg}[\href{run:5}{5.jpg}]][\href{run:10}{10.jpg}[\href{run:6}{6.jpg}]]]]
+    \end{forest}
+    \caption{Output of tree reconstruction algorithm}
+    \label{fig:missing1}
+  \end{subfigure}
+
+  \caption{Exemple of a tree with a missing node and a reconstruction attempt.}
+  \label{fig:missing}
+\end{figure}
+
+Even though our method was designed for grayscale images, we wanted to see if the luminance channel of a color image contained enough information for our method to estimate the tree. None of our algorithm were modified and we only gave color images instead of grayscale images as input. Table \ref{results_color} shows our results.
+
+\begin{figure}[htbp]
+  \centering
+\scalebox{0.90}{
+  \begin{tabular}{|l||c|c|c|c|c|}
+    \hline
+     \backslashbox{Métrique}{Dataset}             & \textbf{15 images} & \textbf{25 images} & \textbf{50 images} \\ \hhline{|=::=|=|=|}
+    \textbf{\pbox{2.6cm}{Mean estimation error of $Q_f$}}               & 1.15  & 1.29  & 1.42     \\ \hline
+    \textbf{\pbox{2.7cm}{Mean overestimation of $Q_f$}}                 & 1.85  & 2.70  & 2.64  \\ \hline
+    \textbf{\pbox{2.6cm}{Mean underestimation of  $Q_f$}}               & 2.97  & 3.79  & 4.94  \\ \hhline{|=::=|=|=|}
+    \textbf{roots}                                                      & 93.94 & 81.82 & 87.88 \\ \hline
+    \textbf{edges}                                                      & 99.35 & 98.61 & 99.38 \\ \hline
+    \textbf{leaves}                                                     & 99.62 & 98.66 & 99.78 \\ \hline
+    \textbf{ancestry}                                                   & 98.79 & 94.13 & 98.82 \\ \hline
+  \end{tabular}}
+\caption{Results table with color images.}
+\label{results_color}
+\end{figure}
+
+The results are not very different from grayscale images, slightly worse, but not significantly so. The estimation of $Q_f$ is not as good, it can be because of the rounding when going from RGB to YUV. We did not use any of the chrominance channel, the luminance channel looks to contain enough information and allows us to reliably estimate the tree.
+
+\end{document}

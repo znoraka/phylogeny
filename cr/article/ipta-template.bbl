@@ -1,0 +1,88 @@
+% $ biblatex auxiliary file $
+% $ biblatex version 2.6 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\entry{bows}{online}{}
+  \field{sortinit}{B}
+  \field{title}{BOWS 2 dataset}
+  \verb{url}
+  \verb http://bows2.ec-lille.fr/index.php
+  \endverb
+\endentry
+
+\entry{dias2010first}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Dias}{D.}%
+     {Zanoni}{Z.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rocha}{R.}%
+     {Anderson}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Goldenstein}{G.}%
+     {Siome}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{organization}{1}{%
+    {IEEE}%
+  }
+  \strng{namehash}{DZ+1}
+  \strng{fullhash}{DZRAGS1}
+  \field{sortinit}{D}
+  \field{booktitle}{Information Forensics and Security (WIFS), 2010 IEEE
+  International Workshop on}
+  \field{pages}{1\bibrangedash 6}
+  \field{title}{First steps toward image phylogeny}
+  \field{year}{2010}
+\endentry
+
+\entry{lai2013block}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Lai}{L.}%
+     {ShiYue}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bohme}{B.}%
+     {Rainer}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{organization}{1}{%
+    {IEEE}%
+  }
+  \strng{namehash}{LSBR1}
+  \strng{fullhash}{LSBR1}
+  \field{sortinit}{L}
+  \field{booktitle}{Acoustics, Speech and Signal Processing (ICASSP), 2013 IEEE
+  International Conference on}
+  \field{pages}{3028\bibrangedash 3032}
+  \field{title}{Block convergence in repeated transform coding: JPEG-100
+  forensics, carbon dating, and tamper detection}
+  \field{year}{2013}
+\endentry
+
+\lossort
+\endlossort
+
+\endinput

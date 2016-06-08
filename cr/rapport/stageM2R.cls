@@ -149,14 +149,14 @@
 
 %% version and date
 \predate{\hspace{\fill}
-  \ifx\theversion\undefined 
-  \else%
-  \ifx \theversion\empty \else version~\theversion \hfill \fi %
-  \fi
-  \hfill 
-  \ifx\thedate\empty \else 
-  \if@final \textsf{soutenu \if@private à huis clos \else publiquement \fi le }
-  \else \fi
+  % \ifx\theversion\undefined 
+  % \else%
+  % \ifx \theversion\empty \else version~\theversion \hfill \fi %
+  % \fi
+  % \hfill 
+  % \ifx\thedate\empty \else 
+  % \if@final \textsf{soutenu \if@private à huis clos \else publiquement \fi le }
+  % \else \fi
 }
 \postdate{   
   %%% Résumé (francais puis anglais)

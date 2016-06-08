@@ -24,6 +24,7 @@
 \usepackage{forest}
 \usepackage{hyperref}
 \usepackage{pbox}
+\usepackage{datetime}
 \usetikzlibrary{trees}
 \usetikzlibrary{babel}
 \usetikzlibrary{arrows,automata,positioning}
@@ -83,12 +84,11 @@
 %% parcours du master
 \track{IMAGINA}  
 %% date de soutenance (Optionnel)
-% \date{\today} 
 %% version du rapport (Optionnel)
 % \version{1}
 %% Résumé en francais
 \abstractfr{
-  Il est aujourd'hui extrêmement facile de manipuler des images et de les partager à l'aide des réseaux sociaux. Il est important d'identifier l'historique des transformations appliquées aux images afin de leur accorder un minimum de crédibilité. Dans le cadre de ce stage, l'objectif principal de nos recherches consiste à calculer l'arbre de phylogénie d'un ensemble d'images issues de différentes compressions JPEG successives. À chaque étape, une image enfant est donc créée à partir de la compression d'une image parent. Dans ce rapport nous présentons dans l'état de l'art les différentes méthodes de reconstruction d'un arbre phylogénétique et traitons de la détection et de l'identification des compressions JPEG multiples. Nous présentons également notre méthode qui s'articule autour d'un point central : la décision binaire entre deux images. Nous détaillons les résultats obtenus grâce à cette méthode. 
+  Il est aujourd'hui extrêmement facile de manipuler des images et de les partager à l'aide des réseaux sociaux. Il est important d'identifier l'historique des transformations appliquées aux images afin de leur accorder un minimum de crédibilité. Dans le cadre de ce stage, l'objectif principal de nos recherches consiste à calculer l'arbre de phylogénie d'un ensemble d'images issues de différentes compressions JPEG successives. À chaque étape, une image enfant est donc créée en recompressant une image parent. Dans ce rapport nous présentons dans l'état de l'art les différentes méthodes de reconstruction d'un arbre phylogénétique et traitons de la détection et de l'identification des compressions JPEG multiples. Nous présentons également notre méthode qui s'articule autour d'un point central : la décision binaire entre deux images. Nous détaillons les résultats obtenus grâce à cette méthode. 
 % approche un théorème permettant de réduire le calcul de l'arbre à une décision binaire entre deux images et un algorithme de reconstruction d'arbre.
 
 \vspace{5mm}
@@ -123,7 +123,8 @@
 
 \chapter{Introduction}
 La phylogénie, en sciences naturelles, est définie comme l'étude des relations de parenté entre êtres vivants. Et c'est exactement de cela qu'il s'agit dans le cas des images, l'étude des relations de parenté entre images. \autocite{phylogeny} \\
-À l'ère du numérique et des réseaux sociaux, il n'a jamais été aussi simple de partager des idées et du contenu. À chaque partage cependant, l'information peut être modifiée plus ou moins fortement. Les images, puisque c'est là notre sujet d'étude, peuvent avoir subi un certain nombre de transformations et de modifications avant d'être publiées sur les réseaux sociaux. C'est dans ce contexte que nous allons intervenir afin de tenter de reconstituer la phylogénie d'une image. Il peut être difficile de différentier une image modifiée de l'originale, et de savoir laquelle est l'originale alors que cette détection est cruciale, surtout dans un monde où l'information peut être facilement falsifiée par tout un chacun. Les applications sont multiples et variées, et ne se cantonnent pas à la détection et la discrimination d'images altérées. Il est également possible de se servir de la phylogénie des images pour optimiser l'espace de stockage en ne gardant que l'image originale et l'historique des modifications ou encore suivre la diffusion et l'évolution des idées sur les réseaux sociaux. 
+À l'ère du numérique et des réseaux sociaux, il n'a jamais été aussi simple de partager des idées et du contenu. À chaque partage cependant, l'information peut être modifiée plus ou moins fortement. Les images, puisque c'est là notre sujet d'étude, peuvent avoir subi un certain nombre de transformations et de modifications avant d'être publiées sur les réseaux sociaux. C'est dans ce contexte que nous allons intervenir afin de tenter de reconstituer la phylogénie d'une image. Il peut être difficile de différencier une image modifiée de l'originale, et de savoir laquelle est l'originale alors que cette détection est cruciale, surtout dans un monde où l'information peut être facilement falsifiée par tout un chacun. Les applications sont multiples et variées, et ne se cantonnent pas à la détection et la discrimination d'images altérées. Il est également possible de se servir de la phylogénie des images pour optimiser l'espace de stockage en ne gardant que l'image originale et l'historique des modifications ou encore suivre la diffusion et l'évolution des idées sur les réseaux sociaux. 
+\paragraph{}
 
 Dans ce chapitre nous commencerons par définir ce que sont les near-duplicate images, puis nous détaillerons la notion d'arbre phylogénétique et enfin nous expliquerons pourquoi nous nous sommes restreints à la compression JPEG dans le cadre de cette étude. Nous ferons un état de l'art dans le chapitre \ref{chap2} où nous présenterons les différentes approches pour calculer l'arbre de phylogénie. Nous aborderons également la problématique de la détection des recompressions et l'estimation du nombre de recompressions. Nous présentons ensuite notre méthode dans le chapitre \ref{chap3}, où détaillerons en quoi consiste, et comment est prise une décision binaire entre deux images, et comment l'arbre est ensuite reconstruit. Les résultats obtenus grâce à cette méthode seront ensuite présentés et expliqués chapitre \ref{chap4} puis nous finirons par conclure chapitre \ref{chap5}.
 
@@ -162,7 +163,7 @@ Ces transformations peuvent évidemment se composer, et une image enfant peut ê
       \caption{image $\to$ image compressée}
       \label{lena-comp}
     \end{subfigure}
-    \caption{Exemple de near-duplicates}
+    \caption{Exemple de near-duplicates.}
     \label{fig:near-duplicates-images}
   \end{figure}
 \end{center}
@@ -178,7 +179,7 @@ Il n'est pas toujours garanti que la totalité des images de l'arbre original so
 \begin{figure}
   \begin{center}
     \includegraphics[width=120mm]{images/set_to_tree}
-    \caption{Passage d'un ensemble de NDI à un arbre phylogénétique}
+    \caption{Passage d'un ensemble de NDI à un arbre phylogénétique.}
     \label{fig:set-to-tree}
   \end{center}
 \end{figure}
@@ -186,7 +187,7 @@ Il n'est pas toujours garanti que la totalité des images de l'arbre original so
 \begin{figure}
   \begin{center}
     \includegraphics[width=120mm]{images/tree_extract}
-    \caption{Passage d'une image parent à l'image enfant}
+    \caption{Passage d'une image parent à l'image enfant.}
     \label{fig:tree-extract}
   \end{center}
 \end{figure}
@@ -243,7 +244,7 @@ Dans le cadre du stage, nous proposons de réduire l'espace des transformations 
         \path [-] (F2.center) edge node[left] {} (F1.center);
         \path [-] (I.south) edge node[left] {} (F2.center);
       \end{tikzpicture}}
-      \caption{Exemple des différents scénarios de recompression d'images}
+      \caption{Exemple des différents scénarios de recompression d'images.}
       \label{comp_vaste}
     \end{center}
   \end{figure}
@@ -260,7 +261,7 @@ L'article de \citeauthornsc{kennedy2008internet} est à notre connaissance le pr
 
 \citeauthornsc{kennedy2008internet} partent du principe que les transformations sont directionnelles, c'est à dire qu'il n'est possible d'aller que d'une image moins transformée vers une image plus transformée. Ainsi, ils vont tenter d'estimer la direction de chaque transformation entre deux images $I_{1}$ et $I_{2}$ (sachant que $\mathcal{T}$ = \textit{\{scaling, cropping, grayscale, overlay, insertion\}}). Trois scénarios sont alors possibles : si toutes les transformations sont dans le même sens, l'image fille est alors celle vers qui pointent les transformations, si les transformations sont dans des sens contraires, les images sont sûrement des soeurs, elles n'ont en tous cas pas de relation parent-enfant, et enfin si aucune transformation n'a été détectée, c'est que soit les images sont identiques, soit qu'elles ne sont pas des near-duplicates. La figure \ref{vmm-directionnel} illustre ce principe par un exemple.
 \\ \indent
-Un graphe est ensuite construit à partir des couples d'images pour lesquels une relation parent-enfant a été détectée. À noter qu'une relation parent-enfant ne veut pas forcément dire que c'est le parent direct mais plutôt un ancêtre. Ainsi, un noeud du graphe (une image) peut avoir plusieurs noeuds parents, pour finalement obtenir l'arbre désiré, seuls les chemins les plus longs sont conservés, comme on peut le voir figure \ref{vmm-tree}.
+Un graphe est ensuite construit à partir des couples d'images pour lesquels une relation parent-enfant a été détectée. À noter qu'une relation parent-enfant ne veut pas forcément dire que c'est le parent direct mais plutôt un ancêtre. Ainsi, un noeud du graphe (une image) peut avoir plusieurs noeuds parents, pour finalement obtenir l'arbre désiré, seuls les chemins les plus longs sont conservés, comme illustré figure \ref{vmm-tree}.
 
 \begin{figure}
   \begin{center}
@@ -334,7 +335,7 @@ En plus de proposer une approche pour reconstituer l'arbre de phylogénie, \cite
 % \vspace{5mm}
 \paragraph{}
 
-\textbf{Root} est triviale, et renvoie si les racines sont identiques. \textbf{Edges} mesure le ratio de noeuds ayant le bon parent, \textbf{Leaves} est le ratio de feuilles correctes, et enfin \textbf{Ancestry} est le ratio d'ancêtres corrects jusqu'à la racine.
+\textbf{Root} est triviale, et renvoie 1 si les racines sont identiques. \textbf{Edges} mesure le ratio de noeuds ayant le bon parent, \textbf{Leaves} est le ratio de feuilles correctes, et enfin \textbf{Ancestry} est le ratio d'ancêtres corrects jusqu'à la racine.
 
 Ces métriques serviront à évaluer nos résultats dans la suite du stage.
 
@@ -343,7 +344,7 @@ Ces métriques serviront à évaluer nos résultats dans la suite du stage.
 Notre but n'est pas vraiment de détecter si une image a été compressée plusieurs fois, nous sommes en effet quasi-certains que nos images auront été recompressées, puisque nous travaillons avec un ensemble de NDI où $\mathcal{T} = {\{lossy\ compression\}}$. L'important est plutôt de savoir combien de fois, et à partir de quelle image $I_{n}$ a été compressée, et donc pouvoir en déduire sa distance avec la racine. La majorité des articles dans le domaine du forensics ne se concentrent que sur une image, pour en extraire le maximum d'informations possible. Ce n'est pas exactement notre cas, puisque les informations pertinentes pour nous ne sont pas dans l'image directement, mais plutôt dans ses relations avec les autres. Il nous a cependant paru important de traiter l'aspect forensics du problème, et se renseigner sur les différentes techniques, qui bien que créées pour un autre cas d'utilisation, peuvent, sinon s'adapter, au moins nous donner des pistes de recherche.
 
 \subsection{La compression JPEG}
-Une rapide introduction sur la compression JPEG et son fonctionnement s'impose. Nous ne parlerons cependant que du mode de compression avec perte, en laissant de coté son mode de compression sans perte, peu intéressant en plus de n'être que rarement utilisé. Pour de plus amples détails, le lecteur se dirigera vers \autocite{wallace1992jpeg}.
+Une rapide introduction sur la compression JPEG et son fonctionnement s'impose. Nous ne parlerons cependant que du mode de compression avec pertes, en laissant de coté son mode de compression sans perte, peu intéressant en plus de n'être que rarement utilisé. Pour de plus amples détails, le lecteur se dirigera vers \autocite{wallace1992jpeg}.
 
 \begin{figure}[H]
   \begin{center}
@@ -369,7 +370,7 @@ C'est surtout l'étape de quantification qui va réduire la quantité d'informat
 \begin{figure}[H]
   \begin{center}
     \includegraphics[width=60mm]{images/quantization_table.png}
-    \caption{Exemple de table de quantification, issu de \autocite{jpeg}.}
+    \caption{Exemple de table de quantification, issu de \autocite{jpeg}, correspond à Q = 50.}
     \label{fig:quantization_table}
   \end{center}
 \end{figure}
@@ -377,7 +378,7 @@ C'est surtout l'étape de quantification qui va réduire la quantité d'informat
 \begin{figure}[H]
   \begin{center}
     \includegraphics[width=120mm]{images/eyes.png}
-    \caption{Artefacts de blocs, à gauche avec Q=90, à droite avec Q=20}
+    \caption{Artefacts de blocs, à gauche avec Q=90, à droite avec Q=20.}
     \label{fig:blocs_artefacts}
   \end{center}
 \end{figure}
@@ -392,26 +393,24 @@ La quantification se fait de la manière suivante :
   F^*(u,v) = \left \lfloor \frac{F(u,v) + \left \lfloor \frac{Q(u,v)}{2} \right \rfloor }{Q(u,v)} \right \rfloor,
   \label{eqn:quantization}
 \end{equation}
-
 où $F^*(u,v)$ est la valeur quantifiée, $F(u,v)$ est la valeur aux indices $u$ et $v$ dans la matrice 8$\times$8 de coefficients DCT et Q(u,v) et la valeur dans la table de quantification (figure \ref{fig:quantization_table}) à ces même indices.
 
 Le calcul inverse est :
 \begin{equation}
-  F'(u,v) = F^*(u,v) * Q(u,v).
+  F'(u,v) = F^*(u,v)\times Q(u,v),
   \label{eqn:iquantization}
 \end{equation}
-
 où $F'(u,v)$ est la valeur issue de la quantification inverse aux indices $u$ et $v$ dans la matrice 8$\times$8 de coefficients DCT, $F^*(u,v)$ est la valeur quantifiée et Q(u,v) est la valeur dans la table de quantification (figure \ref{fig:quantization_table}) à ces même indices.
 
 Nous voyons bien à partir des équations \ref{eqn:quantization} et \ref{eqn:iquantization} que le résultat après décompression sera un multiple de $Q(u,v)$ et que toutes les valeurs n'étant pas des multiples seront absentes.
 
-La double compression est le fait de compresser deux fois une image, et donc de lui faire subir deux fois toutes les étapes de compression et de décompression, avec tous les arrondis et troncage que cela peut comporter. On notera, pour la double compression, $Q_{1}$ comme la matrice primaire, c'est à dire la table de quantification ayant servi à faire la première compression (inconnue donc), et $Q_{2}$ comme la matrice secondaire, ou la table de quantification actuelle, disponible dans l'en-tête du fichier JPEG. Les auteurs limitent la double compression aux cas où $Q_{1} \neq Q_{2}$.
+La double compression est le fait de compresser deux fois une image, et donc de lui faire subir deux fois toutes les étapes de compression et de décompression, avec tous les arrondis et troncage que cela peut comporter. Nous noterons, pour la double compression, $Q_{1}$ comme la matrice primaire, c'est à dire la table de quantification ayant servi à faire la première compression (inconnue donc), et $Q_{2}$ comme la matrice secondaire, ou la table de quantification actuelle, disponible dans l'en-tête du fichier JPEG. Les auteurs limitent la double compression aux cas où $Q_{1} \neq Q_{2}$.
 
 Lors de la première compression, les coefficients sont quantifiés avec $Q_{1}$, ce qui veut dire que les coefficients sont des multiples de $Q_{1}$. Cependant, lorsque l'image est repassée du domaine fréquentiel au domaine spatial grâce à la DCT inverse, un certain nombre d'arrondis et de troncages se produisent pour rester dans l'intervalle [0..255]. Lors de la seconde compression, les coefficients DCT sont calculés à partir des ces valeurs inexactes, et donc ne seront pas multiples de $Q_{1}$, mais se concentreront autour. Ces nouveaux coefficients DCT seront ensuite quantifiés pour former la nouvelle image, doublement compressée.
 
 Les auteurs ayant laissé de coté le cas où $Q_{1} = Q_{2}$, nous sommes en présence de deux cas : $Q_{1} > Q_{2}$ et $Q_{1} < Q_{2}$. Chacun des cas a des artefacts distincts et reconnaissables. La figure \ref{fig:histo} illustre un exemple de distributions ayant subi des quantifications, la figure \ref{ha} n'a subi qu'une seule quantification, la figure \ref{hb} correspond au cas où $Q_{1} > Q_{2}$ et la figure \ref{hc} correspond au deuxième cas. Un autre cas est délaissé, c'est celui où $Q_{1}$ est facteur $Q_{2}$, ce qui est assez logique, ils auront les même multiples, et il sera donc impossible de détecter quoi que ce soit, du moins en utilisant la méthode proposée ici.
 
-L'estimation de la première table de quantification se limite aux basses fréquences, les hautes fréquences étant plus fortement quantifiées (souvent jusqu'à 0), elles contiennent moins d'informations et donc rendent leur estimation difficile.
+L'estimation de la première table de quantification se limite aux basses fréquences, les hautes fréquences étant plus fortement quantifiées (les hautes fréquences sont souvent quantifiées jusqu'à 0), elles contiennent moins d'informations et donc rendent leur estimation difficile.
 
 Leur technique consiste à se munir d'une série de candidats pour la matrice primaire, notés $\{Q_{1,1},...,Q_{1,n}\}$. Ces tables de quantification viennent des tables utilisées dans les appareils photos, les téléphones portables ou les différentes implémentations de la compression JPEG. Parmi ces $\{Q_{1,1},...,Q_{1,n}\}$, le meilleur candidat, et donc la table la plus probable sera la table de quantification pour laquelle la différence entre l'histogramme de l'image et l'histogramme de l'image compressée avec $Q_{1,k}$ sera la plus faible.
 
@@ -463,7 +462,7 @@ Les auteurs vont s'appuyer sur trois signes distinctifs laissés par la compress
 Ils vont ensuite perturber (ajouter ou soustraire 1) aléatoirement un nombre $n/r$ de coefficients DCT de $I'$ où $n$ est le nombre de coefficients modifiés par coefficient différent de zéro et r est un ratio choisi de manière experimentale.
 % . Le nombre $n$ est déterminé à partir d'un ratio $r$ qu'il faudra choisir avec soin. Ce ratio est le nombre de coefficients modifiés par coefficient différent de zéro.
 
-Cette image perturbée $I'$ est ensuite recompressée avec sa table de quantification pour donner $I''$. Le nombre $Dm$ est calculé comme le nombre de coefficients DCT différents entre $I'$ et $I''$. Cette étape est répétée $k$ fois, à chaque fois avec la nouvelle image obtenue. On obtient alors $\bar{D}m$, la moyenne de tous les $Dm$.
+Cette image perturbée $I'$ est ensuite recompressée avec sa table de quantification pour donner $I''$. Le nombre $Dm$ est calculé comme le nombre de coefficients DCT différents entre $I'$ et $I''$. Cette étape est répétée $k$ fois, à chaque fois avec la nouvelle image obtenue. Nous obtenons alors $\bar{D}m$, la moyenne de tous les $Dm$.
 
 Une image I est doublement compressée si $\bar{D}m \geqslant D$. En effet, si c'est la première recompression, $D$ est grand (voir figure \ref{d_courbe}). C'est là qu'intervient le choix du ratio $r$. 
 
@@ -471,7 +470,7 @@ Ce ratio est calculé de manière experimentale, c'est à dire que grâce à une
 
 Un ratio mal choisi perturbera trop l'image et la modifiera plus que sa première recompression ou alors ne la perturbera pas suffisamment et l'image serait alors détectée à tort comme simplement compressée.
 
-Cette méthode offre un moyen de détecter la présence de double compressions avec la même matrice de quantification, un cas probable dans le cadre des réseaux sociaux. Même si elle a été pensée pour la détection dans le cas de la première compression, cette méthode pourrait être étendue à la détection de la la $n^{ieme}$ et la $n+1^{ieme}$ compression. Contrairement aux auteurs, qui travaillent sur une image dans le vide, nous travaillons sur un ensemble d'images, et avons donc plus d'informations à notre disposition.
+Cette méthode offre un moyen de détecter la présence de double compressions avec la même matrice de quantification, un cas probable dans le cadre des réseaux sociaux. Même si elle a été pensée pour la détection dans le cas de la première compression, cette méthode pourrait être étendue à la détection de la $n^{ieme}$ et la $n+1^{ieme}$ compression. Contrairement aux auteurs, qui travaillent sur une image dans le vide, nous travaillons sur un ensemble d'images, et avons donc plus d'informations à notre disposition.
 
 \subsection{DQ effect ou les marques d'une double quantification}
  % \citeauthornsc{lukavs2003estimation}
@@ -482,11 +481,11 @@ Nous aurons donc deux histogrammes $h_1$ et $h_2$. $h_1$ est l'histogramme des c
 
 Nous avons donc $u_2 = \left [ \left [ \frac{u1}{q1} \right ] \frac{q1}{q2}\right ]$, qui a été obtenu de la manière suivante : 
 
-La valeur après la première quantification est donc : $\left [ \frac{u_1}{q_1} \right ]$
+La valeur après la première quantification est donc : $\left [ \frac{u_1}{q_1} \right ]$.
 
-La quantification inverse donne $\left [ \frac{u_1}{q_1} \right ] \times  q_1$
+La quantification inverse donne $\left [ \frac{u_1}{q_1} \right ] \times  q_1$.
 
-Puis la deuxième quantification donne $\left [ \frac{\left (  \left [ \frac{u_1}{q_1} \right ]\ \times\  q_1 \right )}{q_2} \right ]$, ou encore $u_2 = \left [ \left [ \frac{u1}{q1} \right ] \frac{q1}{q2}\right ]$ de manière simplifiée
+Puis la deuxième quantification donne $\left [ \frac{\left (  \left [ \frac{u_1}{q_1} \right ]\ \times\  q_1 \right )}{q_2} \right ]$, ou encore $u_2 = \left [ \left [ \frac{u1}{q1} \right ] \frac{q1}{q2}\right ]$ de manière simplifiée.
 
  Nous allons donc partir de cette équation pour borner $u_1$ et tenter de savoir d'où vient $u_2$.
 
@@ -500,7 +499,7 @@ $$\frac{q_2}{q_1} \left (  u_2 - \frac{1}{2}\right ) \leq \left [ \frac{u_1}{q_1
 
 Deux possibilités s'offrent alors à nous : 
 \begin{itemize}
-  \item $q_1$ est pair et on peut continuer à développer
+  \item $q_1$ est pair et nous pouvons continuer à développer
      $$q_1\left(\left \lceil \frac{q_2}{q_1} \left (  u_2 - \frac{1}{2}\right ) \right \rceil - \frac{1}{2} \right) \leq u_1 < q_1\left(\left \lfloor \frac{q_2}{q_1} \left (  u_2 + \frac{1}{2}\right ) \right \rfloor + \frac{1}{2} \right)$$
 
    \item $q_2$ est impair, et il faut ajouter ou retirer $\frac{1}{2}$ pour que la valeur de $u_1$ soit entière
@@ -610,7 +609,7 @@ Au travers de cet état de l'art, nous avons pu voir différentes méthodes de c
 \chapter{Méthode de calcul de phylogénie à l'aide des caractéristiques des coefficients DCT d'une bitmap}
 \label{chap3}
 
-Nous tentons de reconstruire l'arbre de phylogénie d'un ensemble de near-duplicates. Contrairement aux approches de l'état de l'art qui utilisent des algorithmes de construction d'arbre complexes pour reconstruire l'arbre à partir d'une dissimilarity matrix, nous allons prendre une décision binaire entre deux image, à savoir ``Cette image est-elle le parent de cette autre image ?''. Cela nous permet de nous concentrer sur les images et leurs caractéristiques et avoir un algorithme de construction d'arbre simple. La figure \ref{fig:method_schema} présente notre méthode. Dans ce chapitre, nous commencerons pas présenter les principes et théorème sur lesquels s'appuient notre méthode section \ref{sec:method} puis nous détaillerons directement le calcul de la période de chaque coefficient DCT section \ref{sec:extraction} sans expliquer comment ils ont été obtenus, c'est en effet largement traité dans \autocite{wallace1992jpeg}, nous expliquerons comment est estimé le facteur de qualité en \ref{sec:estimation} pour ensuite détailler l'estimation du parent et la construction de l'arbre sections \ref{sec:parent} et \ref{sec:reconstruction} et nous terminerons par le filtrage des doublons section \ref{sec:filtrage}.
+Dans ce chapitre, nous proposons une approche afin de reconstruire l'arbre de phylogénie d'un ensemble de near-duplicates. Contrairement aux approches de l'état de l'art qui utilisent des algorithmes de construction d'arbre complexes pour reconstruire l'arbre à partir d'une dissimilarity matrix, nous allons prendre une décision binaire entre deux image, à savoir ``Cette image est-elle le parent de cette autre image ?''. Cela nous permet de nous concentrer sur les images et leurs caractéristiques et avoir un algorithme de construction d'arbre simple. La figure \ref{fig:method_schema} présente notre méthode. Dans ce chapitre, nous commencerons pas présenter les principes et théorème sur lesquels s'appuient notre méthode section \ref{sec:method} puis nous détaillerons directement le calcul de la période de chaque coefficient DCT section \ref{sec:extraction} sans expliquer comment ils ont été obtenus, c'est en effet largement traité dans \autocite{wallace1992jpeg}, nous expliquerons comment est estimé le facteur de qualité en \ref{sec:estimation} pour ensuite détailler l'estimation du parent et la construction de l'arbre sections \ref{sec:parent} et \ref{sec:reconstruction} et nous terminerons par le filtrage des doublons section \ref{sec:filtrage}.
 
 \begin{figure}[H]
   \begin{center}
@@ -656,14 +655,14 @@ Nous tentons de reconstruire l'arbre de phylogénie d'un ensemble de near-duplic
         \path [->] (L) edge node[left] {} (M);
         \path [->] (M) edge node[left] {} (N);
       \end{tikzpicture}}
-    \caption{Schéma de notre méthode}
+    \caption{Schéma général de notre méthode.}
     \label{fig:method_schema}
   \end{center}
 \end{figure}
 
 \section{Principe et théorème}
 \label{sec:method}
-Pour tout couple d'images de notre ensemble, nous tentons donc de prendre une décision binaire, qui vas nous permettre d'extraire une \textit{matrice de parenté}. Rappelons que nous tentons ici de savoir si une image est l'ancêtre d'une autre, et pas seulement son parent direct. Nous mettons en place un framework pour tenter de résoudre ce problème : 
+Pour tout couple d'images de notre ensemble, nous tentons donc de prendre une décision binaire, qui va nous permettre d'extraire une \textit{matrice de parenté}. Rappelons que nous tentons ici de savoir si une image est l'ancêtre d'une autre, et pas seulement son parent direct. Nous mettons en place un framework pour tenter de résoudre ce problème : 
 
 \newtheorem*{marqueur}{Définition}
 \begin{marqueur}
@@ -691,12 +690,12 @@ Ce framework a été imaginé lors de l'étude bibliographique, nous allons ensu
 
 
 \section{Estimation du facteur de qualité d'une image JPEG}
-Nous travaillons sur des images ayant subi une compression JPEG. Ces images, au fil de leurs voyages sur les réseaux sociaux, on pu changer de format et avoir été convertie au format PNG par exemple. L'information du facteur de qualité utilisé pour compresser l'image, indispensable à nos calculs, a été perdue. Nous proposons donc d'estimer le facteur de qualité d'une bitmap n'ayant pas subi d'autre compression avec perte que le JPEG.
+Nous travaillons sur des images ayant subi au moins une compression JPEG. Ces images, au fil de leurs voyages sur les réseaux sociaux, ont pu changer de format et avoir été convertie au format PNG par exemple. L'information du facteur de qualité utilisé pour compresser l'image, indispensable à nos calculs, a été perdue. Nous proposons donc d'estimer le facteur de qualité d'une bitmap n'ayant pas subi d'autre compression avec perte que le JPEG.
 
 % \section{Estimation du pas de quantification}
 \subsection{Estimation de la table de quantification}
 \label{sec:extraction}
-Nous avons besoin des coefficients DCT de l'image pour pouvoir estimer la table de quantification. Deux choix s'offrent à nous : calculer une DCT à partir d'une bitmap, ou compresser une bitmap au format JPEG avec $Q_f = 100$ et lire directement les coefficients DCT. Le deuxième choix s'avère être le plus simple à mettre en place et c'est celui que nous avons utilisé.
+Nous avons besoin des coefficients DCT de l'image pour pouvoir estimer la table de quantification. Deux choix s'offrent à nous : calculer une DCT à partir d'une bitmap, ou compresser une bitmap au format JPEG avec $Q_f = 100$ et lire directement les coefficients DCT. Pour rappel, lorsque $Q_f = 100$, tous les coefficients de quantification $q(u,v)$ sont égaux à 1, il s'agit donc simplement d'arrondir à l'entier le plus proche chacun des coefficients DCT. Le deuxième choix s'avère être le plus simple à mettre en place et c'est celui que nous avons utilisé.
 
 Comme expliqué section \ref{estimation_matrice_compression}, les valeurs des coefficients DCT vont se rassembler autour des multiples de $q$, qui est le nombre utilisé pour la quantification. Chaque coefficient DCT forme donc un signal périodique, de période $q$. C'est cette période que nous allons tenter d'estimer. L'autocorrélation est la technique traditionnellement utilisée pour extraire une période.
 
@@ -722,41 +721,41 @@ Nous savons que les valeurs du pas de quantification sont bornées par 1 et 255,
   \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\linewidth]{images/signal}
-    \caption{Histogramme du coefficient DC d'une image}
+    \caption{Histogramme des coefficients DC d'une image.}
     \label{fig:signal}
   \end{subfigure}
   \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\linewidth]{images/autocorrelation}
-    \caption{Autocorrélation de ce signal}
+    \caption{Autocorrélation de ce signal.}
     \label{fig:autocorrel}
   \end{subfigure}
-  \caption{Exemple de signal et son autocorrélation}
+  \caption{Exemple de signal et son autocorrélation.}
 \end{figure}
 
 \begin{figure}
   \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\linewidth]{images/signal_noise}
-    \caption{Exemple de bruit entre les pics}
+    \caption{Exemple de bruit entre les pics dans le cas où $Q_{f_1} > Q_{f_2}$.}
   \end{subfigure}
   \begin{subfigure}{.5\textwidth}
     \centering
     \includegraphics[width=\linewidth]{images/signal_noise_zoom}
-    \caption{Zoom sur le bruit}
+    \caption{Zoom sur le bruit.}
   \end{subfigure}
-  \caption{Présence de bruit entre les pics}
+  \caption{Présence de bruit entre les pics.}
   \label{fig:signal_noise}
 \end{figure}
 
-La période va ensuite être le delta entre deux pics consécutifs. La détection d'un pic est triviale lorsque le signal est propre et ne comporte aucun bruit, une valeur est un pic si la valeur précédente et la valeur suivante sont strictement inférieures. Nous ne sommes hélas pas dans le cas idéal, comme illustré figure \ref{fig:signal_noise}, où de faux pics peuvent être détectés si on prend le signal en l'état.
+La période va ensuite être le delta entre deux pics consécutifs. La détection d'un pic est triviale lorsque le signal est propre et ne comporte aucun bruit, une valeur est un pic si les valeurs précédentes et suivantes sont strictement inférieures. Nous ne sommes hélas pas dans le cas idéal, comme illustré figure \ref{fig:signal_noise}, où de faux pics peuvent être détectés si le signal est pris en l'état.
 
-La méthode la plus simple, efficace,  peu coûteuse en temps de calcul et facile à mettre en place est de ne garder que les valeurs supérieures à un seuil. Notre seuil est calculé comme cinq fois la valeur moyenne de l'autocorrélation. Un exemple est disponible figure \ref{fig:signal_filtered}
+La méthode la plus simple, efficace,  peu coûteuse en temps de calcul et facile à mettre en place est de ne garder que les valeurs supérieures à un seuil. Notre seuil est calculé comme cinq fois la valeur moyenne de l'autocorrélation. Un exemple est disponible figure \ref{fig:signal_filtered}.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\linewidth]{images/autocorrelation_filtered}
-    \caption{Exemple d'autocorrélation avec un seuil (en vert)}
+    \caption{Exemple d'autocorrélation avec un seuil (en vert).}
     \label{fig:signal_filtered}
 \end{figure}
 
@@ -767,11 +766,11 @@ Il est important de noter que cette technique donne de très bons résultats, ma
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\linewidth]{images/autocorrelation_double}
-    \caption{Exemple d'autocorrélation avec des doubles pics}
+    \caption{Exemple d'autocorrélation avec des doubles pics, $Q_{f_1}$ peut être inféreur à $Q_{f_2}$.}
     \label{fig:double_peaks}
 \end{figure}
 
-Cette opération est donc répétée pour les 35 premiers coefficients DCT de l'image pour obtenir $\widehat{q}(u,v)$ la table de quantification estimée. Nous n'estimons que les 35 premiers coefficients DCT de l'image car la quantification des derniers coefficients est trop importante et il y a trop de valeurs à zéro, et donc pas assez d'informations pour estimer de manière précise la période.
+Cette opération est donc répétée pour les 35 premiers coefficients DCT de l'image pour obtenir $\widehat{q}(u,v)$ la table de quantification estimée. Nous n'estimons que les 35 premiers coefficients DCT de l'image car la quantification des derniers coefficients est trop importante et il y a trop de valeurs à zéro, et donc pas assez d'informations pour estimer de manière précise la période. Précisons que les 35 premiers coefficients correspondent au basses et moyennes fréquences contenues dans l'image.
 
 \subsection{Calcul de $Q_f$ à partir de $\widehat{q}(u,v)$}
 \label{sec:estimation}
@@ -779,9 +778,9 @@ Il va maintenant falloir calculer $Q_f$ à partir de $\widehat{q}(u,v)$, la tabl
 
 L'avantage de la première méthode est qu'elle nous donne directement $Q_f$, c'est la table pour laquelle la distance entre $q_n(u,v)$ et $\widehat{q}(u,v),\ n\in \{1..100\}$ est la plus faible. Le principal désavantage de cette technique est qu'elle est coûteuse en temps de calcul, en plus de manquer de précision.
 
-L'autre méthode, même si elle ne demande presque aucun calcul, a un défaut majeur, elle ne permet pas d'obtenir $Q_f$. On peut en effet obtenir $Q_s$ à partir de l'équation \ref{eqn:jpeg_2}, mais il n'est pas possible d'obtenir $Q_f$ à partir de $Q_s$ sans savoir si $Q_f$ est supérieur à 50.
+L'autre méthode, même si elle ne demande presque aucun calcul, a un défaut majeur, elle ne permet pas d'obtenir $Q_f$. Il est en effet possible d'obtenir $Q_s$ à partir de l'équation \ref{eqn:jpeg_2}, mais il n'est pas possible d'obtenir $Q_f$ à partir de $Q_s$ sans savoir si $Q_f$ est supérieur à 50.
 
-Nous avons choisi de conjuguer les deux méthodes. Nous obtenons une première estimation de $Q_f$ en regardant parmi toutes les tables laquelle est la plus similaire à l'aide d'un calcul de distance, nous appelons cette étape l'estimation primaire. Avec cette estimation primaire de $Q_f$, nous affinons la précision du calcul en utilisant les équations \ref{eqn:jpeg_1} et \ref{eqn:jpeg_2}. Ainsi, un $Q_f*$ va être calculé pour chaque coefficient de la table de quantification $\widehat{q}(u,v)$, le $Q_f$ final est la moyenne de l'ensemble de tous les $Q_f*$. Cette étape est appelée estimation secondaire.
+Nous avons choisi de conjuguer les deux méthodes. Nous obtenons une première estimation de $Q_f$ en regardant parmi toutes les tables laquelle est la plus similaire à l'aide d'un calcul de distance, nous appelons cette étape l'estimation primaire. Avec cette estimation primaire de $Q_f$, nous affinons la précision du calcul en utilisant les équations \ref{eqn:jpeg_1} et \ref{eqn:jpeg_2}. Ainsi, un $Q_f*$ va être calculé pour chaque coefficient de la table de quantification $\widehat{q}(u,v)$, le $Q_f$ final est la moyenne de l'ensemble de tous les $Q_f*$. Cette étape est appelée estimation secondaire. Notons que même si $Q_f$ est estimé à 49 lors de l'estimation primaire, alors qu'il est égal à 50, la différence entre le résultat des deux équations n'est pas significatif pour des $Q_f$ proches de 50. Le manque de précision de l'estimation du $Q_f$ est de toute façon traité lors de l'estimation du parent.
 % Premièrement nous obtenons une estimation grossière de $Q_f$ en regardant parmi toutes les tables laquelle est la plus similaire, puis avec cette estimation de $Q_f$ nous calculons, manière plus précise le vrai $Q_f$ à l'aide des équations \ref{eqn:jpeg_1} et \ref{eqn:jpeg_2}. Le $Q_f$ final est donc la moyenne des $Q_f$ obtenus pour chaque coefficient DCT.
 
 \section{Estimation du parent}
@@ -800,18 +799,18 @@ Soit $I_m$ et $I_n$ deux images et $Q_{f_{m}}$ et $Q_{f_{n}}$ leurs facteurs de 
 Si $I_m = C(I_n, Q_{f_{m}})$, alors $I_n$ est le parent direct de $I_m$.
 \paragraph{}
 
-C'est en pratique presque aussi simple qu'en théorie, on voit bien que tout dépend du facteur de qualité, or nous estimons ce facteur de qualité, et il peut arriver qu'il ne soit pas exact, mais un peu trop grand ou un peu trop petit. Nous n'allons donc pas nous contenter de comparer les images compressées avec le $Q_f$ estimé, nous allons également regarder les $Q_f$ alentours jusqu'à ce qu'un parent soit détecté. La précision de l'estimation du parent est donc directement corrélée avec le temps de calcul de notre algorithme. 
+C'est en pratique presque aussi simple qu'en théorie, tout dépend du facteur de qualité, or nous estimons ce facteur de qualité. Il peut arriver qu'il ne soit pas exact, mais un peu trop grand ou un peu trop petit. Nous n'allons donc pas nous contenter de comparer les images compressées avec le $Q_f$ estimé, nous allons également regarder les $Q_f$ alentours jusqu'à ce qu'un parent soit détecté. La précision de l'estimation du parent est donc directement corrélée avec le temps de calcul de notre algorithme. 
 
  % regarder les $Q_f$ alentours (de $Q_f - 2$ à $Q_f + 2$ par exemple). La précision de l'estimation du parent est donc directement corrélée avec l'exactitude de l'estimation du facteur de qualité.
 
 \paragraph{}
 Cette méthode, même si elle donne d'excellents résultats pour trouver le parent direct, ne permet pas de trouver les grands parents ou les ancêtres plus éloignés. Nous tentons en effet de prendre une décision binaire : ``Cette image est-elle le parent de cette autre image ?''. Une décision binaire est difficile lorsque l'on travaille sur des valeurs dont les bornes dépendent des données en entrée. Il est alors difficile d'utiliser des seuils pour correctement filtrer les valeurs. L'alternative logique est de ne pas utiliser de seuil, et comparer les valeurs entre elles. 
 
-On peut raisonnablement penser que l'ancêtre le plus probable est l'image ayant la plus petite valeur (issue d'une métrique quelconque) parmi toutes les autres valeurs. Le problème est que l'on perd alors le principe de décision binaire entre deux images.
+Il est raisonnable de penser que l'ancêtre le plus probable est l'image ayant la plus petite valeur (issue d'une métrique quelconque) parmi toutes les autres valeurs. Le problème est que l'on perd alors le principe de décision binaire entre deux images.
 
 \section{Reconstruction de l'arbre}
 \label{sec:reconstruction}
-La phase d'estimation des parent nous a permis de créer une matrice binaire de taille $n\times n$, $n$ étant le nombre d'images dans le set. Cette matrice est appelée \textit{matrice de parenté}. Une valeur à 1 à l'indice $(i,\ j)$ de cette matrice indiquera que l'image $I_i$ est un des ancêtres de $I_j$. Une valeur à 0 indiquera l'absence de parenté. Un exemple d'arbre et de matrice de parenté est disponible figure \ref{parentage_tree}. On peut noter plusieurs choses intéressantes de cet exemple. Une colonne où toutes les valeurs sont à 0 indiquera que l'image n'a aucun parent, il s'agit donc de la racine, qui par définition n'a pas de parent. Une ligne où toutes les valeurs sont à 0 signifie que l'image n'est le parent de personne, c'est à dire qu'il s'agit d'une feuille. On peut ainsi généraliser et dire que plus une colonne contient de valeurs à 0, moins cette images a d'ancêtres, et donc plus elle  est proche de la racine.
+La phase d'estimation des parent nous a permis de créer une matrice binaire de taille $n\times n$, $n$ étant le nombre d'images dans l'ensemble de near-duplicates. Cette matrice est appelée \textit{matrice de parenté}. Une valeur à 1 à l'indice $(i,\ j)$ de cette matrice indiquera que l'image $I_i$ est un des ancêtres de $I_j$. Une valeur à 0 indiquera l'absence de parenté. Un exemple d'arbre et de matrice de parenté est disponible figure \ref{parentage_tree}. Plusieurs choses intéressantes sont à remarquer de cet exemple. Une colonne où toutes les valeurs sont à 0 indiquera que l'image n'a aucun parent, il s'agit donc de la racine, qui par définition n'a pas de parent. Une ligne où toutes les valeurs sont à 0 signifie que l'image n'est le parent de personne, c'est à dire qu'il s'agit d'une feuille. Il est ainsi possible de généraliser et dire que plus une colonne contient de valeurs à 0, moins cette images a d'ancêtres, et donc plus elle  est proche de la racine.
 
 \begin{figure}
   \begin{subfigure}{.5\textwidth}
@@ -838,7 +837,7 @@ La phase d'estimation des parent nous a permis de créer une matrice binaire de 
   \label{parentage_tree}
 \end{figure}
 
-Nous donnons l'algorithme de reconstruction d'arbre à titre indicatif algorithme \ref{algo_}.
+L'algorithme \ref{algo_} présente en détail l'algorithme de reconstruction d'arbre.
 
 \begin{algorithm}[]
   \LinesNumbered
@@ -864,7 +863,7 @@ Nous donnons l'algorithme de reconstruction d'arbre à titre indicatif algorithm
     }
   }
   \KwRet treeRoot
-\caption{Construction de l'arbre}
+\caption{Construction de l'arbre.}
 \label{algo_}
 \end{algorithm}
 \vspace{5mm}
@@ -880,11 +879,11 @@ Nous avons expliqué précédemment que des images avec le même historique de c
 Ce filtrage est appliqué aussi bien à l'arbre original qu'à l'arbre reconstruit, pour qu'ils soient comparables.
 
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.9\linewidth]{images/fusion_1}
 % \includegraphics[width=0.9\linewidth]{images/fusion_2}
-\caption{Fusion des images identiques dans l'arbre}
+\caption{Fusion des images identiques dans l'arbre.}
 \label{fig:identique}
 \end{figure}
 
@@ -893,26 +892,26 @@ Ce filtrage est appliqué aussi bien à l'arbre original qu'à l'arbre reconstru
 \chapter{Résultats}
 \label{chap4}
 
-Dans ce chapitre nous présenterons les résultats obtenus grâce à notre méthode. Nous commencerons par décrire comment nos données de test ont été générées, puis nous déroulerons nos algorithmes sur un exemple, et enfin nous détaillerons les résultats en expliquant pourquoi et comment ils ont été obtenus.
+Dans ce chapitre nous présenterons les résultats obtenus grâce à notre méthode. Nous commencerons par décrire comment nos données de test ont été générées, puis nous déroulerons nos algorithmes sur un exemple complet, et enfin nous détaillerons les résultats en expliquant pourquoi et comment ils ont été obtenus.
 
 \section{Génération des données}
-Nous avons choisi de créer trois datasets différents, un avec des arbres de 15 images, un autre avec des arbres de 25 images et un dernier avec des arbres de 50 images. Cela nous permettra d'observer les différences éventuelles que peuvent amener des choses telles que la distance à la racine et le nombre de recompression dans la précision de l'estimation du parent.
+Nous avons choisi de créer trois datasets différents, un avec des arbres de 15 images, un autre avec des arbres de 25 images et un dernier avec des arbres de 50 images. Cela nous permettra d'observer les différences éventuelles que peuvent amener des choses tels que la distance à la racine et le nombre de recompression dans la précision de l'estimation du parent.
 
-La génération se fait comme suit : à partir d'une image graine (non compressée), une première image est compressée avec $85 < Q_f < 99$, c'est l'image racine. Cette image racine est ajoutée à notre pool d'images. Tant que le nombre désiré d'images n'a pas été atteint, une image est prise aléatoirement dans la pool, est compressée avec $Q_{f_{parent}} - 15 < Q_{f_{enfant}} < Q_{f_{parent}} - 1$ et est ajoutée à la pool d'image. On fixe cependant $Q_f = 30$ comme limite basse du facteur de qualité, au delà de cette limite, l'image est trop détériorée, et en plus de ne pas être un cas d'utilisation réaliste dans les réseaux sociaux, ne contient plus assez d'informations pour être correctement utilisée.
+La génération se fait comme suit : à partir d'une image graine (non compressée), une première image est compressée avec $85 < Q_f < 99$, c'est l'image racine. Cette image racine est ajoutée à notre pool d'images. Tant que le nombre désiré d'images n'a pas été atteint, une image est prise aléatoirement dans la pool, est compressée avec $Q_{f_{parent}} - 15 < Q_{f_{enfant}} < Q_{f_{parent}} - 1$ et est ajoutée à la pool d'images. La limite basse du facteur de qualité est cependant fixée à  $Q_f = 30$, au delà de cette limite, l'image est trop détériorée, et en plus de ne pas être un cas d'utilisation réaliste dans les réseaux sociaux, ne contient plus assez d'informations pour être correctement utilisée.
 
 La génération des datasets en eux même est faite à partir des six images d'origine de \textit{BOWS 2}\autocite{bows} où chaque image à servi à générer 15 arbres pour chaque image pour chaque dataset, pour un total de 90 arbres par dataset, soit 8100 images tout dataset confondu.
 
 \section{Résultats expérimentaux}
 
-Nous allons commencer par donner le résultat de nos algorithmes sur un arbre choisis aléatoirement dans notre dataset, pour bien détailler la sortie de chaque étape, puis nous allons donner des résultats plus significatifs obtenus en lançant notre programme sur l'ensemble des données.
+Nous allons commencer par donner le résultat de nos algorithmes sur un arbre choisi aléatoirement dans notre dataset, pour bien détailler la sortie de chaque étape, puis nous allons donner des résultats plus significatifs obtenus en lançant notre programme sur l'ensemble des données.
 
 \subsection{Détail sur un arbre}
-Nous choisissons un arbre de 15 images, les résultats ne sont pas significativement différent avec les autres tailles d'arbre, et il est plus simple de tout montrer avec un nombre restreint d'images. Notons que les résultats pour cet arbre sont donnés à titre d'exemple, et ne représentent pas forcément les résultats que l'on peut obtenir sur un grand nombre d'arbre. L'image utilisée pour générer l'arbre est disponible figure \ref{casimir}
+Nous choisissons un arbre de 15 images, les résultats ne sont pas significativement différents avec les autres tailles d'arbre, et il est plus simple de tout montrer avec un nombre restreint d'images. Notons que les résultats pour cet arbre sont donnés à titre d'exemple, et ne représentent pas forcément les résultats que l'on peut obtenir sur un grand nombre d'arbre. L'image utilisée pour générer l'arbre est disponible figure \ref{casimir}.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.5\linewidth]{images/casimir}
-\caption{Image utilisée pour générer l'arbre}
+\caption{Image utilisée pour générer l'arbre.}
 \label{casimir}
 \end{figure}
 
@@ -931,7 +930,7 @@ Commençons par la détection de pics et l'autocorrélation. Nous utilisons les 
     \caption{Autocorrélation}
     \label{fig:histo0_auto}
   \end{subfigure}
-  \caption{Histogramme et autocorrélation du coefficient DC avec figure \ref{fig:histo0_auto}, en vert le seuil et en haut à droite les pics détectés}
+  \caption{Histogramme et autocorrélation du coefficient DC avec figure \ref{fig:histo0_auto}, en vert le seuil et en haut à droite les pics détectés.}
   \label{fig:histo0}
 \end{figure}
 
@@ -947,7 +946,7 @@ Commençons par la détection de pics et l'autocorrélation. Nous utilisons les 
     \caption{Autocorrélation}
     \label{fig:histo18_auto}
   \end{subfigure}
-  \caption{Histogramme et autocorrélation du 18ème coefficient AC avec figure \ref{fig:histo18_auto}, en vert le seuil et en haut à droite les pics détectés}
+  \caption{Histogramme et autocorrélation du 18ème coefficient AC avec figure \ref{fig:histo18_auto}, en vert le seuil et en haut à droite les pics détectés.}
   \label{fig:histo18}
 \end{figure}
 
@@ -963,20 +962,20 @@ Commençons par la détection de pics et l'autocorrélation. Nous utilisons les 
     \caption{Autocorrélation}
     \label{fig:histo31_auto}
   \end{subfigure}
-  \caption{Histogramme et autocorrélation du 31ème coefficient AC avec figure \ref{fig:histo31_auto}, en vert le seuil et en haut à droite les pics détectés}
+  \caption{Histogramme et autocorrélation du 31ème coefficient AC avec figure \ref{fig:histo31_auto}, en vert le seuil et en haut à droite les pics détectés.}
   \label{fig:histo31}
 \end{figure}
 
-On voit très nettement que la quantité d'information disponible baisse très fortement lorsque l'on s'éloigne du coefficient DC. C'est pour cette raison que nous restons sur 35 coefficients.
+Les figures \ref{fig:histo0}, \ref{fig:histo18} et \ref{fig:histo31} montrent clairement que la quantité d'information disponible baisse très fortement lorsque l'on s'éloigne du coefficient DC. C'est pour cette raison que nous restons sur 35 coefficients.
 
 \paragraph{}
-Nous allons ensuite calculer la distance entre la table de quantification $\widehat{q}(u,v)$ issues des périodes et toutes les tables de quantification de $Q_f = 1$ à $Q_f = 100$. La figure \ref{fig:distances} illustre ce calcul. Le point le plus bas de la courbe, là où la distance entre les deux tables est la plus faible est le $Q_f$ le plus probable avec lequel l'image a été compressée. Il s'agit ici de $Q_f = 71$. La table de quantification $\widehat{q}(u,v)$ est donnée table \ref{periods1}, avec pour comparaison la table de quantification d'une images compressée avec $Q_f = 71$ table \ref{periods2}, comme l'a été estimée l'image après l'estimation primaire, et la table de quantification de $Q_f = 73$ (table \ref{periods3}), le vrai $Q_f$ de l'image. Les valeurs à -1 indiquent qu'aucune valeur de période n'a pu être calculée, et sont donc ignorées, les valeurs à 0 sont celles pour lesquelles l'indice est supérieur à 35.
+Nous allons ensuite calculer la distance entre la table de quantification $\widehat{q}(u,v)$ issues des périodes et toutes les tables de quantification de $Q_f = 1$ à $Q_f = 100$. La figure \ref{fig:distances} illustre ce calcul. Le point le plus bas de la courbe, là où la distance entre les deux tables est la plus faible est le $Q_f$ le plus probable avec lequel l'image a été compressé. Il s'agit ici de $Q_f = 71$. La table de quantification $\widehat{q}(u,v)$ est donnée table \ref{periods1}, avec pour comparaison la table de quantification d'une images compressée avec $Q_f = 71$ table \ref{periods2}, comme l'a été estimée l'image après l'estimation primaire, et la table de quantification de $Q_f = 73$ (table \ref{periods3}), le vrai $Q_f$ de l'image. Les valeurs à -1 indiquent qu'aucune valeur de période n'a pu être calculée, et sont donc ignorées, les valeurs à 0 sont celles pour lesquelles l'indice est supérieur à 35.
 
 \begin{figure}
   \centering
   \includegraphics[width=0.7\linewidth]{images/distances}
 
-  \caption{Distances entre la table de quantification calculée $\widehat{q}(u,v)$ et les différentes tables de quantification JPEG}
+  \caption{Distances entre la table de quantification calculée $\widehat{q}(u,v)$ et les différentes tables de quantification JPEG.}
   \label{fig:distances}
 \end{figure}
 
@@ -992,7 +991,7 @@ Nous allons ensuite calculer la distance entre la table de quantification $\wide
       10 & 12 & -1 & 31 & 30 & 0 & 0 & 0 \\ \hline
       12 & 13 & 28 & 30 & 0 & 0 & 0 & 0 \\ \hline
     \end{tabular}
-    \caption{Table de quantification issue du calcul des périodes, $\widehat{q}(u,v)$}
+    \caption{Table de quantification issue du calcul des périodes, $\widehat{q}(u,v)$.}
     \label{periods1}
   \end{subfigure}
   \begin{subfigure}{.5\textwidth}
@@ -1006,7 +1005,7 @@ Nous allons ensuite calculer la distance entre la table de quantification $\wide
       13 & 14 & 22 & 28 & 37 & 44 & 56 & 60  \\ \hline
       22 & 31 & 31 & 47 & 59 & 56 & 65 & 54  \\ \hline
     \end{tabular}
-    \caption{Table de quantification réelle, $i = 73$}
+    \caption{Table de quantification réelle, $i = 73$.}
     \label{periods3}
   \end{subfigure}
 \vspace{5mm}
@@ -1022,7 +1021,7 @@ Nous allons ensuite calculer la distance entre la table de quantification $\wide
       14 & 15 & 23 & 30 & 39 & 47 & 60 & 65 \\ \hline
       23 & 34 & 33 & 50 & 63 & 60 & 70 & 58 \\ \hline
     \end{tabular}
-    \caption{Table de quantification issue de l'estimation primaire, distance entre $\widehat{q}(u,v)$ et table(i) la plus faible, $i = 71$}
+    \caption{Table de quantification issue de l'estimation primaire, distance entre $\widehat{q}(u,v)$ et table(i) la plus faible, $i = 71$.}
     \label{periods2}
   \end{subfigure}
 
@@ -1030,7 +1029,7 @@ Nous allons ensuite calculer la distance entre la table de quantification $\wide
 \end{figure}
 
 \paragraph{}
-Toutes les images de l'arbre subiront l'estimation primaire de la même manière pour obtenir $Q_f$, puis l'estimation secondaire grâce aux formules \ref{eqn:jpeg_1} et \ref{eqn:jpeg_2} affinera les résultats. La table \ref{rough_fine} montre les résultats de l'estimation primaire puis de l'estimation secondaire en donnant également leur véritable $Q_f$ comme comparaison et la différence entre l'estimation primaire et les valeurs réelles et la différence entre l'estimation secondaire et les valeurs réelles pour pouvoir les comparer. On peut voir que l'estimation secondaire est strictement meilleure que l'estimation primaire, ce qui ne se limite pas à ce cas précis, cela a pu être vérifié de manière expérimentale sur toutes les estimations. L'erreur moyenne d'estimation de la table \ref{rough_fine} est de $0.533333$.
+Toutes les images de l'arbre subiront l'estimation primaire de la même manière pour obtenir $Q_f$, puis l'estimation secondaire grâce aux formules \ref{eqn:jpeg_1} et \ref{eqn:jpeg_2} affinera les résultats. La table \ref{rough_fine} montre les résultats de l'estimation primaire puis de l'estimation secondaire en donnant également leur véritable $Q_f$ comme comparaison et la différence entre l'estimation primaire et les valeurs réelles et la différence entre l'estimation secondaire et les valeurs réelles pour pouvoir les comparer. La table \ref{rough_fine} montre bien que l'estimation secondaire est strictement meilleure que l'estimation primaire, ce qui ne se limite pas à ce cas précis, cela a pu être vérifié de manière expérimentale sur toutes les estimations. L'erreur moyenne d'estimation de la table \ref{rough_fine} est de $0.53$.
 
 \begin{figure}
   \begin{tabular}{|l||c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
@@ -1044,7 +1043,7 @@ Toutes les images de l'arbre subiront l'estimation primaire de la même manière
     \textbf{Delta secondaire} & -2 & 0 & 0 & 1 & -1 & 2 & -1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
   \end{tabular}
 
-  \caption{Estimations primaires et secondaires des $Q_f$ des images de l'arbre}
+  \caption{Estimations primaires et secondaires des $Q_f$ des images de l'arbre.}
   \label{rough_fine}
 \end{figure}
 
@@ -1073,7 +1072,7 @@ Ces $Q_f$ vont ensuite servir à compresser les images pour pouvoir les comparer
     $I_{14}$& 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & - \\ \hline 
 
   \end{tabular}
-  \caption{Matrice de parenté}
+  \caption{Matrice de parenté.}
   \label{parentage_matrix_example}
 \end{figure}
 
@@ -1084,7 +1083,7 @@ Ces $Q_f$ vont ensuite servir à compresser les images pour pouvoir les comparer
       \begin{forest}
         [\href{run:7.jpg}{7.jpg}[\href{run:8.jpg}{8.jpg}[\href{run:13.jpg}{13.jpg}[\href{run:3.jpg}{3.jpg}[\href{run:5.jpg}{5.jpg}]][\href{run:10.jpg}{10.jpg}[\href{run:6.jpg}{6.jpg}]]][\href{run:1.jpg}{1.jpg}[\href{run:9.jpg}{9.jpg}[\href{run:14.jpg}{14.jpg}]]]][\href{run:12.jpg}{12.jpg}[\href{run:2.jpg}{2.jpg}][\href{run:4.jpg}{4.jpg}][\href{run:0.jpg}{0.jpg}]][\href{run:11.jpg}{11.jpg}]]
       \end{forest}}
-    \caption{Arbre phylogénétique original}
+    \caption{Arbre phylogénétique original.}
     \label{tree_base_example}
   \end{subfigure}
   \begin{subfigure}{.5\textwidth}
@@ -1093,10 +1092,10 @@ Ces $Q_f$ vont ensuite servir à compresser les images pour pouvoir les comparer
       \begin{forest}
         [\href{run:7}{7.jpg}[\href{run:8}{8.jpg}[\href{run:1}{1.jpg}[\href{run:9}{9.jpg}[\href{run:14}{14.jpg}]]][\href{run:13}{13.jpg}[\href{run:3}{3.jpg}[\href{run:5}{5.jpg}]][\href{run:10}{10.jpg}[\href{run:6}{6.jpg}]]]][\href{run:11}{11.jpg}][\href{run:12}{12.jpg}[\href{run:0}{0.jpg}][\href{run:2}{2.jpg}][\href{run:4}{4.jpg}]]]
       \end{forest}}
-    \caption{Arbre phylogénétique reconstruit}
+    \caption{Arbre phylogénétique reconstruit.}
     % \label{tree_example}
   \end{subfigure}
-  \caption{Exemple d'arbre original et d'arbre reconstruit}
+  \caption{Exemple d'arbre original et d'arbre reconstruit.}
   \label{tree_example}
 \end{figure}
 
@@ -1108,11 +1107,11 @@ Ces $Q_f$ vont ensuite servir à compresser les images pour pouvoir les comparer
           [\includegraphics{images/tree/7.png}[\includegraphics{images/tree/8.png}[\includegraphics{images/tree/13.png}[\includegraphics{images/tree/3.png}[\includegraphics{images/tree/5.png}]][\includegraphics{images/tree/10.png}[\includegraphics{images/tree/6.png}]]][\includegraphics{images/tree/1.png}[\includegraphics{images/tree/9.png}[\includegraphics{images/tree/14.png}]]]][\includegraphics{images/tree/12.png}[\includegraphics{images/tree/2.png}][\includegraphics{images/tree/4.png}][\includegraphics{images/tree/0.png}]][\includegraphics{images/tree/11.png}]]
         \end{forest}};
     \end{tikzpicture}}
-  \caption{Arbre original (figure \ref{tree_base_example}) où les noms des images ont été remplacés par leurs images, zoom sur l'oeil de Casimir}
+  \caption{Arbre original (figure \ref{tree_base_example}) où les noms des images ont été remplacés par leurs images, zoom sur l'oeil de Casimir.}
   \label{tree_casimir}
 \end{figure}
 
-On voit qu'il y a au maximum un seul 1 par ligne dans la matrice de parenté. En effet, seuls les parents directs sont détectés, et pas les ancêtres plus éloignés. La figure \ref{tree_casimir} permet de voir la différence de qualité entre les images de l'arbre. Des imagettes de $32\times32$ représentent les images originale (de $512\times512$) pour que les artefacts JPEG soient visibles.
+La matrice de parenté contient au maximum un seul 1 par ligne. En effet, seuls les parents directs sont détectés, et pas les ancêtres plus éloignés. La figure \ref{tree_casimir} permet de voir la différence de qualité entre les images de l'arbre. Des imagettes de $32\times32$ représentent les images originale (de $512\times512$) pour que les artefacts JPEG soient visibles.
 \subsection{Résultats sur les datasets}
 Nous avons fait tourner nos algorithmes sur les trois datasets, et avons obtenu des résultats très satisfaisants. Nous mesurons la qualité de nos résultats grâce à sept métriques, trois servant à mesurer la précision de l'estimation du facteur de qualité et les quatre autres servant à mesurer la qualité du calcul de l'arbre sont celles introduites par \citeauthornsc{dias2012image} \cite{dias2012image}.
 
@@ -1123,19 +1122,19 @@ Les trois métriques servant à mesurer la précision de l'estimation du $Q_f$ s
   \begin{tabular}{|l||c|c|c|c|c|}
     \hline
      \backslashbox{Métrique}{Dataset}             & \textbf{15 images} & \textbf{25 images} & \textbf{50 images} \\ \hhline{|=::=|=|=|}
-    \textbf{\pbox{3.6cm}{Erreur moyenne d'estimation de $Q_f$}}         & 0.516667 & 0.639444 & 0.833333 \\ \hline
-    \textbf{\pbox{3.6cm}{Sur-estimation moyenne de $Q_f$}} & 1.61111  & 1.86111  & 1.94444  \\ \hline
-    \textbf{\pbox{3.6cm}{Sous-estimation moyenne de $Q_f$}}  & 1.06944  & 2.125    & 6.68056  \\ \hhline{|=::=|=|=|}
-    \textbf{roots}              & 0.958333 & 0.888889 & 0.847222 \\ \hline
-    \textbf{edges}              & 0.997024 & 0.992477 & 0.989796 \\ \hline
-    \textbf{leaves}             & 0.995949 & 0.991517 & 0.987451 \\ \hline
-    \textbf{ancestry}           & 0.994444 & 0.968889 & 0.969699 \\ \hline
+    \textbf{\pbox{3.6cm}{Erreur moyenne d'estimation de $Q_f$}} & 0.52 & 0.64 & 0.83 \\ \hline
+    \textbf{\pbox{3.6cm}{Sur-estimation moyenne de $Q_f$}}      & 1.61  & 1.86  & 1.94  \\ \hline
+    \textbf{\pbox{3.6cm}{Sous-estimation moyenne de $Q_f$}}     & 1.07  & 2.12    & 6.68  \\ \hhline{|=::=|=|=|}
+    \textbf{roots}                                              & 95.83 & 88.88 & 84.72 \\ \hline
+    \textbf{edges}                                              & 99.70 & 99.24 & 98.97 \\ \hline
+    \textbf{leaves}                                             & 99.59 & 99.15 & 98.74 \\ \hline
+    \textbf{ancestry}                                           & 99.44 & 96.88 & 96.96 \\ \hline
   \end{tabular} 
-\caption{Table de résultats, les trois premières lignes mesurent la précision de l'estimation de $Q_f$, les autres lignes mesure la qualité de la reconstruction de l'arbre et sont données en pourcentage}
+\caption{Table de résultats, les trois premières lignes mesurent la précision de l'estimation de $Q_f$, les autres lignes mesure la qualité de la reconstruction de l'arbre et sont données en pourcentage.}
 \label{results}
 \end{figure}
 
-La table \ref{results} montre les résultats obtenus par nos algorithmes. On peut directement remarquer que les résultats sont strictement meilleurs lorsque l'on réduit le nombre d'images dans le set. À noter que le meilleur résultat possible pour les trois premières métriques est 0, c'est à dire que tout les $Q_f$ ont été estimés parfaitement, et que le meilleur résultat pour les quatre dernières est 1, lorsque la vérité terrain et l'arbre reconstruit sont identiques.
+La table \ref{results} montre les résultats obtenus par nos algorithmes. Il est clairement visible que les résultats sont strictement meilleurs lorsque l'on réduit le nombre d'images dans le set. À noter que le meilleur résultat possible pour les trois premières métriques est 0, c'est à dire que tout les $Q_f$ ont été estimés parfaitement, et que le meilleur résultat pour les quatre dernières est 1, lorsque la vérité terrain et l'arbre reconstruit sont identiques.
 \paragraph{}
 
 Il semble important de préciser que l'estimation du $Q_f$ rencontre des difficultés lorsque $Q_f$ est proche de 100. En effet un grand nombre des valeurs de la table de quantification est à 1 ou 2, ce qui ne quantifie pas ou pas suffisamment le coefficient DCT pour que nous puissions extraire suffisamment d'information pour discriminer une image compressée avec $Q_f = 97$ d'une image compressée avec $Q_f = 99$ par exemple. C'est en partie une des causes du manque de précision d'identification de la racine. En effet, dans notre cas d'étude, la racine est l'image avec le $Q_f$ le plus proche de 100, il est difficile de l'identifier avec certitude lorsque l'estimation du $Q_f$ n'est pas certaine.
@@ -1149,11 +1148,11 @@ Une telle sur-estimation s'explique par le fait que les coefficients DCT devienn
 Nous avions considéré que deux images avec le même historique de compression étaient identiques, il semble cependant que les images ayant un petit $Q_f$ (inférieur à 35 environ) échappent parfois à ce phénomène, une image parent compressée avec le $Q_f$ de son enfant et son enfant sont parfois différentes, sans que nous ayons pu identifier la cause de ce problème.
 \paragraph{}
 
-Un autre problème, qui lui n'affecte pas la racine, mais plutôt le reste de l'arbre, est la convergence des blocs, comme expliqué chapitre \ref{chap2} section \ref{convergence}. Nous avons fixé comme limite basse pour la génération de l'arbre $Q_f = 30$, si une image avec $Q_f = 30$ a un enfant, cet enfant aura également $Q_f = 30$, et ce de manière récursive. On peut donc arriver dans le cas où les enfants sont identiques à leurs parents, ce qui rend impossible leur différenciation, ce phénomène est fort heureusement assez rare.
+Un autre problème, qui lui n'affecte pas la racine, mais plutôt le reste de l'arbre, est la convergence des blocs, comme expliqué chapitre \ref{chap2} section \ref{convergence}. Nous avons fixé comme limite basse pour la génération de l'arbre $Q_f = 30$, si une image avec $Q_f = 30$ a un enfant, cet enfant aura également $Q_f = 30$, et ce de manière récursive. Il est donc possible d'arriver dans le cas où les enfants sont identiques à leurs parents, ce qui rend impossible leur différenciation, ce phénomène est fort heureusement assez rare.
 
 \paragraph{}
 
-Les résultats donnés précédemment sont obtenus en ayant la totalité de l'arbre. Notre méthode étant très efficace pour reconstruire l'arbre lorsque toutes les images sont présentes, et donc lorsqu'il y a à chaque fois un parent direct, il nous a semblé important de tester le cas où l'arbre est incomplet. Aussi, la table \ref{results_missing} montre les résultats obtenus en ayant enlevé au hasard une des images du set. Notre méthode n'étant pas en mesure d'estimer les grands-parents, nous nous retrouvons dans le cas illustré figure \ref{fig:missing}, où nous avons des arbres correctement reconstruits, sans que nous sachions comment les relier entre eux. C'est là la limite de notre méthode de reconstruction d'arbre, une fois que la matrice de parenté a été calculée, si elle est incomplète, c'est la racine des sous arbres avec le plus petit indice qui va être choisie comme racine de l'arbre reconstruit, comme on peut le voir figure \ref{fig:missing1} où c'est l'image 1 qui a été choisie comme racine. Les résultats table \ref{results_missing} montrent clairement le phénomène expliqué précédemment, le score de détection de la racine chute drastiquement, alors que les autres métriques, bien que logiquement moins bonnes, restent tout à fait correctes.
+Les résultats donnés précédemment sont obtenus en ayant la totalité de l'arbre. Notre méthode étant très efficace pour reconstruire l'arbre lorsque toutes les images sont présentes, et donc lorsqu'il y a à chaque fois un parent direct, il nous a semblé important de tester le cas où l'arbre est incomplet. Aussi, la table \ref{results_missing} montre les résultats obtenus en ayant enlevé au hasard une des images du set. Notre méthode n'étant pas en mesure d'estimer les grands-parents, nous nous retrouvons dans le cas illustré figure \ref{fig:missing}, où nous avons des arbres correctement reconstruits, sans que nous sachions comment les relier entre eux. C'est là la limite de notre méthode de reconstruction d'arbre, une fois que la matrice de parenté a été calculée, si elle est incomplète, c'est la racine des sous arbres avec le plus petit indice qui va être choisie comme racine de l'arbre reconstruit, comme montré figure \ref{fig:missing1} où c'est l'image 1 qui a été choisie comme racine. Les résultats table \ref{results_missing} montrent clairement le phénomène expliqué précédemment, le score de détection de la racine chute drastiquement, alors que les autres métriques, bien que logiquement moins bonnes, restent tout à fait correctes.
 
 \begin{figure}
   \begin{subfigure}{.5\textwidth}
@@ -1167,7 +1166,7 @@ Les résultats donnés précédemment sont obtenus en ayant la totalité de l'ar
       \draw[red, ultra thick](1,2.7) -- (2.2,3.3);
       \draw[red, ultra thick](1,3.3) -- (2.2,2.7);
     \end{tikzpicture}
-    \caption{Arbre original avec le noeud 8 retiré}
+    \caption{Arbre original avec le noeud 8 retiré.}
   \end{subfigure}
   \begin{subfigure}{.5\textwidth}
     \centering
@@ -1183,7 +1182,7 @@ Les résultats donnés précédemment sont obtenus en ayant la totalité de l'ar
           [\href{run:13}{13.jpg}[\href{run:3}{3.jpg}[\href{run:5}{5.jpg}]][\href{run:10}{10.jpg}[\href{run:6}{6.jpg}]]]
         \end{forest}};
     \end{tikzpicture}
-    \caption{Trois sous arbre que l'on se sait pas comment relier}
+    \caption{Trois sous arbre que l'on se sait pas comment relier.}
   \end{subfigure}
 
   \begin{subfigure}{.5\textwidth}
@@ -1191,50 +1190,50 @@ Les résultats donnés précédemment sont obtenus en ayant la totalité de l'ar
     \begin{forest}
       [\href{run:1}{1.jpg}[\href{run:7}{7.jpg}[\href{run:11}{11.jpg}][\href{run:12}{12.jpg}[\href{run:0}{0.jpg}][\href{run:2}{2.jpg}][\href{run:4}{4.jpg}]]][\href{run:9}{9.jpg}[\href{run:14}{14.jpg}]][\href{run:13}{13.jpg}[\href{run:3}{3.jpg}[\href{run:5}{5.jpg}]][\href{run:10}{10.jpg}[\href{run:6}{6.jpg}]]]]
     \end{forest}
-    \caption{Arbre reconstruit avec l'image 8 manquante}
+    \caption{Tentative de reconstruction d'arbre avec l'image 8 manquante.}
     \label{fig:missing1}
   \end{subfigure}
 
-  \caption{Exemple de cas où un noeud est enlevé et où l'on ne sait pas comment reconstruire}
+  \caption{Exemple de tentative de reconstruction dans le cas où un noeud est enlevé.}
   \label{fig:missing}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}
   \centering
   \begin{tabular}{|l||c|c|c|c|c|}
     \hline
      \backslashbox{Métrique}{Dataset}             & \textbf{15 images} & \textbf{25 images} & \textbf{50 images} \\ \hhline{|=::=|=|=|}
-    \textbf{roots}                                                      & 0.696078 & 0.333333 & 0.490196 \\ \hline
-    \textbf{edges}                                                      & 0.888655 & 0.924019 & 0.95078  \\ \hline
-    \textbf{leaves}                                                     & 0.913087 & 0.930065 & 0.947263 \\ \hline
-    \textbf{ancestry}                                                   & 0.780631 & 0.822239 & 0.882112 \\ \hline
+    \textbf{roots}                                                      & 69.60 & 33.33 & 49.01 \\ \hline
+    \textbf{edges}                                                      & 88.86 & 92.40 & 95.07 \\ \hline
+    \textbf{leaves}                                                     & 91.30 & 93.00 & 94.72 \\ \hline
+    \textbf{ancestry}                                                   & 78.06 & 82.22 & 88.21 \\ \hline
   \end{tabular} 
-\caption{Table de résultats des datasets avec une image manquante}
+\caption{Table de résultats des datasets avec une image manquante.}
 \label{results_missing}
 \end{figure}
 
-Notre méthode a été imaginée pour des images en noir et blanc, qui n'ont donc qu'un canal de couleur qui contient toutes les informations. Il nous a cependant semblé intéressant de la tester sur des images couleurs. Sans changer quoi que ce soit à notre implémentation, plutôt que de donner des images en noir et blanc en entrée, nous avons donné des images en couleur. Les résultats obtenus sont disponibles table \ref{results_color}. On peut voir que les résultats sont très similaires à ceux d'une image en noir et blanc. L'estimation du $Q_f$ est moins bonne, mais pas de manière significative, tout comme les autres métriques qui donnent de très bons résultats. Le canal de luminance contient donc suffisamment d'informations pour pouvoir utiliser notre méthode. À noter que nous n'utilisons pas les canaux de chrominance, puisque notre méthode a été pensée pour des images en niveaux de gris.
+Notre méthode a été imaginée pour des images en noir et blanc, qui n'ont donc qu'un canal de couleur qui contient toutes les informations. Il nous a cependant semblé intéressant de la tester sur des images couleurs. Sans changer quoi que ce soit à notre implémentation, plutôt que de donner des images en noir et blanc en entrée, nous avons donné des images en couleur. Les résultats obtenus sont disponibles table \ref{results_color}. Les résultats sont très similaires à ceux d'une image en noir et blanc. L'estimation du $Q_f$ est moins bonne, mais pas de manière significative, tout comme les autres métriques qui donnent de très bons résultats. Le canal de luminance contient donc suffisamment d'informations pour pouvoir utiliser notre méthode. À noter que nous n'utilisons pas les canaux de chrominance, puisque notre méthode a été pensée pour des images en niveaux de gris.
 
 \begin{figure}[H]
   \centering
   \begin{tabular}{|l||c|c|c|c|c|}
     \hline
      \backslashbox{Métrique}{Dataset}             & \textbf{15 images} & \textbf{25 images} & \textbf{50 images} \\ \hhline{|=::=|=|=|}
-    \textbf{\pbox{3.6cm}{Erreur moyenne d'estimation de $Q_f$}}         & 1.14545  & 1.2897   & 1.42     \\ \hline
-    \textbf{\pbox{3.6cm}{Sur-estimation moyenne de $Q_f$}}              & 1.84848  & 2.69697  & 2.63636  \\ \hline
-    \textbf{\pbox{3.6cm}{Sous-estimation moyenne de $Q_f$}}             & 2.9697   & 3.78788  & 4.93939  \\ \hhline{|=::=|=|=|}
-    \textbf{roots}                                                      & 0.939394 & 0.818182 & 0.878788 \\ \hline
-    \textbf{edges}                                                      & 0.993506 & 0.986111 & 0.993816 \\ \hline
-    \textbf{leaves}                                                     & 0.996212 & 0.98663  & 0.997795 \\ \hline
-    \textbf{ancestry}                                                   & 0.987879 & 0.941259 & 0.988206 \\ \hline
+    \textbf{\pbox{3.6cm}{Erreur moyenne d'estimation de $Q_f$}}         & 1.15  & 1.29  & 1.42     \\ \hline
+    \textbf{\pbox{3.6cm}{Sur-estimation moyenne de $Q_f$}}              & 1.85  & 2.70  & 2.64  \\ \hline
+    \textbf{\pbox{3.6cm}{Sous-estimation moyenne de $Q_f$}}             & 2.97  & 3.79  & 4.94  \\ \hhline{|=::=|=|=|}
+    \textbf{roots}                                                      & 93.94 & 81.82 & 87.88 \\ \hline
+    \textbf{edges}                                                      & 99.35 & 98.61 & 99.38 \\ \hline
+    \textbf{leaves}                                                     & 99.62 & 98.66 & 99.78 \\ \hline
+    \textbf{ancestry}                                                   & 98.79 & 94.13 & 98.82 \\ \hline
   \end{tabular} 
-\caption{Table de résultats sur avec des images en couleur, les trois premières lignes mesurent la précision de l'estimation de $Q_f$, les autres lignes mesure la qualité de la reconstruction de l'arbre et sont données en pourcentage}
+\caption{Table de résultats sur avec des images en couleur, les trois premières lignes mesurent la précision de l'estimation de $Q_f$, les autres lignes mesure la qualité de la reconstruction de l'arbre et sont données en pourcentage.}
 \label{results_color}
 \end{figure}
 
 
 
-\chapter{Perspectives et conclusion}
+\chapter{Conclusion et perspectives}
 \label{chap5}
 Nous avons pu voir dans ce rapport que le problème de la reconstruction d'arbre phylogénétique d'images dans les réseaux sociaux n'est pas trivial et peut se diviser en deux sous-parties : l'identification de la racine et l'estimation des relations parent-enfant. Nous avons également pu voir dans l'état de l'art les différentes approches de reconstruction d'arbre de phylogénie. Nous avons choisi de nous concentrer uniquement sur l'étude des recompressions JPEG pour le calcul de l'arbre. Cette décision est motivée par le fait que nous sommes intéressés par le domaine du forensics et que l'étude des recompressions est un sujet suffisamment vaste et complexe. Cela nous a amené à étudier la détection des compressions multiples. 
 
@@ -1243,9 +1242,9 @@ Nous avons donc imaginé une méthode qui réduit la reconstruction de l'arbre d
 
 Au terme de ce stage, nous avons su créer une méthode qui donne de très bon résultats dans un environnement contrôlé. Nous sommes en mesure de retrouver l'arbre de phylogénie d'un ensemble de near-duplicates où toutes les images sont présentes de manière très fidèle. Nous nous sommes cependant limités au cas où une image enfant est forcément plus compressée que son parent, et même dans ce cas là, il nous est difficile d'estimer correctement les grands parents. 
 
-Les perspectives d'amélioration sont donc multiples. Il serait intéressant de continuer à étudier les caractéristiques des coefficients DCT de l'image pour en extraire de meilleurs marqueurs. Cette technique des marqueurs, même si elle n'a pas été très poussée dans le cadre de ce stage, nous semble prometteuse et mériterait que l'on s'attarde. Trouver de meilleurs marqueurs permettrait de plus de ne pas se limiter à la détection de parents directs mais également de pouvoir estimer des ancêtres plus lointains. Cela va de pair avec l'amélioration de la reconstruction lorsque certaines images de l'ensemble sont absentes, un cas qu'il est très probable de rencontrer dans les réseaux sociaux. 
+Les perspectives d'amélioration sont donc multiples. Il serait intéressant de continuer à étudier les caractéristiques des coefficients DCT de l'image pour en extraire de meilleurs marqueurs. Cette technique des marqueurs, même si elle n'a pas été très poussée dans le cadre de ce stage, nous semble prometteuse et mériterait que l'on s'y attarde. Trouver de meilleurs marqueurs permettrait de plus de ne pas se limiter à la détection de parents directs mais également de pouvoir estimer des ancêtres plus lointains. Cela va de pair avec l'amélioration de la reconstruction lorsque certaines images de l'ensemble sont absentes, un cas qu'il est très probable de rencontrer dans les réseaux sociaux. 
 
-La découverte de nouveaux marqueurs semble donc être une solution qui permettrait de grandement améliorer la méthode. On peut même imaginer ne pas se restreindre à la compression JPEG, mais également intégrer d'autres transformations, comme le crop ou le resampling par exemple.
+La découverte de nouveaux marqueurs semble donc être une solution qui permettrait de grandement améliorer la méthode. Il est même possible de ne pas se restreindre à la compression JPEG et l'étude du canal de luminance, mais également utiliser les canaux de chrominance pour affiner notre estimation, ou encore intégrer d'autres transformations, comme le crop ou le resampling par exemple.
 
 \printbibliography
 
