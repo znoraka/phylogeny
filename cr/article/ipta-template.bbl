@@ -16,6 +16,41 @@
   {}
 \endgroup
 
+\entry{7472039}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Bestagini}{B.}%
+     {P.}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tagliasacchi}{T.}%
+     {M.}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tubaro}{T.}%
+     {S.}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{Forensics;Image coding;Image color analysis;Image
+  reconstruction;Integrated circuits;Phylogeny;Vegetation;Image
+  phylogeny;near-duplicates}
+  \strng{namehash}{BP+1}
+  \strng{fullhash}{BPTMTS1}
+  \field{sortinit}{B}
+  \field{booktitle}{2016 IEEE International Conference on Acoustics, Speech and
+  Signal Processing (ICASSP)}
+  \verb{doi}
+  \verb 10.1109/ICASSP.2016.7472039
+  \endverb
+  \field{pages}{2059\bibrangedash 2063}
+  \field{title}{Image phylogeny tree reconstruction based on region selection}
+  \field{year}{2016}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
 \entry{bows}{online}{}
   \field{sortinit}{B}
   \field{title}{BOWS 2 dataset}
@@ -55,6 +90,72 @@
   \field{year}{2010}
 \endentry
 
+\entry{dias2012image}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Dias}{D.}%
+     {Zanoni}{Z.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rocha}{R.}%
+     {Anderson}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Goldenstein}{G.}%
+     {Siome}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {IEEE}%
+  }
+  \strng{namehash}{DZ+1}
+  \strng{fullhash}{DZRAGS1}
+  \field{sortinit}{D}
+  \field{number}{2}
+  \field{pages}{774\bibrangedash 788}
+  \field{title}{Image phylogeny by minimal spanning trees}
+  \field{volume}{7}
+  \field{journaltitle}{Information Forensics and Security, IEEE Transactions
+  on}
+  \field{year}{2012}
+\endentry
+
+\entry{joly2007content}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Joly}{J.}%
+     {Alexis}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Buisson}{B.}%
+     {Olivier}{O.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Fr{\'e}licot}{F.}%
+     {Carl}{C.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {IEEE}%
+  }
+  \strng{namehash}{JA+1}
+  \strng{fullhash}{JABOFC1}
+  \field{sortinit}{J}
+  \field{number}{2}
+  \field{pages}{293\bibrangedash 306}
+  \field{title}{Content-based copy retrieval using distortion-based
+  probabilistic similarity search}
+  \field{volume}{9}
+  \field{journaltitle}{Multimedia, IEEE Transactions on}
+  \field{year}{2007}
+\endentry
+
 \entry{lai2013block}{inproceedings}{}
   \name{author}{2}{}{%
     {{}%
@@ -80,6 +181,61 @@
   \field{title}{Block convergence in repeated transform coding: JPEG-100
   forensics, carbon dating, and tamper detection}
   \field{year}{2013}
+\endentry
+
+\entry{7018370}{inproceedings}{}
+  \name{author}{6}{}{%
+    {{}%
+     {Melloni}{M.}%
+     {A.}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bestagini}{B.}%
+     {P.}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Milani}{M.}%
+     {S.}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tagliasacchi}{T.}%
+     {M.}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rocha}{R.}%
+     {A.}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tubaro}{T.}%
+     {S.}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{image forensics;image processing;multimedia computing;trees
+  (mathematics);color correction;dissimilarity metrics fusion;image
+  authenticity;image dissimilarity computation;image forensics community;image
+  phylogeny tree reconstruction;image phylogeny trees;multimedia
+  objects;near-duplicate versions;phylogenetic analyses;sharing platforms;Image
+  coding;Image reconstruction;Measurement;Phylogeny;Reconstruction
+  algorithms;Switches;Vegetation;Image phylogeny;image
+  dissimilarity;near-duplicates;phylogeny tree}
+  \strng{namehash}{MA+1}
+  \strng{fullhash}{MABPMSTMRATS1}
+  \field{sortinit}{M}
+  \field{booktitle}{Visual Information Processing (EUVIP), 2014 5th European
+  Workshop on}
+  \verb{doi}
+  \verb 10.1109/EUVIP.2014.7018370
+  \endverb
+  \field{pages}{1\bibrangedash 6}
+  \field{title}{Image phylogeny through dissimilarity metrics fusion}
+  \field{year}{2014}
+  \warn{\item Invalid format of field 'month'}
 \endentry
 
 \lossort

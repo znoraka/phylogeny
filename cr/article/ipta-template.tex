@@ -85,9 +85,24 @@ e-mail: author-3@ieee.org}}
 \end{keywords}
 
 \section{Introduction}
+It has never been so easy to share ideas and content thanks to social networks. Every time content is shared however, its information can be altered, ofen not on purpose, as would an image being recompressed to fit low bandwith networks, but not always. There can be malicious alteration that aim to modify the content meaning. To trust any of this content, it is mandatory to be able to tell whether content has been tampered with. 
 
+Every transformation, an new image is created. The new image is a near-duplicate of its parent. A near-duplicate, as defined by \citeauthornsc{joly2007content} \autocite{joly2007content}, is a transformed version of a document that remains recognizable. It is formally defined as follows : $I_{n+1} = T(I_{n}), T \in \mathcal{T}$ where $I_{n}$ is the parent image at generation $n$, $I_{n+1}$ is the image at the next generation $n+1$, the child image, and $\mathcal{T}$ is a set of tolerated transformations, $I_{n+1}$ are $I_{n}$ near-duplicate images. The set $\mathcal{T}$ can contain any transformations, for instance, $\mathcal{T} = $ \textit{\{resampling, cropping, affine warping, color changing, lossy compression\}}. Authors used the words ``tolerated transformation'', their meaning is twofold. It limits the transformations to those present in the set and sets an arbitrary limit to the strength of any given transformation. An image cropped by more than 20\% for exemple can be considered as a new image and not a near-duplicate.
+
+We limit ourselves to the study of $\mathcal{T} = $ \textit{\{JPEG compression\}}, and specifically when the child image quality factor is smaller than its parent to focus on two main fields : image phylogeny and forensics and multiple JPEG compression detection.
+
+Most state of the art methods \autocite{dias2010first, dias2012image, 7018370, 7472039} have a two steps method. First they compute a dissimilarity matrix. An asymetric matrix of distances between images and then compute a tree from this dissimilarity matrix. The dissimilarity matrix is built thanks to a dissimilarity function that yields small values for similar images. The tree is then constructed using minimum spanning trees algorithms.
+
+...
+
+Double JPEG compression state of the art.
+
+...
+
+Section \ref{sec:method} presents our method, the theorems and definitions we introduced, the ancestors estimation and the tree reconstruction. Section \ref{sec:results} shows our results and we discuss how and why we obtained them and finally section \ref{sec:conclusion} concludes our work and opens a few perspectives.
 \section{Method}
-In this section, we present a new approach to build an image phylogeny tree from a set of near-duplicate images. Unlike state of the art methods \cite{} that mainly focus on complex algorithm that try their best to approximate the tree from a dissimilarity matrix, we try to take a binary decision between two images : ``Can this image be an ancestor of that other one?''. It allows us to focus more on the images themselves and their characteristics and have a simple tree building algorithm. Figure \ref{fig:schema} shows the diagram of our method.
+\label{sec:method}
+In this section, we present a new approach to build an image phylogeny tree from a set of near-duplicate images. Unlike state of the art methods \cite{} that mainly focus on complex algorithm that try their best to approximate the tree from a dissimilarity matrix, we try to take a binary decision between two images : ``Can this image be an ancestor of that other one?''. It allows us to focus more on the images themselves and their characteristics and have a simple tree reconstruction algorithm. Figure \ref{fig:schema} shows the diagram of our method.
 
 \begin{figure}[!ht]
   \centering
@@ -106,12 +121,12 @@ In this section, we present a new approach to build an image phylogeny tree from
       \node[draw=none,fill=none,minimum width=0.8in,text width=0.8in, align=center, right=0.4cm of D] (E) {Extracted quantization table};
       \node[state] (F) [below=0.4cm of E] {Quality factor estimation};
 
-      \node[draw=none,fill=none,minimum width=0.8in,text width=0.8in, align=center, left=0.4cm of F] (G) {$Q_f$ of each images};
+      \node[draw=none,fill=none,minimum width=0.8in,text width=0.8in, align=center, left=0.4cm of F] (G) {$Q_f$ of each image};
       \node[draw=none,fill=none,minimum width=0.8in,text width=0.8in, align=center, below=0.3cm of G] (H) {Images};
       \node[state] (I) [left=0.4cm of G] {Ancestors estimation};
 
       \node[draw=none,fill=none,minimum width=0.8in,text width=0.8in, align=center, left=0.4cm of I] (J) {Parentage matrix};
-      \node[state] (K) [left=0.4cm of J] {Tree building};
+      \node[state] (K) [left=0.4cm of J] {Tree reconstruction};
 
       \node[draw=none,fill=none,minimum width=0.8in,text width=0.8in, align=center, below=0.6cm of K] (L) {Unprocessed tree};
       \node[state] (M) [right=0.4cm of L] {Duplicates filtering};
@@ -136,9 +151,33 @@ In this section, we present a new approach to build an image phylogeny tree from
   \label{fig:schema}
 \end{figure}
 
-In this section, we will first present the theorems we based designed and based our method on, then we explain how we extract the period of each DCT coefficient to extract a quantization table. We also explain how we compute the quality factor of an image and estimate the ancestors. We then present our tree building algorithm that will eventually output an image phylogeny tree.
+In this section, we will first present the theorems we based designed and based our method on, then we explain how we extract the period of each DCT coefficient to extract a quantization table. We also explain how we compute the quality factor of an image and estimate the ancestors. We then present our tree reconstruction algorithm that will eventually output an image phylogeny tree.
 
 \subsection{Theorems}
+For every image pair in the set, we try to take a binary decision that will allow us to build a parentage matrix. We try to decide whether an image is an ancestor of another one. We set up a framework to try and solve this problem.
+
+\newtheorem{marqueur}{Definition}
+\newtheorem{fonction}{Definition}
+
+\begin{marqueur}
+  A marker is a local or globale feature extracted from the image. This marker shows that a particular transformation was applied to the image. This marker is passed on the image children, and will be used to prove that an image is not an ancestor of another one.
+
+For instance a black and white image cannot be a ancestor of a color image because the ``color'' marker is missing.
+\end{marqueur}
+
+\begin{fonction}
+Let $f(I_{m},I_{n})$ be a function that for every image pair $(I_{m}, I_{n})$ detects every time there is one a marker visible in one image and not the other, thus proving that $I_m$ is not an ancestor of $I_n$. This function is called a negation function. This is an abstract function, and that is where lies the difficulty.
+\end{fonction}
+
+\newtheorem{parentage}{Theorem}
+\begin{parentage}
+For all image pair ($I_{m}$, $I_{n}$) in a set of near-duplicate images, if there is no marker proving that $I_m$ is not an ancestor of $I_n$ then there is a parent-child relationship between $I_{m}$ and $I_{n}$, $I_{m}$ $\to$ $I_{n}$.
+\end{parentage}
+
+\begin{proof}
+  If $f(I_{m},I_{n})$ cannot find a marker that proves that $I_m$ is not an ancestor of $I_n$ then this marker does not exist, thus que $I_{m}$ is an ancestor of $I_{n}$, with $m < n$.
+\end{proof}
+
 
 \subsection{Quality factor estimation}
 We work with images that underwent at least one JPEG compression. These images, traveling through social networks, may have had their format changed, and converted to PNG for instance. The quality factor of the last JPEG compression, mandatory for our method, is then lost. We propose to estimate the quality factor of images that did not undergo any lossless compression other than JPEG.
@@ -195,19 +234,17 @@ As we stated above, our $Q_f$ is not always the right $Q_f$, but can be too big 
 
 This method, even if it yields excellent results, can only find the direct parent and not further ancestors. It is indeed not easy to take a binary decision when the bounds of the values changes so much with the input data.
 
-\subsection{Tree building}
+\subsection{Tree reconstruction}
 The ancestors estimation process output a binary matrix of size $n\times n,\ n$ being the number of images in the set. This matrix is called a parentage matrix. A 1 value at index $(i, j)$ in this matrix means that image $I_i$ is an ancestor of image $I_j$. A 0 value tells us they are not related. Figure \ref{fig:tree} shows an example of a tree with its parentage matrix.
 
 \begin{figure}[htbp]
-  \begin{subfigure}{.5\textwidth}
+  \begin{subfigure}{.25\textwidth}
     \centering
-    \includegraphics[width=.5\linewidth]{algo_tree}
+    \includegraphics[width=.7\linewidth]{algo_tree}
     \caption{Phylogeny tree}
     \label{algo_tree}
   \end{subfigure}%
-\\
-
-  \begin{subfigure}{.5\textwidth}
+  \begin{subfigure}{.25\textwidth}
     \centering
     \begin{tabular}{|r||c|c|c|c|c|}
       \hline
@@ -227,7 +264,7 @@ The ancestors estimation process output a binary matrix of size $n\times n,\ n$ 
 
 From this example, we can notice several things. A column with only 0 values does not have any ancestor, it is the root of the tree, which, by definition, does not have ancestors. A line with only 0 values is the parent of noone : it is a leaf. We can generalize and say that the less a column has 0 values, the less ancestors it has, the closest it is to the root.
 
-Algorithm \ref{algo_} presents our tree building algorithm.
+Algorithm \ref{algo_} presents our tree reconstruction algorithm.
 
 \begin{algorithm}[]
   \LinesNumbered
@@ -253,7 +290,7 @@ Algorithm \ref{algo_} presents our tree building algorithm.
     }
   }
   \KwRet treeRoot
-\caption{Tree building algorithm.}
+\caption{Tree reconstruction algorithm.}
 \label{algo_}
 \end{algorithm}
 
@@ -262,6 +299,7 @@ Each iteration, an image is selected as the root (lines 1 and 11) and named $roo
 This algorithm runs in $O(n^2)$. It has two nested loops and if the sums are computed once at the beginning and updated every time a parent is removed, there is no extra loop increasing complexity.
 
 \section{Experiments and results}
+\label{sec:results}
 In this section, we presents the results we obtained with our method. We start by describing how we generated our datasets and then explain our results and how and why they were obtained.
 
 \subsection{Datasets generation}
@@ -413,5 +451,10 @@ Even though our method was designed for grayscale images, we wanted to see if th
 \end{figure}
 
 The results are not very different from grayscale images, slightly worse, but not significantly so. The estimation of $Q_f$ is not as good, it can be because of the rounding when going from RGB to YUV. We did not use any of the chrominance channel, the luminance channel looks to contain enough information and allows us to reliably estimate the tree.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+\printbibliography
 
 \end{document}
