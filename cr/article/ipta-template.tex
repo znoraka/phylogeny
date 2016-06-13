@@ -80,7 +80,7 @@ e-mail: noe.lephilippe@lirmm.fr, william.puech@lirmm.fr, fiorio@lirmm.fr}}
 \begin{document}
 \maketitle
 \begin{abstract}
-
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt
 %  Nowadays it is extremely easy to tamper images and share them thanks to social media. Identifying the tamper history is mandatory to be able to trust any of those images. During this internship, our main goal is to compute the image phylogeny tree of an image set, where images are created from successive JPEG compressions. Every step, a child image is created from the compression of a parent image. In this paper we present our method based on a binary decision between two images and explain the results obtained with this method.
 \end{abstract}
 
@@ -97,7 +97,7 @@ Our goal is to identify the parent-child relationships in a set of near-duplicat
 
 We limit ourselves to the study of $\mathcal{T} = $ \textit{\{JPEG compression\}}, and specifically when the child image quality factor is smaller than its parent to focus on two main fields : image phylogeny, and forensics and multiple JPEG compression detection.
 
-Most state of the art methods for image phylogeny tree estimation \autocites{dias2010first, dias2012image, 7018370, 7472039} have a two steps method. First, they compute a dissimilarity matrix, an assymetric matrix, using a dissimilarity function. The dissimilarity function, given Equation \ref{eqn:dissimilarity}, is a function that given two images, returns small values for similar images.
+Most state of the art methods for image phylogeny tree estimation \autocites{dias2010first, dias2012image, 7018370, 7472039} have a two steps method. First, they compute a dissimilarity matrix, an assymetric matrix, using a dissimilarity function. The dissimilarity function, given Equation \ref{eqn:dissimilarity}, is a function that, given two images, returns small values for similar images.
 
 \begin{equation}
   d(I_{m},I_{n}) = \underset{T_{\overrightarrow{\beta}}}{min}\left | I_{n} - T_{\overrightarrow{\beta}}(I_{m}) \right |_{comparison\ method}
@@ -178,7 +178,7 @@ For instance a black and white image cannot be a ancestor of a color image becau
 \end{marqueur}
 
 \begin{fonction}
-Let $f(I_{m},I_{n})$ be a function that for every image pair $(I_{m}, I_{n})$ detects every time there is one a marker visible in one image and not the other, thus proving that $I_m$ is not an ancestor of $I_n$. This function is called a negation function. This is an abstract function, and that is where lies the difficulty.
+Let $f(I_{m},I_{n})$ be a function that for every image pair $(I_{m}, I_{n})$ detects every time there is one a marker visible in the image $I_m$ and not in its potential child $I_n$, thus proving that $I_m$ is not an ancestor of $I_n$. This function is called a negation function. This is an abstract function, and that is where lies the difficulty.
 \end{fonction}
 
 \newtheorem{parentage}{Theorem}
@@ -237,7 +237,7 @@ We assume that JPEG compression is a deterministic operation. That is, for the s
 
 From this, we can accurately estimate the parent : 
 
-Let $I_m$ and $I_n$ be two images and $Q_{f_{m}}$ and $Q_{f_{n}}$ their quality factors, and $C(I,Q)$ a compression operator, with $I$ an image and $Q$ a quality factor.
+Let $I_m$ and $I_n$ be two images and $Q_{f_{m}}$ and $Q_{f_{n}}$ their quality factors, and $C(I,Q)$ a JPEG compression operator, with $I$ an image and $Q$ a quality factor.
 \\
 
 If $I_m = C(I_n, Q_{f_{m}})$, then $I_n$ is the parent of $I_m$.
@@ -377,7 +377,7 @@ The chosen image has the following compression history : $H_{Q_{f}} = \{86, 85, 
     \caption{Quantization table of the actual $Q_f$, $i = 73$.}
     \label{periods3}
   \end{subfigure}
-  \caption{Example of quantization tables used in our algorithms}
+  \caption{Example of quantization tables used during the tree reconstruction.}
 \end{figure}
 
 \begin{figure}[!ht]

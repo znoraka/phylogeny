@@ -14,6 +14,9 @@
 \usepackage{hhline}
 \usepackage{tikz}
 \usepackage{tikz-qtree}
+\usepackage{pbox}
+\usepackage{slashbox}
+\usepackage{hhline}
 
 \usetikzlibrary{trees}
 \usetikzlibrary{babel}
@@ -447,6 +450,98 @@
 \end{frame}
 
 \begin{frame}
+  \frametitle{Extraction de la période}
+  \begin{block}{Qu'est ce que la période}
+    Delta entre chaque pic de l'autocorrélation
+  \end{block}
+  \centering
+  \includegraphics[width=0.5\linewidth]{signal.png}
+  \includegraphics[width=0.5\linewidth]{autocorrelation.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Extraction de la période}
+  \begin{figure}
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+      \hline
+      9 & 6 & 5 & 9 & 13 & 22 & 22 & 31 \\ \hline    
+      6 & 6 & 8 & 10 & 14 & 16 & 28 & 0 \\ \hline
+      8 & 7 & 9 & 13 & 20 & -1 & 0 & 0 \\ \hline
+      8 & 9 & 12 & 19 & -1 & -1 & 0 & 0 \\ \hline
+      10 & 12 & -1 & 31 & 30 & 0 & 0 & 0 \\ \hline
+      12 & 13 & 28 & 30 & 0 & 0 & 0 & 0 \\ \hline
+    \end{tabular}
+    \caption{Exemple de table de quantification retournée par l'estimation de la période, $\widehat{q}(u,v)$.}
+    \label{periods1}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Estimation du facteur de qualité : estimation primaire}
+  \begin{block}{Estimation primaire}
+    Calcul de distance entre $\widehat{q}(u,v)$ et table(i)
+  \end{block}
+  \begin{block}{Avantage}
+    Donne directement $Q_f$
+  \end{block}
+  \begin{block}{Inconvénients}
+    \begin{itemize}
+      \item Lent
+      \item Imprécise
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Estimation du facteur de qualité : estimation primaire}
+  \centering
+  \includegraphics[width=0.8\linewidth]{distances.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Estimation du facteur de qualité : estimation secondaire}
+  \begin{block}{Estimation secondaire}
+    Utilisation des formules 
+  \end{block}
+  \begin{block}{Avantages}
+    \begin{itemize}
+      \item Rapide
+      \item Précise
+    \end{itemize}
+  \end{block}
+  \begin{block}{Inconvénients}
+    $Q_f$ est nécessaire pour calculer $Q_f$
+  \end{block}
+
+\begin{equation}
+ Si\ \ \  Q_f < 50\ \ \ \  Q_s = 5000 / Q_f  \ \ sinon \ \ Q_s = 200 - (Q_f \times 2)
+\label{eqn:jpeg_1}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+  q(u,v) = \frac{(base(u,v) \times Q_s) - 50}{100}\ \ \  avec\ \ \ 1 \leq q(u,v) \leq 255
+\end{split}
+  \label{eqn:jpeg_2}
+\end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Estimation des ancêtres}
+  \begin{block}{}
+    Comparaison des images deux à deux
+  \end{block}
+  \begin{block}{}
+    Filtrage des images ne pouvant pas être un ancêtre
+  \end{block}
+  \begin{block}{}
+    Décision binaire
+  \end{block}
+\end{frame}
+
+
+\begin{frame}
   \frametitle{Points clés de notre approche}
   \begin{block}{}
     Réduction d'un problème de reconstruction d'un arbre de phylogénie à un problème de négation de parenté
@@ -488,19 +583,66 @@
 
 \section{Résultats}
 \begin{frame}
-  \frametitle{Des résultats mitigés}
-  \begin{block}{}
-    Détection du parent direct très fiable
-  \end{block}
-  \pause
-  \begin{block}{}
-    Mauvaise détection des parents éloignés
-  \end{block}
-  \pause
-  \begin{block}{}
-    Arbre incomplet dans le cas d'images manquantes
-  \end{block}
+  \frametitle{Arbres complets}
+  \centering
+  \scalebox{0.85}{
+  \begin{tabular}{|l||c|c|c|c|c|}
+    \hline
+     \backslashbox{Métrique}{Dataset}             & \textbf{15 images} & \textbf{25 images} & \textbf{50 images} \\ \hhline{|=::=|=|=|}
+    \textbf{\pbox{3.3cm}{Erreur moyenne d'estimation de $Q_f$}} & 0.42 & 0.64 & 0.83 \\ \hline
+    \textbf{\pbox{3.3cm}{Sur-estimation moyenne de $Q_f$}}      & 1.61  & 1.86  & 1.94  \\ \hline
+    \textbf{\pbox{3.3cm}{Sous-estimation moyenne de $Q_f$}}     & 1.07  & 2.12    & 6.68  \\ \hhline{|=::=|=|=|}
+    \textbf{roots}                                              & 95.83 & 88.88 & 84.72 \\ \hline
+    \textbf{edges}                                              & 99.70 & 99.24 & 98.97 \\ \hline
+    \textbf{leaves}                                             & 99.59 & 99.15 & 98.74 \\ \hline
+    \textbf{ancestry}                                           & 99.44 & 96.88 & 96.96 \\ \hline
+  \end{tabular}} 
 \end{frame}
+
+\begin{frame}
+  \frametitle{Arbres avec une image manquante}
+  \centering
+  \scalebox{0.90}{
+    \centering
+    \begin{tabular}{|l||c|c|c|c|c|}
+      \hline
+      \backslashbox{Métrique}{Dataset}             & \textbf{15 images} & \textbf{25 images} & \textbf{50 images} \\ \hhline{|=::=|=|=|}
+      \textbf{roots}                                                      & 69.60 & 33.33 & 49.01 \\ \hline
+      \textbf{edges}                                                      & 88.86 & 92.40 & 95.07 \\ \hline
+      \textbf{leaves}                                                     & 91.30 & 93.00 & 94.72 \\ \hline
+      \textbf{ancestry}                                                   & 78.06 & 82.22 & 88.21 \\ \hline
+    \end{tabular}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Arbre avec des images en couleurs}
+  \centering
+  \scalebox{0.85}{
+  \begin{tabular}{|l||c|c|c|c|c|}
+    \hline
+     \backslashbox{Métrique}{Dataset}             & \textbf{15 images} & \textbf{25 images} & \textbf{50 images} \\ \hhline{|=::=|=|=|}
+    \textbf{\pbox{3.3cm}{Erreur moyenne d'estimation de $Q_f$}}         & 1.15  & 1.29  & 1.42     \\ \hline
+    \textbf{\pbox{3.3cm}{Sur-estimation moyenne de $Q_f$}}              & 1.85  & 2.70  & 2.64  \\ \hline
+    \textbf{\pbox{3.3cm}{Sous-estimation moyenne de $Q_f$}}             & 2.97  & 3.79  & 4.94  \\ \hhline{|=::=|=|=|}
+    \textbf{roots}                                                      & 93.94 & 81.82 & 87.88 \\ \hline
+    \textbf{edges}                                                      & 99.35 & 98.61 & 99.38 \\ \hline
+    \textbf{leaves}                                                     & 99.62 & 98.66 & 99.78 \\ \hline
+    \textbf{ancestry}                                                   & 98.79 & 94.13 & 98.82 \\ \hline
+  \end{tabular}}
+\end{frame}
+
+
+  % \begin{block}{}
+  %   Détection du parent direct très fiable
+  % \end{block}
+  % \pause
+  % \begin{block}{}
+  %   Mauvaise détection des parents éloignés
+  % \end{block}
+  % \pause
+  % \begin{block}{}
+  %   Arbre incomplet dans le cas d'images manquantes
+  % \end{block}
 
 \section{Conclusion}
 \begin{frame}
