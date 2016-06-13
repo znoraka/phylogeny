@@ -51,12 +51,71 @@
   \warn{\item Invalid format of field 'month'}
 \endentry
 
+\entry{bianchi2012detection}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Bianchi}{B.}%
+     {Tiziano}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Piva}{P.}%
+     {Alessandro}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {IEEE}%
+  }
+  \strng{namehash}{BTPA1}
+  \strng{fullhash}{BTPA1}
+  \field{sortinit}{B}
+  \field{number}{2}
+  \field{pages}{842\bibrangedash 848}
+  \field{title}{Detection of nonaligned double JPEG compression based on
+  integer periodicity maps}
+  \field{volume}{7}
+  \field{journaltitle}{Information Forensics and Security, IEEE Transactions
+  on}
+  \field{year}{2012}
+\endentry
+
 \entry{bows}{online}{}
   \field{sortinit}{B}
   \field{title}{BOWS 2 dataset}
   \verb{url}
   \verb http://bows2.ec-lille.fr/index.php
   \endverb
+\endentry
+
+\entry{CarneinSB2016TelltaleWatermarks}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Carnein}{C.}%
+     {Matthias}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Schöttle}{S.}%
+     {Pascal}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Böhme}{B.}%
+     {Rainer}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CM+1}
+  \strng{fullhash}{CMSPBR1}
+  \field{sortinit}{C}
+  \field{booktitle}{Proceedings of the Electronic Imaging 2016}
+  \field{note}{Publication status: Published}
+  \field{title}{Telltale Watermarks for Counting JPEG Compressions}
+  \list{location}{1}{%
+    {San Francisco, USA}%
+  }
+  \field{year}{2016}
 \endentry
 
 \entry{dias2010first}{inproceedings}{}
@@ -123,6 +182,40 @@
   \field{year}{2012}
 \endentry
 
+\entry{huang2010detecting}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Huang}{H.}%
+     {Fangjun}{F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Huang}{H.}%
+     {Jiwu}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Shi}{S.}%
+     {Yun~Qing}{Y.~Q.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {IEEE}%
+  }
+  \strng{namehash}{HF+1}
+  \strng{fullhash}{HFHJSYQ1}
+  \field{sortinit}{H}
+  \field{number}{4}
+  \field{pages}{848\bibrangedash 856}
+  \field{title}{Detecting double JPEG compression with the same quantization
+  matrix}
+  \field{volume}{5}
+  \field{journaltitle}{Information Forensics and Security, IEEE Transactions
+  on}
+  \field{year}{2010}
+\endentry
+
 \entry{joly2007content}{article}{}
   \name{author}{3}{}{%
     {{}%
@@ -181,6 +274,29 @@
   \field{title}{Block convergence in repeated transform coding: JPEG-100
   forensics, carbon dating, and tamper detection}
   \field{year}{2013}
+\endentry
+
+\entry{lukavs2003estimation}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Luk{\'a}{\v{s}}}{L.}%
+     {Jan}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Fridrich}{F.}%
+     {Jessica}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{LJFJ1}
+  \strng{fullhash}{LJFJ1}
+  \field{sortinit}{L}
+  \field{booktitle}{Proc. Digital Forensic Research Workshop}
+  \field{pages}{5\bibrangedash 8}
+  \field{title}{Estimation of primary quantization matrix in double compressed
+  JPEG images}
+  \field{year}{2003}
 \endentry
 
 \entry{7018370}{inproceedings}{}
