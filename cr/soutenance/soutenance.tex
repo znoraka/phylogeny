@@ -13,8 +13,10 @@
 \usepackage{tikz}
 \usepackage{hhline}
 \usepackage{tikz}
+\usepackage{subcaption}
 \usepackage{tikz-qtree}
 \usepackage{pbox}
+\usepackage{forest}
 \usepackage{slashbox}
 \usepackage{hhline}
 
@@ -163,216 +165,266 @@
   \end{columns}
 \end{frame}
 
-\section{État de l'art}
-
 \begin{frame}
-  \frametitle{Estimation de l'arbre de phylogenie}
+  \frametitle{Notre cas d'étude}
+        \scalebox{0.6}{%
+      \begin{tikzpicture}[auto,node distance=2.8cm]
 
-\only<1,3,5> {
-  \begin{block}{Visual Migration Map}
-    \begin{itemize}
-    \item Les transformations sont directionnelles
-    \item Relation parent-enfant si tous les détecteurs s'accordent sur la direction
-    \item Simplification du graphe par sélection des plus longs chemins
-    \end{itemize}
-  \end{block}
-  \footfullcite{kennedy2008internet}
-}
-  \only<2> {
-    \begin{center}
-      \includegraphics<2>[scale=0.3]{vmm}
-    \end{center}
-  }
-  \only<4> {
-    \begin{center}
-    \includegraphics[scale=0.3]{vmm_directionnel}
-    \end{center}
-  }
-  \only<6> {
-    \begin{center}
-    \includegraphics[scale=0.45]{vmm_tree}
-    \end{center}
-  }
+        \tikzstyle{every state}=[shape=rectangle,minimum width=1.3in,text width=1.3in, align=center,fill=blue!30]
+
+        \node[draw=none,fill=none] (A) {image originale};
+        \node[state] (B) [right=0.7cm of A] {première compression JPEG avec $Q_{1}$};
+        \node[draw=none,fill=none,minimum width=1.1in,text width=1.1in] (C) [right=0.7cm of B] {première image compressée};
+        \node[state] (D) [above right=1.7cm and 0.9cm of C] {$n^{ieme}$ compression JPEG avec $Q_{n+1} = Q_{n}$};
+        \node[shape=rectangle,minimum width=1.3in,text width=1.3in, align=center,fill=green!90] (E) [right=0.9cm of C] {$n^{ieme}$ compression JPEG avec $Q_{n+1} < Q_{n}$};
+        \node[state] (F) [below right=1.7cm and 0.9cm of C] {$n^{ieme}$ compression JPEG avec $Q_{n+1}\ \{<,>,=\}\ Q_{n}$};
+        \node[draw=none,fill=none,minimum width=0.79in,text width=0.79in] (G) [right=0.7cm of D] {$n^{ieme}$ image compressée};
+        \node[draw=none,fill=none,minimum width=0.79in,text width=0.79in] (H) [right=0.7cm of E] {$n^{ieme}$ image compressée};
+        \node[draw=none,fill=none,minimum width=0.79in,text width=0.79in] (I) [right=0.7cm of F] {$n^{ieme}$ image compressée};
+
+        \node[draw=none,fill=none] (D1) [below=0.7cm of D] {};
+        \node[draw=none,fill=none] (D2) [below=0.94cm of G] {};
+
+        \node[draw=none,fill=none] (E1) [below=0.7cm of E] {};
+        \node[draw=none,fill=none] (E2) [below=0.94cm of H] {};
+
+        \node[draw=none,fill=none] (F1) [below=0.7cm of F] {};
+        \node[draw=none,fill=none] (F2) [below=0.94cm of I] {};
+
+        
+        \path [->] (A) edge node[left] {} (B);
+        \path [->] (B) edge node[left] {} (C);      
+        \path [->] (C.east) edge node[left] {} (D.west);
+        \path [->] (C.east) edge node[left] {} (E.west);
+        \path [->] (C.east) edge node[left] {} (F.west);
+        \path [->] (D) edge node[left] {} (G);
+        \path [->] (E) edge node[left] {} (H);
+        \path [->] (F) edge node[left] {} (I);
+
+        \path [->] (D1.center) edge node[left] {} (D);
+        \path [-] (D2.center) edge node[left] {} (D1.center);
+        \path [-] (G.south) edge node[left] {} (D2.center);
+
+        \path [->] (E1.center) edge node[left] {} (E);
+        \path [-] (E2.center) edge node[left] {} (E1.center);
+        \path [-] (H.south) edge node[left] {} (E2.center);
+
+        \path [->] (F1.center) edge node[left] {} (F);
+        \path [-] (F2.center) edge node[left] {} (F1.center);
+        \path [-] (I.south) edge node[left] {} (F2.center);
+      \end{tikzpicture}}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Estimation de l'arbre de phylogénie}
-  \begin{block}{Image phylogeny tree}
-    \begin{itemize}
-      \item Calcul d'une \textit{dissimilarity matrix}
-      \item Calcul d'un arbre couvrant de poids min (Kruskal ou autre)
-    \end{itemize}
-  \end{block}
-  \footfullcite{dias2010first}
-  \footfullcite{dias2012image}
-\end{frame}
+% \section{État de l'art}
 
-% \section{Analyse des recompressions}
-\begin{frame}
-  \frametitle{Convergence des blocs lors de compressions successives}
-  \begin{block}{But}
-    Compter le nombre de compressions
-  \end{block}
-  \begin{block}{3 types de blocs}
-    \begin{itemize}
-      \item Les blocs plats
-      \item Les blocs stables
-      \item Les blocs cycliques
-    \end{itemize}
-  \end{block}  
-  \begin{block}{Comment ?}
-    plus petit commun multiple de la longueur des cycles
-  \end{block}
-  \footfullcite{CarneinSB2016TelltaleWatermarks}
-\end{frame}
+% \begin{frame}
+%   \frametitle{Estimation de l'arbre de phylogenie}
 
-\begin{frame}
-  \frametitle{Convergence des blocs lors de compressions successives}
+% \only<1,3,5> {
+%   \begin{block}{Visual Migration Map}
+%     \begin{itemize}
+%     \item Les transformations sont directionnelles
+%     \item Relation parent-enfant si tous les détecteurs s'accordent sur la direction
+%     \item Simplification du graphe par sélection des plus longs chemins
+%     \end{itemize}
+%   \end{block}
+%   \footfullcite{kennedy2008internet}
+% }
+%   \only<2> {
+%     \begin{center}
+%       \includegraphics<2>[scale=0.3]{vmm}
+%     \end{center}
+%   }
+%   \only<4> {
+%     \begin{center}
+%     \includegraphics[scale=0.3]{vmm_directionnel}
+%     \end{center}
+%   }
+%   \only<6> {
+%     \begin{center}
+%     \includegraphics[scale=0.45]{vmm_tree}
+%     \end{center}
+%   }
+% \end{frame}
+
+% \begin{frame}
+%   \frametitle{Estimation de l'arbre de phylogénie}
+%   \begin{block}{Image phylogeny tree}
+%     \begin{itemize}
+%       \item Calcul d'une \textit{dissimilarity matrix}
+%       \item Calcul d'un arbre couvrant de poids min (Kruskal ou autre)
+%     \end{itemize}
+%   \end{block}
+%   \footfullcite{dias2010first}
+%   \footfullcite{dias2012image}
+% \end{frame}
+
+% % \section{Analyse des recompressions}
+% \begin{frame}
+%   \frametitle{Convergence des blocs lors de compressions successives}
+%   \begin{block}{But}
+%     Compter le nombre de compressions
+%   \end{block}
+%   \begin{block}{3 types de blocs}
+%     \begin{itemize}
+%       \item Les blocs plats
+%       \item Les blocs stables
+%       \item Les blocs cycliques
+%     \end{itemize}
+%   \end{block}  
+%   \begin{block}{Comment ?}
+%     plus petit commun multiple de la longueur des cycles
+%   \end{block}
+%   \footfullcite{CarneinSB2016TelltaleWatermarks}
+% \end{frame}
+
+% \begin{frame}
+%   \frametitle{Convergence des blocs lors de compressions successives}
    
-    \only<1,3>{
-      \begin{block}{Utilisation des blocs}
-        \begin{itemize}
-        \item Les blocs de l'image
-        \item Insérer des blocs
-        \end{itemize}
-      \end{block}
-      \pause
-      \begin{block}{Les inconvénients}
-        \begin{itemize}
-        \item Nécessite du padding
-        \item Limité à la même table de quantification
-        \item Résultats moyens pour Q < 100
-        \end{itemize}
-      \end{block}  
-    }
+%     \only<1,3>{
+%       \begin{block}{Utilisation des blocs}
+%         \begin{itemize}
+%         \item Les blocs de l'image
+%         \item Insérer des blocs
+%         \end{itemize}
+%       \end{block}
+%       \pause
+%       \begin{block}{Les inconvénients}
+%         \begin{itemize}
+%         \item Nécessite du padding
+%         \item Limité à la même table de quantification
+%         \item Résultats moyens pour Q < 100
+%         \end{itemize}
+%       \end{block}  
+%     }
 
-  \only<2> {
-    \begin{center}
-      \includegraphics<2>[scale=0.3]{insertion_blocs}
-    \end{center}
-  }
-  \footfullcite{CarneinSB2016TelltaleWatermarks}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Estimation de la matrice de compression primaire}
-  \only<1,3>{
-    \begin{block}{Analyse des valeurs manquantes de l'histogramme}
-      Artefacts distincts pour $Q^{1} > Q^{2}$ et $Q^{1} < Q^{2}$
-    \end{block}
-    \pause
-    \begin{block}{Limites}
-      \begin{itemize}
-      \item $Q^{1} = Q^{2}$
-      \item $Q^{1}$ est facteur de $Q^{2}$
-      \end{itemize}
-    \end{block}
-  }
-  \only<2> {
-    \begin{figure}
-      \includegraphics[height=0.4\textheight]{h1}
-      \hfill
-      \includegraphics[height=0.4\textheight]{h2}
-    \end{figure}
-    \begin{figure}
-      \includegraphics[height=0.4\textheight]{h3}
-    \end{figure}
-  }
-\end{frame}
+%   \only<2> {
+%     \begin{center}
+%       \includegraphics<2>[scale=0.3]{insertion_blocs}
+%     \end{center}
+%   }
+%   \footfullcite{CarneinSB2016TelltaleWatermarks}
+% \end{frame}
 
 % \begin{frame}
 %   \frametitle{Estimation de la matrice de compression primaire}
-%   \begin{block}{Analyse des valeurs manquantes de l'histogramme}
-%     Artefacts distincts pour $Q^{1} > Q^{2}$ et $Q^{1} < Q^{2}$
-%   \end{block}
-%   \pause
-%   \begin{block}{Limites}
-%     \begin{itemize}
-%     \item $Q^{1} \neq Q^{2}$
-%     \item $Q^{1}$ n'est pas facteur de $Q^{2}$
-%     \end{itemize}
-%   \end{block}
+%   \only<1,3>{
+%     \begin{block}{Analyse des valeurs manquantes de l'histogramme}
+%       Artefacts distincts pour $Q^{1} > Q^{2}$ et $Q^{1} < Q^{2}$
+%     \end{block}
+%     \pause
+%     \begin{block}{Limites}
+%       \begin{itemize}
+%       \item $Q^{1} = Q^{2}$
+%       \item $Q^{1}$ est facteur de $Q^{2}$
+%       \end{itemize}
+%     \end{block}
+%   }
+%   \only<2> {
+%     \begin{figure}
+%       \includegraphics[height=0.4\textheight]{h1}
+%       \hfill
+%       \includegraphics[height=0.4\textheight]{h2}
+%     \end{figure}
+%     \begin{figure}
+%       \includegraphics[height=0.4\textheight]{h3}
+%     \end{figure}
+%   }
 % \end{frame}
 
-\begin{frame}
-  \frametitle{Estimation de la matrice de compression primaire}
-  \begin{block}{Principe de leur méthode}
-    Comparer l'histogramme de l'image originale et l'histogramme des images compressées avec des tables de quantification modèles puis compressées avec $Q^{2}$ et enfin garder la table pour laquelle la différence entre histogramme est la plus faible
-  \end{block}
-  % \begin{enumerate}
+% % \begin{frame}
+% %   \frametitle{Estimation de la matrice de compression primaire}
+% %   \begin{block}{Analyse des valeurs manquantes de l'histogramme}
+% %     Artefacts distincts pour $Q^{1} > Q^{2}$ et $Q^{1} < Q^{2}$
+% %   \end{block}
+% %   \pause
+% %   \begin{block}{Limites}
+% %     \begin{itemize}
+% %     \item $Q^{1} \neq Q^{2}$
+% %     \item $Q^{1}$ n'est pas facteur de $Q^{2}$
+% %     \end{itemize}
+% %   \end{block}
+% % \end{frame}
+
+% \begin{frame}
+%   \frametitle{Estimation de la matrice de compression primaire}
+%   \begin{block}{Principe de leur méthode}
+%     Comparer l'histogramme de l'image originale et l'histogramme des images compressées avec des tables de quantification modèles puis compressées avec $Q^{2}$ et enfin garder la table pour laquelle la différence entre histogramme est la plus faible
+%   \end{block}
+%   % \begin{enumerate}
     
-  % \item Extraire la table de quantification $Q^{2}$
-  %   % \end{enumerate}
-  %   \suspend{enumerate}
-  %   Pour tous les coefficients intéressants
-  %   % \begin{enumerate}[resume]
-  %   \resume{enumerate}
-  % \item Obtenir l'histogramme $h_{0}$ des valeurs absolues des coefficients DCT de l'image
-  % \item Crop l'image (par 4 et 4 pixels)
-  % \item Sélectionner les matrices de quantification $Q^{1,1},...,Q^{1,n}$ pour chaque valeur candidate de la matrice primaire
-  % \item Compresser l'image cropée avec les matrices $Q^{1,1},...,Q^{1,n}$
-  % \item Décompresser toutes les images obtenue et les compresser avec $Q^{2}$
+%   % \item Extraire la table de quantification $Q^{2}$
+%   %   % \end{enumerate}
+%   %   \suspend{enumerate}
+%   %   Pour tous les coefficients intéressants
+%   %   % \begin{enumerate}[resume]
+%   %   \resume{enumerate}
+%   % \item Obtenir l'histogramme $h_{0}$ des valeurs absolues des coefficients DCT de l'image
+%   % \item Crop l'image (par 4 et 4 pixels)
+%   % \item Sélectionner les matrices de quantification $Q^{1,1},...,Q^{1,n}$ pour chaque valeur candidate de la matrice primaire
+%   % \item Compresser l'image cropée avec les matrices $Q^{1,1},...,Q^{1,n}$
+%   % \item Décompresser toutes les images obtenue et les compresser avec $Q^{2}$
 
-  % \end{enumerate}
+%   % \end{enumerate}
 
-\end{frame}
+% \end{frame}
 
 \section{Notre approche}
-\begin{frame}
-  \frametitle{Matrice de parenté}
-  \begin{block}{}
-    Matrice binaire de taille $n \times n$
-  \end{block}
-  \begin{block}{}
-    Construction de l'arbre à partir de la matrice
-  \end{block}
-\begin{figure}
-  \includegraphics[width=.9\linewidth]{tree_table.png}
-  % \centering
-%   \subfloat[Arbre de phylogénie\label{Arbre de phylogenie}]{\includegraphics[width=.27\linewidth]{algo_tree.png}}
-%   \subfloat[Matrice de parenté\label{fig:b}]{
-%     \scalebox{0.75}{
-%       \begin{tabular}{|r||c|c|c|c|c|}
-%         \hline
-%         - & $I_{0}$ & $I_{1}$ & $I_{2}$ & $I_{3}$ & $I_{4}$ \\ \hhline{|=::=|=|=|=|=|}
-%         $I_{0}$ & - & 0 & 0 & 0 & 0 \\ \hline
-%         $I_{1}$ & 0 & - & 0 & 1 & 1 \\ \hline
-%         $I_{2}$ & 1 & 1 & - & 1 & 1 \\ \hline
-%         $I_{3}$ & 0 & 0 & 0 & - & 0 \\ \hline
-%         $I_{4}$ & 0 & 0 & 0 & 0 & - \\ \hline
-%       \end{tabular} 
-%     }
-% }
-%   \caption{A figure}
-%   \label{fig:1}
-\end{figure}
+% \begin{frame}
+%   \frametitle{Matrice de parenté}
+%   \begin{block}{}
+%     Matrice binaire de taille $n \times n$
+%   \end{block}
+%   \begin{block}{}
+%     Construction de l'arbre à partir de la matrice
+%   \end{block}
+% \begin{figure}
+%   \includegraphics[width=.9\linewidth]{tree_table.png}
+%   % \centering
+% %   \subfloat[Arbre de phylogénie\label{Arbre de phylogenie}]{\includegraphics[width=.27\linewidth]{algo_tree.png}}
+% %   \subfloat[Matrice de parenté\label{fig:b}]{
+% %     \scalebox{0.75}{
+% %       \begin{tabular}{|r||c|c|c|c|c|}
+% %         \hline
+% %         - & $I_{0}$ & $I_{1}$ & $I_{2}$ & $I_{3}$ & $I_{4}$ \\ \hhline{|=::=|=|=|=|=|}
+% %         $I_{0}$ & - & 0 & 0 & 0 & 0 \\ \hline
+% %         $I_{1}$ & 0 & - & 0 & 1 & 1 \\ \hline
+% %         $I_{2}$ & 1 & 1 & - & 1 & 1 \\ \hline
+% %         $I_{3}$ & 0 & 0 & 0 & - & 0 \\ \hline
+% %         $I_{4}$ & 0 & 0 & 0 & 0 & - \\ \hline
+% %       \end{tabular} 
+% %     }
+% % }
+% %   \caption{A figure}
+% %   \label{fig:1}
+% \end{figure}
 
-%   \begin{figure}
-%       \centering
-%       \subfloat{\includegraphics[width=.5\linewidth]{algo_tree.png}}
-%       % \caption{Arbre de phylogénie}
-%       % \label{algo_tree}
-%     % \begin{subfigure}{.5\textwidth}
-%       \centering
-% \subfloat{
-%       \begin{tabular}{|r||c|c|c|c|c|}
-%         \hline
-%         - & $I_{0}$ & $I_{1}$ & $I_{2}$ & $I_{3}$ & $I_{4}$ \\ \hhline{|=::=|=|=|=|=|}
-%         $I_{0}$ & - & 0 & 0 & 0 & 0 \\ \hline
-%         $I_{1}$ & 0 & - & 0 & 1 & 1 \\ \hline
-%         $I_{2}$ & 1 & 1 & - & 1 & 1 \\ \hline
-%         $I_{3}$ & 0 & 0 & 0 & - & 0 \\ \hline
-%         $I_{4}$ & 0 & 0 & 0 & 0 & - \\ \hline
-%       \end{tabular} 
-%       % \caption{Matrice de parenté}
-%       % \label{parentage_matrix}
-%     % \end{subfigure}
-% }
-%     \caption{Une arbre de phylogénie et sa matrice de parenté.}
-%     \label{parentage_tree}
-%   \end{figure}
+% %   \begin{figure}
+% %       \centering
+% %       \subfloat{\includegraphics[width=.5\linewidth]{algo_tree.png}}
+% %       % \caption{Arbre de phylogénie}
+% %       % \label{algo_tree}
+% %     % \begin{subfigure}{.5\textwidth}
+% %       \centering
+% % \subfloat{
+% %       \begin{tabular}{|r||c|c|c|c|c|}
+% %         \hline
+% %         - & $I_{0}$ & $I_{1}$ & $I_{2}$ & $I_{3}$ & $I_{4}$ \\ \hhline{|=::=|=|=|=|=|}
+% %         $I_{0}$ & - & 0 & 0 & 0 & 0 \\ \hline
+% %         $I_{1}$ & 0 & - & 0 & 1 & 1 \\ \hline
+% %         $I_{2}$ & 1 & 1 & - & 1 & 1 \\ \hline
+% %         $I_{3}$ & 0 & 0 & 0 & - & 0 \\ \hline
+% %         $I_{4}$ & 0 & 0 & 0 & 0 & - \\ \hline
+% %       \end{tabular} 
+% %       % \caption{Matrice de parenté}
+% %       % \label{parentage_matrix}
+% %     % \end{subfigure}
+% % }
+% %     \caption{Une arbre de phylogénie et sa matrice de parenté.}
+% %     \label{parentage_tree}
+% %   \end{figure}
 
-\end{frame}
+% \end{frame}
 
 \begin{frame}
   \frametitle{Notre approche}
@@ -475,20 +527,34 @@
     \caption{Exemple de table de quantification retournée par l'estimation de la période, $\widehat{q}(u,v)$.}
     \label{periods1}
   \end{figure}
+  \begin{block}{}
+    Limitation au 35 premiers coefficients
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Extraction de la période}
+  \centering
+  \includegraphics[width=0.45\linewidth]{histo0.png}
+  \includegraphics[width=0.45\linewidth]{histo18.png}
+
+
+  \includegraphics[width=0.45\linewidth]{histo31.png}
+  \includegraphics[width=0.45\linewidth]{histo40.png}
 \end{frame}
 
 \begin{frame}
   \frametitle{Estimation du facteur de qualité : estimation primaire}
   \begin{block}{Estimation primaire}
-    Calcul de distance entre $\widehat{q}(u,v)$ et table(i)
+    Calcul de distance entre $\widehat{q}(u,v)$ et table(i) : $D_{euc}(P,Q) = \sqrt{\sum\limits_{i=1}^{d}|P_{i} - Q_{i}|^2}$
   \end{block}
   \begin{block}{Avantage}
     Donne directement $Q_f$
   \end{block}
   \begin{block}{Inconvénients}
     \begin{itemize}
-      \item Lent
-      \item Imprécise
+    \item Lent
+    \item Imprécise
     \end{itemize}
   \end{block}
 \end{frame}
@@ -496,7 +562,55 @@
 \begin{frame}
   \frametitle{Estimation du facteur de qualité : estimation primaire}
   \centering
-  \includegraphics[width=0.8\linewidth]{distances.png}
+  \begin{figure}
+    \begin{subfigure}{0.7\linewidth}
+    \includegraphics[width=0.95\linewidth]{distances.png}
+    \end{subfigure}%
+    \begin{subfigure}{0.3\linewidth}
+    \scalebox{0.5}{
+      \centering
+      \begin{tabular}{|c|c|c|c|c|c|c|c|}
+        \hline
+        32&24&28&28&36&48&98&144\\ \hline
+        22&24&26&34&44&70&128&184\\ \hline
+        20&28&32&44&74&110&156&190\\ \hline
+        32&38&48&58&112&128&174&196\\ \hline
+        48&52&80&102&136&162&206&224\\ \hline
+        80&116&114&174&218&208&242&200\\ \hline
+        102&120&138&160&206&226&240&206\\ \hline
+        122&110&112&124&154&184&202&198\\ \hline
+      \end{tabular}}
+    \vspace{5mm}    
+
+    \scalebox{0.5}{
+      \begin{tabular}{|c|c|c|c|c|c|c|c|}
+        \hline
+        16&12&14&14&18&24&49&72\\ \hline
+        11&12&13&17&22&35&64&92\\ \hline
+        10&14&16&22&37&55&78&95\\ \hline
+        16&19&24&29&56&64&87&98\\ \hline
+        24&26&40&51&68&81&103&112\\ \hline
+        40&58&57&87&109&104&121&100\\ \hline
+        51&60&69&80&103&113&120&103\\ \hline
+        61&55&56&62&77&92&101&99\\ \hline
+      \end{tabular}}
+    \vspace{5mm}    
+
+    \scalebox{0.5}{ 
+      \begin{tabular}{|c|c|c|c|c|c|c|c|}
+        \hline
+        8&6&7&7&9&12&25&36\\ \hline
+        6&6&7&9&11&18&32&46\\ \hline
+        5&7&8&11&19&28&39&48\\ \hline
+        8&10&12&15&28&32&44&49\\ \hline
+        12&13&20&26&34&41&52&56\\ \hline
+        20&29&29&44&55&52&61&50\\ \hline
+        26&30&35&40&52&57&60&52\\ \hline
+        31&28&28&31&39&46&51&50\\ \hline
+      \end{tabular}}
+    \end{subfigure}
+  \end{figure}
+
 \end{frame}
 
 \begin{frame}
@@ -530,7 +644,13 @@
 \begin{frame}
   \frametitle{Estimation des ancêtres}
   \begin{block}{}
-    Comparaison des images deux à deux
+    La compression est déterministe
+  \end{block}
+  \begin{block}{}
+    La compression n'est pas transitive
+  \end{block}
+  \begin{block}{}
+    Le parent est à une compression de distance de ses enfants
   \end{block}
   \begin{block}{}
     Filtrage des images ne pouvant pas être un ancêtre
@@ -539,6 +659,63 @@
     Décision binaire
   \end{block}
 \end{frame}
+
+\begin{frame}
+  \frametitle{Reconstruction de l'arbre}
+  \begin{block}{}
+    Matrice binaire de taille $n \times n$
+  \end{block}
+  \begin{block}{}
+    Construction de l'arbre à partir de la matrice
+  \end{block}
+\begin{figure}
+  \includegraphics[width=.9\linewidth]{tree_table.png}
+  % \centering
+%   \subfloat[Arbre de phylogénie\label{Arbre de phylogenie}]{\includegraphics[width=.27\linewidth]{algo_tree.png}}
+%   \subfloat[Matrice de parenté\label{fig:b}]{
+%     \scalebox{0.75}{
+%       \begin{tabular}{|r||c|c|c|c|c|}
+%         \hline
+%         - & $I_{0}$ & $I_{1}$ & $I_{2}$ & $I_{3}$ & $I_{4}$ \\ \hhline{|=::=|=|=|=|=|}
+%         $I_{0}$ & - & 0 & 0 & 0 & 0 \\ \hline
+%         $I_{1}$ & 0 & - & 0 & 1 & 1 \\ \hline
+%         $I_{2}$ & 1 & 1 & - & 1 & 1 \\ \hline
+%         $I_{3}$ & 0 & 0 & 0 & - & 0 \\ \hline
+%         $I_{4}$ & 0 & 0 & 0 & 0 & - \\ \hline
+%       \end{tabular} 
+%     }
+% }
+%   \caption{A figure}
+%   \label{fig:1}
+\end{figure}
+
+%   \begin{figure}
+%       \centering
+%       \subfloat{\includegraphics[width=.5\linewidth]{algo_tree.png}}
+%       % \caption{Arbre de phylogénie}
+%       % \label{algo_tree}
+%     % \begin{subfigure}{.5\textwidth}
+%       \centering
+% \subfloat{
+%       \begin{tabular}{|r||c|c|c|c|c|}
+%         \hline
+%         - & $I_{0}$ & $I_{1}$ & $I_{2}$ & $I_{3}$ & $I_{4}$ \\ \hhline{|=::=|=|=|=|=|}
+%         $I_{0}$ & - & 0 & 0 & 0 & 0 \\ \hline
+%         $I_{1}$ & 0 & - & 0 & 1 & 1 \\ \hline
+%         $I_{2}$ & 1 & 1 & - & 1 & 1 \\ \hline
+%         $I_{3}$ & 0 & 0 & 0 & - & 0 \\ \hline
+%         $I_{4}$ & 0 & 0 & 0 & 0 & - \\ \hline
+%       \end{tabular} 
+%       % \caption{Matrice de parenté}
+%       % \label{parentage_matrix}
+%     % \end{subfigure}
+% }
+%     \caption{Une arbre de phylogénie et sa matrice de parenté.}
+%     \label{parentage_tree}
+%   \end{figure}
+
+\end{frame}
+
 
 
 \begin{frame}
@@ -551,37 +728,50 @@
   \end{block}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Les marqueurs : facteur de qualité}
-  \centering
-  \includegraphics[width=0.8\linewidth]{qinf.png}
-  \begin{block}{}
-    Estimation du facteur de qualité
-  \end{block}
-\end{frame}
+% \begin{frame}
+%   \frametitle{Les marqueurs : facteur de qualité}
+%   \centering
+%   \includegraphics[width=0.8\linewidth]{qinf.png}
+%   \begin{block}{}
+%     Estimation du facteur de qualité
+%   \end{block}
+% \end{frame}
 
-\begin{frame}
-  \frametitle{Les marqueurs : valeurs manquantes dans l'histogramme des coefficients DCT}
-  \begin{block}{}
-    Les coefficients sont des multiples des valeurs de la table de quantification
+% \begin{frame}
+%   \frametitle{Les marqueurs : valeurs manquantes dans l'histogramme des coefficients DCT}
+%   \begin{block}{}
+%     Les coefficients sont des multiples des valeurs de la table de quantification
     
-  \end{block}
-  \begin{figure}
-    \includegraphics[width=0.5\linewidth]{h1.png}
-    % \caption{Image compressée une fois}
-    \includegraphics[width=0.5\linewidth]{h2.png}
-    % \caption{\ \ Image simplement compressée - Image doublement compressée, $Q_1 > Q_2$}
-  \end{figure}
-\vspace{-5mm}
-\scalebox{0.7}{
-  \hspace{15mm}
-  \textit{Image simplement compressée}
-  \hspace{18mm}
-  \textit{Image doublement compressée, $Q_1 > Q_2$}
-}  
-\end{frame}
+%   \end{block}
+%   \begin{figure}
+%     \includegraphics[width=0.5\linewidth]{h1.png}
+%     % \caption{Image compressée une fois}
+%     \includegraphics[width=0.5\linewidth]{h2.png}
+%     % \caption{\ \ Image simplement compressée - Image doublement compressée, $Q_1 > Q_2$}
+%   \end{figure}
+% \vspace{-5mm}
+% \scalebox{0.7}{
+%   \hspace{15mm}
+%   \textit{Image simplement compressée}
+%   \hspace{18mm}
+%   \textit{Image doublement compressée, $Q_1 > Q_2$}
+% }  
+% \end{frame}
 
 \section{Résultats}
+\begin{frame}
+  \frametitle{Arbres complets}
+  \begin{block}{}
+    Une très bonne estimation du $Q_f$
+  \end{block}
+  \begin{block}{}
+    Des métriques proches de 100\%
+  \end{block}
+  \begin{block}{}
+    La précision baisse quand la taille de l'arbre augmente
+  \end{block}
+\end{frame}
+
 \begin{frame}
   \frametitle{Arbres complets}
   \centering
@@ -601,6 +791,49 @@
 
 \begin{frame}
   \frametitle{Arbres avec une image manquante}
+  \begin{block}{}
+    Mauvaise estimation de la racine
+  \end{block}
+  \begin{block}{}
+    Bonne estimation du reste de l'arbre
+  \end{block}
+  \begin{block}{}
+    Notre méthode ne détecte que le parent
+  \end{block}
+\end{frame}
+
+% \begin{frame}
+%   \frametitle{Arbres avec une image manquante}
+%     \begin{tikzpicture}
+%       \node[anchor=south west,inner sep=2] at (0,0) { 
+%         \begin{forest}
+%           [\href{run:7}{7.jpg}[\href{run:8}{8.jpg}[\href{run:1}{1.jpg}[\href{run:9}{9.jpg}[\href{run:14}{14.jpg}]]][\href{run:13}{13.jpg}[\href{run:3}{3.jpg}[\href{run:5}{5.jpg}]][\href{run:10}{10.jpg}[\href{run:6}{6.jpg}]]]][\href{run:11}{11.jpg}][\href{run:12}{12.jpg}[\href{run:0}{0.jpg}][\href{run:2}{2.jpg}][\href{run:4}{4.jpg}]]]
+%         \end{forest}};
+%       % \draw[red,ultra thick,rounded corners] (7.5,5.3) rectangle (9.4,6.2);
+%       \draw[red, ultra thick](0.8,2.5) -- (2.05,3.1);
+%       \draw[red, ultra thick](0.8,3.1) -- (2.05,2.5);
+%     \end{tikzpicture}
+
+%     \begin{tikzpicture}
+%       \node[anchor=south west,inner sep=2] at (0,0) { 
+%         \begin{forest}
+%           [\href{run:7}{7.jpg}[\href{run:11}{11.jpg}][\href{run:12}{12.jpg}[\href{run:0}{0.jpg}][\href{run:2}{2.jpg}][\href{run:4}{4.jpg}]]]
+%         \end{forest}
+%         \begin{forest}
+%           [\href{run:1}{1.jpg}[\href{run:9}{9.jpg}[\href{run:14}{14.jpg}]]]
+%         \end{forest}
+%         \begin{forest}
+%           [\href{run:13}{13.jpg}[\href{run:3}{3.jpg}[\href{run:5}{5.jpg}]][\href{run:10}{10.jpg}[\href{run:6}{6.jpg}]]]
+%         \end{forest}};
+%     \end{tikzpicture}
+
+%     \begin{forest}
+%       [\href{run:1}{1.jpg}[\href{run:7}{7.jpg}[\href{run:11}{11.jpg}][\href{run:12}{12.jpg}[\href{run:0}{0.jpg}][\href{run:2}{2.jpg}][\href{run:4}{4.jpg}]]][\href{run:9}{9.jpg}[\href{run:14}{14.jpg}]][\href{run:13}{13.jpg}[\href{run:3}{3.jpg}[\href{run:5}{5.jpg}]][\href{run:10}{10.jpg}[\href{run:6}{6.jpg}]]]]
+%     \end{forest}
+% \end{frame}
+
+\begin{frame}
+  \frametitle{Arbres avec une image manquante}
   \centering
   \scalebox{0.90}{
     \centering
@@ -612,6 +845,19 @@
       \textbf{leaves}                                                     & 91.30 & 93.00 & 94.72 \\ \hline
       \textbf{ancestry}                                                   & 78.06 & 82.22 & 88.21 \\ \hline
     \end{tabular}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Arbre avec des images en couleur}
+  \begin{block}{}
+    Aucune adaptation de notre implémentation
+  \end{block}
+  \begin{block}{}
+    Utilisation du canal de luminance
+  \end{block}
+  \begin{block}{}
+    De très bons résultats
+  \end{block}
 \end{frame}
 
 \begin{frame}
