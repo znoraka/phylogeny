@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  16 JUN 2016 14:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  16 JUN 2016 14:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2158,7 +2158,7 @@ Overfull \hbox (2.09549pt too wide) in paragraph at lines 223--223
 File: vmm.png Graphic file (type png)
 
 <use vmm.png>
-Package pdftex.def Info: vmm.png used on input line 255.
+Package pdftex.def Info: vmm.png used on input line 250.
 (pdftex.def)             Requested size: 225.84549pt x 200.5508pt.
  [16
 
@@ -2169,66 +2169,61 @@ Package pdftex.def Info: vmm.png used on input line 255.
 File: vmm_directionnel.png Graphic file (type png)
 
 <use vmm_directionnel.png>
-Package pdftex.def Info: vmm_directionnel.png used on input line 255.
+Package pdftex.def Info: vmm_directionnel.png used on input line 250.
 (pdftex.def)             Requested size: 206.57333pt x 206.57333pt.
  [18
 
  <./vmm_directionnel.png>] [19
 
+] [20
+
+] [21
+
 ]
-<vmm_tree.png, id=675, 676.5275pt x 244.915pt>
-File: vmm_tree.png Graphic file (type png)
- <use vmm_tree.png>
-Package pdftex.def Info: vmm_tree.png used on input line 255.
-(pdftex.def)             Requested size: 304.43456pt x 110.21072pt.
- [20
-
- <./vmm_tree.png>] [21
-
-] [22
-
-] <insertion_blocs.png, id=767, 745.78625pt x 641.39626pt>
+<insertion_blocs.png, id=736, 745.78625pt x 641.39626pt>
 File: insertion_blocs.png Graphic file (type png)
 
 <use insertion_blocs.png>
-Package pdftex.def Info: insertion_blocs.png used on input line 297.
+Package pdftex.def Info: insertion_blocs.png used on input line 292.
 (pdftex.def)             Requested size: 223.7376pt x 192.42035pt.
- [23
+ [22
 
- <./insertion_blocs.png (PNG copy)>] [24
+ <./insertion_blocs.png (PNG copy)>] [23
 
 ]
-<h1.png, id=828, 726.715pt x 573.14125pt>
+<h1.png, id=797, 726.715pt x 573.14125pt>
 File: h1.png Graphic file (type png)
  <use h1.png>
-Package pdftex.def Info: h1.png used on input line 357.
+Package pdftex.def Info: h1.png used on input line 352.
 (pdftex.def)             Requested size: 152.4594pt x 120.24149pt.
 
-<h2.png, id=829, 725.71124pt x 573.14125pt>
+<h2.png, id=798, 725.71124pt x 573.14125pt>
 File: h2.png Graphic file (type png)
  <use h2.png>
-Package pdftex.def Info: h2.png used on input line 357.
+Package pdftex.def Info: h2.png used on input line 352.
 (pdftex.def)             Requested size: 152.24883pt x 120.24149pt.
 
-<h3.png, id=830, 725.71124pt x 573.14125pt>
+<h3.png, id=799, 725.71124pt x 573.14125pt>
 File: h3.png Graphic file (type png)
  <use h3.png>
-Package pdftex.def Info: h3.png used on input line 357.
+Package pdftex.def Info: h3.png used on input line 352.
 (pdftex.def)             Requested size: 152.24883pt x 120.24149pt.
 
-Overfull \hbox (4.751pt too wide) in paragraph at lines 357--357
+Overfull \hbox (4.751pt too wide) in paragraph at lines 352--352
 [][] 
  []
 
 
-Overfull \hbox (4.751pt too wide) in paragraph at lines 357--357
+Overfull \hbox (4.751pt too wide) in paragraph at lines 352--352
 []  
  []
 
-[25
+[24
 
  <./h1.png (PNG copy)> <./h2.png (PNG copy)> <./h3.png (PNG copy)>]
-(./soutenance.toc) [26
+(./soutenance.toc) [25
+
+] [26
 
 ] [27
 
@@ -2236,202 +2231,202 @@ Overfull \hbox (4.751pt too wide) in paragraph at lines 357--357
 
 ] [29
 
-] [30
-
 ]
-Overfull \hbox (2.03474pt too wide) in paragraph at lines 459--459
+Overfull \hbox (2.03474pt too wide) in paragraph at lines 454--454
  [] 
  []
 
-[31
+[30
 
-] <signal.png, id=1052, 963.6pt x 722.7pt>
+] <signal.png, id=1020, 963.6pt x 722.7pt>
 File: signal.png Graphic file (type png)
  <use signal.png>
-Package pdftex.def Info: signal.png used on input line 469.
+Package pdftex.def Info: signal.png used on input line 464.
 (pdftex.def)             Requested size: 153.64493pt x 115.22633pt.
 
-<autocorrelation.png, id=1053, 963.6pt x 722.7pt>
+<autocorrelation.png, id=1021, 963.6pt x 722.7pt>
 File: autocorrelation.png Graphic file (type png)
  <use autocorrelation.png>
-Package pdftex.def Info: autocorrelation.png used on input line 469.
+Package pdftex.def Info: autocorrelation.png used on input line 464.
 (pdftex.def)             Requested size: 153.64493pt x 115.22633pt.
 
-[32
+[31
 
- <./signal.png (PNG copy)> <./autocorrelation.png (PNG copy)>] [33
+ <./signal.png (PNG copy)> <./autocorrelation.png (PNG copy)>] [32
 
 ]
-<histo0.png, id=1116, 963.6pt x 722.7pt>
+<histo0.png, id=1085, 963.6pt x 722.7pt>
 File: histo0.png Graphic file (type png)
  <use histo0.png>
-Package pdftex.def Info: histo0.png used on input line 505.
+Package pdftex.def Info: histo0.png used on input line 500.
 (pdftex.def)             Requested size: 138.2795pt x 103.7026pt.
 
-<histo18.png, id=1117, 963.6pt x 722.7pt>
+<histo18.png, id=1086, 963.6pt x 722.7pt>
 File: histo18.png Graphic file (type png)
  <use histo18.png>
-Package pdftex.def Info: histo18.png used on input line 505.
+Package pdftex.def Info: histo18.png used on input line 500.
 (pdftex.def)             Requested size: 138.2795pt x 103.7026pt.
 
-<histo31.png, id=1118, 963.6pt x 722.7pt>
+<histo31.png, id=1087, 963.6pt x 722.7pt>
 File: histo31.png Graphic file (type png)
  <use histo31.png>
-Package pdftex.def Info: histo31.png used on input line 505.
+Package pdftex.def Info: histo31.png used on input line 500.
 (pdftex.def)             Requested size: 138.2795pt x 103.7026pt.
 
-<histo40.png, id=1119, 963.6pt x 722.7pt>
+<histo40.png, id=1088, 963.6pt x 722.7pt>
 File: histo40.png Graphic file (type png)
  <use histo40.png>
-Package pdftex.def Info: histo40.png used on input line 505.
+Package pdftex.def Info: histo40.png used on input line 500.
 (pdftex.def)             Requested size: 138.2795pt x 103.7026pt.
- [34
+ [33
 
- <./histo0.png> <./histo18.png> <./histo31.png> <./histo40.png (PNG copy)>] [35
+ <./histo0.png> <./histo18.png> <./histo31.png> <./histo40.png (PNG copy)>] [34
 
 ]
-<distances.png, id=1181, 481.8pt x 361.35pt>
+<distances.png, id=1150, 481.8pt x 361.35pt>
 File: distances.png Graphic file (type png)
  <use distances.png>
-Package pdftex.def Info: distances.png used on input line 575.
+Package pdftex.def Info: distances.png used on input line 570.
 (pdftex.def)             Requested size: 204.34619pt x 153.2602pt.
 
-Overfull \hbox (25.43596pt too wide) in paragraph at lines 575--575
+Overfull \hbox (25.43596pt too wide) in paragraph at lines 570--570
 [][]
  []
 
 
-Overfull \hbox (25.43596pt too wide) in paragraph at lines 575--575
+Overfull \hbox (25.43596pt too wide) in paragraph at lines 570--570
 [][]
  []
 
 
-Overfull \hbox (25.43596pt too wide) in paragraph at lines 575--575
+Overfull \hbox (25.43596pt too wide) in paragraph at lines 570--570
 [][] 
  []
 
-[36
+[35
 
- <./distances.png (PNG copy)>] [37
+ <./distances.png (PNG copy)>] [36
 
-] [38
+] [37
 
 ]
-<tree_table.png, id=1276, 1010.77625pt x 355.3275pt>
+<tree_table.png, id=1245, 1010.77625pt x 355.3275pt>
 File: tree_table.png Graphic file (type png)
  <use tree_table.png>
-Package pdftex.def Info: tree_table.png used on input line 678.
+Package pdftex.def Info: tree_table.png used on input line 673.
 (pdftex.def)             Requested size: 276.559pt x 97.21925pt.
 
-[39
+[38
 
- <./tree_table.png>] [40
+ <./tree_table.png>] [39
 
-] (./soutenance.toc) [41
+] (./soutenance.toc) [40
 
-] [42
+] [41
 
 ]
 
 Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
 ne argument
-(hhline)                 on input line 749.
+(hhline)                 on input line 744.
 
 
 Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
 ne argument
-(hhline)                 on input line 749.
+(hhline)                 on input line 744.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 749--749
+Underfull \hbox (badness 10000) in paragraph at lines 744--744
 []\T1/cmss/bx/n/10.95 Erreur moyenne
  []
 
 
 Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
 ne argument
-(hhline)                 on input line 749.
+(hhline)                 on input line 744.
 
 
 Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
 ne argument
-(hhline)                 on input line 749.
+(hhline)                 on input line 744.
 
-[43
+[42
 
-] [44
+] [43
 
-] <tree_cross.png, id=1465, 836.12375pt x 533.995pt>
+] <tree_cross.png, id=1433, 836.12375pt x 533.995pt>
 File: tree_cross.png Graphic file (type png)
 
 <use tree_cross.png>
-Package pdftex.def Info: tree_cross.png used on input line 809.
+Package pdftex.def Info: tree_cross.png used on input line 774.
 (pdftex.def)             Requested size: 151.88358pt x 96.99493pt.
- <3_trees.png, id=1466, 947.54pt x 295.1025pt>
+ <3_trees.png, id=1434, 947.54pt x 295.1025pt>
 File: 3_trees.png Graphic file (type png)
 
 <use 3_trees.png>
-Package pdftex.def Info: 3_trees.png used on input line 809.
+Package pdftex.def Info: 3_trees.png used on input line 774.
 (pdftex.def)             Requested size: 151.88358pt x 47.3029pt.
 
-Overfull \hbox (20.87727pt too wide) in paragraph at lines 809--809
+Overfull \hbox (20.87727pt too wide) in paragraph at lines 774--774
+[][] 
+ []
+
+[44
+
+ <./tree_cross.png (PNG copy)> <./3_trees.png (PNG copy)>]
+<tree_cross_color.png, id=1467, 836.12375pt x 533.995pt>
+File: tree_cross_color.png Graphic file (type png)
+
+<use tree_cross_color.png>
+Package pdftex.def Info: tree_cross_color.png used on input line 774.
+(pdftex.def)             Requested size: 151.88358pt x 96.99493pt.
+ <3_trees_color.png, id=1468, 947.54pt x 295.1025pt>
+File: 3_trees_color.png Graphic file (type png)
+
+<use 3_trees_color.png>
+Package pdftex.def Info: 3_trees_color.png used on input line 774.
+(pdftex.def)             Requested size: 151.88358pt x 47.3029pt.
+
+Overfull \hbox (20.87727pt too wide) in paragraph at lines 774--774
 [][] 
  []
 
 [45
 
- <./tree_cross.png (PNG copy)> <./3_trees.png (PNG copy)>]
-<tree_cross_color.png, id=1498, 836.12375pt x 533.995pt>
-File: tree_cross_color.png Graphic file (type png)
-
-<use tree_cross_color.png>
-Package pdftex.def Info: tree_cross_color.png used on input line 809.
-(pdftex.def)             Requested size: 151.88358pt x 96.99493pt.
- <3_trees_color.png, id=1499, 947.54pt x 295.1025pt>
-File: 3_trees_color.png Graphic file (type png)
-
-<use 3_trees_color.png>
-Package pdftex.def Info: 3_trees_color.png used on input line 809.
-(pdftex.def)             Requested size: 151.88358pt x 47.3029pt.
-
-Overfull \hbox (20.87727pt too wide) in paragraph at lines 809--809
-[][] 
- []
-
-[46
-
  <./tree_cross_color.png (PNG copy)> <./3_trees_color.png (PNG copy)>]
-[47
+[46
 
 ]
 
 Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
 ne argument
-(hhline)                 on input line 837.
+(hhline)                 on input line 802.
 
 
 Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
 ne argument
-(hhline)                 on input line 837.
+(hhline)                 on input line 802.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 837--837
+Underfull \hbox (badness 10000) in paragraph at lines 802--802
 []\T1/cmss/bx/n/10.95 Erreur moyenne
  []
 
 
 Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
 ne argument
-(hhline)                 on input line 837.
+(hhline)                 on input line 802.
 
 
 Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
 ne argument
-(hhline)                 on input line 837.
+(hhline)                 on input line 802.
 
-[48
+[47
 
-] (./soutenance.toc) [49
+] (./soutenance.toc) [48
+
+] [49
 
 ] [50
 
@@ -2447,11 +2442,11 @@ ne argument
 \tf@snm=\write9
 \openout9 = `soutenance.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 877.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 877.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 852.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 852.
  (./soutenance.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 877.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 877.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 852.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 852.
 Package rerunfilecheck Info: File `soutenance.out' has not changed.
 (rerunfilecheck)             Checksum: 770C0936A1DCDEBF7767FCEBE2592D73;239.
 
@@ -2462,20 +2457,17 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package logreq Info: Writing requests to 'soutenance.run.xml'.
 \openout1 = `soutenance.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 877.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 852.
  )
 (\end occurred when \iftrue on line 85 was incomplete) 
 Here is how much of TeX's memory you used:
- 44924 strings out of 493029
- 945300 string characters out of 6136234
+ 44921 strings out of 493029
+ 945237 string characters out of 6136234
  1139877 words of memory out of 5000000
- 47566 multiletter control sequences out of 15000+600000
+ 47564 multiletter control sequences out of 15000+600000
  26862 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,18n,73p,10390b,2123s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2496,10 +2488,10 @@ re/texmf/fonts/type1/public/cm-super/sfss0900.pfb></usr/share/texmf/fonts/type1
 s1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1200.pfb></usr/shar
 e/texmf/fonts/type1/public/cm-super/sfss1440.pfb></usr/share/texmf/fonts/type1/
 public/cm-super/sfsx1095.pfb>
-Output written on soutenance.pdf (51 pages, 3802141 bytes).
+Output written on soutenance.pdf (51 pages, 3747354 bytes).
 PDF statistics:
- 1770 PDF objects out of 2073 (max. 8388607)
+ 1769 PDF objects out of 2073 (max. 8388607)
  1638 compressed objects within 17 object streams
  112 named destinations out of 1000 (max. 500000)
- 248 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 243 words of extra memory for PDF output out of 10000 (max. 10000000)
 
