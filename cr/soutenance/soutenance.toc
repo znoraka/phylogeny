@@ -6,8 +6,10 @@
 \defcounter {refsection}{0}\relax 
 \beamer@sectionintoc {1}{Introduction}{2}{0}{1}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {2}{Notre approche}{9}{0}{2}
+\beamer@sectionintoc {2}{\IeC {\'E}tat de l'art}{14}{0}{2}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {3}{R\IeC {\'e}sultats}{21}{0}{3}
+\beamer@sectionintoc {3}{Notre approche}{26}{0}{3}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {4}{Conclusion}{28}{0}{4}
+\beamer@sectionintoc {4}{R\IeC {\'e}sultats}{41}{0}{4}
+\defcounter {refsection}{0}\relax 
+\beamer@sectionintoc {5}{Conclusion}{49}{0}{5}

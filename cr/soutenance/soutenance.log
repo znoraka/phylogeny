@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  15 JUN 2016 11:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  16 JUN 2016 14:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1595,6 +1595,19 @@ slashbox style by K.Yasuoka, May 1993.
 \@slashboxht=\count296
 \@slashsepl=\dimen338
 \@slashsepr=\dimen339
+) (/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2012/02/13 v1.0a Color table columns (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen340
+\extrarowheight=\dimen341
+\NC@list=\toks61
+\extratabsurround=\skip91
+\backup@length=\skip92
+)
+\everycr=\toks62
+\minrowclearance=\skip93
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarytrees.code.tex
@@ -1611,7 +1624,7 @@ File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.
 tex
 File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
-\arrowsize=\dimen340
+\arrowsize=\dimen342
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibraryautomata.code.tex
@@ -1670,15 +1683,15 @@ File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
 \blx@notetype=\count330
 \blx@parenlevel@text=\count331
 \blx@parenlevel@foot=\count332
-\labelnumberwidth=\skip91
-\labelalphawidth=\skip92
-\shorthandwidth=\skip93
-\biblabelsep=\skip94
-\bibitemsep=\skip95
-\bibnamesep=\skip96
-\bibinitsep=\skip97
-\bibparsep=\skip98
-\bibhang=\skip99
+\labelnumberwidth=\skip94
+\labelalphawidth=\skip95
+\shorthandwidth=\skip96
+\biblabelsep=\skip97
+\bibitemsep=\skip98
+\bibnamesep=\skip99
+\bibinitsep=\skip100
+\bibparsep=\skip101
+\bibhang=\skip102
 \blx@auxin=\read3
 \blx@auxout=\write5
 \c@mincomprange=\count333
@@ -1842,20 +1855,20 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (./soutenance.aux)
 \openout1 = `soutenance.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1894,16 +1907,16 @@ LaTeX Font Info:    ... okay on input line 79.
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count413
-\scratchdimen=\dimen341
+\scratchdimen=\dimen343
 \scratchbox=\box109
 \nofMPsegments=\count414
 \nofMParguments=\count415
-\everyMPshowfont=\toks61
+\everyMPshowfont=\toks63
 \MPscratchCnt=\count416
-\MPscratchDim=\dimen342
+\MPscratchDim=\dimen344
 \MPnumerator=\count417
 \makeMPintoPDFobject=\count418
-\everyMPtoPDFconversion=\toks62
+\everyMPtoPDFconversion=\toks64
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -1921,7 +1934,7 @@ e
 ))
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box110
-Package hyperref Info: Link coloring OFF on input line 79.
+Package hyperref Info: Link coloring OFF on input line 85.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1931,71 +1944,71 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count419
 )
-LaTeX Info: Redefining \ref on input line 79.
-LaTeX Info: Redefining \pageref on input line 79.
-LaTeX Info: Redefining \nameref on input line 79.
+LaTeX Info: Redefining \ref on input line 85.
+LaTeX Info: Redefining \pageref on input line 85.
+LaTeX Info: Redefining \nameref on input line 85.
 
 (./soutenance.out) (./soutenance.out)
 \@outlinefile=\write6
 \openout6 = `soutenance.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 79.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 85.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 79.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 85.
 \symnumbers=\mathgroup7
 \sympureletters=\mathgroup8
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> T1/cmr/m/n on input line 79.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 79.
+(Font)                  OT1/cmss/m/n --> T1/cmr/m/n on input line 85.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 85.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> T1/cmss/bx/n on input line 79.
+(Font)                  OT1/cmr/bx/n --> T1/cmss/bx/n on input line 85.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> T1/cmss/bx/n on input line 79.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 79.
+(Font)                  OT1/cmr/bx/n --> T1/cmss/bx/n on input line 85.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 85.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> T1/cmss/m/n on input line 79.
+(Font)                  OT1/cmss/m/n --> T1/cmss/m/n on input line 85.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> T1/cmss/m/n on input line 79.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 79.
+(Font)                  OT1/cmss/bx/n --> T1/cmss/m/n on input line 85.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 85.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> T1/cmss/m/it on input line 79.
+(Font)                  OT1/cmr/m/it --> T1/cmss/m/it on input line 85.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> T1/cmss/m/it on input line 79.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 79.
+(Font)                  OT1/cmr/bx/it --> T1/cmss/m/it on input line 85.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 85.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 79.
+(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 85.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 79.
+(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 85.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  T1/cmss/m/n --> T1/cmss/bx/n on input line 79.
+(Font)                  T1/cmss/m/n --> T1/cmss/bx/n on input line 85.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  T1/cmss/m/it --> T1/cmss/bx/it on input line 79.
+(Font)                  T1/cmss/m/it --> T1/cmss/bx/it on input line 85.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/bx/n --> T1/cmr/bx/n on input line 79.
+(Font)                  OT1/cmss/bx/n --> T1/cmr/bx/n on input line 85.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  T1/cmss/bx/n --> T1/cmss/bx/n on input line 79.
+(Font)                  T1/cmss/bx/n --> T1/cmss/bx/n on input line 85.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  T1/cmss/m/n --> T1/cmss/bx/n on input line 79.
+(Font)                  T1/cmss/m/n --> T1/cmss/bx/n on input line 85.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  T1/cmss/m/it --> T1/cmss/bx/it on input line 79.
+(Font)                  T1/cmss/m/it --> T1/cmss/bx/it on input line 85.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  T1/cmtt/m/n --> T1/cmtt/bx/n on input line 79.
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 79.
+(Font)                  T1/cmtt/m/n --> T1/cmtt/bx/n on input line 85.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 85.
 LaTeX Font Info:    Encoding `T1' has changed to `OT1' for symbol font
-(Font)              `pureletters' in the math version `normal' on input line 79
+(Font)              `pureletters' in the math version `normal' on input line 85
 .
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
-(Font)                  T1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 79
+(Font)                  T1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 85
 .
 LaTeX Font Info:    Encoding `T1' has changed to `OT1' for symbol font
-(Font)              `pureletters' in the math version `bold' on input line 79.
+(Font)              `pureletters' in the math version `bold' on input line 85.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  T1/cmss/bx/it --> OT1/mathkerncmss/m/sl on input line 7
-9.
+(Font)                  T1/cmss/bx/it --> OT1/mathkerncmss/m/sl on input line 8
+5.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on inp
-ut line 79.
+ut line 85.
 
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/translator/dicts/translator-bas
 ic-dictionary/translator-basic-dictionary-English.dict
@@ -2021,10 +2034,10 @@ Dictionary: translator-numbers-dictionary, Language: English
 orem-dictionary/translator-theorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \includegraphics on input line 79.
-LaTeX Info: Redefining \degres on input line 79.
-LaTeX Info: Redefining \dots on input line 79.
-LaTeX Info: Redefining \up on input line 79.
+LaTeX Info: Redefining \includegraphics on input line 85.
+LaTeX Info: Redefining \degres on input line 85.
+LaTeX Info: Redefining \dots on input line 85.
+LaTeX Info: Redefining \up on input line 85.
 
 (/usr/share/texlive/texmf-dist/tex/latex/tools/hhline.sty
 Package: hhline 2014/10/28 v2.03 Table rule package (DPC)
@@ -2050,14 +2063,14 @@ Package biblatex Warning: Data encoding is 'utf8'.
 \openout5 = `soutenance-blx.bib'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'soutenance.bbl' not found.
-No file soutenance.bbl.
-Package biblatex Info: Reference section=0 on input line 79.
-Package biblatex Info: Reference segment=0 on input line 79.
-(./soutenance.nav)
+Package biblatex Info: ... file 'soutenance.bbl' found.
+(./soutenance.bbl)
+Package biblatex Info: Reference section=0 on input line 85.
+Package biblatex Info: Reference segment=0 on input line 85.
+ (./soutenance.nav)
 
 LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <4> not available
-(Font)              size <5> substituted on input line 83.
+(Font)              size <5> substituted on input line 89.
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
@@ -2068,199 +2081,361 @@ LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <4> not available
 
 ] [4
 
+] [5
+
+] [6
+
+] [7
+
 ]
-LaTeX Font Info:    Try loading font information for U+msa on input line 128.
- (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+LaTeX Font Info:    Try loading font information for U+msa on input line 135.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 128.
+LaTeX Font Info:    Try loading font information for U+msb on input line 135.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input 
-line 128.
+line 135.
 
 (/usr/share/texlive/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
 )
 
-LaTeX Warning: Citation 'joly2007content' on page 5 undefined on input line 128
-.
-
-[5
-
-] <tree_extract.png, id=117, 1863.96375pt x 766.36313pt>
-File: tree_extract.png Graphic file (type png)
-
-<use tree_extract.png>
-Package pdftex.def Info: tree_extract.png used on input line 140.
-(pdftex.def)             Requested size: 253.13672pt x 104.07433pt.
- [6
-
- <./tree_extract.png>]
-<set_to_tree.png, id=129, 623.32875pt x 228.10219pt>
-File: set_to_tree.png Graphic file (type png)
- <use set_to_tree.png>
-Package pdftex.def Info: set_to_tree.png used on input line 166.
-(pdftex.def)             Requested size: 245.83282pt x 89.96188pt.
-
-[7
-
- <./set_to_tree.png>]
-Overfull \hbox (2.09549pt too wide) in paragraph at lines 216--216
-[][]  
- []
+LaTeX Font Warning: Font shape `T1/cmss/m/sc' undefined
+(Font)              using `T1/cmss/m/n' instead on input line 135.
 
 [8
 
-] (./soutenance.toc) [9
+] <tree_extract.png, id=325, 1863.96375pt x 766.36313pt>
+File: tree_extract.png Graphic file (type png)
 
-] [10
+<use tree_extract.png>
+Package pdftex.def Info: tree_extract.png used on input line 147.
+(pdftex.def)             Requested size: 253.13672pt x 104.07433pt.
+ [9
+
+ <./tree_extract.png>]
+<set_to_tree.png, id=358, 623.32875pt x 228.10219pt>
+File: set_to_tree.png Graphic file (type png)
+ <use set_to_tree.png>
+Package pdftex.def Info: set_to_tree.png used on input line 173.
+(pdftex.def)             Requested size: 245.83282pt x 89.96188pt.
+
+[10
+
+ <./set_to_tree.png>]
+File: set_to_tree.png Graphic file (type png)
+ <use set_to_tree.png>
+Package pdftex.def Info: set_to_tree.png used on input line 173.
+(pdftex.def)             Requested size: 245.83282pt x 89.96188pt.
+ [11
 
 ]
-Overfull \hbox (2.03474pt too wide) in paragraph at lines 502--502
- [] 
- []
-
-[11
-
-] <signal.png, id=185, 963.6pt x 722.7pt>
-File: signal.png Graphic file (type png)
- <use signal.png>
-Package pdftex.def Info: signal.png used on input line 512.
-(pdftex.def)             Requested size: 153.64493pt x 115.22633pt.
-
-<autocorrelation.png, id=186, 963.6pt x 722.7pt>
-File: autocorrelation.png Graphic file (type png)
- <use autocorrelation.png>
-Package pdftex.def Info: autocorrelation.png used on input line 512.
-(pdftex.def)             Requested size: 153.64493pt x 115.22633pt.
+File: set_to_tree.png Graphic file (type png)
+ <use set_to_tree.png>
+Package pdftex.def Info: set_to_tree.png used on input line 173.
+(pdftex.def)             Requested size: 245.83282pt x 89.96188pt.
 
 [12
 
- <./signal.png (PNG copy)> <./autocorrelation.png (PNG copy)>]
-
-LaTeX Font Warning: Font shape `T1/cmss/m/sc' undefined
-(Font)              using `T1/cmss/m/n' instead on input line 533.
+]
+Overfull \hbox (2.09549pt too wide) in paragraph at lines 223--223
+[][]  
+ []
 
 [13
 
-] <histo0.png, id=208, 963.6pt x 722.7pt>
-File: histo0.png Graphic file (type png)
- <use histo0.png>
-Package pdftex.def Info: histo0.png used on input line 544.
-(pdftex.def)             Requested size: 138.2795pt x 103.7026pt.
+] (./soutenance.toc) [14
 
-<histo18.png, id=209, 963.6pt x 722.7pt>
-File: histo18.png Graphic file (type png)
- <use histo18.png>
-Package pdftex.def Info: histo18.png used on input line 544.
-(pdftex.def)             Requested size: 138.2795pt x 103.7026pt.
+] [15
 
-<histo31.png, id=210, 963.6pt x 722.7pt>
-File: histo31.png Graphic file (type png)
- <use histo31.png>
-Package pdftex.def Info: histo31.png used on input line 544.
-(pdftex.def)             Requested size: 138.2795pt x 103.7026pt.
+] <vmm.png, id=552, 752.8125pt x 668.4975pt>
+File: vmm.png Graphic file (type png)
 
-<histo40.png, id=211, 963.6pt x 722.7pt>
-File: histo40.png Graphic file (type png)
- <use histo40.png>
-Package pdftex.def Info: histo40.png used on input line 544.
-(pdftex.def)             Requested size: 138.2795pt x 103.7026pt.
- [14
+<use vmm.png>
+Package pdftex.def Info: vmm.png used on input line 255.
+(pdftex.def)             Requested size: 225.84549pt x 200.5508pt.
+ [16
 
- <./histo0.png> <./histo18.png> <./histo31.png> <./histo40.png (PNG copy)>] [15
+ <./vmm.png>] [17
 
 ]
-<distances.png, id=230, 481.8pt x 361.35pt>
-File: distances.png Graphic file (type png)
- <use distances.png>
-Package pdftex.def Info: distances.png used on input line 614.
-(pdftex.def)             Requested size: 204.34619pt x 153.2602pt.
+<vmm_directionnel.png, id=614, 688.5725pt x 688.5725pt>
+File: vmm_directionnel.png Graphic file (type png)
 
-Overfull \hbox (22.90546pt too wide) in paragraph at lines 614--614
-[][]
- []
+<use vmm_directionnel.png>
+Package pdftex.def Info: vmm_directionnel.png used on input line 255.
+(pdftex.def)             Requested size: 206.57333pt x 206.57333pt.
+ [18
 
-
-Overfull \hbox (12.02545pt too wide) in paragraph at lines 614--614
-[][]
- []
-
-
-Overfull \hbox (1.14545pt too wide) in paragraph at lines 614--614
-[][] 
- []
-
-[16
-
- <./distances.png (PNG copy)>] [17
-
-] [18
+ <./vmm_directionnel.png>] [19
 
 ]
-<tree_table.png, id=260, 1010.77625pt x 355.3275pt>
-File: tree_table.png Graphic file (type png)
- <use tree_table.png>
-Package pdftex.def Info: tree_table.png used on input line 717.
-(pdftex.def)             Requested size: 276.559pt x 97.21925pt.
+<vmm_tree.png, id=675, 676.5275pt x 244.915pt>
+File: vmm_tree.png Graphic file (type png)
+ <use vmm_tree.png>
+Package pdftex.def Info: vmm_tree.png used on input line 255.
+(pdftex.def)             Requested size: 304.43456pt x 110.21072pt.
+ [20
 
-[19
-
- <./tree_table.png>] [20
-
-] (./soutenance.toc) [21
+ <./vmm_tree.png>] [21
 
 ] [22
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 790--790
-[]\T1/cmss/bx/n/10.95 Erreur moyenne
- []
+] <insertion_blocs.png, id=767, 745.78625pt x 641.39626pt>
+File: insertion_blocs.png Graphic file (type png)
 
+<use insertion_blocs.png>
+Package pdftex.def Info: insertion_blocs.png used on input line 297.
+(pdftex.def)             Requested size: 223.7376pt x 192.42035pt.
+ [23
 
-Underfull \hbox (badness 10000) in paragraph at lines 790--790
-[]\T1/cmss/bx/n/10.95 Sur-estimation
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 790--790
-[]\T1/cmss/bx/n/10.95 Sous-estimation
- []
-
-[23
-
-] [24
-
-] [25
-
-] [26
+ <./insertion_blocs.png (PNG copy)>] [24
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 878--878
-[]\T1/cmss/bx/n/10.95 Erreur moyenne
+<h1.png, id=828, 726.715pt x 573.14125pt>
+File: h1.png Graphic file (type png)
+ <use h1.png>
+Package pdftex.def Info: h1.png used on input line 357.
+(pdftex.def)             Requested size: 152.4594pt x 120.24149pt.
+
+<h2.png, id=829, 725.71124pt x 573.14125pt>
+File: h2.png Graphic file (type png)
+ <use h2.png>
+Package pdftex.def Info: h2.png used on input line 357.
+(pdftex.def)             Requested size: 152.24883pt x 120.24149pt.
+
+<h3.png, id=830, 725.71124pt x 573.14125pt>
+File: h3.png Graphic file (type png)
+ <use h3.png>
+Package pdftex.def Info: h3.png used on input line 357.
+(pdftex.def)             Requested size: 152.24883pt x 120.24149pt.
+
+Overfull \hbox (4.751pt too wide) in paragraph at lines 357--357
+[][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 878--878
-[]\T1/cmss/bx/n/10.95 Sur-estimation
+Overfull \hbox (4.751pt too wide) in paragraph at lines 357--357
+[]  
  []
 
+[25
 
-Underfull \hbox (badness 10000) in paragraph at lines 878--878
-[]\T1/cmss/bx/n/10.95 Sous-estimation
- []
+ <./h1.png (PNG copy)> <./h2.png (PNG copy)> <./h3.png (PNG copy)>]
+(./soutenance.toc) [26
 
-[27
+] [27
 
-] (./soutenance.toc) [28
+] [28
 
 ] [29
 
 ] [30
+
+]
+Overfull \hbox (2.03474pt too wide) in paragraph at lines 459--459
+ [] 
+ []
+
+[31
+
+] <signal.png, id=1052, 963.6pt x 722.7pt>
+File: signal.png Graphic file (type png)
+ <use signal.png>
+Package pdftex.def Info: signal.png used on input line 469.
+(pdftex.def)             Requested size: 153.64493pt x 115.22633pt.
+
+<autocorrelation.png, id=1053, 963.6pt x 722.7pt>
+File: autocorrelation.png Graphic file (type png)
+ <use autocorrelation.png>
+Package pdftex.def Info: autocorrelation.png used on input line 469.
+(pdftex.def)             Requested size: 153.64493pt x 115.22633pt.
+
+[32
+
+ <./signal.png (PNG copy)> <./autocorrelation.png (PNG copy)>] [33
+
+]
+<histo0.png, id=1116, 963.6pt x 722.7pt>
+File: histo0.png Graphic file (type png)
+ <use histo0.png>
+Package pdftex.def Info: histo0.png used on input line 505.
+(pdftex.def)             Requested size: 138.2795pt x 103.7026pt.
+
+<histo18.png, id=1117, 963.6pt x 722.7pt>
+File: histo18.png Graphic file (type png)
+ <use histo18.png>
+Package pdftex.def Info: histo18.png used on input line 505.
+(pdftex.def)             Requested size: 138.2795pt x 103.7026pt.
+
+<histo31.png, id=1118, 963.6pt x 722.7pt>
+File: histo31.png Graphic file (type png)
+ <use histo31.png>
+Package pdftex.def Info: histo31.png used on input line 505.
+(pdftex.def)             Requested size: 138.2795pt x 103.7026pt.
+
+<histo40.png, id=1119, 963.6pt x 722.7pt>
+File: histo40.png Graphic file (type png)
+ <use histo40.png>
+Package pdftex.def Info: histo40.png used on input line 505.
+(pdftex.def)             Requested size: 138.2795pt x 103.7026pt.
+ [34
+
+ <./histo0.png> <./histo18.png> <./histo31.png> <./histo40.png (PNG copy)>] [35
+
+]
+<distances.png, id=1181, 481.8pt x 361.35pt>
+File: distances.png Graphic file (type png)
+ <use distances.png>
+Package pdftex.def Info: distances.png used on input line 575.
+(pdftex.def)             Requested size: 204.34619pt x 153.2602pt.
+
+Overfull \hbox (25.43596pt too wide) in paragraph at lines 575--575
+[][]
+ []
+
+
+Overfull \hbox (25.43596pt too wide) in paragraph at lines 575--575
+[][]
+ []
+
+
+Overfull \hbox (25.43596pt too wide) in paragraph at lines 575--575
+[][] 
+ []
+
+[36
+
+ <./distances.png (PNG copy)>] [37
+
+] [38
+
+]
+<tree_table.png, id=1276, 1010.77625pt x 355.3275pt>
+File: tree_table.png Graphic file (type png)
+ <use tree_table.png>
+Package pdftex.def Info: tree_table.png used on input line 678.
+(pdftex.def)             Requested size: 276.559pt x 97.21925pt.
+
+[39
+
+ <./tree_table.png>] [40
+
+] (./soutenance.toc) [41
+
+] [42
+
+]
+
+Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
+ne argument
+(hhline)                 on input line 749.
+
+
+Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
+ne argument
+(hhline)                 on input line 749.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 749--749
+[]\T1/cmss/bx/n/10.95 Erreur moyenne
+ []
+
+
+Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
+ne argument
+(hhline)                 on input line 749.
+
+
+Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
+ne argument
+(hhline)                 on input line 749.
+
+[43
+
+] [44
+
+] <tree_cross.png, id=1465, 836.12375pt x 533.995pt>
+File: tree_cross.png Graphic file (type png)
+
+<use tree_cross.png>
+Package pdftex.def Info: tree_cross.png used on input line 809.
+(pdftex.def)             Requested size: 151.88358pt x 96.99493pt.
+ <3_trees.png, id=1466, 947.54pt x 295.1025pt>
+File: 3_trees.png Graphic file (type png)
+
+<use 3_trees.png>
+Package pdftex.def Info: 3_trees.png used on input line 809.
+(pdftex.def)             Requested size: 151.88358pt x 47.3029pt.
+
+Overfull \hbox (20.87727pt too wide) in paragraph at lines 809--809
+[][] 
+ []
+
+[45
+
+ <./tree_cross.png (PNG copy)> <./3_trees.png (PNG copy)>]
+<tree_cross_color.png, id=1498, 836.12375pt x 533.995pt>
+File: tree_cross_color.png Graphic file (type png)
+
+<use tree_cross_color.png>
+Package pdftex.def Info: tree_cross_color.png used on input line 809.
+(pdftex.def)             Requested size: 151.88358pt x 96.99493pt.
+ <3_trees_color.png, id=1499, 947.54pt x 295.1025pt>
+File: 3_trees_color.png Graphic file (type png)
+
+<use 3_trees_color.png>
+Package pdftex.def Info: 3_trees_color.png used on input line 809.
+(pdftex.def)             Requested size: 151.88358pt x 47.3029pt.
+
+Overfull \hbox (20.87727pt too wide) in paragraph at lines 809--809
+[][] 
+ []
+
+[46
+
+ <./tree_cross_color.png (PNG copy)> <./3_trees_color.png (PNG copy)>]
+[47
+
+]
+
+Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
+ne argument
+(hhline)                 on input line 837.
+
+
+Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
+ne argument
+(hhline)                 on input line 837.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 837--837
+[]\T1/cmss/bx/n/10.95 Erreur moyenne
+ []
+
+
+Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
+ne argument
+(hhline)                 on input line 837.
+
+
+Package hhline Warning: macro:->\active@prefix :\active@char:  ignored in \hhli
+ne argument
+(hhline)                 on input line 837.
+
+[48
+
+] (./soutenance.toc) [49
+
+] [50
+
+] [51
 
 ]
 \tf@nav=\write7
@@ -2272,13 +2447,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 878--878
 \tf@snm=\write9
 \openout9 = `soutenance.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 918.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 918.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 877.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 877.
  (./soutenance.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 918.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 918.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 877.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 877.
 Package rerunfilecheck Info: File `soutenance.out' has not changed.
-(rerunfilecheck)             Checksum: 7F2C2B724F0B3933269EED52BB45D1EC;188.
+(rerunfilecheck)             Checksum: 770C0936A1DCDEBF7767FCEBE2592D73;239.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -2288,27 +2463,22 @@ LaTeX Font Warning: Size substitutions with differences
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
-LaTeX Warning: There were undefined references.
-
-
-Package biblatex Warning: Please (re)run BibTeX on the file(s):
-(biblatex)                soutenance
-(biblatex)                and rerun LaTeX afterwards.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package logreq Info: Writing requests to 'soutenance.run.xml'.
 \openout1 = `soutenance.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 918.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 877.
  )
-(\end occurred when \iftrue on line 79 was incomplete) 
+(\end occurred when \iftrue on line 85 was incomplete) 
 Here is how much of TeX's memory you used:
- 44648 strings out of 493029
- 940956 string characters out of 6136234
- 1113844 words of memory out of 5000000
- 47357 multiletter control sequences out of 15000+600000
- 23737 words of font info for 67 fonts, out of 8000000 for 9000
+ 44924 strings out of 493029
+ 945300 string characters out of 6136234
+ 1139877 words of memory out of 5000000
+ 47566 multiletter control sequences out of 15000+600000
+ 26862 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,16n,73p,10390b,2123s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,18n,73p,10390b,2123s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/e
 nc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
@@ -2318,17 +2488,18 @@ mss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb></usr/sh
-are/texmf/fonts/type1/public/cm-super/sfss0600.pfb></usr/share/texmf/fonts/type
-1/public/cm-super/sfss0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
-ss0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1000.pfb></usr/sha
-re/texmf/fonts/type1/public/cm-super/sfss1095.pfb></usr/share/texmf/fonts/type1
-/public/cm-super/sfss1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfs
-s1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx0900.pfb></usr/shar
-e/texmf/fonts/type1/public/cm-super/sfsx1095.pfb>
-Output written on soutenance.pdf (30 pages, 2371228 bytes).
+are/texmf/fonts/type1/public/cm-super/sfsi0900.pfb></usr/share/texmf/fonts/type
+1/public/cm-super/sfsi1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
+ss0600.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss0800.pfb></usr/sha
+re/texmf/fonts/type1/public/cm-super/sfss0900.pfb></usr/share/texmf/fonts/type1
+/public/cm-super/sfss1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfs
+s1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1200.pfb></usr/shar
+e/texmf/fonts/type1/public/cm-super/sfss1440.pfb></usr/share/texmf/fonts/type1/
+public/cm-super/sfsx1095.pfb>
+Output written on soutenance.pdf (51 pages, 3802141 bytes).
 PDF statistics:
- 453 PDF objects out of 1000 (max. 8388607)
- 368 compressed objects within 4 object streams
- 69 named destinations out of 1000 (max. 500000)
- 185 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1770 PDF objects out of 2073 (max. 8388607)
+ 1638 compressed objects within 17 object streams
+ 112 named destinations out of 1000 (max. 500000)
+ 248 words of extra memory for PDF output out of 10000 (max. 10000000)
 
