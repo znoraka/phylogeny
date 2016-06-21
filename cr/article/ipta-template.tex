@@ -45,7 +45,11 @@
       \fontsize{20}{24}%
       \selectfont}
 
-    \title{\TitleFont{Phylogeny of JPEG images by ancestors estimation using missing markers on image pairs}}
+\DeclareMathOperator*{\argminA}{arg\,min} % Jan Hlavacek
+
+\newcommand{\argminD}{\arg\!\min} % AlfC
+
+\title{\TitleFont{Phylogeny of JPEG images by ancestors estimation using missing markers on image pairs}}
 
 % \author{\authorblockN{Noé Le Philippe\authorrefmark{1}, William Puech\authorrefmark{1} and Christophe Fiorio\authorrefmark{1} }
 % \authorblockA{\authorrefmark{1} LIRMM\\
@@ -62,8 +66,7 @@ e-mail: \{noe.lephilippe, william.puech, christophe.fiorio\}@lirmm.fr \\}}
 \begin{document}
 \maketitle
 \begin{abstract}
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt
-%  Nowadays it is extremely easy to tamper images and share them thanks to social media. Identifying the tamper history is mandatory to be able to trust any of those images. During this internship, our main goal is to compute the image phylogeny tree of an image set, where images are created from successive JPEG compressions. Every step, a child image is created from the compression of a parent image. In this paper we present our method based on a binary decision between two images and explain the results obtained with this method.
+ Nowadays it is extremely easy to tamper images and share them thanks to social media. Identifying the transformation history is mandatory to be able to trust any of those images. We address this problem using image phylogeny trees, where the root is the image the less tampered with and as every generation is obtainend from the transformation of its parents, the leaves are the most transformed images. Our method for image phylegeny trees reconstruction is based on a binary decision between two images using JPEG compression artifacts. Experimentals results show that in the case of no missing data, the reconstruction is very accurate.
 \end{abstract}
 
 \begin{keywords}
@@ -184,8 +187,9 @@ when a signal is quantized, its values gather around multiples of the quantizati
 \end{figure}
 
 \subsubsection{Quality factor estimation}
-we have two choices to compute the quality factor from $\widehat{q}(u,v)$. We can either check against every single quantization table from $Q_f = 1$ to $Q_f = 100$ which one is closest or use equations \ref{eqn:jpeg_1} and \ref{eqn:jpeg_2} from the JPEG standard:
+we use a two step method to estimate the quality factor $Q_f$ from $\widehat{q}(u,v)$. The first step is called the primary estimation, where we check against every single quantization table from $Q_f = 1$ to $Q_f = 100$ which one is closest, the second step, the secondary estimation, uses equations \ref{eqn:jpeg_1} and \ref{eqn:jpeg_2} from the JPEG standard and the $Q_f$ obtained from the primary estimation to return a more accurate quality factor.
 
+% we have two choices to compute the quality factor from $\widehat{q}(u,v)$. We can either check against every single quantization table from $Q_f = 1$ to $Q_f = 100$ which one is closest or use equations \ref{eqn:jpeg_1} and \ref{eqn:jpeg_2} from the JPEG standard:
 
 \begin{equation}
 \begin{split}
@@ -197,18 +201,19 @@ we have two choices to compute the quality factor from $\widehat{q}(u,v)$. We ca
 
 \begin{equation}
 \begin{split}
-  q(u,v) = \frac{(base(u,v) \times Q_s) - 50}{100} \\ 
+  q(u,v) = \frac{(q_{50}(u,v) \times Q_s) - 50}{100} \\ 
   with \ 1 \leq q(u,v) \leq 255
 \end{split}
   \label{eqn:jpeg_2}
 \end{equation}
 
-where $base(u,v)$ is the reference JPEG quantization table for $Q_f = 50$.
-The main advantage of checking against every table is that it outputs a $Q_f$. The $Q_f$ is $n$ the index of the minimal distance between $q_n(u,v)$ and $\widehat{q}(u,v),\ n\in \{1..100\}$. This method however is computation heavy and lacks accuracy. 
+where $q_{50}$ is the reference JPEG quantization table for $Q_f = 50$.
+% $Q_f = \argminA_n D_{euc}(\widehat{q}(u,v), q_n(u,v))$
 
-Using Equations \ref{eqn:jpeg_1} and \ref{eqn:jpeg_2}, even if it is light and fast, has one main issue: it cannot compute $Q_f$. It is possible to get $Q_s$ from Equation \ref{eqn:jpeg_2}, but it is not possible to get $Q_f$ from $Q_s$ in equation \ref{eqn:jpeg_1} without knowing whether $Q_s$ is greater than 50. 
+During the primariy estimation, the $Q_f$ is $n$ the index of the minimal distance between $q_n(u,v)$ and $\widehat{q}(u,v),\ n\in \{1..100\}$. It is the most similar quantization table, the most probable table used for compression. The primary $Q_f$ is then used to select the adequate equation for $Q_s$ in Equation \ref{eqn:jpeg_1}. Thus, a $Q_f*$ is computed for each coefficient in the partial quantization table $\widehat{q}(u,v)$. The actual $Q_f$ is the mean of all $Q_f*$.  We should add that even if after the primary estimation, $Q_f$ is incorrectly estimated above 50, the difference between both cases in equation \ref{eqn:jpeg_1} is small for values of $Q_f$ close to 50. The estimated $Q_f$ is not always exactly the real $Q_f$ anyway, we address this problem in the ancestor estimation.
+% Using Equations \ref{eqn:jpeg_1} and \ref{eqn:jpeg_2}, even if it is light and fast, has one main issue: it cannot compute $Q_f$. It is possible to get $Q_s$ from Equation \ref{eqn:jpeg_2}, but it is not possible to get $Q_f$ from $Q_s$ in equation \ref{eqn:jpeg_1} without knowing whether $Q_s$ is greater than 50. 
 
-We chose to use both methods. We get a first estimation of $Q_f$ by finding which table from $q_n(u,v)$ is most similar to $\widehat{q}(u,v)$, we call this step primary estimation. With this primary estimation of $Q_f$, we refine our estimation by using equations \ref{eqn:jpeg_1} and \ref{eqn:jpeg_2}. Thus, a $Q_f*$ is computed for each coefficient in the partial quantization table $\widehat{q}(u,v)$. The actual $Q_f$ is the mean of all $Q_f*$. This step is called secondary estimation. We should add that even if after the primary estimation, $Q_f$ is incorrectly estimated above 50, the difference between both cases in equation \ref{eqn:jpeg_1} is small for values of $Q_f$ close to 50. The estimated $Q_f$ is not always exactly the real $Q_f$ anyway, we address this problem in the ancestor estimation.
+% We chose to use both methods. We get a first estimation of $Q_f$ by finding which table from $q_n(u,v)$ is most similar to $\widehat{q}(u,v)$, we call this step primary estimation. With this primary estimation of $Q_f$, we refine our estimation by using equations \ref{eqn:jpeg_1} and \ref{eqn:jpeg_2}. Thus, a $Q_f*$ is computed for each coefficient in the partial quantization table $\widehat{q}(u,v)$. The actual $Q_f$ is the mean of all $Q_f*$. This step is called secondary estimation. We should add that even if after the primary estimation, $Q_f$ is incorrectly estimated above 50, the difference between both cases in equation \ref{eqn:jpeg_1} is small for values of $Q_f$ close to 50. The estimated $Q_f$ is not always exactly the real $Q_f$ anyway, we address this problem in the ancestor estimation.
 
 \subsection{Ancestors estimation}
 The quality factor $Q_f$ used to compress the image is mandatory to estimate the ancestors. Not only is it a very effective marker to filter out images that cannot be ancestors, the quality factor also allows us to normalize images to better compare them. 
