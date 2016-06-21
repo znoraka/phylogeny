@@ -45,9 +45,7 @@
       \fontsize{20}{24}%
       \selectfont}
 
-\DeclareMathOperator*{\argminA}{arg\,min} % Jan Hlavacek
-
-\newcommand{\argminD}{\arg\!\min} % AlfC
+\setlength{\belowcaptionskip}{-1pt}
 
 \title{\TitleFont{Phylogeny of JPEG images by ancestors estimation using missing markers on image pairs}}
 
@@ -361,6 +359,7 @@ The chosen image has the following compression history : $H_{Q_{f}} = \{86, 85, 
 \centering
 \includegraphics[width=7cm]{distances}
 \caption{Distances between $\widehat{q}(u,v)$ and table(i).}
+\vspace{-4.5mm}
 \label{fig:distances}
 \end{figure}
 
@@ -385,8 +384,9 @@ All images in the set undergo the same process, followed by the secondary estima
 This secondary estimation is used to compress images to normalize and compare them. Table \ref{table:parentage_matrix} shows the parentage matrix returned by our algorithm. We can see that there is at most one 1 value per line, it means that only the parent was found and no other ancestor. Finally, Fig. \ref{fig:tree_reconstructed} shows both the original tree and the reconstructed one. The trees are identical, all ancestry relationships are correct.
 
 \begin{table}
+  \large
   \centering
-  \scalebox{0.69}{
+  \scalebox{0.62}{
   \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
     \hline
     - & $I_{0}$ & $I_{1}$ & $I_{2}$ & $I_{3}$ & $I_{4}$ & $I_{5}$ & $I_{6}$ & $I_{7}$ & $I_{8}$ & $I_{9}$ & $I_{10}$ & $I_{11}$ & $I_{12}$ & $I_{13}$ & $I_{14}$ \\ \hhline{|=::=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|}
@@ -476,6 +476,7 @@ $Root$ is trivial and returns 1 if the roots of both trees are identical, $Edge$
 The three metrics used to measure the accuracy of the estimation of the quality factor is the estimation mean error, the mean error on all the $Q_f$'s on every image of the dataset. The mean overestimation and mean underestimation, which should be symmetrical, tells us whether our algorithm overestimates the $Q_f$'s, and when. Figures \ref{results} shows the results we got using our methods on the three datasets.
 
 \begin{table}[htbp]
+  \normalsize
   \centering
   \scalebox{0.90}{
   \begin{tabular}{|l||c|c|c|c|c|}
@@ -490,9 +491,9 @@ The three metrics used to measure the accuracy of the estimation of the quality 
     \textbf{ancestry}                                           & 99.44 & 96.88 & 96.96 \\ \hline
   \end{tabular}} 
 \caption{Results obtained from 8100 imgase, the first three metrics measure the accuracy of the estimation of $Q_f$, the others, which measure the quality of the tree reconstruction are given in percentage.}
+\vspace{-5mm}
 \label{results}
 \end{table}
-
 We can see that the smaller the dataset, the better the results. We should add that the best score for the three first metrics is 0, when all $Q_f$ were correctly estimated, and the best score for the other is 100, when the two trees are identical.
 
 The mean errors, even if they are below 1 for the three datasets, and are very good, get worse when the number of images increases, in particular the overestimation is pretty high for 50 images. This is due to too much noise on the DCT coefficients for images compressed a lot of times. We cannot properly estimated the period of such coefficients and therefore cannot properly estimate $Q_f$. When no peak is detected, our algorithm actually assumes that the image was not quantized, or compressed with a $Q_f$ very close to 100, since a signal not quantized will not show any peaks. A high number of compression is most likely to happen for 50 images, hence the worse results.
@@ -503,6 +504,7 @@ An other problem, which does not affect the root, but rather the rest of the tre
 
 The results given Table \ref{results} are obtained on the whole dataset, where all images are available. Our method is very effective to estimate the phylogeny tree when all images are present, when there is always a direct parent. Since we cannot estimate other ancestors, we wanted to try our methods on the same dictates, with one image missing to see if the results were still good. Figure \ref{results_missing} shows the results.
 \begin{table}
+  \normalsize
   \centering
   \scalebox{0.90}{
   \begin{tabular}{|l||c|c|c|c|c|}
@@ -561,30 +563,33 @@ We can see that the root metric suffers the most from the image missing. Indeed,
   \label{fig:missing}
 \end{figure}
 
-Even though our method was designed for grayscale images, we wanted to see if the luminance channel of a color image contained enough information for our method to estimate the tree. None of our algorithm were modified and we only gave color images instead of grayscale images as input. Table \ref{results_color} shows our results.
-\begin{figure}[htbp]
-  \centering
-\scalebox{0.90}{
-  \begin{tabular}{|l||c|c|c|c|c|}
-    \hline
-     \backslashbox{Metric}{Dataset}             & \textbf{15 images} & \textbf{25 images} & \textbf{50 images} \\ \hhline{|=::=|=|=|}
-    \textbf{\pbox{2.6cm}{Mean estimation error of $Q_f$}}               & 1.15  & 1.29  & 1.42     \\ \hline
-    \textbf{\pbox{2.7cm}{Mean overestimation of $Q_f$}}                 & 1.85  & 2.70  & 2.64  \\ \hline
-    \textbf{\pbox{2.6cm}{Mean underestimation of  $Q_f$}}               & 2.97  & 3.79  & 4.94  \\ \hhline{|=::=|=|=|}
-    \textbf{roots}                                                      & 93.94 & 81.82 & 87.88 \\ \hline
-    \textbf{edges}                                                      & 99.35 & 98.61 & 99.38 \\ \hline
-    \textbf{leaves}                                                     & 99.62 & 98.66 & 99.78 \\ \hline
-    \textbf{ancestry}                                                   & 98.79 & 94.13 & 98.82 \\ \hline
-  \end{tabular}}
-\caption{Results table with color images.}
-\label{results_color}
-\end{figure}
-The results are not very different from grayscale images, slightly worse, but not significantly so. The estimation of $Q_f$ is not as good, it is because of the rounding when going from RGB to YUV. We did not use any of the chrominance channel, the luminance channel seems to contain enough information and allows us to reliably estimate the tree.
+% Even though our method was designed for grayscale images, we wanted to see if the luminance channel of a color image contained enough information for our method to estimate the tree. None of our algorithm were modified and we only gave color images instead of grayscale images as input. Table \ref{results_color} shows our results.
+% \begin{figure}[htbp]
+%   \centering
+% \scalebox{0.90}{
+%   \begin{tabular}{|l||c|c|c|c|c|}
+%     \hline
+%      \backslashbox{Metric}{Dataset}             & \textbf{15 images} & \textbf{25 images} & \textbf{50 images} \\ \hhline{|=::=|=|=|}
+%     \textbf{\pbox{2.6cm}{Mean estimation error of $Q_f$}}               & 1.15  & 1.29  & 1.42     \\ \hline
+%     \textbf{\pbox{2.7cm}{Mean overestimation of $Q_f$}}                 & 1.85  & 2.70  & 2.64  \\ \hline
+%     \textbf{\pbox{2.6cm}{Mean underestimation of  $Q_f$}}               & 2.97  & 3.79  & 4.94  \\ \hhline{|=::=|=|=|}
+%     \textbf{roots}                                                      & 93.94 & 81.82 & 87.88 \\ \hline
+%     \textbf{edges}                                                      & 99.35 & 98.61 & 99.38 \\ \hline
+%     \textbf{leaves}                                                     & 99.62 & 98.66 & 99.78 \\ \hline
+%     \textbf{ancestry}                                                   & 98.79 & 94.13 & 98.82 \\ \hline
+%   \end{tabular}}
+% \caption{Results table with color images.}
+% \label{results_color}
+% \end{figure}
+% The results are not very different from grayscale images, slightly worse, but not significantly so. The estimation of $Q_f$ is not as good, it is because of the rounding when going from RGB to YUV. We did not use any of the chrominance channel, the luminance channel seems to contain enough information and allows us to reliably estimate the tree.
 
 \section{Conclusion}
 \label{sec:conclusion}
+In this paper, a image phylogeny tree reconstruction framework was proposed. Our methods reduces a complex image phylogeny tree estimation to a binary decision between two images. This binary decision is taken using markers present in one image and not the other one.
 
-"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+Future work on this method would be to discover new markers. New markers would allow us to not be limited to the closest parent detection, or explore the other multiple JPEG compressions scenarios. New markers would also allow us to address other transformations, such as cropping or resampling for instance.
+
+% " aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
 
 \printbibliography
 
