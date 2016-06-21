@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  13 JUN 2016 13:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  21 JUN 2016 10:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1298,6 +1298,16 @@ File: biblatex_legacy.def
 \c@biburllcpenalty=\count398
 \c@smartand=\count399
 )
+Package biblatex Info: Trying to load bibliography style 'ieee'...
+Package biblatex Info: ... file 'ieee.bbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex-ieee/ieee.bbx
+File: ieee.bbx 2015/03/12 v1.1k biblatex bibliography style
+Package biblatex Info: Trying to load bibliography style 'numeric-comp'...
+Package biblatex Info: ... file 'numeric-comp.bbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/numeric-comp.bbx
+File: numeric-comp.bbx 2016/03/03 v3.3 biblatex bibliography style (PK/JW/AB)
 Package biblatex Info: Trying to load bibliography style 'numeric'...
 Package biblatex Info: ... file 'numeric.bbx' found.
 
@@ -1310,12 +1320,23 @@ Package biblatex Info: ... file 'standard.bbx' found.
 File: standard.bbx 2016/03/03 v3.3 biblatex bibliography style (PK/JW/AB)
 \c@bbx:relatedcount=\count400
 \c@bbx:relatedtotal=\count401
-))
-Package biblatex Info: Trying to load citation style 'numeric'...
-Package biblatex Info: ... file 'numeric.cbx' found.
+)))
 
-(/usr/share/texlive/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
-File: numeric.cbx 2016/03/03 v3.3 biblatex citation style (PK/JW/AB)
+Package biblatex Warning: 'firstinits' option is deprecated, use 'giveninits' i
+nstead.
+
+)
+Package biblatex Info: Trying to load citation style 'ieee'...
+Package biblatex Info: ... file 'ieee.cbx' found.
+ (/usr/share/texlive/texmf-dist/tex/latex/biblatex-ieee/ieee.cbx
+File: ieee.cbx 2015/03/12 v1.1k biblatex citation style
+Package biblatex Info: Trying to load citation style 'numeric-comp'...
+Package biblatex Info: ... file 'numeric-comp.cbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/cbx/numeric-comp.cbx
+File: numeric-comp.cbx 2016/03/03 v3.3 biblatex citation style (PK/JW/AB)
+\c@cbx@tempcnta=\count402
+\c@cbx@tempcntb=\count403
 Package biblatex Info: Redefining '\cite'.
 Package biblatex Info: Redefining '\parencite'.
 Package biblatex Info: Redefining '\footcite'.
@@ -1328,13 +1349,16 @@ Package biblatex Info: Redefining '\cites'.
 Package biblatex Info: Redefining '\parencites'.
 Package biblatex Info: Redefining '\smartcites'.
 )
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\cites'.
+)
 Package biblatex Info: Trying to load configuration file...
 Package biblatex Info: ... file 'biblatex.cfg' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.cfg
 File: biblatex.cfg 
 )))
-\c@theorem=\count402
+\c@theorem=\count404
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... none found.
 Package biblatex Info: Trying to load language 'english'...
@@ -1346,33 +1370,33 @@ File: english.lbx 2016/03/03 v3.3 biblatex localization (PK/JW/AB)
 (./ipta-template.aux)
 \openout1 = `ipta-template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 80.
-LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count403
+\scratchcounter=\count405
 \scratchdimen=\dimen305
 \scratchbox=\box88
-\nofMPsegments=\count404
-\nofMParguments=\count405
+\nofMPsegments=\count406
+\nofMParguments=\count407
 \everyMPshowfont=\toks53
-\MPscratchCnt=\count406
+\MPscratchCnt=\count408
 \MPscratchDim=\dimen306
-\MPnumerator=\count407
-\makeMPintoPDFobject=\count408
+\MPnumerator=\count409
+\makeMPintoPDFobject=\count410
 \everyMPtoPDFconversion=\toks54
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -1391,7 +1415,7 @@ e
 ))
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box89
-Package hyperref Info: Link coloring OFF on input line 80.
+Package hyperref Info: Link coloring OFF on input line 62.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1399,11 +1423,11 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count409
+\c@section@level=\count411
 )
-LaTeX Info: Redefining \ref on input line 80.
-LaTeX Info: Redefining \pageref on input line 80.
-LaTeX Info: Redefining \nameref on input line 80.
+LaTeX Info: Redefining \ref on input line 62.
+LaTeX Info: Redefining \pageref on input line 62.
+LaTeX Info: Redefining \nameref on input line 62.
 
 (./ipta-template.out) (./ipta-template.out)
 \@outlinefile=\write5
@@ -1426,115 +1450,127 @@ Package biblatex Info: ... file 'ipta-template.bbl' found.
 (./ipta-template.bbl
 
 Package biblatex Warning: BibTeX reported the following issues
-(biblatex)                with '7472039':
+(biblatex)                with '7018370':
 (biblatex)                - Invalid format of field 'month'.
 
 
 Package biblatex Warning: BibTeX reported the following issues
-(biblatex)                with '7018370':
+(biblatex)                with '7472039':
 (biblatex)                - Invalid format of field 'month'.
 
 )
-Package biblatex Info: Reference section=0 on input line 80.
-Package biblatex Info: Reference segment=0 on input line 80.
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 82.
-LaTeX Font Info:    Try loading font information for U+msa on input line 82.
+Package biblatex Info: Reference section=0 on input line 62.
+Package biblatex Info: Reference segment=0 on input line 62.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 64.
+LaTeX Font Info:    Try loading font information for U+msa on input line 64.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 82.
+LaTeX Font Info:    Try loading font information for U+msb on input line 64.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 94.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 64.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <9> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 64.
 LaTeX Font Info:    Font shape `OMS/ptm/m/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 94.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 76.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
-Overfull \hbox (2.31815pt too wide) in paragraph at lines 161--162
+Overfull \hbox (2.31815pt too wide) in paragraph at lines 141--142
  [][] 
  []
 
-\c@marqueur=\count410
-\c@fonction=\count411
-\c@parentage=\count412
-<autocorrelation_filtered.png, id=104, 963.6pt x 722.7pt>
+\c@marqueur=\count412
+\c@fonction=\count413
+\c@parentage=\count414
+<autocorrelation_filtered.png, id=101, 963.6pt x 722.7pt>
 File: autocorrelation_filtered.png Graphic file (type png)
 
 <use autocorrelation_filtered.png>
-Package pdftex.def Info: autocorrelation_filtered.png used on input line 202.
+Package pdftex.def Info: autocorrelation_filtered.png used on input line 181.
 (pdftex.def)             Requested size: 199.16928pt x 149.36748pt.
  [2 <./autocorrelation_filtered.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 240--242
+Underfull \hbox (badness 10000) in paragraph at lines 220--222
 
  []
 
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 253--277
+Overfull \hbox (6.0pt too wide) in paragraph at lines 231--255
 []$[]$$[]$ 
  []
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `htbp') on input line 285.
+               Default added (so using `htbp') on input line 261.
 
 [3]
-Overfull \hbox (6.0pt too wide) in paragraph at lines 334--349
+Overfull \hbox (6.0pt too wide) in paragraph at lines 306--321
 []$[]$
  []
 
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 350--365
+Overfull \hbox (6.0pt too wide) in paragraph at lines 322--337
 []$[]$
  []
 
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 366--380
+Overfull \hbox (6.0pt too wide) in paragraph at lines 338--352
 []$[]$ 
  []
 
-<distances.png, id=162, 481.8pt x 361.35pt>
+<distances.png, id=160, 481.8pt x 361.35pt>
 File: distances.png Graphic file (type png)
  <use distances.png>
-Package pdftex.def Info: distances.png used on input line 385.
+Package pdftex.def Info: distances.png used on input line 357.
 (pdftex.def)             Requested size: 199.16928pt x 149.373pt.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 439--456
+Overfull \hbox (6.0pt too wide) in paragraph at lines 410--427
 []$[]$
  []
 
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 439--456
+Overfull \hbox (6.0pt too wide) in paragraph at lines 410--427
 []$ 
  []
 
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 475.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 440.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) [4 <./distances.png (PNG copy)>] [5]
-Overfull \hbox (6.0pt too wide) in paragraph at lines 537--566
+) [4 <./distances.png (PNG copy)>]
+Underfull \hbox (badness 2189) in paragraph at lines 486--486
+[]\OT1/ptm/b/n/8 Mean over-es-ti-ma-tion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 486--486
+[]\OT1/ptm/b/n/8 Mean un-der-es-ti-ma-
+ []
+
+
+Overfull \hbox (6.0pt too wide) in paragraph at lines 516--545
 []$[]$
  []
 
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 537--566
+Overfull \hbox (6.0pt too wide) in paragraph at lines 516--545
 []$ 
  []
 
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 567--575
+Overfull \hbox (6.0pt too wide) in paragraph at lines 546--554
 []$[]$ 
  []
 
-[6]
+[5] [6]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1546,29 +1582,29 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 609.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 586.
 [7
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 609.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 586.
  (./ipta-template.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 609.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 609.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 586.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 586.
 Package rerunfilecheck Info: File `ipta-template.out' has not changed.
-(rerunfilecheck)             Checksum: EF168274CF10C6027AA67E7AF43A4082;838.
+(rerunfilecheck)             Checksum: 24D5257716D496DF27A027F356AF3933;837.
 Package logreq Info: Writing requests to 'ipta-template.run.xml'.
 \openout1 = `ipta-template.run.xml'.
 
  )
-(\end occurred when \iftrue on line 80 was incomplete) 
+(\end occurred when \iftrue on line 62 was incomplete) 
 Here is how much of TeX's memory you used:
- 44541 strings out of 493029
- 986034 string characters out of 6136234
- 1218181 words of memory out of 5000000
- 47453 multiletter control sequences out of 15000+600000
- 50015 words of font info for 118 fonts, out of 8000000 for 9000
+ 44603 strings out of 493029
+ 987509 string characters out of 6136234
+ 1225639 words of memory out of 5000000
+ 47506 multiletter control sequences out of 15000+600000
+ 51122 words of font info for 119 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 142i,19n,168p,10393b,3479s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 142i,18n,168p,10393b,3483s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf
 -dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
@@ -1576,24 +1612,26 @@ msfonts/cmextra/cmex9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
 6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont
-/line10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
-w/times/utmri8a.pfb>
-Output written on ipta-template.pdf (7 pages, 329905 bytes).
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
+/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on ipta-template.pdf (7 pages, 351078 bytes).
 PDF statistics:
- 374 PDF objects out of 1000 (max. 8388607)
- 338 compressed objects within 4 object streams
- 71 named destinations out of 1000 (max. 500000)
+ 381 PDF objects out of 1000 (max. 8388607)
+ 342 compressed objects within 4 object streams
+ 70 named destinations out of 1000 (max. 500000)
  127 words of extra memory for PDF output out of 10000 (max. 10000000)
 

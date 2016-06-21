@@ -16,106 +16,36 @@
   {}
 \endgroup
 
-\entry{7472039}{inproceedings}{}
+\entry{joly2007content}{article}{}
   \name{author}{3}{}{%
     {{}%
-     {Bestagini}{B.}%
-     {P.}{P.}%
+     {Joly}{J.}%
+     {Alexis}{A.}%
      {}{}%
      {}{}}%
     {{}%
-     {Tagliasacchi}{T.}%
-     {M.}{M.}%
+     {Buisson}{B.}%
+     {Olivier}{O.}%
      {}{}%
      {}{}}%
     {{}%
-     {Tubaro}{T.}%
-     {S.}{S.}%
-     {}{}%
-     {}{}}%
-  }
-  \keyw{Forensics;Image coding;Image color analysis;Image
-  reconstruction;Integrated circuits;Phylogeny;Vegetation;Image
-  phylogeny;near-duplicates}
-  \strng{namehash}{BP+1}
-  \strng{fullhash}{BPTMTS1}
-  \field{sortinit}{B}
-  \field{booktitle}{2016 IEEE International Conference on Acoustics, Speech and
-  Signal Processing (ICASSP)}
-  \verb{doi}
-  \verb 10.1109/ICASSP.2016.7472039
-  \endverb
-  \field{pages}{2059\bibrangedash 2063}
-  \field{title}{Image phylogeny tree reconstruction based on region selection}
-  \field{year}{2016}
-  \warn{\item Invalid format of field 'month'}
-\endentry
-
-\entry{bianchi2012detection}{article}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Bianchi}{B.}%
-     {Tiziano}{T.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Piva}{P.}%
-     {Alessandro}{A.}%
+     {Fr{\'e}licot}{F.}%
+     {Carl}{C.}%
      {}{}%
      {}{}}%
   }
   \list{publisher}{1}{%
     {IEEE}%
   }
-  \strng{namehash}{BTPA1}
-  \strng{fullhash}{BTPA1}
-  \field{sortinit}{B}
+  \strng{namehash}{JABOFC1}
+  \strng{fullhash}{JABOFC1}
   \field{number}{2}
-  \field{pages}{842\bibrangedash 848}
-  \field{title}{Detection of nonaligned double JPEG compression based on
-  integer periodicity maps}
-  \field{volume}{7}
-  \field{journaltitle}{Information Forensics and Security, IEEE Transactions
-  on}
-  \field{year}{2012}
-\endentry
-
-\entry{bows}{online}{}
-  \field{sortinit}{B}
-  \field{title}{BOWS 2 dataset}
-  \verb{url}
-  \verb http://bows2.ec-lille.fr/index.php
-  \endverb
-\endentry
-
-\entry{CarneinSB2016TelltaleWatermarks}{inproceedings}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Carnein}{C.}%
-     {Matthias}{M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Schöttle}{S.}%
-     {Pascal}{P.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Böhme}{B.}%
-     {Rainer}{R.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{CM+1}
-  \strng{fullhash}{CMSPBR1}
-  \field{sortinit}{C}
-  \field{booktitle}{Proceedings of the Electronic Imaging 2016}
-  \field{note}{Publication status: Published}
-  \field{title}{Telltale Watermarks for Counting JPEG Compressions}
-  \list{location}{1}{%
-    {San Francisco, USA}%
-  }
-  \field{year}{2016}
+  \field{pages}{293\bibrangedash 306}
+  \field{title}{Content-based copy retrieval using distortion-based
+  probabilistic similarity search}
+  \field{volume}{9}
+  \field{journaltitle}{Multimedia, IEEE Transactions on}
+  \field{year}{2007}
 \endentry
 
 \entry{dias2010first}{inproceedings}{}
@@ -139,9 +69,8 @@
   \list{organization}{1}{%
     {IEEE}%
   }
-  \strng{namehash}{DZ+1}
+  \strng{namehash}{DZRAGS1}
   \strng{fullhash}{DZRAGS1}
-  \field{sortinit}{D}
   \field{booktitle}{Information Forensics and Security (WIFS), 2010 IEEE
   International Workshop on}
   \field{pages}{1\bibrangedash 6}
@@ -170,9 +99,8 @@
   \list{publisher}{1}{%
     {IEEE}%
   }
-  \strng{namehash}{DZ+1}
+  \strng{namehash}{DZRAGS1}
   \strng{fullhash}{DZRAGS1}
-  \field{sortinit}{D}
   \field{number}{2}
   \field{pages}{774\bibrangedash 788}
   \field{title}{Image phylogeny by minimal spanning trees}
@@ -180,123 +108,6 @@
   \field{journaltitle}{Information Forensics and Security, IEEE Transactions
   on}
   \field{year}{2012}
-\endentry
-
-\entry{huang2010detecting}{article}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Huang}{H.}%
-     {Fangjun}{F.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Huang}{H.}%
-     {Jiwu}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Shi}{S.}%
-     {Yun~Qing}{Y.~Q.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {IEEE}%
-  }
-  \strng{namehash}{HF+1}
-  \strng{fullhash}{HFHJSYQ1}
-  \field{sortinit}{H}
-  \field{number}{4}
-  \field{pages}{848\bibrangedash 856}
-  \field{title}{Detecting double JPEG compression with the same quantization
-  matrix}
-  \field{volume}{5}
-  \field{journaltitle}{Information Forensics and Security, IEEE Transactions
-  on}
-  \field{year}{2010}
-\endentry
-
-\entry{joly2007content}{article}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Joly}{J.}%
-     {Alexis}{A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Buisson}{B.}%
-     {Olivier}{O.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Fr{\'e}licot}{F.}%
-     {Carl}{C.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {IEEE}%
-  }
-  \strng{namehash}{JA+1}
-  \strng{fullhash}{JABOFC1}
-  \field{sortinit}{J}
-  \field{number}{2}
-  \field{pages}{293\bibrangedash 306}
-  \field{title}{Content-based copy retrieval using distortion-based
-  probabilistic similarity search}
-  \field{volume}{9}
-  \field{journaltitle}{Multimedia, IEEE Transactions on}
-  \field{year}{2007}
-\endentry
-
-\entry{lai2013block}{inproceedings}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Lai}{L.}%
-     {ShiYue}{S.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Bohme}{B.}%
-     {Rainer}{R.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{organization}{1}{%
-    {IEEE}%
-  }
-  \strng{namehash}{LSBR1}
-  \strng{fullhash}{LSBR1}
-  \field{sortinit}{L}
-  \field{booktitle}{Acoustics, Speech and Signal Processing (ICASSP), 2013 IEEE
-  International Conference on}
-  \field{pages}{3028\bibrangedash 3032}
-  \field{title}{Block convergence in repeated transform coding: JPEG-100
-  forensics, carbon dating, and tamper detection}
-  \field{year}{2013}
-\endentry
-
-\entry{lukavs2003estimation}{inproceedings}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Luk{\'a}{\v{s}}}{L.}%
-     {Jan}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Fridrich}{F.}%
-     {Jessica}{J.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{LJFJ1}
-  \strng{fullhash}{LJFJ1}
-  \field{sortinit}{L}
-  \field{booktitle}{Proc. Digital Forensic Research Workshop}
-  \field{pages}{5\bibrangedash 8}
-  \field{title}{Estimation of primary quantization matrix in double compressed
-  JPEG images}
-  \field{year}{2003}
 \endentry
 
 \entry{7018370}{inproceedings}{}
@@ -340,18 +151,191 @@
   coding;Image reconstruction;Measurement;Phylogeny;Reconstruction
   algorithms;Switches;Vegetation;Image phylogeny;image
   dissimilarity;near-duplicates;phylogeny tree}
-  \strng{namehash}{MA+1}
+  \strng{namehash}{MABPMS+1}
   \strng{fullhash}{MABPMSTMRATS1}
-  \field{sortinit}{M}
   \field{booktitle}{Visual Information Processing (EUVIP), 2014 5th European
   Workshop on}
-  \verb{doi}
-  \verb 10.1109/EUVIP.2014.7018370
-  \endverb
   \field{pages}{1\bibrangedash 6}
   \field{title}{Image phylogeny through dissimilarity metrics fusion}
   \field{year}{2014}
   \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{7472039}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Bestagini}{B.}%
+     {P.}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tagliasacchi}{T.}%
+     {M.}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tubaro}{T.}%
+     {S.}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{Forensics;Image coding;Image color analysis;Image
+  reconstruction;Integrated circuits;Phylogeny;Vegetation;Image
+  phylogeny;near-duplicates}
+  \strng{namehash}{BPTMTS1}
+  \strng{fullhash}{BPTMTS1}
+  \field{booktitle}{2016 IEEE International Conference on Acoustics, Speech and
+  Signal Processing (ICASSP)}
+  \field{pages}{2059\bibrangedash 2063}
+  \field{title}{Image phylogeny tree reconstruction based on region selection}
+  \field{year}{2016}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{huang2010detecting}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Huang}{H.}%
+     {Fangjun}{F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Huang}{H.}%
+     {Jiwu}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Shi}{S.}%
+     {Yun~Qing}{Y.~Q.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {IEEE}%
+  }
+  \strng{namehash}{HFHJSYQ1}
+  \strng{fullhash}{HFHJSYQ1}
+  \field{number}{4}
+  \field{pages}{848\bibrangedash 856}
+  \field{title}{Detecting double JPEG compression with the same quantization
+  matrix}
+  \field{volume}{5}
+  \field{journaltitle}{Information Forensics and Security, IEEE Transactions
+  on}
+  \field{year}{2010}
+\endentry
+
+\entry{lukavs2003estimation}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Luk{\'a}{\v{s}}}{L.}%
+     {Jan}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Fridrich}{F.}%
+     {Jessica}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{LJFJ1}
+  \strng{fullhash}{LJFJ1}
+  \field{booktitle}{Proc. Digital Forensic Research Workshop}
+  \field{pages}{5\bibrangedash 8}
+  \field{title}{Estimation of primary quantization matrix in double compressed
+  JPEG images}
+  \field{year}{2003}
+\endentry
+
+\entry{bianchi2012detection}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Bianchi}{B.}%
+     {Tiziano}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Piva}{P.}%
+     {Alessandro}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {IEEE}%
+  }
+  \strng{namehash}{BTPA1}
+  \strng{fullhash}{BTPA1}
+  \field{number}{2}
+  \field{pages}{842\bibrangedash 848}
+  \field{title}{Detection of nonaligned double JPEG compression based on
+  integer periodicity maps}
+  \field{volume}{7}
+  \field{journaltitle}{Information Forensics and Security, IEEE Transactions
+  on}
+  \field{year}{2012}
+\endentry
+
+\entry{CarneinSB2016TelltaleWatermarks}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Carnein}{C.}%
+     {Matthias}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Sch\"ottle}{S.}%
+     {Pascal}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {B\"ohme}{B.}%
+     {Rainer}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CMSPBR1}
+  \strng{fullhash}{CMSPBR1}
+  \field{booktitle}{Proceedings of the Electronic Imaging 2016}
+  \field{note}{Publicationt status: Published}
+  \field{title}{Telltale Watermarks for Counting JPEG Compressions}
+  \list{location}{1}{%
+    {San Francisco, USA}%
+  }
+  \field{year}{2016}
+\endentry
+
+\entry{bows}{online}{}
+  \field{title}{BOWS 2 dataset}
+  \verb{url}
+  \verb http://bows2.ec-lille.fr/index.php
+  \endverb
+  \field{year}{2008}
+\endentry
+
+\entry{lai2013block}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Lai}{L.}%
+     {ShiYue}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bohme}{B.}%
+     {Rainer}{R.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{organization}{1}{%
+    {IEEE}%
+  }
+  \strng{namehash}{LSBR1}
+  \strng{fullhash}{LSBR1}
+  \field{booktitle}{Acoustics, Speech and Signal Processing (ICASSP), 2013 IEEE
+  International Conference on}
+  \field{pages}{3028\bibrangedash 3032}
+  \field{title}{Block convergence in repeated transform coding: JPEG-100
+  forensics, carbon dating, and tamper detection}
+  \field{year}{2013}
 \endentry
 
 \lossort
