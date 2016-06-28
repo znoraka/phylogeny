@@ -15,8 +15,27 @@
 #include "gnuplot_i.hpp"
 #include "fft.h"
 #include "tools.h"
+#include "image_ppm.h"
 
-using namespace Magick;
+struct Image {
+  std::vector<OCTET> data;
+  int width;
+  int height;
+
+  Image(int width, int height) {
+    this->width = width;
+    this->height = height;
+    data.resize(width * height);
+  }
+
+  Image(std::string path) {
+    lire_nb_lignes_colonnes_image_pgm(const_cast<char*>(path.c_str()), &height, &width);
+    data.resize(height * width);
+    lire_image_pgm(const_cast<char*>(path.c_str()), &data[0], data.size());
+  }
+};
+
+// using namespace Magick;
 using namespace tools;
 
 static std::vector<int> baseTable = {16,12,14,14,18,24,49,72,11,12,13,17,22,35,64,92,10,14,16,22,37,55,78,95,16,19,24,29,56,64,87,98,24,26,40,51,68,81,103,112,40,58,57,87,109,104,121,100,51,60,69,80,103,113,120,103,61,55,56,62,77,92,101,99};
@@ -58,6 +77,80 @@ void exportMatrix(std::ostream& stream, std::vector<std::vector<bool> > matrix);
 Node *buildTreeFromMatrix(std::vector<std::vector<bool> > matrix);
 void plotHistograms(std::string outFile, std::string name1, std::string name2, std::vector<double> d1, std::vector<double> d2);
 std::vector<int> makeHisto (std::vector<int> v);
+
+
+/**
+ * Crée une Image à partir d'une image JPEG
+ */
+Image readJPEGImage(std::string path) {
+  struct jpeg_decompress_struct cinfo;
+  struct jpeg_error_mgr jerr;
+  JSAMPROW row_pointer[1];
+
+  FILE *infile = fopen(path.c_str(), "rb");
+  unsigned long location = 0;
+  int i = 0;
+
+  if ( !infile ) {
+    printf("Error opening jpeg file %s\n!", path.c_str() );
+    return Image(0, 0);
+  }
+  cinfo.err = jpeg_std_error( &jerr );
+  jpeg_create_decompress( &cinfo );
+  jpeg_stdio_src( &cinfo, infile );
+  jpeg_read_header( &cinfo, TRUE );
+  jpeg_start_decompress( &cinfo );
+
+  row_pointer[0] = (unsigned char *)malloc( cinfo.output_width*cinfo.num_components );
+  Image img(cinfo.image_width, cinfo.image_height);
+  
+  while( cinfo.output_scanline < cinfo.image_height ) {
+    jpeg_read_scanlines( &cinfo, row_pointer, 1 );
+    for( i=0; i<cinfo.image_width*cinfo.num_components;i++)
+      img.data[location++] = row_pointer[0][i];
+    }
+  jpeg_finish_decompress( &cinfo );
+  jpeg_destroy_decompress( &cinfo );
+  free( row_pointer[0] );
+  fclose( infile );
+  return img;
+}
+
+
+/**
+ * Compresse une bitmap en jpeg
+ */
+void compressPGMImage(Image img, int quality, std::string path) {
+  FILE* outfile = fopen(path.c_str(), "wb");
+  struct jpeg_compress_struct cinfo;
+  struct jpeg_error_mgr       jerr;
+ 
+  cinfo.err = jpeg_std_error(&jerr);
+  jpeg_create_compress(&cinfo);
+  jpeg_stdio_dest(&cinfo, outfile);
+
+  cinfo.image_width      = img.width;
+  cinfo.image_height     = img.height;
+  cinfo.input_components = 1;
+  cinfo.in_color_space   = JCS_GRAYSCALE;
+
+  jpeg_set_defaults(&cinfo);
+  jpeg_set_quality (&cinfo, quality, true);
+  jpeg_start_compress(&cinfo, true);
+
+  int n = 0;
+  JSAMPROW row_pointer;  
+  
+  while (cinfo.next_scanline < cinfo.image_height) {
+    row_pointer = (JSAMPROW)&img.data[n];
+    n += img.height;
+    jpeg_write_scanlines(&cinfo, &row_pointer, 1);
+  }
+
+  jpeg_finish_compress(&cinfo);
+  jpeg_destroy_compress(&cinfo);
+  fclose(outfile);
+}
 
 void plotHistograms(std::string outFile, std::string name1, std::string name2, std::vector<double> d1, std::vector<double> d2) {
     Gnuplot g1("plot");
@@ -483,22 +576,6 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
     return pathes;
   };
 
-  // auto distancesOk = [&](std::vector<double> d1, std::vector<double> d2) {
-  //   auto metric = Distance::kb;
-
-  //   double d = Distance::compute(metric, d1, d2);
-  //   double dd = Distance::compute(metric, d2, d1);
-
-  //   //les deux distances sont égales => les images sont identiques
-  //   // std::cout << std::endl;
-  //   std::cout << "d = " << d;
-  //   std::cout << "   dd = " << dd << "  ";
-  //   std::cout << "abs(d - dd) = " << abs(d * dd) << "   ";
-  //   // std::cout << "abs(d - dd) = " << abs(d - dd) << std::endl;
-  //   // return d == dd;
-  //   return d < 0.07 && dd < 0.07 && abs(d - dd) < 0.00001;
-  // };
-
   /**
    * Retourne vrai si les distances entre les deux images sont égales, et donc qu'elles sont identiques
    */
@@ -514,13 +591,10 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
       sumd += d;
       sumdd += dd;
     }
+    // return sumd == sumdd;
+    // std::cout << sumd << " -- " << sumdd << " -- " << fabs(sumd - sumdd) << std::endl;
 
-    //les deux distances sont égales => les images sont identiques
-    // std::cout << std::endl;
-    // std::cout << "d = " << sumd;
-    // std::cout << "   dd = " << sumdd << "  ";
-    // std::cout << "abs(d - dd) = " << fabs(sumd - sumdd) << "   ";
-    return sumd == sumdd;
+    return (sumd < 1.5 && sumdd < 1.5 && fabs(sumd - sumdd) < 0.01);
   };
 
 
@@ -551,59 +625,24 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
 
     int missingValues = 0;
     int sum2 = 0;
-    
-    // for (int i = 0; i < fmin(d1.size(), d2.size()); i++) {
-    //   sum2 += d1[i];
-    //   // std::cout << sum2 << " < " << (double) sum * 0.90 << std::endl;
-    //   if(d1[i] > sum * 0.1) {
-    //   // if((double) sum2 < (sum * 0.99)) {
-    // 	//grand d1 et petit d2, au moins 2x
-    // 	if(d1[i] > 5 * d2[i]) {
-    // 	  missingValues++;
-    // 	}
-    //   // } else {
-    // 	// break;
-    //   }
-    // }
-
-    // std::cout << (double) missingValues << " => ";
-    // // return (((double) missingValues / (double) fmin(d1.size(), d2.size())) < 0.1);
-    // return missingValues == 0;
 
     double d = Distance::compute(Distance::kb, d1, d2);
-    // std::cout << d << " => ";
     
     return d == 0;
-  };
-
-  auto imageStdDev = [&](Image &image) {
-    std::cout << "here" << std::endl;
-
-    double avg = 0;
-    for (int i = 0; i < image.columns(); i++) {
-      for (int j = 0; j < image.rows(); j++) {
-	// std::cout << pixels->red << std::endl;
-	avg += ((ColorGray) image.pixelColor(i, j)).shade();
-	// std::cout << ((ColorGray) image.pixelColor(i, j)).shade() * 255 << std::endl;
-      }
-    }
-
-    avg /= (image.columns() * image.rows());
-    
-    std::cout << "avg = " << avg << std::endl;
-
   };
 
   /**
    * Retourne le facteur de qualité estimé pour toutes les images
    */
   auto estimateImagesQ = [](std::vector<std::string> paths) {
-    Image image;
     std::vector<int> qs;
     for(auto i : paths) {
-      image.read(i);
-      image.quality(100);
-      image.write("/media/ramdisk/i.jpg");
+      Image image = readJPEGImage(i);
+      compressPGMImage(image, 100, "/media/ramdisk/i.jpg");
+      
+      // image.read(i);
+      // image.quality(100);
+      // image.write("/media/ramdisk/i.jpg");
       q_dct dct = getQAndDct("/media/ramdisk/i.jpg");
       int estimated = estimateQ(dct.dct);
       qs.push_back(estimated);
@@ -622,10 +661,13 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
   for(auto image_i : pathes) {
     std::vector<bool> vec(pathes.size(), false);
     std::vector<bool> found(pathes.size(), false);
-    Image image2, imagepng;
-    image2.read(image_i);
-    q_dct base = getQAndDct(image_i);
-    int quality = image2.quality();
+
+    Image image2 = readJPEGImage(image_i);
+    compressPGMImage(image2, 100, "/media/ramdisk/i.jpg");
+    // Image image2, imagepng;
+    // image2.read(image_i);
+    // q_dct base = getQAndDct(image_i);
+    // int quality = image2.quality();
     /*
     image2.write("/media/ramdisk/i.png");
     imagepng.read("/media/ramdisk/i.png");
@@ -637,61 +679,32 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
     // image2.write("/media/ramdisk/i.jpg");
     //*/
     
-    q_dct i = getQAndDct(image_i);
-    // q_dct i = getQAndDct("/media/ramdisk/i.jpg");
-    auto di = makeDistrib(makeHisto(i.dct[0]));
+    // q_dct i = getQAndDct(image_i);
+    q_dct i = getQAndDct("/media/ramdisk/i.jpg");
+    // auto di = makeDistrib(makeHisto(i.dct[0]));
     // auto di = toDoubleVector(i.dctDiffZero, i.numberOfBlocks);
-
-    // if(cpti == 0) {
-    //   // fft(toDoubleVector(makeHisto(i.dct[0]), 1));
-    //   plotHistograms("fft", "fft", "histo", fft(toDoubleVector(makeHisto(i.dct[0]), 1)), toDoubleVector(makeHisto(i.dct[0]), 1));
-    // }
 
     // if(cpti == 18) {
     std::cout << cpti  << " : " << std::endl;
     // int estimated = estimateQ(i.dct);
     int estimated = estimatedQs[cpti];
-    std::cout << "estimated = " << estimated << std::endl;
-    std::cout << "real      = " << quality << std::endl;
-    error += (abs(estimated - quality));
+    // std::cout << "estimated = " << estimated << std::endl;
+    // std::cout << "real      = " << quality << std::endl;
+    // error += (abs(estimated - quality));
     
-    if(estimated < quality) {
-      overestimate = fmax(overestimate, quality - estimated);
-    } else {
-      underestimate = fmin(underestimate, quality - estimated);
-    }
-
-    // std::cout << std::endl;
-    // }
-      // int n = 0;
-      // for(auto dctVec : i.dct) {
-	// plotHistograms(std::to_string(n), std::to_string(cpti), std::to_string(n++), toDoubleVector(makeHisto(dctVec), 1), toDoubleVector(makeHisto(dctVec), 1));
-      // // plotHistograms(std::to_string(n), std::to_string(cpti), std::to_string(n++), fft(dctVec), fft(dctVec)); // 
-
-      // 	plotHistograms(std::to_string(n), std::to_string(cpti), std::to_string(n++), toDoubleVector(makeHisto(dctVec), 1), toDoubleVector(makeHisto(dctVec), 1));
-      // }
-      
-    // }
-      
-    // if(cpti == 0) {
-      // int n = 0;
-      // for(auto dctVec : i.dct) {
-      // plotHistonnnngrams(std::to_string(n), std::to_string(cpti), std::to_string(n++), toDoubleVector(makeHisto(dctVec), 1), toDoubleVector(makeHisto(dctVec), 1));
-    // 	// plotHistograms(std::to_string(n), std::to_string(cpti), std::to_string(n++), toDoubleVector(makeHisto(dctVec), 1), toDoubleVector(makeHisto(dctVec), 1));
-      // }
-    // }
-      // std::cout << base.q << " // " << estimateQ(i.dct) << std::endl;
+    // if(estimated < quality) {
+    //   overestimate = fmax(overestimate, quality - estimated);
+    // } else {
+    //   underestimate = fmin(underestimate, quality - estimated);
     // }
 
-    //********************************//
-    //*
     int step = 0;
     int range = 100;
     int k = 0;
     while(k < range) {
       int cptj = -1;
       step = step + ((k % 2 == 0)? -1 : 1) * k++;
-      std::cout << step << std::endl;
+      // std::cout << step << std::endl;
 
       for(auto image_j : pathes) {
 	cptj++;
@@ -702,14 +715,20 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
 	    continue;
 	  }
 
-	  Image image;
-	  image.read(image_j);
+	  // std::cout << image_i << " and " << image_j << " :: " << estimated + step << "\n";
 
-	  image.quality(estimated + step);
-	  image.write("/media/ramdisk/out.jpg");
+	  Image image = readJPEGImage(image_j);
+	  compressPGMImage(image, estimated + step, "/media/ramdisk/out.jpg");
+	  Image image2 = readJPEGImage("/media/ramdisk/out.jpg");
+	  compressPGMImage(image2, 100, "/media/ramdisk/out.jpg");
+	  // Image image;
+	  // image.read(image_j);
+
+	  // image.quality(estimated + step);
+	  // image.write("/media/ramdisk/out.jpg");
 	  q_dct j = getQAndDct("/media/ramdisk/out.jpg");
-	  q_dct jUncompressed = getQAndDct(image_j);
-	  auto dj = makeDistrib(makeHisto(j.dct[0]));
+	  // q_dct jUncompressed = getQAndDct(image_j);
+	  // auto dj = makeDistrib(makeHisto(j.dct[0]));
 	  bool b1 = distancesOk(i.dct, j.dct);
 
 	  if(b1) {
@@ -738,8 +757,19 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
   return matrix;
 }
 
+void displayTable(int i) {
+  int cpt = 0;
+  for(auto v : table(i)) {
+    std::cout << v << "&";
+    if(cpt++ == 7) {
+      cpt = 0;
+      std::cout << "\\\\ \\hline" << std::endl;
+    }
+  }
+}
+
 int main(int argc, char **argv) {
-  InitializeMagick(*argv);
+  // InitializeMagick(*argv);
 
   for (int i = 1; i < 101; i++) {
     tables.push_back(table(i));

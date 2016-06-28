@@ -7,6 +7,7 @@ ADD_DEFINITIONS(
   -w
   -lpthread
   -Ofast
+  # -g
   )
 
 find_package(ImageMagick COMPONENTS Magick++ MagickCore MagickWand)
