@@ -9,7 +9,6 @@ ADD_DEFINITIONS(
   -Ofast
   )
 
-find_package(ImageMagick COMPONENTS Magick++ MagickCore MagickWand)
 find_package(JPEG)
 
 set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
@@ -32,6 +31,5 @@ add_executable(
 
   )
 
-include_directories(${ImageMagick_INCLUDE_DIRS})
 include_directories(${JPEG_INCLUDE_DIRS})
-target_link_libraries(ancestor-estimator ${ImageMagick_LIBRARIES} ${JPEG_LIBRARIES} -lpthread -lX11)
+target_link_libraries(ancestor-estimator ${JPEG_LIBRARIES} -lpthread -lX11)
