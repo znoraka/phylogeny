@@ -16,14 +16,6 @@ iostream
 vector
 -
 
-/home/noe/Documents/dev/phylogeny/tree-extractor/c++/src/fft.h
-complex
--
-iostream
--
-valarray
--
-
 /home/noe/Documents/dev/phylogeny/tree-extractor/c++/src/gnuplot_i.hpp
 iostream
 -
@@ -69,14 +61,6 @@ functional
 -
 sys/stat.h
 -
-assert.h
--
-Magick++.h
--
-Magick++/STL.h
--
-magick/MagickCore.h
--
 fstream
 -
 iomanip
@@ -87,12 +71,16 @@ dctextractor.h
 /home/noe/Documents/dev/phylogeny/tree-extractor/c++/src/dctextractor.h
 gnuplot_i.hpp
 /home/noe/Documents/dev/phylogeny/tree-extractor/c++/src/gnuplot_i.hpp
-fft.h
-/home/noe/Documents/dev/phylogeny/tree-extractor/c++/src/fft.h
 tools.h
 /home/noe/Documents/dev/phylogeny/tree-extractor/c++/src/tools.h
 image_ppm.h
 /home/noe/Documents/dev/phylogeny/tree-extractor/c++/src/image_ppm.h
+Magick++.h
+-
+Magick++/STL.h
+-
+magick/MagickCore.h
+-
 
 /home/noe/Documents/dev/phylogeny/tree-extractor/c++/src/tools.h
 

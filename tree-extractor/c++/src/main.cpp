@@ -3,19 +3,25 @@
 #include <algorithm>
 #include <functional>
 #include <sys/stat.h>
-#include <assert.h>
-#include <Magick++.h>
-#include <Magick++/STL.h>
-#include <magick/MagickCore.h>
 #include <fstream>
 #include <iomanip>
 #include <list>
 
 #include "dctextractor.h"
 #include "gnuplot_i.hpp"
-#include "fft.h"
 #include "tools.h"
 #include "image_ppm.h"
+
+// #define __magick 1
+
+#ifdef __magick
+
+#include <Magick++.h>
+#include <Magick++/STL.h>
+#include <magick/MagickCore.h>
+using namespace Magick;
+
+#else
 
 struct Image {
   std::vector<OCTET> data;
@@ -35,7 +41,8 @@ struct Image {
   }
 };
 
-// using namespace Magick;
+#endif
+
 using namespace tools;
 
 static std::vector<int> baseTable = {16,12,14,14,18,24,49,72,11,12,13,17,22,35,64,92,10,14,16,22,37,55,78,95,16,19,24,29,56,64,87,98,24,26,40,51,68,81,103,112,40,58,57,87,109,104,121,100,51,60,69,80,103,113,120,103,61,55,56,62,77,92,101,99};
@@ -78,6 +85,7 @@ Node *buildTreeFromMatrix(std::vector<std::vector<bool> > matrix);
 void plotHistograms(std::string outFile, std::string name1, std::string name2, std::vector<double> d1, std::vector<double> d2);
 std::vector<int> makeHisto (std::vector<int> v);
 
+#ifndef __magick
 
 /**
  * Crée une Image à partir d'une image JPEG
@@ -108,14 +116,13 @@ Image readJPEGImage(std::string path) {
     jpeg_read_scanlines( &cinfo, row_pointer, 1 );
     for( i=0; i<cinfo.image_width*cinfo.num_components;i++)
       img.data[location++] = row_pointer[0][i];
-    }
+  }
   jpeg_finish_decompress( &cinfo );
   jpeg_destroy_decompress( &cinfo );
   free( row_pointer[0] );
   fclose( infile );
   return img;
 }
-
 
 /**
  * Compresse une bitmap en jpeg
@@ -152,29 +159,31 @@ void compressPGMImage(Image img, int quality, std::string path) {
   fclose(outfile);
 }
 
+#endif
+
 void plotHistograms(std::string outFile, std::string name1, std::string name2, std::vector<double> d1, std::vector<double> d2) {
-    Gnuplot g1("plot");
+  Gnuplot g1("plot");
 
-    g1.cmd("set xrange [0:" + std::to_string(fmax(d1.size(), d2.size())) + "]");
-    g1.cmd("set style data histogram");
-    g1.cmd("set style data lines");
-    g1.cmd("set style histogram clustered");
-    g1.cmd("set style fill solid border");
-    g1.cmd("set terminal pngcairo size 960,720");
-    g1.set_style("boxes");
+  g1.cmd("set xrange [0:" + std::to_string(fmax(d1.size(), d2.size())) + "]");
+  g1.cmd("set style data histogram");
+  g1.cmd("set style data lines");
+  g1.cmd("set style histogram clustered");
+  g1.cmd("set style fill solid border");
+  g1.cmd("set terminal pngcairo size 960,720");
+  g1.set_style("boxes");
       
-    outFile += ".png";
-    g1.cmd("set output \"/media/ramdisk/" + outFile + "\"");
+  outFile += ".png";
+  g1.cmd("set output \"/media/ramdisk/" + outFile + "\"");
 
-    std::ofstream of("/media/ramdisk/out.txt", std::ofstream::out);
+  std::ofstream of("/media/ramdisk/out.txt", std::ofstream::out);
     
-    for (int i = 0; i < fmax(d1.size(), d2.size()); i++) {
-      of << ((i < d1.size())?d1[i]:0) << " ";
-      of << ((i < d2.size())?d2[i]:0) << std::endl;
-    }
+  for (int i = 0; i < fmax(d1.size(), d2.size()); i++) {
+    of << ((i < d1.size())?d1[i]:0) << " ";
+    of << ((i < d2.size())?d2[i]:0) << std::endl;
+  }
 
-    of.close();
-    g1.cmd("plot '/media/ramdisk/out.txt' using 1 title \"" + name1 + "\", '/media/ramdisk/out.txt' using 2 title \"" + name2 + "\"");
+  of.close();
+  g1.cmd("plot '/media/ramdisk/out.txt' using 1 title \"" + name1 + "\", '/media/ramdisk/out.txt' using 2 title \"" + name2 + "\"");
 }
 
 /**
@@ -197,12 +206,12 @@ int estimateQ(std::vector<std::vector<int> > dctCoeffs) {
   };
 
   auto smooth = [](std::vector<double> &vec, int width, int index) {
-      double avg = 0;
-      for (int i = -width; i <= width; i++) {
-	avg += vec[i + index];
-      }
-      avg /= (width * 2 + 1);
-      return avg;
+    double avg = 0;
+    for (int i = -width; i <= width; i++) {
+      avg += vec[i + index];
+    }
+    avg /= (width * 2 + 1);
+    return avg;
   };
 
   auto computeAutocorrelation = [](std::vector<double> histo) {
@@ -504,48 +513,6 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
   };
 
   /**
-   * Recale les valeurs du vecteur sur les multiples de q
-   */
-  auto reajust = [](std::vector<int> v, int q) {
-    std::vector<double> out;
-    int maxElem = *std::max_element(v.begin(), v.end());
-    maxElem = fmax(maxElem, abs(*std::min_element(v.begin(), v.end())));
-    out.resize(maxElem+1, 0);
-    
-    for(auto i : v) {
-      int n = (int) (i / q) * q;
-      out[abs(n)]++;
-    }
-    return out;
-  };
-
-  /**
-   * Calcule l'aire sous la courbe à chaque bin de l'histogramme
-   */
-  auto makeArea = [](std::vector<double> v) {
-    std::vector<double> out;
-    double sum = 0;
-    for(auto i : v) {
-      sum += i;
-      out.push_back(sum);
-    }
-    return out;
-  };
-
-  /**
-   * Calcule l'aire sous la courbe
-   */
-  auto areaUnderTheCurve = [](std::vector<double> v) {
-    double d = 0;
-
-    for(auto i : v) {
-      d += i;
-    }
-   
-    return d;
-  };
-
-  /**
    * Vérifie qu'un fichier existes
    */
   auto exists = [](std::string path) {
@@ -591,44 +558,13 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
       sumd += d;
       sumdd += dd;
     }
-    // return sumd == sumdd;
     // std::cout << sumd << " -- " << sumdd << " -- " << fabs(sumd - sumdd) << std::endl;
 
+#ifdef __magick
+    return sumd == sumdd;
+#else
     return (sumd < 1.5 && sumdd < 1.5 && fabs(sumd - sumdd) < 0.01);
-  };
-
-
-  auto areaUnderTheCurveOk = [&](std::vector<double> d1, std::vector<double> d2) {
-    return !(areaUnderTheCurve(d1) > areaUnderTheCurve(d2));
-  };
-
-  auto missingValuesOk = [&](std::vector<double> d1, std::vector<double> d2) {
-    //TODO vérifier si les deux vecteurs ont la même taille
-    double sum = 0;
-    
-    for(auto i : d1) {
-      sum += i;
-    }
-    // sum /= d1.size();
-    for(auto &i : d1) {
-      i /= sum;
-    }
-
-    sum = 0;
-    for(auto i : d2) {
-      sum += i;
-    }
-    // sum /= d1.size();
-    for(auto &i : d2) {
-      i /= sum;
-    }
-
-    int missingValues = 0;
-    int sum2 = 0;
-
-    double d = Distance::compute(Distance::kb, d1, d2);
-    
-    return d == 0;
+#endif
   };
 
   /**
@@ -637,12 +573,15 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
   auto estimateImagesQ = [](std::vector<std::string> paths) {
     std::vector<int> qs;
     for(auto i : paths) {
+#ifdef __magick
+      Image image;
+      image.read(i);
+      image.quality(100);
+      image.write("/media/ramdisk/i.jpg");
+#else
       Image image = readJPEGImage(i);
       compressPGMImage(image, 100, "/media/ramdisk/i.jpg");
-      
-      // image.read(i);
-      // image.quality(100);
-      // image.write("/media/ramdisk/i.jpg");
+#endif
       q_dct dct = getQAndDct("/media/ramdisk/i.jpg");
       int estimated = estimateQ(dct.dct);
       qs.push_back(estimated);
@@ -662,41 +601,31 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
     std::vector<bool> vec(pathes.size(), false);
     std::vector<bool> found(pathes.size(), false);
 
+#ifdef __magick
+    Image image2;
+    image2.read(image_i);
+    int quality = image2.quality();
+    image2.quality(100);
+    image2.write("/media/ramdisk/i.jpg");
+#else
     Image image2 = readJPEGImage(image_i);
     compressPGMImage(image2, 100, "/media/ramdisk/i.jpg");
-    // Image image2, imagepng;
-    // image2.read(image_i);
-    // q_dct base = getQAndDct(image_i);
-    // int quality = image2.quality();
-    /*
-    image2.write("/media/ramdisk/i.png");
-    imagepng.read("/media/ramdisk/i.png");
-    imagepng.quality(100);
-    imagepng.write("/media/ramdisk/i.jpg");
-    //*/
-    
-    // image2.quality(100);
-    // image2.write("/media/ramdisk/i.jpg");
-    //*/
-    
-    // q_dct i = getQAndDct(image_i);
+#endif
     q_dct i = getQAndDct("/media/ramdisk/i.jpg");
-    // auto di = makeDistrib(makeHisto(i.dct[0]));
-    // auto di = toDoubleVector(i.dctDiffZero, i.numberOfBlocks);
-
-    // if(cpti == 18) {
     std::cout << cpti  << " : " << std::endl;
-    // int estimated = estimateQ(i.dct);
     int estimated = estimatedQs[cpti];
-    // std::cout << "estimated = " << estimated << std::endl;
-    // std::cout << "real      = " << quality << std::endl;
-    // error += (abs(estimated - quality));
+
+#ifdef __magick
+    std::cout << "estimated = " << estimated << std::endl;
+    std::cout << "real      = " << quality << std::endl;
+    error += (abs(estimated - quality));
     
-    // if(estimated < quality) {
-    //   overestimate = fmax(overestimate, quality - estimated);
-    // } else {
-    //   underestimate = fmin(underestimate, quality - estimated);
-    // }
+    if(estimated < quality) {
+      overestimate = fmax(overestimate, quality - estimated);
+    } else {
+      underestimate = fmin(underestimate, quality - estimated);
+    }
+#endif
 
     int step = 0;
     int range = 100;
@@ -717,18 +646,22 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
 
 	  // std::cout << image_i << " and " << image_j << " :: " << estimated + step << "\n";
 
+#ifdef __magick
+	  Image image;
+	  image.read(image_j);
+
+	  image.quality(estimated + step);
+	  image.write("/media/ramdisk/out.jpg");
+	  image.read("/media/ramdisk/out.jpg");
+	  image.quality(100);
+	  image.write("/media/ramdisk/out.jpg");
+#else
 	  Image image = readJPEGImage(image_j);
 	  compressPGMImage(image, estimated + step, "/media/ramdisk/out.jpg");
 	  Image image2 = readJPEGImage("/media/ramdisk/out.jpg");
 	  compressPGMImage(image2, 100, "/media/ramdisk/out.jpg");
-	  // Image image;
-	  // image.read(image_j);
-
-	  // image.quality(estimated + step);
-	  // image.write("/media/ramdisk/out.jpg");
+#endif
 	  q_dct j = getQAndDct("/media/ramdisk/out.jpg");
-	  // q_dct jUncompressed = getQAndDct(image_j);
-	  // auto dj = makeDistrib(makeHisto(j.dct[0]));
 	  bool b1 = distancesOk(i.dct, j.dct);
 
 	  if(b1) {
@@ -749,10 +682,16 @@ std::vector<std::vector<bool> > estimateParents(std::string directory) {
   exportMatrix(std::cout, matrix);
 
   meanError = (double)error / (double)cpti;
-  
+
+#ifdef __magick
   std::cout << "mean error = " << (double)error / (double)cpti << std::endl;
   std::cout << "overestimate = " << overestimate << std::endl;
   std::cout << "underestimate = " << underestimate << std::endl;
+#else
+  std::cout << "mean error = " << -1 << std::endl;
+  std::cout << "overestimate = " << -1 << std::endl;
+  std::cout << "underestimate = " << -1 << std::endl;
+#endif
   
   return matrix;
 }
@@ -769,7 +708,9 @@ void displayTable(int i) {
 }
 
 int main(int argc, char **argv) {
-  // InitializeMagick(*argv);
+#ifdef __magick
+  InitializeMagick(*argv);
+#endif
 
   for (int i = 1; i < 101; i++) {
     tables.push_back(table(i));
