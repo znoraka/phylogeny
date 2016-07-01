@@ -47,14 +47,14 @@
 
 \setlength{\belowcaptionskip}{-1pt}
 
-\title{\TitleFont{Phylogeny of JPEG images by ancestors estimation using missing markers on image pairs}}
+\title{\TitleFont{Phylogeny of JPEG images by ancestor estimation using missing markers on image pairs}}
 
 % \author{\authorblockN{Noé Le Philippe\authorrefmark{1}, William Puech\authorrefmark{1} and Christophe Fiorio\authorrefmark{1} }
 % \authorblockA{\authorrefmark{1} LIRMM\\
 % e-mail: noe.lephilippe@lirmm.fr, william.puech@lirmm.fr, fiorio@lirmm.fr}}
 
 
-\author{\authorblockN{Noé Le Philippe\authorrefmark{1}, William Puech \authorrefmark{1} and Christophe Fiorio\authorrefmark{1}}
+\author{\authorblockN{Noé Le Philippe\authorrefmark{1}, William Puech\authorrefmark{1} and Christophe Fiorio\authorrefmark{1}}
 \authorblockA{
 \authorrefmark{1} LIRMM Laboratory, UMR 5506 \\
 CNRS, University of Montpellier \\
@@ -74,9 +74,9 @@ e-mail: \{noe.lephilippe, william.puech, christophe.fiorio\}@lirmm.fr \\}}
 \section{Introduction}
 It has never been so easy to share ideas and image content thanks to social networks. Every time content is shared however, its information can be altered, often not on purpose, as an image is being recompressed to fit low bandwith networks would. But not always, there can also be malicious alteration that aim to modify the meaning of the content. To trust an image, it is imperative to be able to tell whether the content has been tampered with or not.
 
-After every transformation, a new image is created. This new image is called a near-duplicate of its parent if, as defined by Joly \textit{et al.} \autocite{joly2007content}, it is a transformed version of a document that remains recognizable. It is formally defined as follows: $I_{n+1} = T(I_{n}), T \in \mathcal{T}$ where $I_{n}$ is the parent image at generation $n$, $I_{n+1}$ is the image at the next generation $n+1$, the child image, and $\mathcal{T}$ is a set of tolerated transformations, $I_{n+1}$ are $I_{n}$ near-duplicate images. The set $\mathcal{T}$ can contain any transformation, for instance, $\mathcal{T} = $ \textit{\{resampling, cropping, affine warping, color changing, lossy compression\}}. Authors used the words ``tolerated transformation'', their meaning is twofold. It limits the transformations to those present in the set $\mathcal{T}$ and sets an arbitrary limit to the strength of any given transformation. For example an image cropped by more than 20\% can be considered a new image and not a near-duplicate.
+After every transformation, a new image is created. This new image is called a near-duplicate of its parent if, as defined by Joly \textit{et al.} \autocite{joly2007content}, it is a transformed version of a document that remains recognizable. It is formally defined as follows: $I_{n+1} = T(I_{n}),\ T \in \mathcal{T}$ where $I_{n}$ is the parent image at generation $n$, $I_{n+1}$ is the image at the next generation $n+1$, the child image, and $\mathcal{T}$ is a set of tolerated transformations, $I_{n+1}$ are $I_{n}$ near-duplicate images. The set $\mathcal{T}$ can contain any transformation, for instance, $\mathcal{T} = $ \textit{\{resampling, cropping, affine warping, color changing, lossy compression\}}. Authors used the words ``tolerated transformation'', their meaning is twofold. It limits the transformations to those present in the set $\mathcal{T}$ and sets an arbitrary limit to the strength of any given transformation. For example an image cropped by more than 20\% can be considered a new image and not a near-duplicate.
 
-In this paper, our goal is to identify the parent-child relationships in a set of near-duplicate images and extract the phylogeny of such relationships. The phylogeny is represented by a tree. The root is most likely the original image, or as close as possible to the original, unprocessed image. The leaves, on the other end of the spectrum, are the ones most tampered with. We limit ourselves to the study of $\mathcal{T} = $ \textit{\{JPEG compression\}}, and specifically when the child image quality factor is smaller than its parent to focus on two main fields: image phylogeny, and forensics and multiple JPEG compression detection.
+In this paper, our goal is to identify the parent-child relationship in a set of near-duplicate images and extract the phylogeny of such relationships. The phylogeny is represented by a tree. The root is most likely the original image, or as close as possible to the original, unprocessed image. The leaves, on the other end of the spectrum, are the ones most tampered with. We limit ourselves to the study of $\mathcal{T} = $ \textit{\{JPEG compression\}}, and specifically when the child image quality factor is smaller than its parent to focus on two main fields: image phylogeny, and forensics and multiple JPEG compression detection.
 
 Most state of the art methods for image phylogeny tree estimation \autocites{dias2010first, dias2012image, 7018370, 7472039} have a two step method. First, they compute a dissimilarity matrix, an asymmetric matrix, using a dissimilarity function. The dissimilarity function, given Equation \ref{eqn:dissimilarity}, is a function that, given two images, returns small values for similar images.
 
@@ -153,7 +153,7 @@ For every image pair in the set, we take a binary decision that will allow us to
 \newtheorem{fonction}{Definition}
 
 \begin{marqueur}
-  A marker is a local or global feature extracted from the image. This marker shows that a particular transformation was applied to the image. This marker is passed to the image child, and will be used to prove that an image is not an ancestor of another one. For instance a grayscale image cannot be an ancestor of a color image because the ``color'' marker is missing.
+  A marker is a local or global feature extracted from the image. This marker shows that a particular transformation was applied to the image. This marker is passed on to the image child, and will be used to prove that an image is not an ancestor of another one. For instance a grayscale image cannot be an ancestor of a color image because the ``color'' marker is missing.
 \end{marqueur}
 
 \begin{fonction}
@@ -288,7 +288,7 @@ From this example, we can observe several things. A column with only 0 values do
 
 At each iteration, an image is selected as the root (lines 1 and 11) and named $root$. $root$ is removed (line 7) from the ancestors of the other images. If these other images do not have any ancestors (line 8), it means that $root$ was the direct parent of the image being processed. This image is added as a child of $root$ (line 9). Line 5 prevents images from being a potential root twice. This algorithm runs in $O(n^2)$. It has two nested loops and if the sums are computed once at the beginning and updated every time a parent is removed, there is no additional loop that would increase the complexity.
 
-\section{Experiments and results}
+\section{Experimental results}
 \label{sec:results}
 In this section, we present the results obtained with our method. We start by describing how our datasets were generated and then explain our results and how and why they were obtained.
 
@@ -564,7 +564,7 @@ We can see that the root metric suffers the most from the missing image. Indeed,
 \label{sec:conclusion}
 In this paper, an image phylogeny tree reconstruction framework was proposed. Our methods reduces a complex image phylogeny tree estimation to a binary decision between two images. This binary decision is taken using markers present in one image and not in the other.
 
-Future work on this method would be to discover new markers. New markers would allow us to be not just limited to the closest parent detection, or explore the other multiple JPEG compressions scenarios. New markers would also allow us to address other transformations, such as cropping or resampling for example.
+Future work on this method would be to discover new markers. New markers would allow us to be not just limited to the closest parent detection, or explore other multiple JPEG compressions scenarios. New markers would also allow us to address other transformations, such as cropping or resampling for example.
 
 \printbibliography
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  29 JUN 2016 16:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  1 JUL 2016 10:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1582,7 +1582,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 571.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 571.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 571.
 Package rerunfilecheck Info: File `ipta-template.out' has not changed.
-(rerunfilecheck)             Checksum: 24D5257716D496DF27A027F356AF3933;837.
+(rerunfilecheck)             Checksum: AEAE63C599AD8C098B65FF50D222AC07;834.
 Package logreq Info: Writing requests to 'ipta-template.run.xml'.
 \openout1 = `ipta-template.run.xml'.
 
@@ -1591,7 +1591,7 @@ Package logreq Info: Writing requests to 'ipta-template.run.xml'.
 Here is how much of TeX's memory you used:
  44609 strings out of 493029
  987577 string characters out of 6136234
- 1225639 words of memory out of 5000000
+ 1225637 words of memory out of 5000000
  47512 multiletter control sequences out of 15000+600000
  52921 words of font info for 126 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1619,7 +1619,7 @@ xlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri
 8a.pfb>
-Output written on ipta-template.pdf (6 pages, 338885 bytes).
+Output written on ipta-template.pdf (6 pages, 338870 bytes).
 PDF statistics:
  364 PDF objects out of 1000 (max. 8388607)
  327 compressed objects within 4 object streams
